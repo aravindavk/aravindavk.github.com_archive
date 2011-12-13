@@ -1,3 +1,19 @@
+// ASCII2Unicode Kannada Text Encoding converter
+// Copyright (C) 2011  Aravinda VK <hallimanearavind@gmail.com>        
+
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 var Ascii2UnicodeConverter = function(){
     var mappings = {};
     var broken_cases = {};
@@ -122,13 +138,10 @@ var Ascii2UnicodeConverter = function(){
                              var scroll_top = $(window).scrollTop();
 
                              if (scroll_top >= 342 && scroll_top < 1140) {
-                                 $("#main-menu-bar2").show();
-                             }
-                             else if (scroll_top >= 1140) {
                                  $("#main-menu-bar3").show();
                              }
                              else {
-                                 $("#main-menu-bar2,#main-menu-bar3").hide();
+                                 $("#main-menu-bar3").hide();
                              }
                          });
     }
