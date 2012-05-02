@@ -1,5 +1,6 @@
 // ASCII2Unicode Kannada Text Encoding converter
-// Copyright (C) 2011  Aravinda VK <hallimanearavind@gmail.com>        
+// Copyright (C) 2011, 2012 Aravinda VK <hallimanearavind@gmail.com>
+//                                      <http://aravindavk.in>
 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -14,8 +15,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-var MapData = {};
-MapData.mappings = {
+var mapping = {
     "C": "ಅ",
     "D": "ಆ",
     "E": "ಇ",
@@ -33,7 +33,7 @@ MapData.mappings = {
     "B": "ಃ",
     "Pï": "ಕ್",
     "PÀ": "ಕ",
-    "PÁ": "ಕಾ",
+    "PÁ": "ಕಾ", 
     "Q": "ಕಿ",
     "PÉ": "ಕೆ",
     "PË": "ಕೌ",
@@ -55,6 +55,7 @@ MapData.mappings = {
     "X": "ಘಿ",
     "WÉ": "ಘೆ",
     "WË": "ಘೌ",
+    "k": "ಞ",
     "Zï": "ಚ್",
     "ZÀ": "ಚ",
     "ZÁ": "ಚಾ",
@@ -80,6 +81,7 @@ MapData.mappings = {
     "gÉhÄ": "ಝೆ",
     "gÉhÆ": "ಝೊ",
     "gÀhiË": "ಝೌ",
+    "Y" : "ಙ",
     "mï": "ಟ್",
     "l": "ಟ",
     "mÁ": "ಟಾ",
@@ -172,9 +174,13 @@ MapData.mappings = {
     "ªÀiË": "ಮೌ",
     "AiÀiï": "ಯ್",
     "AiÀÄ": "ಯ",
+    "0iÀÄ": "ಯ",
     "AiÀiÁ": "ಯಾ",
+    "0iÀiÁ": "ಯಾ",
     "¬Ä": "ಯಿ",
+    "0iÀÄÄ": "ಯು",
     "AiÉÄ": "ಯೆ",
+    "0iÉÆ": "ಯೊ",
     "AiÉÆ": "ಯೊ",
     "AiÀiË": "ಯೌ",
     "gï": "ರ್",
@@ -201,6 +207,10 @@ MapData.mappings = {
     "ªÉÇ":"ವೊ",
     "ªÉÇÃ":"ವೋ",
     "ªÉ  ": "ವೆ",
+    "¥ÀÅ": "ಪು",
+    "¥ÀÇ" : "ಪೂ",
+    "¥sÀÅ" : "ಫು", 
+    "¥sÀÇ" : "ಫೂ",
     "ªË": "ವೌ",
     "±ï": "ಶ್",
     "±À": "ಶ",
@@ -232,24 +242,53 @@ MapData.mappings = {
     "½": "ಳಿ",
     "¼É": "ಳೆ",
     "¼Ë": "ಳೌ"
+};
+
+// These when joined will be broken as per unicode 
+var broken_cases = {
+    "Ã":{
+        "value": "ೀ",
+        "mapping": {
+            "ಿ": "ೀ",
+            "ೆ": "ೇ",
+            "ೊ": "ೋ"
+            }
+        }, 
+    "Ä":{
+        "value": "ು",
+        "mapping": {
+            
+            }
+        }, 
+    "Æ":{
+        "value": "ೂ",
+        "mapping": {
+            "ೆ":"ೊ"
+            }
+        }, 
+    "È":{
+        "value": "ೃ",
+        "mapping": {
+            
+            }
+        }, 
+    "Ê":{
+        "value": "ೈ",
+        "mapping": {
+            "ೆ":"ೈ"
+            }
+        }  
     };
 
-//These when joined will be broken as per unicode
-MapData.broken_cases = {"Ã":{"value": "ೀ", "mapping": {"ಿ": "ೀ", "ೆ": "ೇ", "ೊ": "ೋ"}}, 
-                "Ä":{"value": "ು", "mapping": {}}, 
-                "Æ":{"value": "ೂ", "mapping": {"ೆ":"ೊ"}}, 
-                "È":{"value": "ೃ", "mapping": {}}, 
-                "Ê":{"value": "ೈ", "mapping": {"ೆ":"ೈ"}}  
-                };
+var dependent_vowels = ["್", "ಾ", "ಿ", "ೀ", "ು", "ೂ", "ೃ", "ೆ", "ೇ", "ೈ", "ೊ", "ೋ", "ೌ"];
+var ignore_list = {"ö": "", "÷": ""};
 
-MapData.dependent_vowels = ["ಾ", "ಿ", "ೀ", "ು", "ೂ", "ೃ", "ೆ", "ೇ", "ೈ", "ೊ", "ೋ", "ೌ"];
-MapData.ignore_list = ["ö","÷"];
-
-MapData.vattaksharagalu = {
+var vattaksharagalu = {
     "Ì": "ಕ",
     "Í": "ಖ",
     "Î": "ಗ",
     "Ï": "ಘ",
+    "Õ": "ಞ",
     "Ñ": "ಚ",
     "Ò": "ಛ",
     "Ó": "ಜ",
@@ -263,7 +302,7 @@ MapData.vattaksharagalu = {
     "Ü": "ಥ",
     "Ý": "ದ",
     "Þ": "ಧ",
-    "ß": "ನ", 
+    "ß": "ನ",
     "à": "ಪ",
     "á": "ಫ",
     "â": "ಬ",
@@ -277,7 +316,10 @@ MapData.vattaksharagalu = {
     "ë": "ಷ",
     "ì": "ಸ",
     "í": "ಹ",
-    "î": "ಳ", 
-    "ð": "ರ",
+    "î": "ಳ",
     "ç": "ರ"
-    };
+};
+
+var ascii_arkavattu = {
+    "ð": "ರ"
+};
