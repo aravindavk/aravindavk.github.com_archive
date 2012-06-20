@@ -22,11 +22,20 @@ function compare(){
     var total_fuel_price_diesel = 0;
     var petrol_car_total = 0;
     var diesel_car_total = 0;
-    var r = opts.loan_interest/12/100;
-    var loan_emi = opts.loan_amount * r * Math.pow((1+r), opts.loan_term)/(Math.pow((1+r), opts.loan_term) - 1);
-    $("#emi").html("<strong>EMI: </strong>" + disp(parseInt(loan_emi, 10)));
+    var loan_amount_petrol = opts.loan_amount - (opts.diesel_car_base_price - opts.petrol_car_base_price);
+    loan_amount_petrol = loan_amount_petrol > 0 ? loan_amount_petrol : 0;
 
-    var loan_interest_paid = loan_emi*opts.loan_term - opts.loan_amount;
+    var r = opts.loan_interest/12/100;
+    var loan_emi_diesel = opts.loan_amount * r * Math.pow((1+r), opts.loan_term)/(Math.pow((1+r), opts.loan_term) - 1);
+    var loan_emi_petrol = loan_amount_petrol * r * Math.pow((1+r), opts.loan_term)/(Math.pow((1+r), opts.loan_term) - 1);
+    $("#emi").html("<strong>EMI Diesel car: </strong><br/>Rs" + disp(parseInt(loan_emi_diesel, 10)) + 
+                   ' for loan amount Rs' + opts.loan_amount +
+                  "<br/><br/>" + "<strong>EMI Petrol car: </strong><br/>Rs" + 
+                   disp(parseInt(loan_emi_petrol, 10)) + 
+                   ' for loan amount Rs' + loan_amount_petrol);
+
+    var loan_interest_paid_diesel = loan_emi_diesel*opts.loan_term - opts.loan_amount;
+    var loan_interest_paid_petrol = loan_emi_petrol*opts.loan_term - loan_amount_petrol;
     var class_name = "economical";
     $("#petrol-blocks, #diesel-blocks, #year-blocks").html('');
     
@@ -52,8 +61,8 @@ function compare(){
     for (var i=1; i<=15; i++) {
         total_fuel_price_petrol = (i * 12 * opts.monthly_average * opts.petrol_price_per_ltr)/opts.petrol_car_mileage; 
         total_fuel_price_diesel = (i * 12 * opts.monthly_average * opts.diesel_price_per_ltr)/opts.diesel_car_mileage; 
-        petrol_car_total = opts.petrol_car_base_price + total_fuel_price_petrol + loan_interest_paid;
-        diesel_car_total = opts.diesel_car_base_price + total_fuel_price_diesel + loan_interest_paid;
+        petrol_car_total = opts.petrol_car_base_price + total_fuel_price_petrol + loan_interest_paid_petrol;
+        diesel_car_total = opts.diesel_car_base_price + total_fuel_price_diesel + loan_interest_paid_diesel;
         
         var petrol_price_color = petrol_car_total > diesel_car_total ? "red" : "green";
         var diesel_price_color = diesel_car_total > petrol_car_total ? "red" : "green";

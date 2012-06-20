@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Diesel vs Petrol Car - Analysis | Aravinda VK </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="description" content='A simple tool to compare the prices of Petrol car and Diesel car and display the breakeven point. Red indicates more expensive'>
     <link rel="stylesheet" href="normalize.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="grid.css" type="text/css" media="screen" />
@@ -24,11 +25,11 @@
     <div class="clear sep"></div>
     <div class="container_12">
       <div class="grid_3">
-        <div class="form-group" style="height:73px">
+        <div class="form-group" style="height:65px">
           Which Car to buy? Confused? This simple tool might help! Change values to your requirements and decide.
         </div>
 
-        <div class="form-group" style="height:196px">
+        <div class="form-group" style="height:285px">
           <h3>LOAN DETAILS</h3>
           <label for="loan-amount" class="block-label">Loan Amount(Rs)</label>
           <input type="text" class="txt" id="loan-amount" value="500000"/>
@@ -48,7 +49,7 @@
       </div>
 
       <div class="grid_3">
-        <div class="form-group" style="height:196px">
+        <div class="form-group" style="height:236px">
           <h3>PETROL CAR</h3>
           <label for="petrol-onroad-price" class="block-label">Onroad Price(Rs)</label>
           <input type="text" class="txt" id="petrol-onroad-price" value="600000"/>     
@@ -60,7 +61,7 @@
 
         <div class="clear"></div>
 
-        <div class="form-group" style="height:196px">
+        <div class="form-group" style="height:236px">
           <h3>DIESEL CAR</h3>
           <label for="diesel-onroad-price" class="block-label">Onroad Price(Rs)</label>
           <input type="text" class="txt" id="diesel-onroad-price" value="700000"/>
@@ -94,6 +95,8 @@
         <div class="grid_7">
           <h2>How it works?</h2>
           <p>Car price = Cash in hand + Loan amount </p>
+          <p>Less loan amount and less EMI if Petrol Car, <br/>
+            Petrol loan amount = (Loan amount - (diesel car price-petrol car price)) </p>
           <p>Loan interest paid = (EMI * n) - Loan amount<br/>where n is loan term in months</p>
           <p>Total Car price = Onroad price + Loan interest paid</p>
           <p>Fuel price per year = (monthly average * 12 * price per ltr) / mileage </p>
