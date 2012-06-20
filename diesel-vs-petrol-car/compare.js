@@ -23,7 +23,7 @@ function compare(){
     var petrol_car_total = 0;
     var diesel_car_total = 0;
     var loan_amount_petrol = opts.loan_amount - (opts.diesel_car_base_price - opts.petrol_car_base_price);
-    loan_amount_petrol = loan_amount_petrol > 0 ? loan_amount_petrol : 0;
+    loan_amount_petrol = loan_amount_petrol > 0 ? (loan_amount_petrol >= opts.loan_amount ? opts.loan_amount : loan_amount_petrol) : 0;
 
     var r = opts.loan_interest/12/100;
     var loan_emi_diesel = opts.loan_amount * r * Math.pow((1+r), opts.loan_term)/(Math.pow((1+r), opts.loan_term) - 1);
