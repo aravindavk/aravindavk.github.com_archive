@@ -15,6 +15,8 @@ function compare(){
         loan_term: parseFloat($("#loan-duration").val())*12,
         petrol_car_mileage: parseFloat($("#petrol-fuel-efficiency").val()),
         diesel_car_mileage: parseFloat($("#diesel-fuel-efficiency").val()),
+        petrol_annual_maintainance: parseFloat($("#petrol-annual-maintainance").val()),
+        diesel_annual_maintainance: parseFloat($("#diesel-annual-maintainance").val()),
         monthly_average: parseFloat($("#usage").val())
     };
     
@@ -61,8 +63,14 @@ function compare(){
     for (var i=1; i<=15; i++) {
         total_fuel_price_petrol = (i * 12 * opts.monthly_average * opts.petrol_price_per_ltr)/opts.petrol_car_mileage; 
         total_fuel_price_diesel = (i * 12 * opts.monthly_average * opts.diesel_price_per_ltr)/opts.diesel_car_mileage; 
-        petrol_car_total = opts.petrol_car_base_price + total_fuel_price_petrol + loan_interest_paid_petrol;
-        diesel_car_total = opts.diesel_car_base_price + total_fuel_price_diesel + loan_interest_paid_diesel;
+        petrol_car_total = opts.petrol_car_base_price + 
+            total_fuel_price_petrol + 
+            loan_interest_paid_petrol + 
+            (i*opts.petrol_annual_maintainance);
+        diesel_car_total = opts.diesel_car_base_price + 
+            total_fuel_price_diesel + 
+            loan_interest_paid_diesel + 
+            (i*opts.diesel_annual_maintainance);
         
         var petrol_price_color = petrol_car_total > diesel_car_total ? "red" : "green";
         var diesel_price_color = diesel_car_total > petrol_car_total ? "red" : "green";
@@ -109,6 +117,8 @@ function bind_events(){
                     "#diesel-onroad-price",
                     "#diesel-fuel-efficiency",
                     "#diesel-price",
+                    "#petrol-annual-maintainance",
+                    "#diesel-annual-maintainance",
                     "#usage"];
     $(elements.join(",")).keyup(function(){
         compare();
