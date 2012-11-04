@@ -1,0 +1,6 @@
+pygments: true
+markdown: rdiscount
+permalink: /blog/:title
+baseurl: 
+author: Aravinda VK
+

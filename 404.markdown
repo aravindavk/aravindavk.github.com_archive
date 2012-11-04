@@ -1,0 +1,9 @@
+---
+layout: default
+title: Personal Home page of Aravinda
+permalink: /404/index.html
+---
+Not Found!
+<script type="text/javascript">
+  var PAGE = "404";
+</script>

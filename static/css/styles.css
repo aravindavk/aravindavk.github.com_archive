@@ -1,0 +1,292 @@
+/* ============================== */
+/* ! Layout for desktop version   */
+/* ============================== */
+body{
+    background-color:#777;
+    font-size:15px;
+    line-height:1.7em;
+    font-family:Gubbi, Kedage, Tunga,Helvetica, sans-serif, arial;
+}
+.main-container{
+    background: url(images/bg.png) repeat-y #EEEFFF;
+}
+.main{
+    margin-left:0px;
+    background-color:#eeefff;
+}
+.content{
+
+}
+.content p{
+    margin-bottom:20px;
+}
+.fixed-div{
+    position:fixed;
+    width:100%;
+    background-color: #EEEFFF;
+    top:0;
+}
+.left{
+    background-color: #FFF;
+    min-height:1000px;
+    box-shadow:0 8px 8px rgba(221, 221, 221, 0.8);
+    -moz-transition:box-shadow 0.5s ease-out 0s;
+    -webkit-transition:box-shadow 0.5s ease-out 0s;    
+}
+.left:hover{
+    -moz-transition: box-shadow 0.5s ease-out 0s;
+    -webkit-transition: box-shadow 0.5s ease-out 0s;
+    box-shadow: 0 24px 24px rgba(3, 0, 114, 0.8);
+}
+/* Content styles */
+.content {
+    color:#111;
+
+}
+.content .page-title{
+    font-size:2em;
+    margin:10px 0 10px 0;
+}
+a{
+    text-decoration:none;
+    color:#4682b4;
+}
+a:hover{
+    color:blue;
+}
+
+.logo{
+    margin-top:7px;
+}
+.content pre {
+    margin:20px 0 20px 0;
+    font-size:13px;
+    padding:10px 10px 20px 10px;
+    background-color:#f7f9fa;
+    /* border-left: 5px solid #8cacbb; */
+    border-top:1px dashed #8cacbb;
+    border-bottom:1px dashed #8cacbb;
+/* border-right:1px dashed #8cacbb; */
+}
+p code{
+    background-color:#C5C7E6;
+    color:#000;
+}
+.content  blockquote{
+    margin:10px 0 20px 30px;
+    color:#777;
+    border-left:5px solid #aaa;
+    padding:10px;
+}
+.link-icon{
+    margin-right:5px;
+    width:22px;
+    opacity:.8;
+}
+#link-icon-msg{
+    height:30px;
+    color:#777;
+}
+.year-header{
+    margin:20px 0 10px 0;
+    color:#556b2f;
+}
+.content .page-subtitle{
+    font-size:0.9em;
+    color:#666;
+}
+.content .tags-list{
+    margin:20px 0 20px 0;
+    font-size:0.9em;
+    color:#333;
+}
+.content h2, .content h3, .content h4{
+    margin:20px 0 10px 0;
+}
+
+.content h2{
+    font-size: 1.5em;
+}
+
+.content h3{
+    font-size: 1.2em;
+}
+
+.content h4{
+    font-size: 1.1em;
+}
+
+.content p {
+    margin:0 0 20px 0;
+}
+
+.content .img {
+    margin:10px 0 5px 0;
+}
+
+.content .img-caption{
+    margin:0px 0 20px 0;
+}
+
+.content .inline-img{
+    vertical-align:baseline;
+}
+.content .page-title{
+    font-family:Helvetica,sans-serif, arial, Gubbi, Tunga, Kedage,"Lohit Kannada";
+    color: #D15707;
+    font-size: 35px;
+    letter-spacing: 1px;
+    line-height: 40px;
+    margin: 0px 0 20px 0;
+    text-shadow:1px 1px 1px #BBBBBB;
+}
+.content .page-subtitle{
+    color:#555;
+    border-bottom:1px solid #ddd;
+    margin-bottom:10px;
+    font-family:Helvetica, sans-serif, arial;
+}
+.content ol{
+    list-style:decimal;
+    list-style-position: inside;
+}
+.content ul{
+    list-style:square;
+    list-style-position: inside;
+}
+.sep{
+    height:20px;
+    clear:both;
+}
+.blogs-list{
+    width:98%;
+}
+.archive-link-more{
+    width:98%;
+    text-align:right;
+    font-size:25px;
+}
+.blogs-list .c1, .blogs-list .c2{
+    line-height:20px;
+    border-bottom:1px dashed #ddd;
+}
+.blogs-list .c2{
+    text-align:right;
+    color:#333;
+}
+.blogs-list .c1{
+    width:80%;
+    padding:10px 20px 10px 0;
+}
+.blogs-list .c1 a{
+    text-decoration:none;
+    color:#3a5fcd;
+}
+.blogs-list .c1 a:hover{
+    color:#b23aee;
+}
+.main-menu-item{
+    display:block;
+    text-decoration:none;
+    color:#006699;
+    padding-right:20px;
+    height:26px;
+    -moz-transition:all 0.3s ease;
+    -o-transition:all 0.3s ease;
+    background:url(images/selected.png) no-repeat -15px 0px;
+    margin-left:-10px;
+    padding-left:15px;
+    font-size:15px;
+    font-family:Helvetica, sans-serif, arial;
+    
+}
+.main-menu-item:hover{
+    color:#000;
+    background:url(images/selected.png) no-repeat 0px 7px;
+}
+.main-menu-item-selected{
+    background:url(images/selected.png) no-repeat 0px 7px;
+    color:#000;
+}
+.comments-disabled-note{
+    background-color:#ffdead;
+    padding:20px;
+    border-radius:7px;
+}
+.only-mobile{
+    display:none;
+}
+.content{
+    margin:0px 40px 20px 40px;
+    padding-top:50px;
+}
+.copyright{
+    color:#777;
+    font-size:12px;
+}
+.imgCaption{
+    color:#555;
+    display:block;
+}
+/* ============================= */
+/* ! Layout for mobile version   */
+/* ============================= */
+
+@media handheld, only screen and (max-width: 767px) {
+
+    body {
+
+    }
+
+    .content{
+        margin:0px 20px 20px 20px;
+        padding-top:50px;
+    }
+
+    .only-mobile{
+        display:block;
+        background-color:#eeefff;
+    }
+    .only-mobile .logo{
+        margin:10px 10px 10px 20px;
+    }    
+}
+
+
+/* ========================================== */
+/* ! Provide higher res assets for iPhone 4   */
+/* ========================================== */
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+
+/*  .logo {
+    background: url(logo2x.jpg) no-repeat;
+    background-size: 212px 303px;
+    }*/
+
+}
+
+/* Project Page highlight */
+.a-project{
+    float:left;
+    margin:0 20px 20px 0;
+    width:300px;
+    height:150px;
+    padding:10px;
+    background-color:#eee;
+    border-radius:10px;
+    border:1px solid #eee;
+}
+.a-project:hover{
+    border:1px solid #777;
+}
+.a-project-title{
+    font-size:15px;
+    font-weight:bold;
+    color:#333;
+    margin-bottom:10px;
+}
+.a-project-desc{
+    color:#555;
+    font-size:13px;
+}

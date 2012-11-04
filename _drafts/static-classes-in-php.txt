@@ -1,0 +1,83 @@
+-*- mode: markdown -*-
+
+How about writng static classes in PHP instead of procedural way?
+
+Let us see one simple example of static class.
+
+    #!sh_php
+    <?php 
+    // File name: comments.inc
+
+    class Comments{
+        function add(){
+            // Implementation here
+        }
+
+        function publish_unpublish(){
+            // Implementation here
+        }
+    }
+
+To use the functions of Comments class, 
+
+    #!sh_php
+    <?php
+    // Include the comments module
+    include "comments.inc";
+
+    // Call function directly without creating an instance of the class
+    Comments::add();
+
+    echo "Success";
+
+
+I decided to use static classes in PHP because of the following points/advantages, I am using static class just as a container to functions.
+
+### Function names can be reused accross the classes and better readable code.
+
+For example `enable_disable` name is used to enable or disable the blogs, When we add same functionality to comments then we cant use the same name, so we may select some other name like `enable_disable_comments`. We can't keep the satandard function names accross the modules, or we need to use `enable_disable_blogs` and `enable_disable_comments`.
+
+If we create static classes for Blogs and Comments then we can use the same function name in both modules. Those functions are accessed using
+
+    #!sh_php
+    <?php
+    Blogs::enable_disable();
+    Comments::enable_disable();
+    
+### We can use autoload feature to automatically include the file
+
+When the functions/methods in a class is called then PHP will include the respective class file automatically as defined in the __autoload function.
+
+    #!sh_php
+    <?php
+    function __autoload($className){
+        include strtolower($className).'.inc';
+    }
+
+Above function will only look in current directory, If we need to include files from multiple directories then add those directories in include_path
+
+Example,
+
+    #!sh_php
+    <?php
+    // Add the required paths in array
+    $allPaths = Array('modules', 'views', 'configs','lib', 'modules/core');
+    
+    // Set these paths in include path
+    set_include_path(get_include_path().PATH_SEPARATOR.implode(PATH_SEPARATOR, $allPaths)); 
+
+If we have a function "add" in a class Comments then we can use the function directly without including the Blogs.inc file
+
+    #!sh_php
+    <?php
+    // File not included
+    Comments::add();
+    
+### We can protect the functions
+
+Some functions are not supposed to be exposed to other modules, If they accessed accidentally then we will not get expected result. If enclose the functions in static class then we make those functions as private or protected so that those functions can be accessed only in respective module/class.
+
+
+I haven't done any benchmarking between static class way of coding vs procedural way, Let me know your views. 
+
+

@@ -1,8 +1,11 @@
 ---
 layout: default
-title: Personal Home page of Aravinda
-permalink: /index.html
+title: Archive
+permalink: /archive/index.html
 ---
+
+<div class="page-title">{{ page.title }}</div>
+
 <div class="sep"></div>
 {% for post in site.posts %}
   {% unless post.next %}
@@ -26,5 +29,5 @@ permalink: /index.html
 {% endfor %}
 </table>
 <script type="text/javascript">
-  var PAGE = "home";
+  var PAGE = "archive";
 </script>
