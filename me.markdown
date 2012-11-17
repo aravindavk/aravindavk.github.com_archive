@@ -7,7 +7,7 @@ layout: page
 
 Hi there! I am **Aravinda**.
 
-I work at [LimberLink Technologies Pvt Ltd](http://limberlink.com), Bangalore as **Principal Software Engineer**. I am passionate about Design, Web development, Linux and **Emacs**.
+I work at [Red Hat India Pvt. Ltd.](http://in.redhat.com/), Bangalore as **Senior Software Engineer**. 
 
 I like exploring OpenSource technologies and participating in different Open Source projects and Events. Most of my open Source projects are in [Github](https://github.com/aravindavk).
 
