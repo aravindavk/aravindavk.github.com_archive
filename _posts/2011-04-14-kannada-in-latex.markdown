@@ -35,7 +35,7 @@ According to Polyglossia documentation(`texdoc polyglossia`),
 
 <div class="clear" style="height:20px"></div>
 
-So created the gloss-kannada.ldf file and is available for [download](/files/gloss-kannada.ldf). Thanks to [Shankar Prasad](http://twitter.com/shankar_prasad) who helped me in updating the translations required for the gloss-kannada.ldf file.
+So created the gloss-kannada.ldf file and is available for [download](https://github.com/aravindavk/polyglossia-kannada). Thanks to [Shankar Prasad](http://twitter.com/shankar_prasad) who helped me in updating the translations required for the gloss-kannada.ldf file.
 
 Once we install gloss-kannada.ldf file we will get following benifits.
 
@@ -96,6 +96,7 @@ Make sure `hyph-kn.tex` and `loadhyph-kn.tex` files exists in `/usr/local/texliv
 Now we are ready with the installation of TeXLive. Let us create a TeX file to test hyphenation works or not! Added `\setdefaultlanguage` additionally. 
 
 {% highlight latex %}
+{% raw %}
 % File: bigtext.tex
 \documentclass{article}
 \usepackage{fontspec}
@@ -105,7 +106,7 @@ Now we are ready with the installation of TeXLive. Let us create a TeX file to t
 \setmainfont[Script=Kannada]{Lohit Kannada}
 \newfontfamily\english{"FreeSerif"}
 %% New command to switch to English in between
-\newcommand\en[1]{{\english #1}}
+\newcommand\en[1]\{{english #1}}
 \setlength{\parindent}{0pt} % No indentation for paragraphs
 \title{ಮದುವೆಯ ನೆನಪು ಉಳಿಯಿತು}
 \date{}
@@ -128,6 +129,7 @@ Now we are ready with the installation of TeXLive. Let us create a TeX file to t
 ಗೆಳೆಯ ಸುಧೀಂದ್ರ ಬರೆದ ಲೇಖನ \en{http://sampada.net/blog/sudhimail/22/02/2010/24125}
 
 \end{document}
+{% endraw %}
 {% endhighlight %}
 
 Output of this is     

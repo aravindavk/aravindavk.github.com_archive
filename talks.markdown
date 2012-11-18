@@ -14,7 +14,7 @@ layout: page
 
 <span class="dull">Mar 06, 2011</span> - Article in Prajavani(Saptahika Puravani) about Open Source and Kannada - [**ಮುಕ್ತ ಜಗತ್ತಿಗೆ ಸ್ವಾಗತ**](/files/mukta_jagattige_swagata.pdf)
 
-<span class="dull">Aug 07, 2011</span> - Article in **ಅರಿವಿನ ಅಲೆಗಳು** about OCR for Kannada - [**ಕನ್ನಡಕ್ಕೆ OCR - ಇದು ಸಾಧ್ಯವೇ?**](http://arivu.sanchaya.net/ale/7)
+<span class="dull">Aug 07, 2011</span> - Article in **ಅರಿವಿನ ಅಲೆಗಳು** about OCR for Kannada - [**ಕನ್ನಡಕ್ಕೆ OCR - ಇದು ಸಾಧ್ಯವೇ?**](http://arivu.sanchaya.net/2011/08/ocr.html)
 
 <span class="dull">Nov 25, 2011</span> - Article in **ಕಹಳೆ** about Typography in Kannada - [**ಕಂಪ್ಯೂಟರ್ ಬರವಣಿಗೆ - ಅಂದ ಚೆಂದ**](http://www.kahale.gen.in/2011/11/blog-post_25.html) 
 

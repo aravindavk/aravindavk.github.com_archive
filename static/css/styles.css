@@ -290,3 +290,9 @@ p code{
     color:#555;
     font-size:13px;
 }
+.notice-update{
+    padding:10px;
+    background-color:#E8E77F;
+    border-radius:7px;
+    margin-bottom:20px;
+}
