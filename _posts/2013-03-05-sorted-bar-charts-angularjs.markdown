@@ -24,7 +24,7 @@ Creating bar charts/progress bars using HTML and CSS is very easy, we can create
 </div>
 {% endhighlight %}
 
-Today I tried to create sorted bar charts using Angular JS. Following chart shows number of blog posts I wrote each year. Click on yellow buttons to sort accordingly. The [demo](/demo/sorted-bar-charts-using-angularjs/) code is available [here](https://github.com/aravindavk/demo/tree/master/sorted-bar-charts-using-angularjs). 
+Today I tried to create sorted bar charts using Angular JS. Following chart shows number of blog posts I wrote each year. We can change the sort order by clicking the yellow buttons. The [demo](/demo/sorted-bar-charts-using-angularjs/) code is available [here](https://github.com/aravindavk/demo/tree/master/sorted-bar-charts-using-angularjs). 
 
 <iframe src="/demo/sorted-bar-charts-using-angularjs/" width="660" height="400"></iframe>
 
