@@ -28,7 +28,7 @@ Today I tried to create sorted bar charts using Angular JS. Following chart show
 
 <iframe src="/demo/sorted-bar-charts-using-angularjs/" width="660" height="400"></iframe>
 
-I was trying to write a blog post every tuesday and celebrate as #blogTuesday. The chart shows how far I succeeded. :)
+The idea is to write a blog post every Tuesday and celebrate as #blogTuesday. The chart shows how far I succeeded. :)
 
 <blockquote class="twitter-tweet"><p>52 weeks per year, 52 Tuesdays, 52 blog posts? <a href="https://twitter.com/search/%23blogTuesday">#blogTuesday</a></p>&mdash; Aravinda (@aravindavk) <a href="https://twitter.com/aravindavk/status/308613618793070593">March 4, 2013</a></blockquote>
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
