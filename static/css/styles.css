@@ -1,11 +1,16 @@
 /* ============================== */
 /* ! Layout for desktop version   */
 /* ============================== */
+@font-face{
+    font-family: GubbiWeb;
+    src: local("Gubbi"), url('fonts/Gubbi.ttf');
+}
+
 body{
     background-color:#777;
     font-size:15px;
     line-height:1.7em;
-    font-family:Gubbi, Kedage, Tunga,Helvetica, sans-serif, arial;
+    font-family:GubbiWeb, Kedage, Tunga,Helvetica, sans-serif, arial;
 }
 .main-container{
     background: url(images/bg.png) repeat-y #EEEFFF;
@@ -132,7 +137,7 @@ p code{
     vertical-align:baseline;
 }
 .content .page-title{
-    font-family:Helvetica,sans-serif, arial, Gubbi, Tunga, Kedage,"Lohit Kannada";
+    font-family:Helvetica,sans-serif, arial, GubbiWeb, Tunga, Kedage,"Lohit Kannada";
     color: #D15707;
     font-size: 35px;
     letter-spacing: 1px;
