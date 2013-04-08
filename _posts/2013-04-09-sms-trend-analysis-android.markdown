@@ -2,9 +2,9 @@
 title: SMS trend analysis - Android
 tags: [english, sms, android, sql]
 layout: post
-desc: "Now a days my SMS incoming and outgoing trend looks like this for some reason :)"
+desc: "Now a days my incoming and outgoing SMS trend looks like this for some reason :)"
 ---
-Now a days my SMS incoming and outgoing trend looks like this for some(known) reason :)
+Now a days my incoming and outgoing SMS trend looks like this for some(known) reason :)
 
 ![Incoming sms trend](/photo/incoming_sms_trend.png)
 <span class="imgCaption">Incoming SMS trend(Nov 2012 - Apr 2013)</span>
