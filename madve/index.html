@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Aravinda VK">
+    <meta name="description" content='Chinmai and Aravinda'>
+    <meta name="keywords" content="None">
+    <title>Chinmai and Aravinda</title>
+    <link href="{{ site.baseurl }}/static/fav.png" rel="icon" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="../static/fav.png" />
+    <link rel="stylesheet" href="../static/css/normalize.css" type="text/css" media="screen" />
+    <!--[if lte IE 9]><link rel="stylesheet" href="../static/css/ie.css" type="text/css" media="screen" /><![endif]-->
+    <link rel="stylesheet" href="madve.css" type="text/css" media="screen" />
+    <script type="text/javascript" src="../static/js/jquery-1.6.4-min.js"></script>
+    <!-- bg from http://webtreats.mysitemyway.com/baby-pink-pastel-tileable-patterns/ -->
+    <!-- http://webtreats.mysitemyway.com/wp-content/uploads/2010/09/webtreats_baby_pink_pattern_24.jpg -->
+    <style>
+      body{
+      background:url(bg.jpg);
+      }
+      .container{
+      width:700px;
+      padding:20px;
+      margin:auto;
+      margin-top:20px;
+      }
+      .box{
+      border-radius:15px;
+      width:700px;
+      height:467px;
+      }
+      #invite{
+      background:url("invitation.jpg") no-repeat;
+      
+      }
+      #map, #places,#what-else {
+      display:none;
+      }
+      .menu{
+      text-align:center;
+      margin-top:10px;
+      }
+      .menu a{
+      font-size:20px;
+      font-weight:bold;
+      text-decoration:none;
+      color:#555;
+      }
+      .menu a:hover{
+      color:blue;
+      }
+      .sep{
+      color:#999;
+      display:inline-block;
+      margin:0 20px 0px 20px;
+      }
+      .coming-soon{
+      margin:auto;
+      font-size:20px;
+      padding-top:150px;
+      width:300px;
+      height:200px;
+      color:#444;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="box" id="invite"></div>
+      <div class="box" id="map"><div class="coming-soon">Coming Soon :)</div></div>
+      <div class="box" id="places"><div class="coming-soon">Coming Soon :)</div></div>
+      <div class="box" id="what-else"><div class="coming-soon">Coming Soon :)</div></div>
+      <div class="menu"><a href="#" data-id="#invite">INVITATION</a><span class="sep">|</span><a href="#" data-id="#map">MAP</a>
+        <span class="sep">|</span><a href="#" data-id="#places">PLACES</a><span class="sep">|</span><a href="#" data-id="#what-else">WHAT ELSE?</a></div>
+    </div>
+    <script type="text/javascript">
+      $(document).ready(function(){
+      $(".menu a").click(function(){
+      $(".box").hide();
+      $($(this).attr("data-id")).fadeIn();
+      });
+      });
+    </script>
+  </body>
+</html>
