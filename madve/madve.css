@@ -1,0 +1,48 @@
+body{
+    background:url(bg.jpg);
+}
+.container{
+    width:700px;
+    padding:20px;
+    margin:auto;
+    margin-top:20px;
+}
+.box{
+    border-radius:15px;
+    width:700px;
+    height:467px;
+    position:relative;
+}
+#invite{
+    background:url("invitation.jpg") no-repeat;
+    
+}
+#map, #places,#what-else {
+    display:none;
+}
+.menu{
+    text-align:center;
+    margin-top:10px;
+}
+.menu a{
+    font-size:20px;
+    font-weight:bold;
+    text-decoration:none;
+    color:#555;
+}
+.menu a:hover{
+    color:blue;
+}
+.sep{
+    color:#999;
+    display:inline-block;
+    margin:0 20px 0px 20px;
+}
+.coming-soon{
+    margin:auto;
+    font-size:20px;
+    padding-top:150px;
+    width:300px;
+    height:200px;
+    color:#444;
+}
