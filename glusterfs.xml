@@ -1,0 +1,32 @@
+---
+layout: nil
+permalink: /tag/glusterfs.xml
+---
+<?xml version="1.0"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>GlusterFS blog posts - @aravindavk</title>
+    <link>http://aravindavk.in</link>
+    <atom:link href="http://aravindavk.in/tag/glusterfs.xml" rel="self" type="application/rss+xml" />
+    <description>GlusterFS related blogs - Aravinda VK</description>
+    <language>en-us</language>
+    <pubDate>{{ site.time | date: "%a, %d %b %Y %H:%M:%S %z" }}</pubDate>
+    <lastBuildDate>{{ site.time | date: "%a, %d %b %Y %H:%M:%S %z" }}</lastBuildDate>
+
+    {% for post in site.posts %}
+    {% for tag in post.tags %}
+    {% if tag == 'glusterfs' %}
+    <item>
+      <title>{{ post.title }}</title>
+      <link>http://aravindavk.in{{ post.url }}</link>
+      <pubDate>{{ post.date | date: "%a, %d %b %Y %H:%M:%S %z" }}</pubDate>
+      <author>mail@aravindavk.in (Aravinda)</author>
+      <guid>http://aravindavk.in{{ post.id }}</guid>
+      <description>{{ post.content | xml_escape }}</description>
+    </item>
+    {% endif %}
+    {% endfor %}
+    {% endfor %}
+
+  </channel>
+</rss>
