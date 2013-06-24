@@ -5,7 +5,7 @@ layout: post
 desc: "ಅದಕ್ಕೆ ಬೇರೆ ಏನಾದರೂ ವ್ಯವಸ್ತೆ ಮಾಡಬಹುದಿತ್ತು. sorry ಕೇಳಿದ ನಂತರ ಅದನ್ನು ಡ್ರೈ ಕ್ಲೀನಿಂಗ್ ಮಾಡಿಸಿ ಕೊಡಲು ಕೇಳಬಹುದಿತ್ತು"
 ---
 <div class="notice-update">
-ಬೆಂಗಳೂರು ಟ್ರಾಫಿಕ್ ನ ಫೇಸ್ ಬುಕ್ ಪುಟದಲ್ಲಿ ಬರೆದಿದ್ದೇನೆ. ಇನ್ನೂ ಉತ್ತರವಿಲ್ಲ.
+UPDATE: <br/>ಬೆಂಗಳೂರು ಟ್ರಾಫಿಕ್ ನ ಫೇಸ್ ಬುಕ್ ಪುಟದಲ್ಲಿ ಬರೆದಿದ್ದೇನೆ. ಇನ್ನೂ ಉತ್ತರವಿಲ್ಲ.
 <a href="https://www.facebook.com/BangaloreTrafficPolice/posts/515665408499171">https://www.facebook.com/BangaloreTrafficPolice/posts/515665408499171</a>
 </div>
 
