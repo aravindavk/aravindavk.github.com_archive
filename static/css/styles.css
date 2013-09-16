@@ -233,6 +233,9 @@ p code{
     color:#555;
     display:block;
 }
+.profile-pic {
+    border-radius:100%;
+}
 /* ============================= */
 /* ! Layout for mobile version   */
 /* ============================= */
