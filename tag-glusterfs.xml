@@ -3,12 +3,189 @@
   <channel>
     <title>GlusterFS blog posts - @aravindavk</title>
     <link>http://aravindavk.in</link>
-    <atom:link href="http://aravindavk.in/tag-glusterfs.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://aravindavk.in/tag/glusterfs.xml" rel="self" type="application/rss+xml" />
     <description>GlusterFS related blogs - Aravinda VK</description>
     <language>en-us</language>
-    <pubDate>Tue, 18 Jun 2013 18:33:24 +0530</pubDate>
-    <lastBuildDate>Tue, 18 Jun 2013 18:33:24 +0530</lastBuildDate>
+    <pubDate>Tue, 24 Sep 2013 22:30:53 +0530</pubDate>
+    <lastBuildDate>Tue, 24 Sep 2013 22:30:53 +0530</lastBuildDate>
 
+    
+    
+    
+    <item>
+      <title>glusterdf - df for gluster volumes</title>
+      <link>http://aravindavk.in/blog/glusterdf-df-for-gluster-volumes</link>
+      <pubDate>Tue, 24 Sep 2013 00:00:00 +0530</pubDate>
+      <author>mail@aravindavk.in (Aravinda)</author>
+      <guid>http://aravindavk.in/blog/glusterdf-df-for-gluster-volumes</guid>
+      <description>&lt;p&gt;A CLI utility to check the disk usage of &lt;a href=&quot;http://gluster.org/&quot;&gt;glusterfs&lt;/a&gt; volumes. Using &lt;code&gt;df&lt;/code&gt; command we can view the disk usage of only mounted glusterfs volumes. This utility takes care of mounting gluster volumes available in the machine where this command is executed. glusterdf uses &lt;a href=&quot;https://github.com/gluster/glusterfs/tree/master/api&quot;&gt;libgfapi&lt;/a&gt; provided by glusterfs to fetch the statvfs information.&lt;/p&gt;
+
+&lt;p&gt;Installation is very simple,&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;git clone git@github.com:aravindavk/glusterfs-tools.git
+&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;glusterfs-tools
+sudo python setup.py install
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;You can also clone this project from &lt;a href=&quot;https://forge.gluster.org/glusterfs-tools&quot;&gt;forge.gluster.org/glusterfs-tools&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Once installed, two tools will be available &lt;code&gt;glustervolumes&lt;/code&gt; and &lt;code&gt;glusterdf&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;sudo glusterdf --help&lt;/code&gt; to know more about options available. (same for glustervolumes &lt;code&gt;sudo glustervolumes --help&lt;/code&gt;)&lt;/p&gt;
+
+&lt;p&gt;Usage examples:&lt;/p&gt;
+
+&lt;div class=&quot;imgCaption&quot;&gt;sudo glusterdf -h (Disk usage in human readable format)&lt;/div&gt;
+
+
+&lt;p&gt;&lt;img src=&quot;/photo/glusterfs/glusterdf_h.png&quot; alt=&quot;glusterdf -h&quot; /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;sep clear&quot;&gt;&lt;/div&gt;
+
+
+&lt;div class=&quot;sep clear&quot;&gt;&lt;/div&gt;
+
+
+
+
+&lt;div class=&quot;imgCaption&quot;&gt;sudo glusterdf -i (View inodes usage information)&lt;/div&gt;
+
+
+&lt;p&gt;&lt;img src=&quot;/photo/glusterfs/glusterdf_i.png&quot; alt=&quot;glusterdf -i&quot; /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;sep clear&quot;&gt;&lt;/div&gt;
+
+
+&lt;div class=&quot;sep clear&quot;&gt;&lt;/div&gt;
+
+
+
+
+&lt;div class=&quot;imgCaption&quot;&gt;sudo glusterdf --status up --type repl -h (View all running replicated volumes)&lt;/div&gt;
+
+
+&lt;p&gt;&lt;img src=&quot;/photo/glusterfs/glusterdf_status_type_h.png&quot; alt=&quot;sudo glusterdf --status up --type repl -h&quot; /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;sep clear&quot;&gt;&lt;/div&gt;
+
+
+&lt;div class=&quot;sep clear&quot;&gt;&lt;/div&gt;
+
+
+
+
+&lt;div class=&quot;imgCaption&quot;&gt;sudo glusterdf -h --volumewithbrick &quot;/b[12]&quot;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;img src=&quot;/photo/glusterfs/glusterdf_volumewithbrick.png&quot; alt=&quot;sudo glusterdf -h --volumewithbrick &amp;quot;/b[12]&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;sep clear&quot;&gt;&lt;/div&gt;
+
+
+&lt;div class=&quot;sep clear&quot;&gt;&lt;/div&gt;
+
+
+
+
+&lt;div class=&quot;imgCaption&quot;&gt;sudo glusterdf --status up --type repli -h --json | python -m json.tool&lt;/div&gt;
+
+
+&lt;p&gt;&lt;img src=&quot;/photo/glusterfs/glusterdf_json.png&quot; alt=&quot;sudo glusterdf --status up --type repli -h --json | python -m json.tool&quot; /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;sep clear&quot;&gt;&lt;/div&gt;
+
+
+&lt;div class=&quot;sep clear&quot;&gt;&lt;/div&gt;
+
+
+
+
+&lt;div class=&quot;imgCaption&quot;&gt;sudo glusterdf --help&lt;/div&gt;
+
+
+&lt;p&gt;&lt;img src=&quot;/photo/glusterfs/glusterdf-help.png&quot; alt=&quot;glusterdf --help&quot; /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;sep clear&quot;&gt;&lt;/div&gt;
+
+
+&lt;div class=&quot;sep clear&quot;&gt;&lt;/div&gt;
+
+
+&lt;p&gt;In my previous blog(&lt;a href=&quot;http://aravindavk.in/blog/glusterfs-tools/&quot;&gt;this&lt;/a&gt;) I wrote about gfvolumes(now it is &lt;code&gt;glustervolumes&lt;/code&gt;). glusterfs-tools is rewritten as python library which can be used with your Python programs.&lt;/p&gt;
+
+&lt;p&gt;For example&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;python&quot;&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;glusterfstools&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;gfapi&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# Get all volumes&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;vols&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# Get a specific volume information&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;vol&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;gv1&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# Search volumes by status&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;down_volumes&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;search&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;status&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;down&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# Search volumes by type&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;distribute_volumes&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;search&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;type&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;distribute&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# Statvfs information&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;vol_statvfs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;gfapi&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;statvfs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;gv1&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# To view information about gluster volumes which are down&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# and having bricks like &amp;quot;/gfs&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;vols&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;search&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;status&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;down&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;volumewithbricks&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;/gfs&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# To view filters available&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;filters&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;volumes.search accepts filters as parameter, extending volume filters is very simple. For example name filter looks like this(&lt;a href=&quot;https://github.com/aravindavk/glusterfs-tools/blob/master/src/glusterfstools/volumefilters.py&quot;&gt;src/glusterfstools/volumefilters.py&lt;/a&gt;)&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;python&quot;&gt;&lt;span class=&quot;nd&quot;&gt;@filter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;name_filter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vols&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;is_match&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vol&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;all&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;or&lt;/span&gt; \
+            &lt;span class=&quot;n&quot;&gt;vol&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lower&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lower&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;strip&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;or&lt;/span&gt; \
+            &lt;span class=&quot;n&quot;&gt;re&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;search&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vol&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]):&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vols&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;is_match&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The filter can be used as below&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;python&quot;&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;glusterfstools&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;volumes&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# Filters the volumes with name either gv1 or gv2&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;filters&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;gv[12]&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;search&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;filters&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+
+</description>
+    </item>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -18,7 +195,12 @@
       <pubDate>Tue, 18 Jun 2013 00:00:00 +0530</pubDate>
       <author>mail@aravindavk.in (Aravinda)</author>
       <guid>http://aravindavk.in/blog/glusterfs-tools</guid>
-      <description>&lt;p&gt;From &lt;a href=&quot;http://gluster.org&quot;&gt;GlusterFS website&lt;/a&gt;&lt;/p&gt;
+      <description>&lt;div class=&quot;notice-update&quot;&gt;
+UPDATE: &lt;br/&gt;Installation and usage is simplified with the new release of glusterfs-tools, refer &lt;a href=&quot;http://aravindavk.in/blog/glusterdf-df-for-gluster-volumes/&quot;&gt;this blog&lt;/a&gt; for more details.
+&lt;/div&gt;
+
+
+&lt;p&gt;From &lt;a href=&quot;http://gluster.org&quot;&gt;GlusterFS website&lt;/a&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;&lt;p&gt;GlusterFS is an open source, distributed file system capable of scaling to several petabytes (actually, 72 brontobytes!) and handling thousands of clients. GlusterFS clusters together storage building blocks over Infiniband RDMA or TCP/IP interconnect, aggregating disk and memory resources and managing data in a single global namespace. GlusterFS is based on a stackable user space design and can deliver exceptional performance for diverse workloads.&lt;/p&gt;&lt;/blockquote&gt;
 
