@@ -22,7 +22,7 @@
 
 &lt;p&gt;Installation is very simple,&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;git clone git@github.com:aravindavk/glusterfs-tools.git
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;git clone https://github.com/aravindavk/glusterfs-tools.git
 &lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;glusterfs-tools
 sudo python setup.py install
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
