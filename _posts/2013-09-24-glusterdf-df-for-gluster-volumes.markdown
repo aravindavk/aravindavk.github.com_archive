@@ -9,7 +9,7 @@ A CLI utility to check the disk usage of [glusterfs](http://gluster.org/) volume
 Installation is very simple,
 
 {% highlight bash %}
-git clone git@github.com:aravindavk/glusterfs-tools.git
+git clone https://github.com/aravindavk/glusterfs-tools.git
 cd glusterfs-tools
 sudo python setup.py install
 {% endhighlight %}
