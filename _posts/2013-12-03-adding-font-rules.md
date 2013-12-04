@@ -36,7 +36,7 @@ Rule:
 
 Where uni0C95 uni0CBF and uni0C95_uni0CBF.abvs are glyph names(Unicode code of "ka" is U+0C95) ([Refer](http://www.unicode.org/charts/PDF/U0C80.pdf)). 
 
-In [#languageSummitPune](http://www.mediawiki.org/wiki/Language_portal/Pune_LanguageSummit_November_2013) we(me, [Pravin](http://pravin-s.blogspot.in/), [Santhosh](http://thottingal.in/)) discussed lot about glyph naming standard, will write about importance of glyph names in my next blog.
+In [#languageSummitPune](http://www.mediawiki.org/wiki/Language_portal/Pune_LanguageSummit_November_2013) we(me, [Pravin](http://pravin-s.blogspot.in/), [Sneha](http://snehakore.blogspot.in/), [Santhosh](http://thottingal.in/) and many others) discussed lot about glyph naming standard, will write about importance of glyph names in my next blog.
 
 <div class="sep"></div>
 
