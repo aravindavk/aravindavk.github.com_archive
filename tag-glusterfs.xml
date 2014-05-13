@@ -6,9 +6,75 @@
     <atom:link href="http://aravindavk.in/tag/glusterfs.xml" rel="self" type="application/rss+xml" />
     <description>GlusterFS related blogs - Aravinda VK</description>
     <language>en-us</language>
-    <pubDate>Thu, 28 Nov 2013 22:45:03 +0530</pubDate>
-    <lastBuildDate>Thu, 28 Nov 2013 22:45:03 +0530</lastBuildDate>
+    <pubDate>Tue, 13 May 2014 22:30:14 +0530</pubDate>
+    <lastBuildDate>Tue, 13 May 2014 22:30:14 +0530</lastBuildDate>
 
+    
+    
+    
+    <item>
+      <title>gvolinfojson - A utility to convert xml output of gluster volume info to json</title>
+      <link>http://aravindavk.in/blog/gvolinfojson</link>
+      <pubDate>Tue, 13 May 2014 00:00:00 +0530</pubDate>
+      <author>mail@aravindavk.in (Aravinda)</author>
+      <guid>http://aravindavk.in/blog/gvolinfojson</guid>
+      <description>&lt;p&gt;Today I wrote a small utility using &lt;a href=&quot;http://golang.org/&quot;&gt;golang&lt;/a&gt; to convert xml output of command &lt;code&gt;gluster volume info&lt;/code&gt; to json.&lt;/p&gt;
+
+&lt;p&gt;Download the binary from &lt;a href=&quot;https://github.com/aravindavk/gvolinfojson/releases/download/1.0/gvolinfojson&quot;&gt;here&lt;/a&gt; and copy to /usr/local/bin directory(or any other directory, which is available in PATH).&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;wget https://github.com/aravindavk/gvolinfojson/releases/download/1.0/gvolinfojson
+sudo cp gvolinfojson /usr/local/bin/
+sudo chmod +x /usr/local/bin/gvolinfojson
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Or&lt;/p&gt;
+
+&lt;p&gt;If you have golang installed(make sure &lt;code&gt;$GOPATH/bin&lt;/code&gt; is available in PATH), then&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;go get github.com/aravindavk/gvolinfojson
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To use it with gluster volume info command,&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo gluster volume info --xml | gvolinfojson
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Thats it, you will get the json output of volume info command. If you need pretty json output then&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo gluster volume info --xml | gvolinfojson --pretty
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Source code is available &lt;a href=&quot;https://github.com/aravindavk/gvolinfojson&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;C &amp;amp; S Welcome.&lt;/p&gt;
+</description>
+    </item>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
