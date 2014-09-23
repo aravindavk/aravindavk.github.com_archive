@@ -1,0 +1,17 @@
+{% set blogs_menu_class = "pure-menu-selected" %}
+{% extends "base.html" %}
+{% block content_title %}{% endblock %}
+{% block content %}
+<section id="content" class="body">
+<h1>Blogs</h1>
+
+{% for article in dates %}
+<div class="article-title-row">
+  <div class="article-date pure-hidden-phone">{{ article.date | strftime('%d %b, %Y') }}</div>
+  <a href="/{{ article.url }}">{{ article.title }} </a>
+  <div class="mobile-posted-on pure-hidden-desktop pure-hidden-tablet">posted on {{ article.date | strftime('%d %b, %Y') }}</div>
+</div>
+<p class="summary pure-hidden-phone">{{ article.summary|striptags }} <a href="/{{ article.url }}">...</a></p>
+{% endfor %}
+</section>
+{% endblock content %}

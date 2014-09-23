@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="{{ DEFAULT_LANG }}">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}{{ SITENAME }}{%endblock%}</title>
+        {% if FEED_ALL_ATOM %}
+    <link href="{{ FEED_DOMAIN }}/{{ FEED_ALL_ATOM }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Atom Feed" />
+        {% endif %}
+        {% if FEED_ALL_RSS %}
+    <link href="{{ FEED_DOMAIN }}/{{ FEED_ALL_RSS }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} RSS Feed" />
+        {% endif %}
+    <link rel="stylesheet" href="/theme/css/pure-min.css" />
+    <link rel="stylesheet" href="/theme/css/main.css" />
+  </head>
+  <body>
+    <div id="circle">
+      <img class="home-me" src="/theme/img/me.jpg"/>
+      <img class="home-logo" src="/theme/img/logo.png"/>
+      <div class="social-icons">
+            {% for link_title, link_url, link_img in SOCIAL_LINKS %}
+        <a href="{{ link_url }}" target="_blank" title="{{ link_title }}">
+          <img src="/theme/img/{{ link_img }}" class="link-icon" alt="{{ link_title }}"/>
+        </a>
+            {% endfor %}
+      </div>
+    </div>
+
+    <div id="layout-home">
+      <!-- Menu toggle -->
+      <a href="#menu" id="menuLink" class="menu-link">
+        <!-- Hamburger icon -->
+        <span></span>
+      </a>
+      <div class="pure-g-r">
+        <div class="pure-u" style="width:15%">
+          <a href="/me" class="home-menu-link"><div class="m1">about<em>/me</em></div></a>
+        </div>
+        <div class="pure-u" style="width:25%">
+          <a href="/projects" class="home-menu-link"><div class="m2">projects<em>/projects</em></div></a>
+        </div>
+        <div class="pure-u" style="width:35%">
+          <a href="/talks" class="home-menu-link"><div class="m3">talks & articles<em>/talks</em></div></a>
+        </div>
+        <div class="pure-u" style="width:25%">
+          <a href="/blogs" class="home-menu-link"><div class="m4">blogs<em>/blogs</em></div></a>
+        </div>
+      </div>
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}{{ article.title|striptags }}{% endblock %}
+{% block content %}
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        {{ article.title}}</h1>
+    </header>
+    <div class="pure-hidden-phone pure-hidden-tablet">
+      {% include 'article_infos.html' %}
+    </div>
+    <div class="entry-content">
+      {{ article.content }}
+    </div><!-- /.entry-content -->
+    <div class="pure-hidden-desktop">
+      {% include 'article_infos.html' %}
+    </div>
+    <div class="permalink-div">
+      Permalink: <a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" title="Permalink to {{ article.title|striptags }}">{{ SITEURL }}/{{ article.url }}</a>
+    </div>
+    {% include 'disqus_script.html' %}
+  </article>
+</section>
+{% endblock %}

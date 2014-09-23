@@ -1,0 +1,15 @@
+{% if page.slug == "me" %}
+{% set about_menu_class = "pure-menu-selected" %}
+{% elif page.slug == "talks" %}
+{% set talks_menu_class = "pure-menu-selected" %}
+{% elif page.slug == "projects" %}
+{% set projects_menu_class = "pure-menu-selected" %}
+{% endif %}
+{% extends "base.html" %}
+{% block title %}{{ page.title }}{% endblock %}
+{% block content %}
+<section id="content" class="body">
+    <h1 class="entry-title">{{ page.title }}</h1>
+    {{ page.content }}
+</section>
+{% endblock %}

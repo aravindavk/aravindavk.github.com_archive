@@ -1,0 +1,43 @@
+.container{
+    width:220px;
+    padding:10px;
+    box-shadow:2px 2px 4px #555;
+    margin:auto;
+    border-radius:7px;
+}
+.chart-head{
+    font-size:18px;
+    color:#555;
+    margin-bottom:20px;
+}
+.chart-label{
+    color:#444;
+    font-size:14px;
+    margin-top:30px;
+}
+.row{
+    margin-bottom:20px;
+}
+.outer{
+    width:200px;
+    background-color:#eee;
+    height:3px;
+}
+.inner{
+    background-color:blue;
+    height:3px;
+}
+.item-label{
+    color:#666;
+    font-size:12px;
+}
+.btn{
+    display:inline-block;
+    padding:2px 7px;
+    border-radius:5px;
+    background-color:yellow;
+}
+.btn:hover{
+    background-color:orange;
+    cursor:pointer;
+}

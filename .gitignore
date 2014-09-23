@@ -1,4 +1,6 @@
-*~
-_site/*
-.directory
-_drafts/*
+output/*
+*.pyc
+conf/*.pyc
+*.pid
+*.pyo
+cache/*
