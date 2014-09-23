@@ -1,5 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>aravindavk</title><link href="http://aravindavk.in/" rel="alternate"></link><link href="http://aravindavk.in/feeds/all.atom.xml" rel="self"></link><id>http://aravindavk.in/</id><updated>2014-05-13T00:00:00+05:30</updated><entry><title>gvolinfojson - A utility to convert xml output of gluster volume info to json</title><link href="http://aravindavk.in/blog/gvolinfojson/" rel="alternate"></link><updated>2014-05-13T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2014-05-13:blog/gvolinfojson/</id><summary type="html">&lt;p&gt;Today I wrote a small utility using &lt;a class="reference external" href="http://golang.org/"&gt;golang&lt;/a&gt; to convert xml output of command &lt;code&gt;gluster volume info&lt;/code&gt; to json.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>aravindavk</title><link href="http://aravindavk.in/" rel="alternate"></link><link href="http://aravindavk.in/feeds/all.atom.xml" rel="self"></link><id>http://aravindavk.in/</id><updated>2014-09-23T00:00:00+05:30</updated><entry><title>Missed ಕಾಲ್</title><link href="http://aravindavk.in/blog/missed-call/" rel="alternate"></link><updated>2014-09-23T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2014-09-23:blog/missed-call/</id><summary type="html">&lt;p&gt;ಬೆಳಗ್ಗೆ ಎದ್ದೋನು ಪೇಪರ್ ಓದ್ತಾ ಇದ್ದಾಗ 5 messed ಕಾಲ್ಸ್ ಅಂತ ನೋಡ್ಕೊಂಡೆ, ಹೆ ಹೆ messed ಕಾಲ್ಸಾ?.. ಅಂತ ಆಮೇಲೆ ನಗು ಬಂತು. ಈಗಿನ ದಿನಗಳಲ್ಲಿ ನಂಬರ್ ಗಳನ್ನು ನೆನಪಲ್ಲಿ ಇಟ್ಟುಕೊಳ್ಳೋದೇ ಬಹಳ ಕಷ್ಟ, ಈ ಮೊಬೈಲ್ ಗಳಿಂದಾಗಿ ನಂಬರ್ ನೆನಪಿಟ್ಟುಕೊಳ್ಳೋದೇ ಬೇಡ ಅಂತಾಗಿಬಿಟ್ಟಿದೆ. messed ಕಾಲ್ಸ್ ಅಂತ ಮನಸಿಗೆ ಬಂದಿದ್ದು ಸರಿಯಾಗೇ ಇದೆ ಅಂತ ಯೋಚಿಸ್ತಿದ್ದೆ...&lt;/p&gt;
+&lt;p&gt;ಅಷ್ಟೊತ್ತಿಗೆ ಗೋಪಿ ಬಂದ, ಅವ್ನು ಬರದೇ ಬಹಳ ದಿನ ಆಗಿತ್ತಪ್ಪ, ಹೋದಸಲ ಬಂದವ ಏನೋ ಸಿಟ್ಟು ಮಾಡಿಕೊಂಡು ಹೋದವ ಕಾಣಿಸ್ಕೊಂಡಿದ್ದೇ ಈಗ.&lt;/p&gt;
+&lt;p&gt;&amp;quot;ಏನಪ್ಪಾ ಗೋಪಿ? ಏನ್ಸಮಾಚರಾ? ಇಷ್ಟು ಬೆಳಗ್ಗೆ ಬೆಳಗ್ಗೇನೇ ಬಂದ್ ಬಿಟ್ಟಿದೀಯಾ!&amp;quot;&lt;/p&gt;
+&lt;p&gt;&amp;quot;ಏನಿಲ್ಲ ಕಣೋ ಹಂಗೇ ಆಫೀಸ್ ಕಡೆ ಹೊರಟಿದ್ದೆ, ಒಂದು ಕಾಫಿ ಆಗ್ಲಿ ಅಂತ ಬಂದೆ ಕಣೋ...&amp;quot;&lt;/p&gt;
+&lt;p&gt;ಗೋಪಿ ಸುಮ್ನೆ ಬರೋನಲ್ಲ ಅಂತ ಗೊತ್ತು ಆದ್ರೂ ಇರ್ಲಿ, ಹೆಂಗಿದ್ರೂ ಸಲ್ಪ ಹೊತ್ತಿಗೆ ಹೇಳ್ತಾನಲ್ವಾ ಅಂತ ಕಾಫಿ ರೆಡಿ ಮಾಡ್ಕೊಂಡು ಬಂದೆ. ಹಂಗೇ ಕಾಫಿ ಕುಡೀತಾ ಗೋಪಿ ಶುರು ಮಾಡಿದ..&lt;/p&gt;
+&lt;p&gt;&amp;quot;ಅಲ್ಲ ಕಣೋ.. ಈಗ ಮೊಬೈಲ್ನಲ್ಲಿ ಯಾವ್ದಾದ್ರೂ ಮಿಸ್ ಕಾಲ್ ಇದ್ರೆ ಆ ನಂಬರ್ ಇಂದ ಯಾರು ಕಾಲ್ ಮಾಡಿದ್ದು ಅಂತ ನೋಡಕ್ಕಾಗುತ್ತೇನೋ?&amp;quot;&lt;/p&gt;
+&lt;p&gt;&amp;quot;ಆಗ್ಬೋದೇನೋ.. ನಂಗಷ್ಟು ಗೊತ್ತಿಲ್ಲ, ಯಾಕೋ ಗೋಪಿ ಏನಾಯ್ತು?&amp;quot;&lt;/p&gt;
+&lt;p&gt;&amp;quot;ಏನಿಲ್ವೋ ಒಂದು ಮಿಸ್ ಕಾಲ್ ಅಂತ ಮೆಸೇಜ್ ಬಂದಿತ್ತು, ನಂಗ್ಯಾರು ಕಾಲ್ ಮಾಡಿದ್ರು ಅಂತನೇ ಗೊತ್ತಾಗ್ತಿಲ್ವೋ&amp;quot;&lt;/p&gt;
+&lt;p&gt;&amp;quot;ಹೌದೇನೋ.. ಹಂಗಾದ್ರೆ ಬಿಡಬೇಡ್ವೋ, ಯಾರಾದ್ರೂ ಹುಡುಗಿ ಕಾಲ್ ಮಾಡಿದ್ರೂ ಮಾಡಿರ್ಬೋದೂ, ನೀನೇ ವಾಪಸ್ ಮಾಡಿ ನೋಡ್ಬೇಕಿತ್ತು...&amp;quot;&lt;/p&gt;
+&lt;p&gt;&amp;quot;ವಾಪಸ್ ಮಾಡಿ ನೋಡಿದ್ನೋ.. ನಾಟ್ ರೀಚೇಬಲ್ ಅಂತ ಬರ್ತಾ ಇತ್ತು..&amp;quot;&lt;/p&gt;
+&lt;p&gt;&amp;quot;ನಂಗೂ ಕೊಡೋ ನಂಬರ್, ನಾನೊಂದ್ಸಲ ನೋಡ್ತೀನಿ&amp;quot;&lt;/p&gt;
+&lt;p&gt;&amp;quot;ಇರ್ಲಿ ಬಿಡೋ ಪರವಾಗಿಲ್ಲ, ನಾನೇ ಮತ್ತೆ ಕಾಲ್ ಮಾಡಿ ನೋಡ್ತೀನಿ&amp;quot;&lt;/p&gt;
+&lt;p&gt;ಹುಡುಗಿ ಇರ್ಬೋದು ಅಂದಿದ್ದಕ್ಕೆ ನಂಬರ್ರೇ ಕೊಡೋಲ್ವಲ್ಲ ಇವ ಅಂದ್ಕೊಳ್ತಾ ಇದ್ದೆ, ಅಷ್ಟೊತ್ತಿಗೆ ಗೋಪಿ...&lt;/p&gt;
+&lt;p&gt;&amp;quot;ಸರಿ ಕಣೋ, ನಾನಿನ್ನು ಹೊರಡ್ತೀನಿ, ಮತ್ತೆ ಸಿಗುವೆ ನಿಂಗೆ&amp;quot; ಅಂತ ಹೊರ್ಟೇ ಹೋದ.&lt;/p&gt;
+&lt;p&gt;ಎರಡು ದಿನ ಆಯ್ತು, ಗೋಪಿ ವಿಶ್ಯ ನಾನೂ ಮರ್ತು ಬಿಟ್ಟಿದ್ದೆ.. ಮತ್ತೆ ಡಿವಿಜಿ ರೋಡ್ ಅಲ್ಲಿ ಸಿಕ್ಕಿದ, ಕಾಫಿ ಕುಡಿಯೋಣ ಅಂತ ಅಲ್ಲೇ ಒಂದು ಹೋಟೆಲ್ ಗೆ ಹೋದ್ವಿ..&lt;/p&gt;
+&lt;p&gt;&amp;quot;ಸಿಕ್ಕಿದಳೇನೋ ಆ ಹುಡುಗಿ?&amp;quot;&lt;/p&gt;
+&lt;p&gt;&amp;quot;ಯಾವ ಹುಡುಗಿನೂ ಇಲ್ಲ, ಹೋಗಪ್ಪಾ ನೀನು.. ಆ ನಂಬರ್ ಯಾವಾಗ್ಲೂ ನಾಟ್ ರೀಚೇಬಲ್ಲೇ ಬರ್ತಿರುತ್ತೆ&amp;quot;&lt;/p&gt;
+&lt;p&gt;&amp;quot;ಹೌದಾ.. ಈಗ್ಲಾದ್ರೂ ಕೊಡು ಆ ನಂಬರ್ ನಂಗೆ ನಾನೂ ಒಂದ್ಸಲ ನೋಡ್ತೀನಿ..&amp;quot;&lt;/p&gt;
+&lt;p&gt;&amp;quot;ಸರಿ ತಗೋ ಹಾಗಿದ್ರೆ ಅಂತ ಮೊಬೈಲ್ ತೆಗೆದ..&amp;quot;&lt;/p&gt;
+&lt;p&gt;&amp;quot;ಏನೋ ಗೋಪಿ ಹೊಸ ಫೋನ್ ತಗೊಂಡಿದೀಯಾ?&amp;quot;&lt;/p&gt;
+&lt;p&gt;&amp;quot;ಹು ಕಣೊ.. ಹೋದ ವಾರ ತಗೊಂಡೆ ಹೊಸ ಫೋನ್, ಡ್ಯುಯಲ್ ಸಿಮ್ಮು.. ಹೊಸಾ ಸಿಮ್ಮೂ ತಗೊಂಡೆ..&amp;quot;&lt;/p&gt;
+&lt;p&gt;ಅವ್ನ ಹತ್ರ ನಂಬರ್ ತಗೊಂಡು ಡಯಲ್ ಮಾಡಿದೆ, ಗೋಪಿದೇ ಫೋನ್ ರಿಂಗಾಯ್ತು, ಇಬ್ರೂ ಒಂದ್ಸಲ ಮುಖ ಮುಖ ನೋಡಿಕೊಂಡ್ವಿ.. ಉಳಿದಿದ್ದ ಕಾಫಿಯನ್ನ ಒಂದೇ ಸಮ ಕುಡಿದು, ಏನೂ ಹೇಳದೇ ಹೊರಟೇ ಹೋದ.&lt;/p&gt;
+</summary><category term="ಕನ್ನಡ"></category><category term="ಕಥೆ"></category><category term="kannadablog"></category></entry><entry><title>gvolinfojson - A utility to convert xml output of gluster volume info to json</title><link href="http://aravindavk.in/blog/gvolinfojson/" rel="alternate"></link><updated>2014-05-13T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2014-05-13:blog/gvolinfojson/</id><summary type="html">&lt;p&gt;Today I wrote a small utility using &lt;a class="reference external" href="http://golang.org/"&gt;golang&lt;/a&gt; to convert xml output of command &lt;code&gt;gluster volume info&lt;/code&gt; to json.&lt;/p&gt;
 &lt;p&gt;Download the binary from &lt;a class="reference external" href="https://github.com/aravindavk/gvolinfojson/releases/download/1.0/gvolinfojson"&gt;here&lt;/a&gt; and copy to /usr/local/bin directory(or any other directory, which is available in PATH).&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;wget https://github.com/aravindavk/gvolinfojson/releases/download/1.0/gvolinfojson
 sudo cp gvolinfojson /usr/local/bin/
