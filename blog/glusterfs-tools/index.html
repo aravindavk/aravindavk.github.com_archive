@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="cache-control" content="max-age=0" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <link href="/theme/img/fav.png" rel="icon" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="/theme/img/fav.png" />
+    <title>GlusterFS Tools</title>
+    <link href="http://aravindavk.in/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="aravindavk Atom Feed" />
+    <link rel="stylesheet" href="/theme/css/pure-min.css" />
+    <link rel="stylesheet" href="/theme/css/side-menu.css" />
+    <link rel="stylesheet" href="/theme/css/main.css" />
+    <link rel="stylesheet" href="/theme/css/pygment-emacs-highlight.css" />
+  </head>
+  <body>
+    <div id="layout">
+      <!-- Menu toggle -->
+      <a href="#menu" id="menuLink" class="menu-link">
+        <!-- Hamburger icon -->
+        <span></span>
+      </a>
+      <div id="menu" class="pure-hidden-desktop pure-hidden-tablet">
+        <div class="pure-menu pure-menu-open">
+          <a class="pure-menu-heading logo" href="/"><img src="/theme/img/logo.png" alt="aravindavk"/></a>
+          <div class="social-icons">
+            <a href="http://localhost:8000/None" target="_blank" title="News">
+              <img src="/theme/img/feed.png" class="link-icon" alt="News"/>
+            </a>
+            <a href="http://twitter.com/aravindavk" target="_blank" title="Twitter">
+              <img src="/theme/img/twitter.png" class="link-icon" alt="Twitter"/>
+            </a>
+            <a href="https://plus.google.com/+aravindavk" target="_blank" title="Google Plus">
+              <img src="/theme/img/gplus.png" class="link-icon" alt="Google Plus"/>
+            </a>
+            <a href="https://github.com/aravindavk" target="_blank" title="Github">
+              <img src="/theme/img/github.png" class="link-icon" alt="Github"/>
+            </a>
+            <a href="http://www.flickr.com/photos/aravindavk" target="_blank" title="Flickr">
+              <img src="/theme/img/flickr.png" class="link-icon" alt="Flickr"/>
+            </a>
+            <a href="http://in.linkedin.com/in/aravindavk" target="_blank" title="LinkedIn">
+              <img src="/theme/img/linkedin.png" class="link-icon" alt="LinkedIn"/>
+            </a>
+          </div>
+          <ul>
+            <li class=""><a href="/">Home</a></li>
+            <li class=""><a href="/me">About</a></li>
+            <li class=""><a href="/projects">Projects</a></li>
+            <li class=""><a href="/blogs">Blogs</a></li>
+            <li class=""><a href="/talks">Talks & Articles</a></li>
+          </ul>
+        </div>
+        <div class="sep"></div>
+        <div class="copyright">&copy; 2008-2014 Aravinda VK, <br/>All rights reserved</div>
+      </div>
+
+      <div class="pure-g-r">
+        <div class="pure-u-4-5 content-left">
+          <div class="left article">
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        GlusterFS Tools</h1>
+    </header>
+    <div class="pure-hidden-phone pure-hidden-tablet">
+<footer class="post-info">
+  <p class="author-and-date-info">
+    Posted on Tue 18 June 2013 by <a class="url fn" href="http://aravindavk.in">Aravinda VK</a>.
+  </p>
+</footer><!-- /.post-info -->
+<div class="sep"></div>    </div>
+    <div class="entry-content">
+      <div class="notice-update">
+UPDATE: <br/>Installation and usage is simplified with the new release of glusterfs-tools, refer <a href="http://aravindavk.in/blog/glusterdf-df-for-gluster-volumes/">this blog</a> for more details.
+</div><p>From <a class="reference external" href="http://gluster.org">GlusterFS website</a></p>
+<blockquote>
+GlusterFS is an open source, distributed file system capable of scaling to several petabytes (actually, 72 brontobytes!) and handling thousands of clients. GlusterFS clusters together storage building blocks over Infiniband RDMA or TCP/IP interconnect, aggregating disk and memory resources and managing data in a single global namespace. GlusterFS is based on a stackable user space design and can deliver exceptional performance for diverse workloads.</blockquote>
+<p>Gluster CLI has limited features to view and filter the volume info. I started a small project to enhance Gluster CLI for personal use. As of now it consists of a tool to list Gluster volumes in tabular format. Other intersesting features includes filtering the output based on name, type, status, bricks etc.</p>
+<p>Clone the project(I cloned it to <code>/home/aravinda/sandbox/</code>)</p>
+<div class="highlight"><pre><span class="nb">cd</span> /home/aravinda/sandbox
+git clone https://github.com/aravindavk/glusterfs-tools.git
+</pre></div>
+<p>Create a shellscript to call gftools /usr/local/bin/gfvolumes</p>
+<div class="highlight"><pre><span class="c">#!/bin/bash</span>
+python /home/aravinda/sandbox/glusterfs-tools/gftools/volumes.py <span class="s2">&quot;$@&quot;</span>
+</pre></div>
+<p>Make gfvolumes executable</p>
+<div class="highlight"><pre>chmod +x /usr/local/bin/gfvolumes
+</pre></div>
+<p>Now we can run <code>sudo gfvolumes</code> to see the list of glusterfs volumes. Type <code>gfvolumes --help</code> for help.</p>
+<div class="figure">
+<img alt="All Volumes" src="/images/glusterfs/all_volumes.png" />
+<p class="caption">All Volumes</p>
+</div>
+<div class="figure">
+<img alt="Name Filter" src="/images/glusterfs/name_filter.png" />
+<p class="caption">Name Filter</p>
+</div>
+<div class="figure">
+<img alt="Status Filter" src="/images/glusterfs/status_filter.png" />
+<p class="caption">Status Filter</p>
+</div>
+<div class="figure">
+<img alt="Type Filter" src="/images/glusterfs/type_filter.png" />
+<p class="caption">Type Filter</p>
+</div>
+<div class="figure">
+<img alt="Name Filter" src="/images/glusterfs/show_bricks.png" />
+<p class="caption">Show Bricks</p>
+</div>
+<p>Additionally it can output filtered details in JSON format.</p>
+<div class="figure">
+<img alt="Name Filter" src="/images/glusterfs/json_format.png" />
+<p class="caption">JSON Format</p>
+</div>
+<p>We can easily import this in our python script.</p>
+<div class="highlight"><pre><span class="c">#!/usr/bin/python</span>
+<span class="kn">from</span> <span class="nn">gftools</span> <span class="kn">import</span> <span class="n">volumes</span>
+<span class="n">gfvols</span> <span class="o">=</span> <span class="n">volumes</span><span class="o">.</span><span class="n">GfVolumes</span><span class="p">()</span>
+<span class="n">ok</span><span class="p">,</span> <span class="n">vols</span> <span class="o">=</span> <span class="n">gfvols</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;^gv[0-9]$&#39;</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="s">&#39;down&#39;</span><span class="p">)</span> <span class="c"># Various filters available</span>
+<span class="k">if</span> <span class="n">ok</span><span class="p">:</span>
+    <span class="c"># Do action</span>
+</pre></div>
+<p><strong>Note:</strong> root permission is required to run gluster command, so run gfvolumes as root(<code>sudo gfvolumes</code>)</p>
+<div class="section" id="future-plans">
+<h2>Future plans:</h2>
+<ol class="arabic simple">
+<li>Adding more filters</li>
+<li>Adding more admin tools</li>
+<li>Creating RPM/DEB packages</li>
+</ol>
+<p>C &amp; S Welcome.</p>
+</div>
+
+    </div><!-- /.entry-content -->
+    <div class="pure-hidden-desktop">
+<footer class="post-info">
+  <p class="author-and-date-info">
+    Posted on Tue 18 June 2013 by <a class="url fn" href="http://aravindavk.in">Aravinda VK</a>.
+  </p>
+</footer><!-- /.post-info -->
+<div class="sep"></div>    </div>
+    <div class="permalink-div">
+      Permalink: <a href="http://aravindavk.in/blog/glusterfs-tools/" rel="bookmark" title="Permalink to GlusterFS Tools">http://aravindavk.in/blog/glusterfs-tools/</a>
+    </div>
+<div class="comments">
+  <h2>Comments !</h2>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_identifier = "blog/glusterfs-tools/";
+    var disqus_url = "http://aravindavk.in/blog/glusterfs-tools/";
+    (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = 'http://vkaravinda.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+</div>
+  </article>
+</section>
+            <div class="copyright pure-hidden-desktop pure-hidden-tablet">&copy; 2008-2014 Aravinda VK, <br/>All rights reserved</div>
+          </div>
+        </div>
+        <div class="pure-u-1-5 pure-hidden-phone">
+          <div class="right">
+            <img class="me" src="/theme/img/me.jpg"/>
+            <div class="sep"></div>
+            <div class="pure-menu pure-menu-open">
+              <a class="pure-menu-heading logo" href="/"><img src="/theme/img/logo.png" alt="aravindavk"/></a>
+              <div class="social-icons">
+                <a href="http://localhost:8000/None" target="_blank" title="News">
+                  <img src="/theme/img/feed.png" class="link-icon" alt="News"/>
+                </a>
+                <a href="http://twitter.com/aravindavk" target="_blank" title="Twitter">
+                  <img src="/theme/img/twitter.png" class="link-icon" alt="Twitter"/>
+                </a>
+                <a href="https://plus.google.com/+aravindavk" target="_blank" title="Google Plus">
+                  <img src="/theme/img/gplus.png" class="link-icon" alt="Google Plus"/>
+                </a>
+                <a href="https://github.com/aravindavk" target="_blank" title="Github">
+                  <img src="/theme/img/github.png" class="link-icon" alt="Github"/>
+                </a>
+                <a href="http://www.flickr.com/photos/aravindavk" target="_blank" title="Flickr">
+                  <img src="/theme/img/flickr.png" class="link-icon" alt="Flickr"/>
+                </a>
+                <a href="http://in.linkedin.com/in/aravindavk" target="_blank" title="LinkedIn">
+                  <img src="/theme/img/linkedin.png" class="link-icon" alt="LinkedIn"/>
+                </a>
+              </div>
+              <ul>
+                <li class=""><a href="/">Home</a></li>
+                <li class=""><a href="/me">About</a></li>
+                <li class=""><a href="/projects">Projects</a></li>
+                <li class=""><a href="/blogs">Blogs</a></li>
+                <li class=""><a href="/talks">Talks & Articles</a></li>
+              </ul>
+            </div>
+            <div class="sep"></div>
+            <div class="copyright">&copy; 2008-2014 Aravinda VK, <br/>All rights reserved</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <script src="/theme/js/ui.js"></script>
+  </body>
+</html>

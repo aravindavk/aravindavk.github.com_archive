@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="cache-control" content="max-age=0" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <link href="/theme/img/fav.png" rel="icon" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="/theme/img/fav.png" />
+    <title>Effective GlusterFs monitoring using hooks</title>
+    <link href="http://aravindavk.in/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="aravindavk Atom Feed" />
+    <link rel="stylesheet" href="/theme/css/pure-min.css" />
+    <link rel="stylesheet" href="/theme/css/side-menu.css" />
+    <link rel="stylesheet" href="/theme/css/main.css" />
+    <link rel="stylesheet" href="/theme/css/pygment-emacs-highlight.css" />
+  </head>
+  <body>
+    <div id="layout">
+      <!-- Menu toggle -->
+      <a href="#menu" id="menuLink" class="menu-link">
+        <!-- Hamburger icon -->
+        <span></span>
+      </a>
+      <div id="menu" class="pure-hidden-desktop pure-hidden-tablet">
+        <div class="pure-menu pure-menu-open">
+          <a class="pure-menu-heading logo" href="/"><img src="/theme/img/logo.png" alt="aravindavk"/></a>
+          <div class="social-icons">
+            <a href="http://localhost:8000/None" target="_blank" title="News">
+              <img src="/theme/img/feed.png" class="link-icon" alt="News"/>
+            </a>
+            <a href="http://twitter.com/aravindavk" target="_blank" title="Twitter">
+              <img src="/theme/img/twitter.png" class="link-icon" alt="Twitter"/>
+            </a>
+            <a href="https://plus.google.com/+aravindavk" target="_blank" title="Google Plus">
+              <img src="/theme/img/gplus.png" class="link-icon" alt="Google Plus"/>
+            </a>
+            <a href="https://github.com/aravindavk" target="_blank" title="Github">
+              <img src="/theme/img/github.png" class="link-icon" alt="Github"/>
+            </a>
+            <a href="http://www.flickr.com/photos/aravindavk" target="_blank" title="Flickr">
+              <img src="/theme/img/flickr.png" class="link-icon" alt="Flickr"/>
+            </a>
+            <a href="http://in.linkedin.com/in/aravindavk" target="_blank" title="LinkedIn">
+              <img src="/theme/img/linkedin.png" class="link-icon" alt="LinkedIn"/>
+            </a>
+          </div>
+          <ul>
+            <li class=""><a href="/">Home</a></li>
+            <li class=""><a href="/me">About</a></li>
+            <li class=""><a href="/projects">Projects</a></li>
+            <li class=""><a href="/blogs">Blogs</a></li>
+            <li class=""><a href="/talks">Talks & Articles</a></li>
+          </ul>
+        </div>
+        <div class="sep"></div>
+        <div class="copyright">&copy; 2008-2014 Aravinda VK, <br/>All rights reserved</div>
+      </div>
+
+      <div class="pure-g-r">
+        <div class="pure-u-4-5 content-left">
+          <div class="left article">
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        Effective GlusterFs monitoring using hooks</h1>
+    </header>
+    <div class="pure-hidden-phone pure-hidden-tablet">
+<footer class="post-info">
+  <p class="author-and-date-info">
+    Posted on Thu 28 November 2013 by <a class="url fn" href="http://aravindavk.in">Aravinda VK</a>.
+  </p>
+</footer><!-- /.post-info -->
+<div class="sep"></div>    </div>
+    <div class="entry-content">
+      <p>Let us imagine we have a GlusterFs monitoring system which displays list of volumes and its state, to show the realtime status, monitoring app need to query the GlusterFs in regular interval to check volume status, new volumes etc. Assume if the polling interval is 5 seconds then monitoring app has to run <code>gluster volume info</code> command ~17000 times a day!</p>
+<p>How about maintaining a state file in each node? which gets updated after every new GlusterFs event(create, delete, start, stop etc).</p>
+<p>In this blog post I am trying to explain the possibility of creating state file and using it.</p>
+<p>As of today GlusterFs provides following hooks, which we can use to update our state file.</p>
+<div class="highlight"><pre>create
+delete
+start
+stop
+add-brick
+remove-brick
+set
+</pre></div>
+<div class="section" id="how-to-use-hooks">
+<h2>How to use hooks</h2>
+<p>GlusterFs hooks present in <code>/var/lib/glusterd/hooks/1</code> directory. Following example shows sending message to all users using <code>wall</code> command when any new GlusterFs volume is created.</p>
+<p>Create a shell script <code>/var/lib/glusterd/hooks/1/create/post/SNotify.bash</code> and make it executable. Whenever a volume is created GlusterFs executes all the executable scripts present in respective hook directory(Glusterfs executes only the scripts which filename starting with 'S')</p>
+<div class="highlight"><pre><span class="c">#!/bin/bash</span>
+<span class="nv">VOL</span><span class="o">=</span>
+<span class="nv">ARGS</span><span class="o">=</span><span class="k">$(</span>getopt -l <span class="s2">&quot;volname:&quot;</span>  -name <span class="s2">&quot;&quot;</span> <span class="nv">$@</span><span class="k">)</span>
+<span class="nb">eval set</span> -- <span class="s2">&quot;$ARGS&quot;</span>
+<span class="k">while </span><span class="nb">true</span>; <span class="k">do</span>
+<span class="k">    case</span> <span class="nv">$1</span> in
+        --volname<span class="o">)</span>
+            <span class="nb">shift</span>
+<span class="nb">            </span><span class="nv">VOL</span><span class="o">=</span><span class="nv">$1</span>
+            ;;
+        *<span class="o">)</span>
+            <span class="nb">shift</span>
+<span class="nb">            break</span>
+            ;;
+    <span class="k">esac</span>
+<span class="k">    </span><span class="nb">shift</span>
+<span class="k">done</span>
+
+wall <span class="s2">&quot;Gluster Volume Created: $VOL&quot;</span>;
+</pre></div>
+</div>
+<div class="section" id="experimental-project-glusterweb">
+<h2>Experimental project - GlusterWeb</h2>
+<p>This experimental project maintains a sqlite database <code>/var/lib/glusterd/nodestate/glusternodestate.db</code> which gets updated after any GlusterFs event. For example if a GlusterFs volume is created then it updates volumes table and also bricks table.</p>
+<p>This project depends on <a class="reference external" href="https://github.com/aravindavk/glusterfs-tools">glusterfs-tools</a> so install both projects.</p>
+<div class="highlight"><pre>git clone https://github.com/aravindavk/glusterfs-tools.git
+<span class="nb">cd </span>glusterfs-tools
+sudo python setup.py install
+
+git clone https://github.com/aravindavk/glusterfs-web.git
+<span class="nb">cd </span>glusterfs-web
+sudo python setup.py install
+</pre></div>
+<p>By running <cite>setup</cite>, this tool will install all the hooks which are required for monitoring. (<cite>cleanup</cite> is for removing all the hooks)</p>
+<div class="highlight"><pre>sudo glusternodestate setup
+</pre></div>
+<p>All set! now run <code>glusterweb</code> to start webapp.</p>
+<div class="highlight"><pre>sudo glusterweb
+</pre></div>
+<p>Web application starts running in <code>http://localhost:8080</code> you can change the port using <code>--port</code> or <code>-p</code> option.</p>
+<div class="highlight"><pre>sudo glusterweb -p 9000
+</pre></div>
+<div class="figure">
+<img alt="GlusterWeb" src="/images/glusterweb-v0.1.png" />
+<p class="caption">Initial version of web interface.</p>
+</div>
+</div>
+<div class="section" id="future-plans">
+<h2>Future plans</h2>
+<p><strong>Authentication</strong>: Option to provide username and password or access key while running glusterweb, For example</p>
+<div class="highlight"><pre>sudo glusterweb --username aravindavk --password somesecret
+<span class="c"># or</span>
+sudo glusterweb --key secretonlyiknow
+</pre></div>
+<p><strong>More gluster hooks support:</strong> we need more GlusterFs hooks for better monitoring(refer Problems below)</p>
+<p><strong>More GlusterFs features support:</strong> As a experiment UI only lists volumes, we need improved UI and support for different gluster features.</p>
+<p><strong>Actions support:</strong> Support for volume creation, adding/removing bricks etc.</p>
+<p><strong>REST api and SDK:</strong> Providing REST api for gluster operations.</p>
+<p><strong>Many more:</strong> Not yet planned :)</p>
+</div>
+<div class="section" id="problems">
+<h2>Problems</h2>
+<p><strong>State file consistency:</strong> If glusterd goes down in the node then the database will have wrong details about node's state. One workaround is to reset the database if glusterd is down using a cron job, when glusterd comes up, database will not gets updated and the database will have previous updated details. To prevent this we need a glusterfs hook for <cite>glusterd-start</cite>.</p>
+<p><strong>More hooks:</strong> As of today we don't have hooks for volume down/up, brick down/up and other events. We need following hooks for effective monitoring glusterfs.(Add more if anything missing in the list)</p>
+<div class="highlight"><pre>glusterd-start
+peer probe
+peer detach
+volume-down
+volume-up
+brick-up
+brick-down
+</pre></div>
+<p>Let me know your thoughts! Thanks.</p>
+</div>
+
+    </div><!-- /.entry-content -->
+    <div class="pure-hidden-desktop">
+<footer class="post-info">
+  <p class="author-and-date-info">
+    Posted on Thu 28 November 2013 by <a class="url fn" href="http://aravindavk.in">Aravinda VK</a>.
+  </p>
+</footer><!-- /.post-info -->
+<div class="sep"></div>    </div>
+    <div class="permalink-div">
+      Permalink: <a href="http://aravindavk.in/blog/effective-glusterfs-monitoring-using-hooks/" rel="bookmark" title="Permalink to Effective GlusterFs monitoring using hooks">http://aravindavk.in/blog/effective-glusterfs-monitoring-using-hooks/</a>
+    </div>
+<div class="comments">
+  <h2>Comments !</h2>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_identifier = "blog/effective-glusterfs-monitoring-using-hooks/";
+    var disqus_url = "http://aravindavk.in/blog/effective-glusterfs-monitoring-using-hooks/";
+    (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = 'http://vkaravinda.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+</div>
+  </article>
+</section>
+            <div class="copyright pure-hidden-desktop pure-hidden-tablet">&copy; 2008-2014 Aravinda VK, <br/>All rights reserved</div>
+          </div>
+        </div>
+        <div class="pure-u-1-5 pure-hidden-phone">
+          <div class="right">
+            <img class="me" src="/theme/img/me.jpg"/>
+            <div class="sep"></div>
+            <div class="pure-menu pure-menu-open">
+              <a class="pure-menu-heading logo" href="/"><img src="/theme/img/logo.png" alt="aravindavk"/></a>
+              <div class="social-icons">
+                <a href="http://localhost:8000/None" target="_blank" title="News">
+                  <img src="/theme/img/feed.png" class="link-icon" alt="News"/>
+                </a>
+                <a href="http://twitter.com/aravindavk" target="_blank" title="Twitter">
+                  <img src="/theme/img/twitter.png" class="link-icon" alt="Twitter"/>
+                </a>
+                <a href="https://plus.google.com/+aravindavk" target="_blank" title="Google Plus">
+                  <img src="/theme/img/gplus.png" class="link-icon" alt="Google Plus"/>
+                </a>
+                <a href="https://github.com/aravindavk" target="_blank" title="Github">
+                  <img src="/theme/img/github.png" class="link-icon" alt="Github"/>
+                </a>
+                <a href="http://www.flickr.com/photos/aravindavk" target="_blank" title="Flickr">
+                  <img src="/theme/img/flickr.png" class="link-icon" alt="Flickr"/>
+                </a>
+                <a href="http://in.linkedin.com/in/aravindavk" target="_blank" title="LinkedIn">
+                  <img src="/theme/img/linkedin.png" class="link-icon" alt="LinkedIn"/>
+                </a>
+              </div>
+              <ul>
+                <li class=""><a href="/">Home</a></li>
+                <li class=""><a href="/me">About</a></li>
+                <li class=""><a href="/projects">Projects</a></li>
+                <li class=""><a href="/blogs">Blogs</a></li>
+                <li class=""><a href="/talks">Talks & Articles</a></li>
+              </ul>
+            </div>
+            <div class="sep"></div>
+            <div class="copyright">&copy; 2008-2014 Aravinda VK, <br/>All rights reserved</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <script src="/theme/js/ui.js"></script>
+  </body>
+</html>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="cache-control" content="max-age=0" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <link href="/theme/img/fav.png" rel="icon" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="/theme/img/fav.png" />
+    <title>Improving Kannada Fonts</title>
+    <link href="http://aravindavk.in/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="aravindavk Atom Feed" />
+    <link rel="stylesheet" href="/theme/css/pure-min.css" />
+    <link rel="stylesheet" href="/theme/css/side-menu.css" />
+    <link rel="stylesheet" href="/theme/css/main.css" />
+    <link rel="stylesheet" href="/theme/css/pygment-emacs-highlight.css" />
+  </head>
+  <body>
+    <div id="layout">
+      <!-- Menu toggle -->
+      <a href="#menu" id="menuLink" class="menu-link">
+        <!-- Hamburger icon -->
+        <span></span>
+      </a>
+      <div id="menu" class="pure-hidden-desktop pure-hidden-tablet">
+        <div class="pure-menu pure-menu-open">
+          <a class="pure-menu-heading logo" href="/"><img src="/theme/img/logo.png" alt="aravindavk"/></a>
+          <div class="social-icons">
+            <a href="http://localhost:8000/None" target="_blank" title="News">
+              <img src="/theme/img/feed.png" class="link-icon" alt="News"/>
+            </a>
+            <a href="http://twitter.com/aravindavk" target="_blank" title="Twitter">
+              <img src="/theme/img/twitter.png" class="link-icon" alt="Twitter"/>
+            </a>
+            <a href="https://plus.google.com/+aravindavk" target="_blank" title="Google Plus">
+              <img src="/theme/img/gplus.png" class="link-icon" alt="Google Plus"/>
+            </a>
+            <a href="https://github.com/aravindavk" target="_blank" title="Github">
+              <img src="/theme/img/github.png" class="link-icon" alt="Github"/>
+            </a>
+            <a href="http://www.flickr.com/photos/aravindavk" target="_blank" title="Flickr">
+              <img src="/theme/img/flickr.png" class="link-icon" alt="Flickr"/>
+            </a>
+            <a href="http://in.linkedin.com/in/aravindavk" target="_blank" title="LinkedIn">
+              <img src="/theme/img/linkedin.png" class="link-icon" alt="LinkedIn"/>
+            </a>
+          </div>
+          <ul>
+            <li class=""><a href="/">Home</a></li>
+            <li class=""><a href="/me">About</a></li>
+            <li class=""><a href="/projects">Projects</a></li>
+            <li class=""><a href="/blogs">Blogs</a></li>
+            <li class=""><a href="/talks">Talks & Articles</a></li>
+          </ul>
+        </div>
+        <div class="sep"></div>
+        <div class="copyright">&copy; 2008-2014 Aravinda VK, <br/>All rights reserved</div>
+      </div>
+
+      <div class="pure-g-r">
+        <div class="pure-u-4-5 content-left">
+          <div class="left article">
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        Improving Kannada Fonts</h1>
+    </header>
+    <div class="pure-hidden-phone pure-hidden-tablet">
+<footer class="post-info">
+  <p class="author-and-date-info">
+    Posted on Sat 09 November 2013 by <a class="url fn" href="http://aravindavk.in">Aravinda VK</a>.
+  </p>
+</footer><!-- /.post-info -->
+<div class="sep"></div>    </div>
+    <div class="entry-content">
+      <p><a class="reference external" href="http://pravin-s.blogspot.in/">Pravin</a>, maintainer of Lohit fonts started <a class="reference external" href="https://github.com/pravins/lohit2">lohit2</a> project to update all lohit fonts according to Open Type specifications. Read more <a class="reference external" href="http://pravin-s.blogspot.in/2013/08/project-creating-standard-and-reusable.html">here</a> and <a class="reference external" href="http://pravin-s.blogspot.in/2013/10/lohit2-surely-helping-identifying.html">here</a></p>
+<p>I am planning to improve Lohit Kannada(also Gubbi and Navilu) and identified following stages.</p>
+<div class="section" id="stage-one">
+<h2>Stage one</h2>
+<ol class="arabic simple">
+<li>Clone lohit2, Gubbi and Navilu</li>
+<li>Rename all base glyphs according to the standard(uniXXXX format)</li>
+<li>Adjust left/right spacing for all base glyphs</li>
+<li>Testing</li>
+</ol>
+</div>
+<div class="section" id="stage-two">
+<h2>Stage two</h2>
+<ol class="arabic simple">
+<li>Create half forms of base glyphs which are required for creating ligatures.</li>
+<li>Delete the unused ligatures(Can be achieved using rules)</li>
+<li>Add <a class="reference external" href="http://partners.adobe.com/public/developer/opentype/index_table_formats1.html">GSUB</a> rules for consonants.</li>
+<li>Mark to Base GPOS rules.</li>
+<li>Identify special consonant for which separate ligature is required.(ki, gi etc)</li>
+<li>Testing</li>
+</ol>
+</div>
+<div class="section" id="stage-three">
+<h2>Stage three</h2>
+<ol class="arabic simple">
+<li>Create ligatures which are identified in previous stage.(Most of the ligatures already exists in fonts)</li>
+<li>Add <a class="reference external" href="http://partners.adobe.com/public/developer/opentype/index_table_formats1.html">GSUB</a> rules for those ligatures</li>
+<li>Testing</li>
+</ol>
+</div>
+<div class="section" id="stage-four">
+<h2>Stage four</h2>
+<ol class="arabic simple">
+<li>Rename all vattakshara glyphs.</li>
+<li>Add <a class="reference external" href="http://partners.adobe.com/public/developer/opentype/index_table_formats1.html">GSUB</a> rules.</li>
+<li>Mark to Base <a class="reference external" href="http://partners.adobe.com/public/developer/opentype/index_table_formats2.html">GPOS</a> rules for vattakshara</li>
+<li>Testing</li>
+</ol>
+</div>
+<div class="section" id="stage-five">
+<h2>Stage five</h2>
+<ol class="arabic simple">
+<li>Mark to Mark <a class="reference external" href="http://partners.adobe.com/public/developer/opentype/index_table_formats2.html">GPOS</a> rules for double vattakshara.</li>
+<li>Create additional ligatures if required for any double vattakshara combination.</li>
+<li>Testing</li>
+</ol>
+</div>
+<div class="section" id="stage-six">
+<h2>Stage six</h2>
+<ol class="arabic simple">
+<li>Verify and add additional glyphs/symbols required.</li>
+<li>Adjust left and right spacing for additional glyphs.</li>
+<li>Testing</li>
+</ol>
+</div>
+<div class="section" id="stage-seven">
+<h2>Stage seven</h2>
+<ol class="arabic simple">
+<li>Typography related improvements: Reduce the font thickness, space and kerning improvements.</li>
+<li>Update License, Authors, version and other information.</li>
+<li>Testing</li>
+</ol>
+<p>Today I completed first stage, created two <a class="reference external" href="https://github.com/aravindavk/fontscripts">python scripts</a> to change the glyph names and to adjust left and right space.</p>
+<div class="highlight"><pre><span class="nb">cd</span> <span class="nv">$WORK</span>
+git clone https://github.com/aravindavk/fontscripts.git
+git clone https://github.com/aravindavk/lohit2.git
+git clone https://github.com/aravindavk/Gubbi.git
+git clone https://github.com/aravindavk/Navilu.git
+<span class="nb">cd </span>fontscripts
+
+<span class="c"># Lohit Kannada</span>
+python rename_base_glyphs.py ../lohit2/kannada/Lohit-Kannada.sfd
+python adjust_spacing.py ../lohit2/kannada/Lohit-Kannada.sfd
+
+<span class="c"># Gubbi</span>
+python rename_base_glyphs.py ../Gubbi/Gubbi.sfd
+python adjust_spacing.py ../Gubbi/Gubbi.sfd
+
+<span class="c"># Navilu</span>
+python rename_base_glyphs.py ../Navilu/Navilu.sfd
+python adjust_spacing.py ../Navilu/Navilu.sfd
+</pre></div>
+<p>Now generate the fonts to test the changes. Harfbuzz can be used for testing.</p>
+<div class="highlight"><pre>hb-view ../lohit2/kannada/Lohit-Kannada.ttf <span class="s2">&quot;$(cat stage1_tests.txt )&quot;</span> --output-file preview_lohit.png
+</pre></div>
+<p>Let me know if anybody interested to join and contribute to improve Kannada fonts.</p>
+</div>
+
+    </div><!-- /.entry-content -->
+    <div class="pure-hidden-desktop">
+<footer class="post-info">
+  <p class="author-and-date-info">
+    Posted on Sat 09 November 2013 by <a class="url fn" href="http://aravindavk.in">Aravinda VK</a>.
+  </p>
+</footer><!-- /.post-info -->
+<div class="sep"></div>    </div>
+    <div class="permalink-div">
+      Permalink: <a href="http://aravindavk.in/blog/improving-kannada-fonts/" rel="bookmark" title="Permalink to Improving Kannada Fonts">http://aravindavk.in/blog/improving-kannada-fonts/</a>
+    </div>
+<div class="comments">
+  <h2>Comments !</h2>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_identifier = "blog/improving-kannada-fonts/";
+    var disqus_url = "http://aravindavk.in/blog/improving-kannada-fonts/";
+    (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = 'http://vkaravinda.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+</div>
+  </article>
+</section>
+            <div class="copyright pure-hidden-desktop pure-hidden-tablet">&copy; 2008-2014 Aravinda VK, <br/>All rights reserved</div>
+          </div>
+        </div>
+        <div class="pure-u-1-5 pure-hidden-phone">
+          <div class="right">
+            <img class="me" src="/theme/img/me.jpg"/>
+            <div class="sep"></div>
+            <div class="pure-menu pure-menu-open">
+              <a class="pure-menu-heading logo" href="/"><img src="/theme/img/logo.png" alt="aravindavk"/></a>
+              <div class="social-icons">
+                <a href="http://localhost:8000/None" target="_blank" title="News">
+                  <img src="/theme/img/feed.png" class="link-icon" alt="News"/>
+                </a>
+                <a href="http://twitter.com/aravindavk" target="_blank" title="Twitter">
+                  <img src="/theme/img/twitter.png" class="link-icon" alt="Twitter"/>
+                </a>
+                <a href="https://plus.google.com/+aravindavk" target="_blank" title="Google Plus">
+                  <img src="/theme/img/gplus.png" class="link-icon" alt="Google Plus"/>
+                </a>
+                <a href="https://github.com/aravindavk" target="_blank" title="Github">
+                  <img src="/theme/img/github.png" class="link-icon" alt="Github"/>
+                </a>
+                <a href="http://www.flickr.com/photos/aravindavk" target="_blank" title="Flickr">
+                  <img src="/theme/img/flickr.png" class="link-icon" alt="Flickr"/>
+                </a>
+                <a href="http://in.linkedin.com/in/aravindavk" target="_blank" title="LinkedIn">
+                  <img src="/theme/img/linkedin.png" class="link-icon" alt="LinkedIn"/>
+                </a>
+              </div>
+              <ul>
+                <li class=""><a href="/">Home</a></li>
+                <li class=""><a href="/me">About</a></li>
+                <li class=""><a href="/projects">Projects</a></li>
+                <li class=""><a href="/blogs">Blogs</a></li>
+                <li class=""><a href="/talks">Talks & Articles</a></li>
+              </ul>
+            </div>
+            <div class="sep"></div>
+            <div class="copyright">&copy; 2008-2014 Aravinda VK, <br/>All rights reserved</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <script src="/theme/js/ui.js"></script>
+  </body>
+</html>

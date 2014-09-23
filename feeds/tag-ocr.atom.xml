@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>aravindavk</title><link href="http://aravindavk.in/" rel="alternate"></link><link href="http://aravindavk.in/feeds/tag-ocr.atom.xml" rel="self"></link><id>http://aravindavk.in/</id><updated>2011-08-08T00:00:00+05:30</updated><entry><title>ಕನ್ನಡಕ್ಕೆ OCR! ಇದು ಸಾಧ್ಯವೇ?</title><link href="http://aravindavk.in/blog/kannadakke-ocr-idu-sadyave/" rel="alternate"></link><updated>2011-08-08T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2011-08-08:blog/kannadakke-ocr-idu-sadyave/</id><summary type="html">&lt;div class="notice-update"&gt;
+ಇದು "ಅರಿವಿನ ಅಲೆಗಳು"ನಲ್ಲಿ ಪ್ರಕಟವಾದ ಲೇಖನ. &lt;a href="http://arivu.sanchaya.net/2011/08/ocr.html"&gt;ಇಲ್ಲಿ&lt;/a&gt; ನೋಡಿ.
+&lt;/div&gt;&lt;p&gt;Optical Character Recognision ಅಂದರೆ ಏನು? ಚಿತ್ರದಲ್ಲಿ ಇರುವ ಅಕ್ಷರಗಳನ್ನು ಗುರುತಿಸಿ, ಅವುಗಳನ್ನು ನಿಜವಾದ ಅಕ್ಷರಗಳಂತೆ ಬದಲಾಯಿಸುವುದು. ನಿಜವಾದ ಅಕ್ಷರಗಳಿದ್ದರೆ, ಅವುಗಳಿಂದ ಬೇಕಾದ ಪದಗಳನ್ನಷ್ಟೇ ಕತ್ತರಿಸಬಹುದು, ಬಣ್ಣ ಬದಲಾಯಿಸಬಹುದು ಹಾಗೂ ಕೆಲವು ಪದ/ವಾಕ್ಯಗಳನ್ನಷ್ಟೇ ಬದಲಾಯಿಸಬಹುದು. ಅದೇ ಚಿತ್ರದ ರೂಪದಲ್ಲಿದ್ದರೆ ಇದು ಸಾಧ್ಯವಿಲ್ಲ, ಎಲ್ಲವನ್ನೂ ಪುನಃ ಬರೆಯಬೇಕಾಗುತ್ತದೆ.&lt;/p&gt;
+&lt;p&gt;OCR ಈಗಾಗಲೇ ಇಂಗ್ಲಿಷ್ ಭಾಷೆಗೆ ಇದ್ದರೆ, ಕನ್ನಡಕ್ಕೆ ಏಕಿಲ್ಲ, ಅದನ್ನು ಮಾಡಬಹುದೇ? ಈ ಲೇಖನದ ಮೂಲಕ OCR ಕೆಲಸ ಮಾಡುವ ಬಗೆ ಮತ್ತು ಈಗಿರುವ ತೊಂದರೆಗಳ ಬಗ್ಗೆ ತಿಳಿದುಕೊಳ್ಳೋಣ.&lt;/p&gt;
+&lt;p&gt;ಈ ತಂತ್ರಾಂಶವು ಮೊದಲಿಗೆ ಚಿತ್ರದಲ್ಲಿ ಇರುವ ಕಪ್ಪು ಬಿಳುಪಿನ ಬಣ್ಣಗಳ ಬದಲಾವಣೆಗಳ ಮೂಲಕ ಆ ಚಿತ್ರವನ್ನು ಸಣ್ಣ ಸಣ್ಣ ಭಾಗಗಳನ್ನಾಗಿ ವಿಂಗಡಿಸುತ್ತದೆ. ಮೊದಲಿಗೆ ಉದ್ದನೆಯ ಬಿಳಿಯ ಅಥವಾ ಖಾಲಿ ಜಾಗವನ್ನು ಗುರುತಿಸಿ ಒಂದೊಂದು ಸಾಲುಗಳು ಎಂದು ಭಾಗ ಮಾಡುತ್ತೆ, ನಂತರ ಪ್ರತೀ ಸಾಲಿನಲ್ಲೂ ಮದ್ಯದ ಖಾಲಿ ಜಾಗವನ್ನು ಗುರುತಿಸಿ ಒಂದೊಂದು ಅಕ್ಷರಗಳೆಂದು ವಿಭಾಗಿಸುತ್ತೆ. ಆ ನಂತರ ತನ್ನಲ್ಲಿ ಇರುವ ಮಾಹಿತಿಯ ಪ್ರಕಾರ ಭಾಗ ಮಾಡಿದ ಪ್ರತಿಯೊಂದು ಸಣ್ಣ ಭಾಗವನ್ನೂ ಇಂತದ್ದೇ ಅಕ್ಷರವೆಂದು ಗುರುತಿಸುತ್ತದೆ.&lt;/p&gt;
+&lt;img alt="Kannada OCR" src="/images/kn-ocr1.jpg" /&gt;
+&lt;p&gt;ಚಿತ್ರದಲ್ಲಿರುವ ಗೆರೆಗಳು ತಂತ್ರಾಂಶವು ಚಿತ್ರವನ್ನು ಹೇಗೆ ವಿಭಾಗಿಸುತ್ತದೆ ಎಂಬುದನ್ನ ತೋರಿಸುತ್ತದೆ.&lt;/p&gt;
+&lt;p&gt;ಅಕ್ಷರಗಳನ್ನು ಗುರುತಿಸಲು ತನ್ನಲ್ಲಿರೋ ಮಾಹಿತಿ ಉಪಯೋಗಿಸುತ್ತೆ ಎಂದು ತಿಳೀತು, ಆದರೆ ಈ ಮಾಹಿತಿ ಅದಕ್ಕೆ ಎಲ್ಲಿಂದಾ ಸಿಗುತ್ತೆ? ಅದಕ್ಕೋಸ್ಕರವೇ ಮೊದಲಿಗೆ OCR ತಂತ್ರಾಂಶಕ್ಕೆ ತರಬೇತಿ ಕೊಡಬೇಕಾಗುತ್ತೆ. ತರಬೇತಿ ಅಂದರೆ ವರ್ಣಮಾಲೆಯಲ್ಲಿರುವ ಪ್ರತೀ ಅಕ್ಷರಗಳನ್ನು ಯಾವ ಯಾವ ರೀತಿ ಬರೆಯಬಹುದು ಎಂದು ತಿಳಿಸಿಕೊಡೋದು. ಈ ತರಬೇತಿ ಹೆಚ್ಚು ಫಾಂಟ್ ಗಳಿಗೆ ಮಾಡಿದಷ್ಟೂ OCR ಚೆನ್ನಾಗಿ ಕೆಲಸ ಮಾಡುತ್ತದೆ.&lt;/p&gt;
+&lt;p&gt;ಒಂದೊಂದೇ ಅಕ್ಷರಗಳನ್ನು ಯಾಕೆ ಗುರುತಿಸಬೇಕು? ಒಟ್ಟಿಗೇ ಒಂದಷ್ಟು ಪದಗಳನ್ನು ಗುರುತಿಸಬಹುದಲ್ವಾ ಎಂಬ ಪ್ರಶ್ನೆ ನಿಮಗೀಗ ಬಂದಿರಬಹುದು. ಪದಗಳನ್ನು ಒಟ್ಟಿಗೇ ಮಾಡುವುದಾದರೆ combination ಬಹಳ ಆಗಿ ತಂತ್ರಾಂಶ ಕೆಲಸ ಮಾಡುವುದೇ ಕಷ್ಟ ಆಗುತ್ತದೆ. ಉದಾಹರಣೆ ಇಂಗ್ಲಿಷ್ ನಲ್ಲಿ a b c d ಎಂಬ ನಾಲ್ಕು ಅಕ್ಷರಗಳನ್ನೇ ಬಹಳಷ್ಟು ತರಹದಲ್ಲಿ ಬರೆಯಬಹುದು. ಉದಾಹರಣೆಗೆ abcd, abdc, adbc, dabc, acbd... ಹಾಗಾಗಿ ಅಕ್ಷರಗಳ ಬದಲಿಗೆ ಪದಗಳನ್ನು ಕೊಟ್ಟರೆ OCR ಗೆ ತರಬೇತಿ ಕೊಡುವುದು ಕಬ್ಬಿಣದ ಕಡಲೆ ಆಗುತ್ತದೆ.&lt;/p&gt;
+&lt;div class="section" id="id1"&gt;
+&lt;h2&gt;ಕನ್ನಡಕ್ಕೆ OCR ಮಾಡಲು ಈಗಿರುವ ತೊಂದರೆಗಳು&lt;/h2&gt;
+&lt;p&gt;ಮೊದಲೇ ಹೇಳಿದಂತೆ, ಈ ತಂತ್ರಾಂಶವು ತನಗೆ ಕೊಟ್ಟ ಚಿತ್ರವನ್ನು ಮೇಲಿನಿಂದ ಕೆಳಗೆ ನೋಡಿ ಅದರಿಂದ ಸಾಲುಗಳಂತೆ ವಿಂಗಡಿಸಿ ನಂತರ ಎಡದಿಂದ ಬಲಕ್ಕೆ ನೋಡಲು ಪ್ರಾರಂಭಿಸುತ್ತೆ. ಚಿತ್ರದಲ್ಲಿನ ಕಪ್ಪು ಬಿಳುಪಿನ ಆಧಾರದ ಮೇಲೆ ಒಂದು ಸಾಲಿನಲ್ಲಿ ಸಣ್ಣ ಸಣ್ಣ ಭಾಗಗಳನ್ನು ಗುರುತಿಸುತ್ತದೆ. ಈ ಸಂದರ್ಭದಲ್ಲಿ ಕನ್ನಡದ ಒಂದೇ ಅಕ್ಷರವನ್ನು ಎರಡು ಭಾಗ ಮಾಡುವ ಸಾಧ್ಯತೆ ಇದೆ. ಇದಕ್ಕೆ ಮುಖ್ಯ ಕಾರಣ ಆ ಅಕ್ಷರದ ಎರಡು ಭಾಗಗಳು ಕೂಡದೇ ಇರುವುದು. ಕೆಳಗಿನ ಉದಾಹರಣೆಯಲ್ಲಿ ತೋರಿಸಿದಂತೆ &amp;quot;ಕೀ&amp;quot; ಅಕ್ಷರವನ್ನು ಎರಡು ಭಾಗ ಮಾಡುತ್ತದೆ, ತರಬೇತಿ ಮಾಡುವಾಗ ಕೊಟ್ಟ ಮಾಹಿತಿಯಲ್ಲಿ &amp;quot;ಕಿ&amp;quot; ಗುರುತಿಸುವ ಬಗ್ಗೆ ಇದೆ ಆದರೆ ಬರೀ ಧೀರ್ಘ ಬಂದಾಗ ಏನು ಮಾಡುವುದು ಎಂದು ಆ ತಂತ್ರಾಂಶಕ್ಕೆ ಹೇಳುವುದು ಕಷ್ಟ. ಇಂಗ್ಲಿಷ್ ನಲ್ಲಾದರೆ ಒಂದೊಂದು ಅಕ್ಷರವೂ ಸ್ವತಂತ್ರ. ಎರಡು ಅಕ್ಷರಗಳು ಸೇರಿಸಿದಾಗ ಇನ್ನೇನೋ ಅಕ್ಷರ ಆಗುವ ಸಂಭವ ಇಲ್ಲ. ಇದ್ದರೂ ಬಹಳ ಕಡಿಮೆ. ಮುಂಚೆ ಹೇಳಿದ &amp;quot;ಕೀ&amp;quot; ತೊಂದರೆಗೆ &amp;quot;ಕಿ&amp;quot; ಮತ್ತು ಧೀರ್ಘಕ್ಕೆ ಬೇರೆ ಬೇರೆ ಮಾಹಿತಿ ಕೊಟ್ಟರೂ ಕೊನೆಯಲ್ಲಿ ಜೋಡಿಸುವಾಗ ಯುನಿಕೋಡ್ ನ ಪ್ರಕಾರ ಅವೆರಡು ಜೋಡುವುದಿಲ್ಲ.&lt;/p&gt;
+&lt;img alt="Kannada OCR" src="/images/kn-ocr2.jpg" /&gt;
+&lt;p&gt;ಮೇಲಿನ ತೊಂದರೆಗೆ ಒಂದು ತಾತ್ಕಾಲಿಕ ಪರಿಹಾರ ಹುಡುಕಿಕೊಂಡಿದ್ದೇವೆ, ಆದರೆ ಬಹುಮುಖ್ಯ ಸಮಸ್ಯೆ ಒತ್ತಕ್ಷರಗಳದ್ದು. ಒತ್ತಕ್ಷರಗಳನ್ನು ಮುಖ್ಯ ಅಕ್ಷರಗಳಿಂದ ಬೇರೆಯಾಗಿ ಗುರುತಿಸೋದು ಕಷ್ಟ. ಒಂದೊಂದು ಫಾಂಟ್ ನಲ್ಲಿ ಒಂದೊಂದು ತರಹವಿರುತ್ತದೆ, ಕೆಳಗಿನ ಉದಾಹರಣೆಗಳನ್ನು ನೋಡಿ, ಎರಡನೆಯ ಚಿತ್ರದಲ್ಲಿ ಒತ್ತಕ್ಷರ ಹಾಗೂ ಮುಖ್ಯ ಅಕ್ಷರವನ್ನು ಒಂದು ಗೆರೆ ಹಾಕಿ ಬೇರೆ ಬೇರೆಯಾಗಿ ಗುರುತಿಸಬಹುದು. ಆದರೆ ಕೆಲವು ಫಾಂಟ್ ಗಳಲ್ಲಿ ಬರೆದಿದ್ದನ್ನು ಬೇರೆ ಬೇರೆಯಾಗಿ ಗುರುತಿಸಲು ಆಗುವುದಿಲ್ಲ(ಮೊದಲನೇ ಚಿತ್ರ ನೋಡಿ), ಅವೆರಡನ್ನೂ ಒಂದೇ ಅಕ್ಷರವಾಗಿ ಗುರುತಿಸಿದರೆ ಮೇಲೆ ವಿವರಿಸಿದಂತೆ ಬಹಳಷ್ಟು combination ಗಳು ಆಗುತ್ತದೆ, ಉದಾ: ಕ್ಗ, ಕ್ಗಿ, ಕ್ಗು, ಕ್ಗೂ... ಒತ್ತಕ್ಷರಗಳ combination ಗಳ ಸಂಖ್ಯೆ ಊಹಿಸಲೂ ಕಷ್ಟವಾಗುವಷ್ಟಾಗುತ್ತದೆ, ಇನ್ನು ಒಂದಕ್ಕಿಂತಾ ಜಾಸ್ತಿ ಒತ್ತು ಬರುವ ಪದಗಳನ್ನು ಊಹಿಸಿಕೊಳ್ಳಿ.&lt;/p&gt;
+&lt;img alt="Kannada OCR" src="/images/kn-ocr3.jpg" /&gt;
+&lt;p&gt;ಇದುವರೆಗೆ ಬರೆದ ವಿಚಾರಗಳು Tesseract OCR ಎಂಬ ತಂತ್ರಾಂಶವನ್ನು ಗೆಳೆಯರ ಜೊತೆ ಸೇರಿ ಕನ್ನಡಕ್ಕೆ ಅಳವಡಿಸಲು ಪ್ರಯತ್ನ ಮಾಡಿದಾಗಿನ ಅನುಭವ. ಇನ್ನೂ ಬಹಳಷ್ಟು ತೊಂದರೆಗಳಿಗೆ ಪರಿಹಾರ ಸಿಕ್ಕಿಲ್ಲ. ಎಲ್ಲಾ ತೊಂದರೆಗಳು ಒಂದೊಂದಾಗಿ ಸರಿಯಾಗಿ ಕಡೆಗೊಂದಿನ ಕನ್ನಡಕ್ಕೂ ಒಂದು OCR ಬರಲಿ ಎಂದು ಆಶಿಸುತ್ತೇನೆ.&lt;/p&gt;
+&lt;/div&gt;
+</summary><category term="kannada"></category><category term="ocr"></category><category term="kannadablog"></category></entry><entry><title>Tesseract OCR initial setup</title><link href="http://aravindavk.in/blog/tesseract-ocr-initial-setup/" rel="alternate"></link><updated>2011-04-28T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2011-04-28:blog/tesseract-ocr-initial-setup/</id><summary type="html">&lt;div class="section" id="tesseract-ocr-is"&gt;
+&lt;h2&gt;Tesseract OCR is&lt;/h2&gt;
+&lt;blockquote&gt;
+The &lt;a class="reference external" href="http://code.google.com/p/tesseract-ocr/"&gt;Tesseract OCR&lt;/a&gt; engine was one of the top 3 engines in the 1995 UNLV Accuracy test. Between 1995 and 2006 it had little work done on it, but it is probably one of the most accurate open source OCR engines available. The source code will read a binary, grey or color image and output text. A tiff reader is built in that will read uncompressed TIFF images, or libtiff can be added to read compressed images.&lt;/blockquote&gt;
+&lt;p&gt;Tesseract OCR needs to be trained for Kannada and other Indic languages.&lt;/p&gt;
+&lt;p&gt;Downloaded latest version of Tesseract OCR from svn repository and installed in my system.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;svn checkout http://tesseract-ocr.googlecode.com/svn/trunk/ tesseract-ocr
+./configure
+make
+make install
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Tesseract OCR looks for training data in &lt;code&gt;/usr/local/share/tessdata&lt;/code&gt; directory. If we train anything new then we have to copy .traineddata file to this directory.&lt;/p&gt;
+&lt;p&gt;I divided training process into four steps.&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Image generation&lt;/li&gt;
+&lt;li&gt;Generate box&lt;/li&gt;
+&lt;li&gt;Edit Box file&lt;/li&gt;
+&lt;li&gt;Generate trained data&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;I use Gimp to create tif images required for training. If you have jpg or png image convert to tif using&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;convert -depth 4 sample.jpg sample.tif
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;I have &lt;code&gt;apps&lt;/code&gt; directory in my home directory, which is added to PATH using&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/home/aravinda/apps:PATH; &lt;span class="nb"&gt;export &lt;/span&gt;PATH
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;I use this directory to save all my personal scripts and applications.&lt;/p&gt;
+&lt;p&gt;Created a script called tessGenBox in apps directory, which accepts lang name as parameter.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#!/bin/sh&lt;/span&gt;
+tesseract &lt;span class="nv"&gt;$1&lt;/span&gt;.tif &lt;span class="nv"&gt;$1&lt;/span&gt; batch.nochop makebox
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Since only one font is used for exploring Tesseract traning options, not worried much on naming conventions. (Actual file name format is [lang].[fontname].[exp][num])&lt;/p&gt;
+&lt;p&gt;I downloaded &lt;a class="reference external" href="https://github.com/zdenop/qt-box-editor/"&gt;QT based box editor&lt;/a&gt; as mentioned in the Tesseract wiki. After the installation copied &lt;code&gt;qt-box-editor-1.04dev&lt;/code&gt; file to apps directory and created shell script called tessBoxEdit in apps directory.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#!/bin/sh&lt;/span&gt;
+/home/aravinda/apps/qt-box-editor-1.04dev &lt;span class="nv"&gt;$1&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Tif filename as parameter.&lt;/p&gt;
+&lt;p&gt;I created one more script tessGenData, which I will use to generate trained data based on previously generated box file.(Accepts language name as parameter)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#!/bin/sh&lt;/span&gt;
+tesseract &lt;span class="nv"&gt;$1&lt;/span&gt;.tif &lt;span class="nv"&gt;$1&lt;/span&gt; nobatch box.train
+unicharset_extractor &lt;span class="nv"&gt;$1&lt;/span&gt;.box
+&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$1&lt;/span&gt; 0 0 0 0 0 &amp;gt; font_properties
+mftraining -F font_properties -U unicharset &lt;span class="nv"&gt;$1&lt;/span&gt;.tr
+mftraining -F font_properties -U unicharset -O &lt;span class="nv"&gt;$1&lt;/span&gt;.unicharset &lt;span class="nv"&gt;$1&lt;/span&gt;.tr
+cntraining &lt;span class="nv"&gt;$1&lt;/span&gt;.tr
+mv Microfeat &lt;span class="nv"&gt;$1&lt;/span&gt;.Microfeat
+mv normproto &lt;span class="nv"&gt;$1&lt;/span&gt;.normproto
+mv pffmtable &lt;span class="nv"&gt;$1&lt;/span&gt;.pffmtable
+mv mfunicharset &lt;span class="nv"&gt;$1&lt;/span&gt;.mfunicharset
+mv inttemp &lt;span class="nv"&gt;$1&lt;/span&gt;.inttemp
+combine_tessdata &lt;span class="nv"&gt;$1&lt;/span&gt;.
+&lt;span class="c"&gt;# Used su since I use Debian, use sudo if you are using Ubuntu&lt;/span&gt;
+su -c &lt;span class="s2"&gt;&amp;quot;cp $1.traineddata /usr/local/share/tessdata/&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;It will ask password at the end to copy trained data file to &lt;code&gt;/usr/local/share/tessdata&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;I created two additional scripts to clean the space in between if required.&lt;/p&gt;
+&lt;p&gt;tessCleanAfterBox - cleans the directory by removing all generated files except .box file&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#!/bin/sh&lt;/span&gt;
+rm font_properties*
+rm &lt;span class="nv"&gt;$1&lt;/span&gt;.txt
+rm &lt;span class="nv"&gt;$1&lt;/span&gt;.normproto
+rm &lt;span class="nv"&gt;$1&lt;/span&gt;.traineddata
+rm &lt;span class="nv"&gt;$1&lt;/span&gt;.unicharset
+rm &lt;span class="nv"&gt;$1&lt;/span&gt;.mfunicharset
+rm &lt;span class="nv"&gt;$1&lt;/span&gt;.Microfeat
+rm &lt;span class="nv"&gt;$1&lt;/span&gt;.pffmtable
+rm &lt;span class="nv"&gt;$1&lt;/span&gt;.tr
+rm &lt;span class="nv"&gt;$1&lt;/span&gt;.inttemp
+rm unicharset
+rm *.bak
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;tessCleanAll - Cleans all data including box file except images.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#!/bin/sh&lt;/span&gt;
+rm font_properties*
+rm &lt;span class="nv"&gt;$1&lt;/span&gt;.txt
+rm &lt;span class="nv"&gt;$1&lt;/span&gt;.box
+rm &lt;span class="nv"&gt;$1&lt;/span&gt;.normproto
+rm &lt;span class="nv"&gt;$1&lt;/span&gt;.traineddata
+rm &lt;span class="nv"&gt;$1&lt;/span&gt;.unicharset
+rm &lt;span class="nv"&gt;$1&lt;/span&gt;.mfunicharset
+rm &lt;span class="nv"&gt;$1&lt;/span&gt;.Microfeat
+rm &lt;span class="nv"&gt;$1&lt;/span&gt;.pffmtable
+rm &lt;span class="nv"&gt;$1&lt;/span&gt;.tr
+rm &lt;span class="nv"&gt;$1&lt;/span&gt;.inttemp
+rm unicharset
+rm *.bak
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Once these scripts are created, we need to make these files as executable.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;chmod +x /home/aravinda/apps/tess*
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="usage"&gt;
+&lt;h2&gt;Usage&lt;/h2&gt;
+&lt;p&gt;Let us imagine a name for lang(In the final deployment it should be kan for Kannada. For experimentation we can give any name)&lt;/p&gt;
+&lt;p&gt;For this example, let lang as kan1&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Create a image with sample text and save as kan1.tif&lt;/li&gt;
+&lt;li&gt;Create a box file &lt;code&gt;tessGenBox kan1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Edit box file &lt;code&gt;tessBoxEdit kan1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Generate trained data &lt;code&gt;tessGenData kan1&lt;/code&gt; and provide password.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;If you want to edit box file and train again&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Edit box file &lt;code&gt;tessBoxEdit kan1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Clean the directory &lt;code&gt;tessCleanAfterBox kan1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Generate trained data &lt;code&gt;tessGenData kan1&lt;/code&gt; and provide password.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;If image is changed, clean all and regenerate trained data.&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Clean the directory &lt;code&gt;tessCleanAll kan1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Create a box file &lt;code&gt;tessGenBox kan1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Edit box file &lt;code&gt;tessBoxEdit kan1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Generate trained data &lt;code&gt;tessGenData kan1&lt;/code&gt; and provide password.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;If I forget above commands, I will just type tess and press tab twice to get list of all these commands.&lt;/p&gt;
+&lt;p&gt;Now I can concentrate more on the pattern matching and other issues instead of memorizing each steps involved in the training.&lt;/p&gt;
+&lt;p&gt;C &amp;amp; S Welcome.&lt;/p&gt;
+&lt;/div&gt;
+</summary><category term="tesseract"></category><category term="OCR"></category><category term="Kannada OCR"></category></entry></feed>

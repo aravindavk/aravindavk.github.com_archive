@@ -1,0 +1,278 @@
+/* Layout */
+body{
+    background: #EEEFFF;
+}
+iframe{
+    border:0;
+}
+#layout{
+    padding-left:0;
+    max-width:1024px;
+}
+
+.content-left{
+    background-color:#fff;
+    min-height:1000px;
+    box-shadow:0 8px 8px rgba(221, 221, 221, 0.8);
+    -moz-transition:box-shadow 0.5s ease-out 0s;
+    -webkit-transition:box-shadow 0.5s ease-out 0s;    
+}
+
+.right{
+    margin:40px 10px;
+}
+
+.left{
+    margin:40px 50px;
+}
+
+.content-left:hover{
+    -moz-transition: box-shadow 0.5s ease-out 0s;
+    -webkit-transition: box-shadow 0.5s ease-out 0s;
+    box-shadow: 0 24px 24px rgba(3, 0, 114, 0.8);
+}
+
+/* Menu */
+#menu .pure-menu-heading{
+    background-color:#fff;
+}
+
+.logo img{
+    width:90%;
+}
+
+.me{
+    border-radius:50%;
+}
+
+.social-icons{
+    padding:10px 10px 20px 20px;
+    background-color: #fff;
+    border-top: 1px solid #ddd;
+}
+
+#menu .social-icons{
+    padding:5px;
+}
+
+.social-icons a{
+    display:inline-block;
+    margin:0px;
+    padding:0;
+    margin-right:3px;
+}
+
+.link-icon{
+    width:15px;
+}
+
+.sep{
+    clear:both;
+    width:100%;
+    height:20px;
+}
+
+.copyright{
+    color:#777;
+    font-size:70%;
+}
+
+
+/* Page and Article Styles */
+.tag-button{
+    color: white;
+    border-radius: 4px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    background: rgb(66, 184, 221); /* this is a light blue */
+    font-size: 70%;
+    margin-right:10px;
+    height:20px;
+}
+.taglist-button{
+    width:30px;
+    text-align:right;
+}
+.tag-line{
+    display:block;
+    margin-bottom:10px;
+}
+.author-and-date-info{
+    border-bottom: 1px solid #EEE;
+    color: #777;
+    font-size: 85%;
+    margin-top: -15px;
+    padding-bottom: 5px;
+}
+.tags-info{
+   margin-top: -10px;
+}
+.summary{
+    color:#999;
+    font-size: 70%;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+}
+.article-title-row{
+    /* border-bottom:1px solid #eee; */
+}
+.article-date{
+    color:#555;
+    float: left;
+    background-color: #e6e6fa;
+    width: 100px;
+    font-size: 80%;
+    margin-right: 10px;
+}
+
+/* Content, Typography */
+.article pre{
+    margin: 20px 0px;
+    font-size: 13px;
+    padding: 10px 10px 20px;
+    background-color: #F7F9FA;
+    border-top: 1px dashed #8CACBB;
+    border-bottom: 1px dashed #8CACBB;
+}
+
+.article p code{
+    background-color: #F7F9FA;
+    display:inline-block;
+}
+
+.article h1{
+    color:#D15707;
+}
+
+.article img{
+    max-width: 100%;
+}
+
+.article a{
+    text-decoration: none;
+    color: #1e90ff;
+}
+
+.article a:hover{
+    color: green;
+}
+
+.article blockquote {
+  background: #f9f9f9;
+  border-left: 10px solid #ccc;
+  margin: 1.5em 10px;
+  padding: 0.5em 10px;
+  quotes: "\201C""\201D""\2018""\2019";
+}
+
+.article blockquote p {
+  display inline;
+}
+
+/* Home */
+.m1, .m2, .m3, .m4, .m5{
+   height:60px;
+   color:#fff;
+   padding:10px 0 0px 5px;
+   
+}
+.m1 em, .m2 em, .m3 em, .m4 em, .m5 em{
+   display:block;
+   font-size:70%;
+   color:#eee;
+}
+.m1:hover, .m2:hover, .m3:hover, .m4:hover, .m5:hover{
+    background-color:#FAD232;
+}
+.m1{
+background-color:#F37B1D;
+}
+.m2{
+background-color:#5EB95E;
+}
+.m3{
+background-color:#8058A5;
+}
+.m4{
+background-color:#0E90D2;
+}
+.m5{
+background-color:#F37B1D;
+}
+
+.m1 em{
+   color: rgb(255, 190, 129);
+}
+.m2 em{
+   color: #A1F089;
+}
+.m3 em{
+   color: #C883FF;
+}
+.m4 em{
+   color: #67C2F0;
+}
+.m5 em{
+   color: #FFBE81;
+}
+
+#circle{
+   margin-top:20px;
+   margin-bottom:20px;
+}
+.home-me{
+   margin: 30px;
+   border-radius: 50%;
+   display:block;
+}
+.home-logo{
+   margin: 30px;
+   display:block;
+}
+#circle .social-icons{
+   margin-left:30px;
+   padding:0;
+   background-color: #EEEFFF;
+   border:0;
+}
+#circle .link-icon{
+   width:15px;
+   margin-right:10px;
+}
+.home-menu-link{
+    text-decoration: none;
+    border:0;
+}
+
+.strike {
+  text-decoration: line-through;
+}
+
+.notice-update {
+    padding: 10px;
+    background-color: #E8E77F;
+    border-radius: 7px;
+    margin-bottom: 20px;
+}
+
+/* Image caption */
+img + p > em, p.caption{
+    display:block;
+    margin:0;
+    padding:0;
+    margin-bottom: 30px;
+    color: #cd853f;
+}
+.permalink-div{
+    margin-top:30px;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #eee;
+}
+
+.mobile-posted-on{
+    color: #aaa;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 10px;
+    font-size: 11px;
+}

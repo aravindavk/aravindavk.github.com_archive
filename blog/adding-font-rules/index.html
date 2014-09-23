@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="cache-control" content="max-age=0" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <link href="/theme/img/fav.png" rel="icon" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="/theme/img/fav.png" />
+    <title>Improving Kannada Fonts - Adding Opentype substitution rules</title>
+    <link href="http://aravindavk.in/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="aravindavk Atom Feed" />
+    <link rel="stylesheet" href="/theme/css/pure-min.css" />
+    <link rel="stylesheet" href="/theme/css/side-menu.css" />
+    <link rel="stylesheet" href="/theme/css/main.css" />
+    <link rel="stylesheet" href="/theme/css/pygment-emacs-highlight.css" />
+  </head>
+  <body>
+    <div id="layout">
+      <!-- Menu toggle -->
+      <a href="#menu" id="menuLink" class="menu-link">
+        <!-- Hamburger icon -->
+        <span></span>
+      </a>
+      <div id="menu" class="pure-hidden-desktop pure-hidden-tablet">
+        <div class="pure-menu pure-menu-open">
+          <a class="pure-menu-heading logo" href="/"><img src="/theme/img/logo.png" alt="aravindavk"/></a>
+          <div class="social-icons">
+            <a href="http://localhost:8000/None" target="_blank" title="News">
+              <img src="/theme/img/feed.png" class="link-icon" alt="News"/>
+            </a>
+            <a href="http://twitter.com/aravindavk" target="_blank" title="Twitter">
+              <img src="/theme/img/twitter.png" class="link-icon" alt="Twitter"/>
+            </a>
+            <a href="https://plus.google.com/+aravindavk" target="_blank" title="Google Plus">
+              <img src="/theme/img/gplus.png" class="link-icon" alt="Google Plus"/>
+            </a>
+            <a href="https://github.com/aravindavk" target="_blank" title="Github">
+              <img src="/theme/img/github.png" class="link-icon" alt="Github"/>
+            </a>
+            <a href="http://www.flickr.com/photos/aravindavk" target="_blank" title="Flickr">
+              <img src="/theme/img/flickr.png" class="link-icon" alt="Flickr"/>
+            </a>
+            <a href="http://in.linkedin.com/in/aravindavk" target="_blank" title="LinkedIn">
+              <img src="/theme/img/linkedin.png" class="link-icon" alt="LinkedIn"/>
+            </a>
+          </div>
+          <ul>
+            <li class=""><a href="/">Home</a></li>
+            <li class=""><a href="/me">About</a></li>
+            <li class=""><a href="/projects">Projects</a></li>
+            <li class=""><a href="/blogs">Blogs</a></li>
+            <li class=""><a href="/talks">Talks & Articles</a></li>
+          </ul>
+        </div>
+        <div class="sep"></div>
+        <div class="copyright">&copy; 2008-2014 Aravinda VK, <br/>All rights reserved</div>
+      </div>
+
+      <div class="pure-g-r">
+        <div class="pure-u-4-5 content-left">
+          <div class="left article">
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        Improving Kannada Fonts - Adding Opentype substitution rules</h1>
+    </header>
+    <div class="pure-hidden-phone pure-hidden-tablet">
+<footer class="post-info">
+  <p class="author-and-date-info">
+    Posted on Tue 03 December 2013 by <a class="url fn" href="http://aravindavk.in">Aravinda VK</a>.
+  </p>
+</footer><!-- /.post-info -->
+<div class="sep"></div>    </div>
+    <div class="entry-content">
+      <p>In my <a class="reference external" href="/blog/improving-kannada-fonts/">previous blog</a> we discussed about the approach to improve Kannada fonts, in this blog we will discuss about adding rules to a font using fontforge python.</p>
+<p>Below image shows all the consonant forms of Kannada letter &quot;ka&quot;, we will split that into different groups based on type of font rule required. (Read <a class="reference external" href="http://www.microsoft.com/typography/OpenTypeDev/kannada/intro.htm">OpenType specification</a> to understand more about rules)</p>
+<img alt="ಕ್ ಕ ಕಾ ಕಿ ಕೀ ಕು ಕೂ ಕೃ ಕೄ ಕೆ ಕೇ ಕೈ ಕೊ ಕೋ ಕೌ ಕಂ ಕಃ" src="/images/kagunita.png" />
+<div class="section" id="group-one-no-rules-required">
+<h2>Group one: No rules required</h2>
+<p>If Unicode code points and Glyph ordering is same then no need to add any rules in font. (Some times positional rules may be required, we will discuss about positional rules later)</p>
+<img alt="Group 1" src="/images/fontrules/group1.png" />
+<p>Consonant forms identified in this group are</p>
+<img alt="Group 1 detail" src="/images/fontrules/group1-detail.png" />
+</div>
+<div class="section" id="group-two-above-base-substitution-separate-ligature">
+<h2>Group two: above base substitution - separate ligature</h2>
+<p>If the required shape can't be achieved by joining two or more base glyphs as group 1, then we need separate ligature.</p>
+<img alt="Group 2" src="/images/fontrules/group2.png" />
+<p>Rule:</p>
+<div class="highlight"><pre>sub \uni0C95 \uni0CBF by \uni0C95_uni0CBF.abvs;
+</pre></div>
+<p>Where uni0C95 uni0CBF and uni0C95_uni0CBF.abvs are glyph names(Unicode code of &quot;ka&quot; is U+0C95) (<a class="reference external" href="http://www.unicode.org/charts/PDF/U0C80.pdf">Refer</a>).</p>
+<p>In <a class="reference external" href="http://www.mediawiki.org/wiki/Language_portal/Pune_LanguageSummit_November_2013">#languageSummitPune</a> we(me, <a class="reference external" href="http://pravin-s.blogspot.in/">Pravin</a>, <a class="reference external" href="http://snehakore.blogspot.in/">Sneha</a>, <a class="reference external" href="http://thottingal.in/">Santhosh</a> and many others) discussed lot about glyph naming standard, will write about importance of glyph names in my next blog.</p>
+</div>
+<div class="section" id="group-three-above-base-substitution-using-modified-glyph-of-base-glyph">
+<h2>Group three: above base substitution - Using modified glyph of base glyph</h2>
+<p>Sometimes we can achieve the required shape by using half shape of base glyph instead of creating separate ligature as in group 2.</p>
+<img alt="Group 3" src="/images/fontrules/group3.png" />
+<p>Following consonants can be derived using half form of &quot;ka&quot;</p>
+<img alt="Group 3 detail" src="/images/fontrules/group3-detail.png" />
+<p>Rule:</p>
+<div class="highlight"><pre>sub \uni0C95&#39; [\uni0CCD \uni0CBE \uni0CC6 \uni0CCA \uni0CCC] by \uni0C95.half;
+</pre></div>
+</div>
+<div class="section" id="group-four-no-rule-required-because-of-normalization">
+<h2>Group four: No rule required because of Normalization</h2>
+<p>Some letters in Kannada Unicode normalizes into two or more Unicode characters for which rules will be applied(<a class="reference external" href="http://www.unicode.org/charts/normalization/chart_Kannada.html">Refer</a>).</p>
+<img alt="Group 4" src="/images/fontrules/group4.png" />
+<p>For following consonants no rules required.</p>
+<img alt="Group 4 detail" src="/images/fontrules/group4-detail.png" />
+</div>
+<div class="section" id="featurefile">
+<h2>Featurefile</h2>
+<p>We can create featurefile and import all rules into the font using fontforge tool. Read <a class="reference external" href="http://www.adobe.com/devnet/opentype/afdko/topic_feature_file_syntax.html">this</a> article to know more about featurefile syntax and specification.</p>
+<p>For consonant forms of &quot;ka&quot; final featurefile looks like this..</p>
+<div class="highlight"><pre>lookup kn_abvs_lookup1 {
+    lookupflag 0;
+    sub \uni0C95 \uni0CBF by \uni0C95_uni0CBF.abvs;
+} kn_abvs_lookup1;
+
+lookup kn_abvs_lookup2 {
+    lookupflag 0;
+    sub \uni0C95&#39; [\uni0CCD \uni0CBE \uni0CC6 \uni0CCA \uni0CCC] by \uni0C95.half;
+} kn_abvs_lookup2;
+
+feature abvs {
+    script knd2;
+    language dflt;
+    lookup kn_abvs_lookup1;
+    lookup kn_abvs_lookup2;
+
+    script knda;
+    language dflt;
+    lookup kn_abvs_lookup1;
+    lookup kn_abvs_lookup2;
+} abvs;
+</pre></div>
+<p>Once we save the above content in knda_gsub.fea, download the python script from <a class="reference external" href="https://raw.github.com/aravindavk/fontforge-python-cookbook/master/apply_gsub_featurefile.py">here</a> and run</p>
+<div class="highlight"><pre>python apply_gsub_featurefile.py &lt;sfd file path&gt; &lt;fea file path&gt;
+</pre></div>
+<p>For example:</p>
+<div class="highlight"><pre>python apply_gsub_featurefile.py Lohit-Kannada.sfd knda_gsub.fea
+</pre></div>
+</div>
+
+    </div><!-- /.entry-content -->
+    <div class="pure-hidden-desktop">
+<footer class="post-info">
+  <p class="author-and-date-info">
+    Posted on Tue 03 December 2013 by <a class="url fn" href="http://aravindavk.in">Aravinda VK</a>.
+  </p>
+</footer><!-- /.post-info -->
+<div class="sep"></div>    </div>
+    <div class="permalink-div">
+      Permalink: <a href="http://aravindavk.in/blog/adding-font-rules/" rel="bookmark" title="Permalink to Improving Kannada Fonts - Adding Opentype substitution rules">http://aravindavk.in/blog/adding-font-rules/</a>
+    </div>
+<div class="comments">
+  <h2>Comments !</h2>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_identifier = "blog/adding-font-rules/";
+    var disqus_url = "http://aravindavk.in/blog/adding-font-rules/";
+    (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = 'http://vkaravinda.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+</div>
+  </article>
+</section>
+            <div class="copyright pure-hidden-desktop pure-hidden-tablet">&copy; 2008-2014 Aravinda VK, <br/>All rights reserved</div>
+          </div>
+        </div>
+        <div class="pure-u-1-5 pure-hidden-phone">
+          <div class="right">
+            <img class="me" src="/theme/img/me.jpg"/>
+            <div class="sep"></div>
+            <div class="pure-menu pure-menu-open">
+              <a class="pure-menu-heading logo" href="/"><img src="/theme/img/logo.png" alt="aravindavk"/></a>
+              <div class="social-icons">
+                <a href="http://localhost:8000/None" target="_blank" title="News">
+                  <img src="/theme/img/feed.png" class="link-icon" alt="News"/>
+                </a>
+                <a href="http://twitter.com/aravindavk" target="_blank" title="Twitter">
+                  <img src="/theme/img/twitter.png" class="link-icon" alt="Twitter"/>
+                </a>
+                <a href="https://plus.google.com/+aravindavk" target="_blank" title="Google Plus">
+                  <img src="/theme/img/gplus.png" class="link-icon" alt="Google Plus"/>
+                </a>
+                <a href="https://github.com/aravindavk" target="_blank" title="Github">
+                  <img src="/theme/img/github.png" class="link-icon" alt="Github"/>
+                </a>
+                <a href="http://www.flickr.com/photos/aravindavk" target="_blank" title="Flickr">
+                  <img src="/theme/img/flickr.png" class="link-icon" alt="Flickr"/>
+                </a>
+                <a href="http://in.linkedin.com/in/aravindavk" target="_blank" title="LinkedIn">
+                  <img src="/theme/img/linkedin.png" class="link-icon" alt="LinkedIn"/>
+                </a>
+              </div>
+              <ul>
+                <li class=""><a href="/">Home</a></li>
+                <li class=""><a href="/me">About</a></li>
+                <li class=""><a href="/projects">Projects</a></li>
+                <li class=""><a href="/blogs">Blogs</a></li>
+                <li class=""><a href="/talks">Talks & Articles</a></li>
+              </ul>
+            </div>
+            <div class="sep"></div>
+            <div class="copyright">&copy; 2008-2014 Aravinda VK, <br/>All rights reserved</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <script src="/theme/js/ui.js"></script>
+  </body>
+</html>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>aravindavk</title><link href="http://aravindavk.in/" rel="alternate"></link><link href="http://aravindavk.in/feeds/tag-manual.atom.xml" rel="self"></link><id>http://aravindavk.in/</id><updated>2008-07-30T00:00:00+05:30</updated><entry><title>ಲಿನಕ್ಸ್ ಕಮಾಂಡ್ಸ್ ಗಳಿಗೆ ಸುಲಭದ ಮ್ಯಾನುಯಲ್</title><link href="http://aravindavk.in/blog/linux-commandsgalige-sulabhada-manual/" rel="alternate"></link><updated>2008-07-30T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2008-07-30:blog/linux-commandsgalige-sulabhada-manual/</id><summary type="html">&lt;p&gt;ಲಿನಕ್ಸ್ ನಲ್ಲಿ   ತುಂಬಾ  ಕಮಾಂಡ್ಸ್  ಇದೆ, ಹೆಂಗಪ್ಪಾ ಕಲಿಯೋದು ಅಂತ ಯೋಚನೆ ಆಗಿದೆಯಾ? ಅದಕ್ಕೋಸ್ಕರವೇ ಮ್ಯಾನುಯಲ್ ಪೇಜುಗಳಿವೆ. ನೀವು ಶೆಲ್ (ಟರ್ಮಿನಲ್)ನಲ್ಲಿ ವರ್ಕ್ ಮಾಡುತ್ತಿದ್ದರೆ  man ಅಂತ ಟೈಪ್ ಮಾಡಿ ನಂತರ ಕಮಾಂಡಿನ ಹೆಸರು ಟೈಪ್ ಮಾಡಿ. ಉದಾಹರಣೆಗೆ   ls ಅನ್ನೋ  ಕಮಾಂಡು  ಡೈರೆಕ್ಟರಿಯಲ್ಲಿನ  ಕಂಟೆಂಟ್ ಅನ್ನು  ಪ್ರಿಂಟ್ ಮಾಡುತ್ತೆ ಅನ್ನೋದು ಗೊತ್ತು  ಆದರೆ  ಅದರಿಂದ ಇನ್ನು ಹೆಚ್ಚು ಏನು ಮಾಡಬಹುದು ಅಂತ ತಿಳೀಬೇಕಿದ್ರೆ  man ls ಅಂತ ಟೈಪ್ ಮಾಡಿ.&lt;/p&gt;
+&lt;p&gt;ಈಗ ಶೆಲ್ ನಲ್ಲಿ  ಕೆಲಸ ಮಾಡಿ ಅಭ್ಯಾಸವಿಲ್ಲ , ಆದರೆ ಯಾವುದೋ ಒಂದು ಕಮಾಂಡ್  ಹೇಗೆ ಕೆಲಸ ಮಾಡುತ್ತೆ ಅಂತ ತಿಳಿಯಬೇಕಿದ್ರೆ
+&lt;code&gt;Alt + F2&lt;/code&gt; ಒತ್ತಿ. Run Command ವಿಂಡೋ ಓಪನ್ ಆಗುತ್ತೆ. ಅದರಲ್ಲಿ  ಈ ಕೆಳಗಿನಂತೆ ಬರೆಯಿರಿ.&lt;/p&gt;
+&lt;p&gt;man:ls  (ಈ ಉದಾಹರಣೆ  ls ಕಮಾಂಡ್ ಗೆ, ಬೇರೆ ಕಮಾಂಡ್ ಆದರೆ  ls ಜಾಗದಲ್ಲಿ ಅದನ್ನು  ಬರೆಯಿರಿ), ಚೆಂದದ ಹೆಲ್ಪ್  ಫೈಲ್ ಓಪನ್ ಆಗುತ್ತೆ, ಆ  ಕಮಾಂಡ್ ನ ಎಲ್ಲ ವಿವರಗಳು ಅದರಲ್ಲಿರುತ್ತೆ  (ನೀವು  KDE ಉಪಯೋಗಿಸುತ್ತಿದ್ದರೆ  konqueror ನಲ್ಲಿ ಓಪನ್ ಆಗುತ್ತೆ, konquerorನ ಅಡ್ರೆಸ್ ಬಾರ್ ನಲ್ಲೇ  man:ls ಅಂತ   ಟೈಪ್ ಮಾಡಿದ್ರೂ  ಆಗುತ್ತೆ.)&lt;/p&gt;
+&lt;p&gt;ಈಗ  ಕಮಾಂಡ್ ಗಳ ಹೆಸ್ರೇ ಗೊತ್ತಿಲ್ಲಾ  ಇನ್ನು  ಅದ್ರ ಮ್ಯಾನುಯಲ್ ಪೇಜ್ ನೋಡೋದು ಹೇಗೆ   ಅಂದುಕೊಳ್ತಿದೀರಾ? ಕೆಲವು  ಸಿಂಪಲ್ ಕಮಾಂಡ್ ಗಳನ್ನ ತಿಳಿಯಲು ಸುಲಭದ ಉಪಾಯ ಇದೆ.&lt;/p&gt;
+&lt;p&gt;ಸಾಮಾನ್ಯವಾಗಿ  ಕೆಲವನ್ನು  ಊಹೆ ಮಾಡಬಹುದು&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;ಪದಗಳ ಮೊದಲನೆ ಅಕ್ಷರ ಮತ್ತು ಮೂರನೇ  ಅಕ್ಷರ&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;copy - cp
+move - mv
+make direcory - mkdir
+list - ls
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ol class="arabic simple" start="2"&gt;
+&lt;li&gt;ಎರಡು ಪದಗಳ ಮೊದಲನೆ ಅಕ್ಷರಗಳನ್ನು ಸೇರಿಸಿ&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;change directory - cd
+process status - ps
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;ಬಳಸಲು  ಪ್ರಾರಂಭ  ಮಾಡಿದ್ಮೇಲೆ  ಹೊಸ ಹೊಸ ಕಮಾಂಡ್ಸ್  ಗೊತ್ತಾಗ್ತಾ ಹೋಗುತ್ತೆ.&lt;/p&gt;
+</summary><category term="ಲಿನಕ್ಸ್"></category><category term="Manual"></category><category term="kannadablog"></category></entry></feed>

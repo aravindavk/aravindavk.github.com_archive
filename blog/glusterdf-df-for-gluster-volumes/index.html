@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="cache-control" content="max-age=0" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <link href="/theme/img/fav.png" rel="icon" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="/theme/img/fav.png" />
+    <title>glusterdf - df for gluster volumes</title>
+    <link href="http://aravindavk.in/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="aravindavk Atom Feed" />
+    <link rel="stylesheet" href="/theme/css/pure-min.css" />
+    <link rel="stylesheet" href="/theme/css/side-menu.css" />
+    <link rel="stylesheet" href="/theme/css/main.css" />
+    <link rel="stylesheet" href="/theme/css/pygment-emacs-highlight.css" />
+  </head>
+  <body>
+    <div id="layout">
+      <!-- Menu toggle -->
+      <a href="#menu" id="menuLink" class="menu-link">
+        <!-- Hamburger icon -->
+        <span></span>
+      </a>
+      <div id="menu" class="pure-hidden-desktop pure-hidden-tablet">
+        <div class="pure-menu pure-menu-open">
+          <a class="pure-menu-heading logo" href="/"><img src="/theme/img/logo.png" alt="aravindavk"/></a>
+          <div class="social-icons">
+            <a href="http://localhost:8000/None" target="_blank" title="News">
+              <img src="/theme/img/feed.png" class="link-icon" alt="News"/>
+            </a>
+            <a href="http://twitter.com/aravindavk" target="_blank" title="Twitter">
+              <img src="/theme/img/twitter.png" class="link-icon" alt="Twitter"/>
+            </a>
+            <a href="https://plus.google.com/+aravindavk" target="_blank" title="Google Plus">
+              <img src="/theme/img/gplus.png" class="link-icon" alt="Google Plus"/>
+            </a>
+            <a href="https://github.com/aravindavk" target="_blank" title="Github">
+              <img src="/theme/img/github.png" class="link-icon" alt="Github"/>
+            </a>
+            <a href="http://www.flickr.com/photos/aravindavk" target="_blank" title="Flickr">
+              <img src="/theme/img/flickr.png" class="link-icon" alt="Flickr"/>
+            </a>
+            <a href="http://in.linkedin.com/in/aravindavk" target="_blank" title="LinkedIn">
+              <img src="/theme/img/linkedin.png" class="link-icon" alt="LinkedIn"/>
+            </a>
+          </div>
+          <ul>
+            <li class=""><a href="/">Home</a></li>
+            <li class=""><a href="/me">About</a></li>
+            <li class=""><a href="/projects">Projects</a></li>
+            <li class=""><a href="/blogs">Blogs</a></li>
+            <li class=""><a href="/talks">Talks & Articles</a></li>
+          </ul>
+        </div>
+        <div class="sep"></div>
+        <div class="copyright">&copy; 2008-2014 Aravinda VK, <br/>All rights reserved</div>
+      </div>
+
+      <div class="pure-g-r">
+        <div class="pure-u-4-5 content-left">
+          <div class="left article">
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        glusterdf - df for gluster volumes</h1>
+    </header>
+    <div class="pure-hidden-phone pure-hidden-tablet">
+<footer class="post-info">
+  <p class="author-and-date-info">
+    Posted on Tue 24 September 2013 by <a class="url fn" href="http://aravindavk.in">Aravinda VK</a>.
+  </p>
+</footer><!-- /.post-info -->
+<div class="sep"></div>    </div>
+    <div class="entry-content">
+      <p>A CLI utility to check the disk usage of <a class="reference external" href="http://gluster.org/">glusterfs</a> volumes. Using <code>df</code> command we can view the disk usage of only mounted glusterfs volumes. This utility takes care of mounting gluster volumes available in the machine where this command is executed. glusterdf uses <a class="reference external" href="https://github.com/gluster/glusterfs/tree/master/api">libgfapi</a> provided by glusterfs to fetch the statvfs information.</p>
+<p>Installation is very simple,</p>
+<div class="highlight"><pre>git clone https://github.com/aravindavk/glusterfs-tools.git
+<span class="nb">cd </span>glusterfs-tools
+sudo python setup.py install
+</pre></div>
+<p>You can also clone this project from <a class="reference external" href="https://forge.gluster.org/glusterfs-tools">forge.gluster.org/glusterfs-tools</a></p>
+<p>Once installed, two tools will be available <code>glustervolumes</code> and <cite>glusterdf</cite>.</p>
+<p><code>sudo glusterdf --help</code> to know more about options available. (same for glustervolumes <cite>sudo glustervolumes --help</cite>)</p>
+<p>Usage examples:</p>
+<div class="figure">
+<img alt="glusterdf -h" src="/images/glusterfs/glusterdf_h.png" />
+<p class="caption">sudo glusterdf -h (Disk usage in human readable format)</p>
+</div>
+<div class="figure">
+<img alt="glusterdf -i" src="/images/glusterfs/glusterdf_i.png" />
+<p class="caption">sudo glusterdf -i (View inodes usage information)</p>
+</div>
+<div class="figure">
+<img alt="sudo glusterdf --status up --type repl -h" src="/images/glusterfs/glusterdf_status_type_h.png" />
+<p class="caption">sudo glusterdf --status up --type repl -h (View all running replicated volumes)</p>
+</div>
+<div class="figure">
+<img alt="sudo glusterdf -h --volumewithbrick &quot;/b[12]&quot;" src="/images/glusterfs/glusterdf_volumewithbrick.png" />
+<p class="caption">sudo glusterdf -h --volumewithbrick &quot;/b[12]&quot;</p>
+</div>
+<div class="figure">
+<img alt="sudo glusterdf --status up --type repli -h --json | python -m json.tool" src="/images/glusterfs/glusterdf_json.png" />
+<p class="caption">sudo glusterdf --status up --type repli -h --json | python -m json.tool</p>
+</div>
+<div class="figure">
+<img alt="glusterdf --help" src="/images/glusterfs/glusterdf-help.png" />
+<p class="caption">sudo glusterdf --help</p>
+</div>
+<p>In my previous blog(<a class="reference external" href="http://aravindavk.in/blog/glusterfs-tools/">this</a>) I wrote about gfvolumes(now it is <cite>glustervolumes</cite>). glusterfs-tools is rewritten as python library which can be used with your Python programs.</p>
+<p>For example</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">glusterfstools</span> <span class="kn">import</span> <span class="n">volumes</span><span class="p">,</span> <span class="n">gfapi</span>
+<span class="c"># Get all volumes</span>
+<span class="n">vols</span> <span class="o">=</span> <span class="n">volumes</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+<span class="c"># Get a specific volume information</span>
+<span class="n">vol</span> <span class="o">=</span> <span class="n">volumes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;gv1&quot;</span><span class="p">)</span>
+<span class="c"># Search volumes by status</span>
+<span class="n">down_volumes</span> <span class="o">=</span> <span class="n">volumes</span><span class="o">.</span><span class="n">search</span><span class="p">({</span><span class="s">&quot;status&quot;</span><span class="p">:</span> <span class="s">&quot;down&quot;</span><span class="p">})</span>
+<span class="c"># Search volumes by type</span>
+<span class="n">distribute_volumes</span> <span class="o">=</span> <span class="n">volumes</span><span class="o">.</span><span class="n">search</span><span class="p">({</span><span class="s">&quot;type&quot;</span><span class="p">:</span> <span class="s">&quot;distribute&quot;</span><span class="p">})</span>
+<span class="c"># Statvfs information</span>
+<span class="n">vol_statvfs</span> <span class="o">=</span> <span class="n">gfapi</span><span class="o">.</span><span class="n">statvfs</span><span class="p">(</span><span class="s">&quot;gv1&quot;</span><span class="p">)</span>
+<span class="c"># To view information about gluster volumes which are down</span>
+<span class="c"># and having bricks like &quot;/gfs&quot;</span>
+<span class="n">vols</span> <span class="o">=</span> <span class="n">volumes</span><span class="o">.</span><span class="n">search</span><span class="p">({</span><span class="s">&quot;status&quot;</span><span class="p">:</span> <span class="s">&quot;down&quot;</span><span class="p">,</span> <span class="s">&quot;volumewithbricks&quot;</span><span class="p">:</span> <span class="s">&quot;/gfs&quot;</span><span class="p">})</span>
+<span class="c"># To view filters available</span>
+<span class="k">print</span> <span class="p">(</span><span class="n">volumes</span><span class="o">.</span><span class="n">filters</span><span class="p">())</span>
+</pre></div>
+<p>volumes.search accepts filters as parameter, extending volume filters is very simple. For example name filter looks like this(<a class="reference external" href="https://github.com/aravindavk/glusterfs-tools/blob/master/src/glusterfstools/volumefilters.py">src/glusterfstools/volumefilters.py</a>)</p>
+<div class="highlight"><pre><span class="nd">@filter</span><span class="p">(</span><span class="s">&quot;name&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">name_filter</span><span class="p">(</span><span class="n">vols</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">is_match</span><span class="p">(</span><span class="n">vol</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;all&#39;</span><span class="p">]</span> <span class="ow">or</span> \
+            <span class="n">vol</span><span class="p">[</span><span class="s">&quot;name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">value</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="ow">or</span> \
+            <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">vol</span><span class="p">[</span><span class="s">&quot;name&quot;</span><span class="p">]):</span>
+            <span class="k">return</span> <span class="bp">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">False</span>
+
+    <span class="k">return</span> <span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">vols</span> <span class="k">if</span> <span class="n">is_match</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">value</span><span class="p">)]</span>
+</pre></div>
+<p>The filter can be used as below</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">glusterfstools</span> <span class="kn">import</span> <span class="n">volumes</span>
+
+<span class="c"># Filters the volumes with name either gv1 or gv2</span>
+<span class="n">filters</span> <span class="o">=</span> <span class="p">{</span><span class="s">&quot;name&quot;</span><span class="p">:</span> <span class="s">&quot;gv[12]&quot;</span><span class="p">}</span>
+<span class="k">print</span> <span class="n">volumes</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">filters</span><span class="p">)</span>
+</pre></div>
+
+    </div><!-- /.entry-content -->
+    <div class="pure-hidden-desktop">
+<footer class="post-info">
+  <p class="author-and-date-info">
+    Posted on Tue 24 September 2013 by <a class="url fn" href="http://aravindavk.in">Aravinda VK</a>.
+  </p>
+</footer><!-- /.post-info -->
+<div class="sep"></div>    </div>
+    <div class="permalink-div">
+      Permalink: <a href="http://aravindavk.in/blog/glusterdf-df-for-gluster-volumes/" rel="bookmark" title="Permalink to glusterdf - df for gluster volumes">http://aravindavk.in/blog/glusterdf-df-for-gluster-volumes/</a>
+    </div>
+<div class="comments">
+  <h2>Comments !</h2>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_identifier = "blog/glusterdf-df-for-gluster-volumes/";
+    var disqus_url = "http://aravindavk.in/blog/glusterdf-df-for-gluster-volumes/";
+    (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = 'http://vkaravinda.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+</div>
+  </article>
+</section>
+            <div class="copyright pure-hidden-desktop pure-hidden-tablet">&copy; 2008-2014 Aravinda VK, <br/>All rights reserved</div>
+          </div>
+        </div>
+        <div class="pure-u-1-5 pure-hidden-phone">
+          <div class="right">
+            <img class="me" src="/theme/img/me.jpg"/>
+            <div class="sep"></div>
+            <div class="pure-menu pure-menu-open">
+              <a class="pure-menu-heading logo" href="/"><img src="/theme/img/logo.png" alt="aravindavk"/></a>
+              <div class="social-icons">
+                <a href="http://localhost:8000/None" target="_blank" title="News">
+                  <img src="/theme/img/feed.png" class="link-icon" alt="News"/>
+                </a>
+                <a href="http://twitter.com/aravindavk" target="_blank" title="Twitter">
+                  <img src="/theme/img/twitter.png" class="link-icon" alt="Twitter"/>
+                </a>
+                <a href="https://plus.google.com/+aravindavk" target="_blank" title="Google Plus">
+                  <img src="/theme/img/gplus.png" class="link-icon" alt="Google Plus"/>
+                </a>
+                <a href="https://github.com/aravindavk" target="_blank" title="Github">
+                  <img src="/theme/img/github.png" class="link-icon" alt="Github"/>
+                </a>
+                <a href="http://www.flickr.com/photos/aravindavk" target="_blank" title="Flickr">
+                  <img src="/theme/img/flickr.png" class="link-icon" alt="Flickr"/>
+                </a>
+                <a href="http://in.linkedin.com/in/aravindavk" target="_blank" title="LinkedIn">
+                  <img src="/theme/img/linkedin.png" class="link-icon" alt="LinkedIn"/>
+                </a>
+              </div>
+              <ul>
+                <li class=""><a href="/">Home</a></li>
+                <li class=""><a href="/me">About</a></li>
+                <li class=""><a href="/projects">Projects</a></li>
+                <li class=""><a href="/blogs">Blogs</a></li>
+                <li class=""><a href="/talks">Talks & Articles</a></li>
+              </ul>
+            </div>
+            <div class="sep"></div>
+            <div class="copyright">&copy; 2008-2014 Aravinda VK, <br/>All rights reserved</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <script src="/theme/js/ui.js"></script>
+  </body>
+</html>

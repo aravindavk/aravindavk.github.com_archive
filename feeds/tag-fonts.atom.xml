@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>aravindavk</title><link href="http://aravindavk.in/" rel="alternate"></link><link href="http://aravindavk.in/feeds/tag-fonts.atom.xml" rel="self"></link><id>http://aravindavk.in/</id><updated>2013-12-24T00:00:00+05:30</updated><entry><title>Improving Kannada Fonts - Glyph Names</title><link href="http://aravindavk.in/blog/glyph-names/" rel="alternate"></link><updated>2013-12-24T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2013-12-24:blog/glyph-names/</id><summary type="html">&lt;p&gt;During &lt;a class="reference external" href="http://www.mediawiki.org/wiki/Language_portal/Pune_LanguageSummit_November_2013"&gt;#languageSummitPune&lt;/a&gt;, &lt;a class="reference external" href="http://pravin-s.blogspot.in/"&gt;Pravin&lt;/a&gt; explained about glyph naming specification by adobe and its benifits.&lt;/p&gt;
+&lt;p&gt;Glyph is a entity inside font which holds the co-ordinates information about a shape(letter). For most use cases glyph names doesn't matter, it is font developers choice to give different names to the glyphs and write font rules according to their glyph names. Rendering engine always deals with Unicode values and font returns respective glyphs to display based on the rules and glyphs inside font.&lt;/p&gt;
+&lt;div class="section" id="so-what-is-the-problem"&gt;
+&lt;h2&gt;So what is the problem?&lt;/h2&gt;
+&lt;p&gt;PDF. pdf displays unicode chars even though no rendering support present in the system(thats why it is called portable documents :P), how it is possible? At the time of pdf generation instead of storing unicode values it stores the glyph sequence of the text and embed's the font. While viewing it arranges the glyphs as per the sequence and displays it, no need to worry about font/rendering rules.&lt;/p&gt;
+&lt;p&gt;When user types some phrase to find inside pdf, pdf readers will try to convert unicode value of input phrase into glyph sequence and looks inside pdf for that sequence. If each font uses its own glyph names it not possible to reverse lookup by pdf reader and text search fails.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://sourceforge.net/adobe/aglfn/wiki/AGL%20Specification/"&gt;Adobe Glyph specification&lt;/a&gt; suggests to name the glyph as unicode value with &lt;code&gt;uni&lt;/code&gt; prefix. For example Unicode value of Kannada letter &lt;code&gt;ಅ&lt;/code&gt; is &lt;cite&gt;U+0C85&lt;/cite&gt;, so we have to name the glyph &lt;code&gt;ಅ&lt;/code&gt; as &lt;cite&gt;uni0C85&lt;/cite&gt;.&lt;/p&gt;
+&lt;p&gt;Some font developers prefer to name the glyphs as some human readable name instead of code name(like &lt;cite&gt;avowelknd&lt;/cite&gt;, &lt;code&gt;kaknd&lt;/code&gt; etc). Human readable names may help at the time of adding rules, but their are other problems associated with it. If we use our own naming in the font then we should take care adding those names in &lt;a class="reference external" href="http://sourceforge.net/adobe/aglfn/wiki/Home/"&gt;glyphlist.txt&lt;/a&gt;. We will endup introducing one more naming standard for each language, also untill all pdf reader software picks up the updated glyphlist, new names will not be used in pdf search. Another important problem is that all fonts developer will not agree to use the glyph naming proposed by one font developer. (For example one can propose language name as prefix and other can say language name as suffix, &lt;code&gt;kaknd&lt;/code&gt; or &lt;code&gt;kndka&lt;/code&gt; or &lt;cite&gt;knka&lt;/cite&gt;)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="glyph-name-ligature"&gt;
+&lt;h2&gt;Glyph name - Ligature&lt;/h2&gt;
+&lt;p&gt;If a glyph shape is formed by two or more unicode values and the resultant glyph doesn't have any unicode value then the glyph should be named as combination of two glyph names seperated by underscore. Suffix can be added to differenciate between multiple ligatures for the same unicode value combination. In the below example, suffix &lt;code&gt;.abvs&lt;/code&gt; is used since this ligature will be used in opentype feature &lt;cite&gt;abvs&lt;/cite&gt; (above base substitution).&lt;/p&gt;
+&lt;img alt="ki" src="/images/fontrules/group2.png" /&gt;
+&lt;p&gt;An example to understand how this reverse lookup works. Kannada text &lt;cite&gt;ಮಂಕುತಿಮ್ಮ&lt;/cite&gt;, Unicode splitup and glyph names for the same is&lt;/p&gt;
+&lt;img alt="ಮಂಕುತಿಮ್ಮ - Unicode" src="/images/mankutimma-unicode.png" /&gt;
+&lt;p&gt;Glyph names stored inside pdf are as follows(ignores all the suffix and joins together using underscore)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;0CAE_0C82_0C95_0CC1_0CA4_0CBF_0CAE_0CCD_0CAE
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Following psudo code shows how to convert unicode string to glyphs list without any help of rendering engine.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;get_glyphs_list&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;unicode_str&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;glyph_seq&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;letter&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;unicode_str&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;hex&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;ord&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;letter&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;replace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;0x&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;upper&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;zfill&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+        &lt;span class="n"&gt;glyph_seq&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;_&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;glyph_seq&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c"&gt;# Example:&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;get_glyphs_list&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;u&amp;quot;ಮಂಕುತಿಮ್ಮ&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c"&gt;# Output:&lt;/span&gt;
+&lt;span class="c"&gt;# 0CAE_0C82_0C95_0CC1_0CA4_0CBF_0CAE_0CCD_0CAE&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;When we fetch glyph list for text &lt;code&gt;ಕಿ&lt;/code&gt; above function returns &lt;cite&gt;0C95_0CBF&lt;/cite&gt;, which is easy to search from the available glyph list.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="problems"&gt;
+&lt;h2&gt;Problems:&lt;/h2&gt;
+&lt;p&gt;In case of vattakshara, for example &lt;cite&gt;ತಿಮ್ಮಿ&lt;/cite&gt;, dependent vowel will be reordered as shown in the image below, so resultant glyphset will be &lt;code&gt;0CA4_0CBF_0CAE_0CBF_0CCD_0CAE&lt;/code&gt; but above function returns as &lt;cite&gt;0CA4_0CBF_0CAE_0CCD_0CAE_0CBF&lt;/cite&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="glyph-names-validator"&gt;
+&lt;h2&gt;Glyph names validator:&lt;/h2&gt;
+&lt;p&gt;I created a tool using python to validate the glyph names, which accepts two parameters a font file and a text file with possible letters/words. It uses &lt;code&gt;hb-shape&lt;/code&gt; to get the glyphs list from the input text file, and generates required glyphs list and compares between them.&lt;/p&gt;
+&lt;p&gt;Download the python script from &lt;a class="reference external" href="https://raw.github.com/aravindavk/fontscripts/master/validate_glyphnames.py"&gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;python validate_glyphnames.py Gubbi.ttf kannada_tests.txt
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Sample test file&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;ಅ
+ಆ
+ಇ
+ಈ
+ಕಾ
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Will write more about this tool later, If glyph names are standardized then we can create lot of automation tools.&lt;/p&gt;
+&lt;p&gt;Let us start using the glyph names as &lt;code&gt;uniXXXX&lt;/code&gt; format, I am not sure about the solution for above mentioned problem, let me know your suggestion.&lt;/p&gt;
+&lt;p&gt;C &amp;amp; S welcome.&lt;/p&gt;
+&lt;/div&gt;
+</summary><category term="ಕನ್ನಡ"></category><category term="kannada"></category><category term="fonts"></category></entry><entry><title>Improving Kannada Fonts - Adding Opentype substitution rules</title><link href="http://aravindavk.in/blog/adding-font-rules/" rel="alternate"></link><updated>2013-12-03T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2013-12-03:blog/adding-font-rules/</id><summary type="html">&lt;p&gt;In my &lt;a class="reference external" href="/blog/improving-kannada-fonts/"&gt;previous blog&lt;/a&gt; we discussed about the approach to improve Kannada fonts, in this blog we will discuss about adding rules to a font using fontforge python.&lt;/p&gt;
+&lt;p&gt;Below image shows all the consonant forms of Kannada letter &amp;quot;ka&amp;quot;, we will split that into different groups based on type of font rule required. (Read &lt;a class="reference external" href="http://www.microsoft.com/typography/OpenTypeDev/kannada/intro.htm"&gt;OpenType specification&lt;/a&gt; to understand more about rules)&lt;/p&gt;
+&lt;img alt="ಕ್ ಕ ಕಾ ಕಿ ಕೀ ಕು ಕೂ ಕೃ ಕೄ ಕೆ ಕೇ ಕೈ ಕೊ ಕೋ ಕೌ ಕಂ ಕಃ" src="/images/kagunita.png" /&gt;
+&lt;div class="section" id="group-one-no-rules-required"&gt;
+&lt;h2&gt;Group one: No rules required&lt;/h2&gt;
+&lt;p&gt;If Unicode code points and Glyph ordering is same then no need to add any rules in font. (Some times positional rules may be required, we will discuss about positional rules later)&lt;/p&gt;
+&lt;img alt="Group 1" src="/images/fontrules/group1.png" /&gt;
+&lt;p&gt;Consonant forms identified in this group are&lt;/p&gt;
+&lt;img alt="Group 1 detail" src="/images/fontrules/group1-detail.png" /&gt;
+&lt;/div&gt;
+&lt;div class="section" id="group-two-above-base-substitution-separate-ligature"&gt;
+&lt;h2&gt;Group two: above base substitution - separate ligature&lt;/h2&gt;
+&lt;p&gt;If the required shape can't be achieved by joining two or more base glyphs as group 1, then we need separate ligature.&lt;/p&gt;
+&lt;img alt="Group 2" src="/images/fontrules/group2.png" /&gt;
+&lt;p&gt;Rule:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;sub \uni0C95 \uni0CBF by \uni0C95_uni0CBF.abvs;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Where uni0C95 uni0CBF and uni0C95_uni0CBF.abvs are glyph names(Unicode code of &amp;quot;ka&amp;quot; is U+0C95) (&lt;a class="reference external" href="http://www.unicode.org/charts/PDF/U0C80.pdf"&gt;Refer&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;In &lt;a class="reference external" href="http://www.mediawiki.org/wiki/Language_portal/Pune_LanguageSummit_November_2013"&gt;#languageSummitPune&lt;/a&gt; we(me, &lt;a class="reference external" href="http://pravin-s.blogspot.in/"&gt;Pravin&lt;/a&gt;, &lt;a class="reference external" href="http://snehakore.blogspot.in/"&gt;Sneha&lt;/a&gt;, &lt;a class="reference external" href="http://thottingal.in/"&gt;Santhosh&lt;/a&gt; and many others) discussed lot about glyph naming standard, will write about importance of glyph names in my next blog.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="group-three-above-base-substitution-using-modified-glyph-of-base-glyph"&gt;
+&lt;h2&gt;Group three: above base substitution - Using modified glyph of base glyph&lt;/h2&gt;
+&lt;p&gt;Sometimes we can achieve the required shape by using half shape of base glyph instead of creating separate ligature as in group 2.&lt;/p&gt;
+&lt;img alt="Group 3" src="/images/fontrules/group3.png" /&gt;
+&lt;p&gt;Following consonants can be derived using half form of &amp;quot;ka&amp;quot;&lt;/p&gt;
+&lt;img alt="Group 3 detail" src="/images/fontrules/group3-detail.png" /&gt;
+&lt;p&gt;Rule:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;sub \uni0C95&amp;#39; [\uni0CCD \uni0CBE \uni0CC6 \uni0CCA \uni0CCC] by \uni0C95.half;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="group-four-no-rule-required-because-of-normalization"&gt;
+&lt;h2&gt;Group four: No rule required because of Normalization&lt;/h2&gt;
+&lt;p&gt;Some letters in Kannada Unicode normalizes into two or more Unicode characters for which rules will be applied(&lt;a class="reference external" href="http://www.unicode.org/charts/normalization/chart_Kannada.html"&gt;Refer&lt;/a&gt;).&lt;/p&gt;
+&lt;img alt="Group 4" src="/images/fontrules/group4.png" /&gt;
+&lt;p&gt;For following consonants no rules required.&lt;/p&gt;
+&lt;img alt="Group 4 detail" src="/images/fontrules/group4-detail.png" /&gt;
+&lt;/div&gt;
+&lt;div class="section" id="featurefile"&gt;
+&lt;h2&gt;Featurefile&lt;/h2&gt;
+&lt;p&gt;We can create featurefile and import all rules into the font using fontforge tool. Read &lt;a class="reference external" href="http://www.adobe.com/devnet/opentype/afdko/topic_feature_file_syntax.html"&gt;this&lt;/a&gt; article to know more about featurefile syntax and specification.&lt;/p&gt;
+&lt;p&gt;For consonant forms of &amp;quot;ka&amp;quot; final featurefile looks like this..&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;lookup kn_abvs_lookup1 {
+    lookupflag 0;
+    sub \uni0C95 \uni0CBF by \uni0C95_uni0CBF.abvs;
+} kn_abvs_lookup1;
+
+lookup kn_abvs_lookup2 {
+    lookupflag 0;
+    sub \uni0C95&amp;#39; [\uni0CCD \uni0CBE \uni0CC6 \uni0CCA \uni0CCC] by \uni0C95.half;
+} kn_abvs_lookup2;
+
+feature abvs {
+    script knd2;
+    language dflt;
+    lookup kn_abvs_lookup1;
+    lookup kn_abvs_lookup2;
+
+    script knda;
+    language dflt;
+    lookup kn_abvs_lookup1;
+    lookup kn_abvs_lookup2;
+} abvs;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Once we save the above content in knda_gsub.fea, download the python script from &lt;a class="reference external" href="https://raw.github.com/aravindavk/fontforge-python-cookbook/master/apply_gsub_featurefile.py"&gt;here&lt;/a&gt; and run&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;python apply_gsub_featurefile.py &amp;lt;sfd file path&amp;gt; &amp;lt;fea file path&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;For example:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;python apply_gsub_featurefile.py Lohit-Kannada.sfd knda_gsub.fea
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+</summary><category term="ಕನ್ನಡ"></category><category term="kannada"></category><category term="fonts"></category></entry><entry><title>Improving Kannada Fonts</title><link href="http://aravindavk.in/blog/improving-kannada-fonts/" rel="alternate"></link><updated>2013-11-09T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2013-11-09:blog/improving-kannada-fonts/</id><summary type="html">&lt;p&gt;&lt;a class="reference external" href="http://pravin-s.blogspot.in/"&gt;Pravin&lt;/a&gt;, maintainer of Lohit fonts started &lt;a class="reference external" href="https://github.com/pravins/lohit2"&gt;lohit2&lt;/a&gt; project to update all lohit fonts according to Open Type specifications. Read more &lt;a class="reference external" href="http://pravin-s.blogspot.in/2013/08/project-creating-standard-and-reusable.html"&gt;here&lt;/a&gt; and &lt;a class="reference external" href="http://pravin-s.blogspot.in/2013/10/lohit2-surely-helping-identifying.html"&gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;I am planning to improve Lohit Kannada(also Gubbi and Navilu) and identified following stages.&lt;/p&gt;
+&lt;div class="section" id="stage-one"&gt;
+&lt;h2&gt;Stage one&lt;/h2&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Clone lohit2, Gubbi and Navilu&lt;/li&gt;
+&lt;li&gt;Rename all base glyphs according to the standard(uniXXXX format)&lt;/li&gt;
+&lt;li&gt;Adjust left/right spacing for all base glyphs&lt;/li&gt;
+&lt;li&gt;Testing&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class="section" id="stage-two"&gt;
+&lt;h2&gt;Stage two&lt;/h2&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Create half forms of base glyphs which are required for creating ligatures.&lt;/li&gt;
+&lt;li&gt;Delete the unused ligatures(Can be achieved using rules)&lt;/li&gt;
+&lt;li&gt;Add &lt;a class="reference external" href="http://partners.adobe.com/public/developer/opentype/index_table_formats1.html"&gt;GSUB&lt;/a&gt; rules for consonants.&lt;/li&gt;
+&lt;li&gt;Mark to Base GPOS rules.&lt;/li&gt;
+&lt;li&gt;Identify special consonant for which separate ligature is required.(ki, gi etc)&lt;/li&gt;
+&lt;li&gt;Testing&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class="section" id="stage-three"&gt;
+&lt;h2&gt;Stage three&lt;/h2&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Create ligatures which are identified in previous stage.(Most of the ligatures already exists in fonts)&lt;/li&gt;
+&lt;li&gt;Add &lt;a class="reference external" href="http://partners.adobe.com/public/developer/opentype/index_table_formats1.html"&gt;GSUB&lt;/a&gt; rules for those ligatures&lt;/li&gt;
+&lt;li&gt;Testing&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class="section" id="stage-four"&gt;
+&lt;h2&gt;Stage four&lt;/h2&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Rename all vattakshara glyphs.&lt;/li&gt;
+&lt;li&gt;Add &lt;a class="reference external" href="http://partners.adobe.com/public/developer/opentype/index_table_formats1.html"&gt;GSUB&lt;/a&gt; rules.&lt;/li&gt;
+&lt;li&gt;Mark to Base &lt;a class="reference external" href="http://partners.adobe.com/public/developer/opentype/index_table_formats2.html"&gt;GPOS&lt;/a&gt; rules for vattakshara&lt;/li&gt;
+&lt;li&gt;Testing&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class="section" id="stage-five"&gt;
+&lt;h2&gt;Stage five&lt;/h2&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Mark to Mark &lt;a class="reference external" href="http://partners.adobe.com/public/developer/opentype/index_table_formats2.html"&gt;GPOS&lt;/a&gt; rules for double vattakshara.&lt;/li&gt;
+&lt;li&gt;Create additional ligatures if required for any double vattakshara combination.&lt;/li&gt;
+&lt;li&gt;Testing&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class="section" id="stage-six"&gt;
+&lt;h2&gt;Stage six&lt;/h2&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Verify and add additional glyphs/symbols required.&lt;/li&gt;
+&lt;li&gt;Adjust left and right spacing for additional glyphs.&lt;/li&gt;
+&lt;li&gt;Testing&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class="section" id="stage-seven"&gt;
+&lt;h2&gt;Stage seven&lt;/h2&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Typography related improvements: Reduce the font thickness, space and kerning improvements.&lt;/li&gt;
+&lt;li&gt;Update License, Authors, version and other information.&lt;/li&gt;
+&lt;li&gt;Testing&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Today I completed first stage, created two &lt;a class="reference external" href="https://github.com/aravindavk/fontscripts"&gt;python scripts&lt;/a&gt; to change the glyph names and to adjust left and right space.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; &lt;span class="nv"&gt;$WORK&lt;/span&gt;
+git clone https://github.com/aravindavk/fontscripts.git
+git clone https://github.com/aravindavk/lohit2.git
+git clone https://github.com/aravindavk/Gubbi.git
+git clone https://github.com/aravindavk/Navilu.git
+&lt;span class="nb"&gt;cd &lt;/span&gt;fontscripts
+
+&lt;span class="c"&gt;# Lohit Kannada&lt;/span&gt;
+python rename_base_glyphs.py ../lohit2/kannada/Lohit-Kannada.sfd
+python adjust_spacing.py ../lohit2/kannada/Lohit-Kannada.sfd
+
+&lt;span class="c"&gt;# Gubbi&lt;/span&gt;
+python rename_base_glyphs.py ../Gubbi/Gubbi.sfd
+python adjust_spacing.py ../Gubbi/Gubbi.sfd
+
+&lt;span class="c"&gt;# Navilu&lt;/span&gt;
+python rename_base_glyphs.py ../Navilu/Navilu.sfd
+python adjust_spacing.py ../Navilu/Navilu.sfd
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now generate the fonts to test the changes. Harfbuzz can be used for testing.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;hb-view ../lohit2/kannada/Lohit-Kannada.ttf &lt;span class="s2"&gt;&amp;quot;$(cat stage1_tests.txt )&amp;quot;&lt;/span&gt; --output-file preview_lohit.png
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Let me know if anybody interested to join and contribute to improve Kannada fonts.&lt;/p&gt;
+&lt;/div&gt;
+</summary><category term="ಕನ್ನಡ"></category><category term="kannada"></category><category term="fonts"></category></entry><entry><title>ನುಡಿ ಕನ್ನಡ Fonts</title><link href="http://aravindavk.in/blog/nudi-kannada-fonts/" rel="alternate"></link><updated>2013-02-26T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2013-02-26:blog/nudi-kannada-fonts/</id><summary type="html">&lt;p&gt;ನುಡಿ ತಂತ್ರಾಂಶ ಹೊಸತು ಬಿಡುಗಡೆಯಾಗ್ತಿದೆ ಅಂತ ಬೇರೆ ಎಲ್ಲೋ(&lt;a class="reference external" href="http://www.thehindu.com/todays-paper/tp-in-school/nudi-50-version-to-be-launched-on-tuesday/article4351830.ece"&gt;ಇಲ್ಲಿ&lt;/a&gt;) ಸುದ್ದಿ ಓದಿ ತಿಳಿದುಕೊಂಡಿದ್ದಾಯ್ತು, ಅವ್ರ &lt;a class="reference external" href="http://www.kagapa.in/"&gt;ವೆಬ್‍ಸೈಟ್‍ಗೆ&lt;/a&gt; ಹೋಗಿ ನೋಡಿದ್ರೆ ಅಂತಾದ್ದೇನು ಸುದ್ದಿನೇ ಇಲ್ಲ ಅನ್ನೋ ತರಹದಲ್ಲಿ ಇತ್ತು. ಈಗೇನು ಸುದ್ದಿಯಿಲ್ಲ ಬಹುಷಃ ಬಿಡುಗಡೆ ಆದ್ಮೇಲೆ ಅವ್ರ ವೆಬ್‍ಸೈಟ್‍ನಲ್ಲಿ ಹಾಕ್ತಾರೇನೋ ಅಂದುಕೊಂಡೆ. ಆಮೇಲೆ ಒಂದಷ್ಟು ದಿನಗಳು ಕಳೆಯಿತು, ಏನಾದ್ರೂ update ಇದ್ಯಾ ಅಂತ ನೋಡಕ್ಕೆ ಹೋದೆ, &amp;quot;ನುಡಿ ೫ ಅನುಷ್ಟಾಪಿಸಿಕೊಳ್ಳಲು ಇಲ್ಲಿ ಕ್ಲಿಕ್ಕಿಸಿ&amp;quot; ಅಂತ ಇತ್ತು, ಮುಂಚೆ ವರ್ಷನ್ ೪ ಇತ್ತು ಅಂತ ಗೊತ್ತಿದ್ದವರಿಗೆ ಈಗ ಹೊಸತು ಐದನೇ ವರ್ಷನ್ ಬಂದಿದೆ ಅಂತ ತಿಳಿಯುತ್ತೆ, ಹೊಸತಿರಬಹುದು ನೋಡೋಣ ಎಂದು ಡೌನ್‍ಲೋಡ್ ಮಾಡಿದೆ. ಹಾಗೇ ಅದೇ ವೆಬ್‍ಸೈಟ್‍ನ &lt;a class="reference external" href="http://www.kagapa.in/suddhi.html"&gt;ಸುದ್ದಿ ಪುಟ&lt;/a&gt; ನೋಡಿದೆ Nudi ಆವೃತ್ತಿ ೪ ರ ಬಗ್ಗೆ ಇತ್ತು. ವೆಬ್‍ಸೈಟ್ ಕೂಡ ಹಳೇ ಜಮಾನದ, ಯುನಿಕೋಡ್ ಅಲ್ಲದ, ಫ್ಲಾಷ್ ಬಳಸಿ ಮಾಡಿದ್ದು. ಅದರಲ್ಲಿ ಏನೂ ಹುಡುಕಲೂ ಆಗಲ್ಲ.&lt;/p&gt;
+&lt;p&gt;ಅದೆಲ್ಲ ಬಿಡಿ ಹೇಳುತ್ತಾ ಹೋದರೆ ಮುಗಿಯೋದೇ ಇಲ್ಲ, ಇಲ್ಲಿ ಬರೆಯಲು ಹೊರಟ ಮುಖ್ಯ ವಿಷಯ ನೋಡೋಣ. ನಾನು ವಿಂಡೋಸ್ ಉಪಯೋಗಿಸೋದಿಲ್ಲವಾದ್ದರಿಂದ ನುಡಿ ಡೌನ್‍ಲೋಡ್ ನಲ್ಲಿ ಇದ್ದ .exe ಏನು ಮಾಡುತ್ತೆ ಅಂತ ನೋಡಕ್ಕೆ ಹೋಗಿಲ್ಲ, ಯಾರಾದರೂ ವಿಂಡೋಸ್ ಬಳಸುವರು ಆಸಕ್ತಿಯಿದ್ದರೆ ಅದರಲ್ಲೇನಿದೆ ಎಂದು ನೋಡಿ ಹೇಳಿ.&lt;/p&gt;
+&lt;div class="section" id="id1"&gt;
+&lt;h2&gt;ನುಡಿ ಫಾಂಟ್‍ಗಳು&lt;/h2&gt;
+&lt;img alt="ನುಡಿ ಫಾಂಟ್ಸ್" src="/images/nudi_fonts.png" /&gt;
+&lt;p&gt;ಫಾಂಟ್ಸ್ ಗಳ ಹೆಸರುಗಳು ಯಾಕೆ ಇಷ್ಟು ಕೆಟ್ಟದಾಗಿ ಇಟ್ಟಿದಾರೋ ತಿಳಿಯಲಿಲ್ಲ, ಕನ್ನಡದಲ್ಲಿ ಹೆಸರುಗಳಿಗೆ ಬರವೇ? ಫಾಂಟ್‍ಗಳ ಹೆಸರುಗಳ ಕೊನೆಯಲ್ಲಿ &amp;quot;e&amp;quot; ಅಂತ ಇರೋದನ್ನು ಗಮನಿಸಿದ್ರಾ? ಅದೇ ತರಹ ಕೊನೆಗೆ &amp;quot;k&amp;quot; ಅಂತ ಇರುವ ಫಾಂಟ್‍ಗಳೂ ಇವೆ, ಇವೆರಡಕ್ಕೂ ಇರೋ ವ್ಯತ್ಯಾಸ ಎಂದರೆ &amp;quot;k&amp;quot; ಫಾಂಟ್ ಉಪಯೋಗಿಸಿ ಇಂಗ್ಲಿಷ್ ಅಂಕೆಗಳನ್ನು ಬರೆದರೂ ಅವು ಕನ್ನಡದ ಅಂಕಿಗಳಂತೆಯೇ ಕಾಣುತ್ತೆ. ಇದು ಯುನಿಕೋಡ್ ಪ್ರಕಾರ ತಪ್ಪು, ಯುನಿಕೋಡ್ ನಲ್ಲಿ ಇಂಗ್ಲಿಷ್ ಸಂಖ್ಯೆಗಳಿಗೂ ಕನ್ನಡ ಸಂಖ್ಯೆಗಳಿಗೂ ಬೇರೆ ಬೇರೆ ಕೋಡ್ ಇದೆ. ಹಾಗಾಗಿ &amp;quot;k&amp;quot; ಫಾಂಟ್ ಗಳು ಯುನಿಕೋಡ್ ಮಾನ್ಯತೆಗೆ ಬದ್ದವಾಗಿಲ್ಲ.&lt;/p&gt;
+&lt;p&gt;ಹೊಸ ರುಪಾಯಿ symbol ತಪ್ಪು ಕೋಡ್ ಬಳಸಿದೆ, ಮುಂಚಿನ symbol ನ ಜಾಗಕ್ಕೇ ಹೊಸತನ್ನು ಕೂರಿಸಿದೆ. ಯುನಿಕೋಡ್ ನಲ್ಲಿ ಬೇರೆ ಕೋಡ್ ಕೊಟ್ಟಿದ್ದಾರೆ(U+20B9).&lt;/p&gt;
+&lt;p&gt;ಫಾಂಟ್ಸ್ ಗಳು ಚೆನ್ನಾಗಿವೆ, ಯುನಿಕೋಡ್ ಮಾನ್ಯತೆಗೆ ಬೇಕಾದ ಬಹುತೇಕ ನಿಯಮಗಳನ್ನು ಫಾಂಟ್‍ನಲ್ಲಿ ಅಳವಡಿಸಿದ್ದಾರೆ, ಅದೇ ಒಂದು ಸಂತೋಷ. ಆದರೂ ಕೆಲವು ಫಾಂಟ್‍ಗಳು ನೋಡುವುದಕ್ಕೆ ಒಂದೇ ತರಹ ಕಾಣಿಸುತ್ತವೆ &lt;span class="strike"&gt;(ಕೇವಲ ಲೆಕ್ಕಕ್ಕೋಸ್ಕರ ಬೇರೆ ಮಾಡಿದಂತಿದೆ)&lt;/span&gt;. ಈ ನುಡಿ ಫಾಂಟ್‍ಗಳನ್ನು ಹಾಗೂ ತಂತ್ರಾಂಶವನ್ನು ಮುಕ್ತ ತಂತ್ರಾಂಶವಾಗಿ ಬಿಡುಗಡೆ ಮಾಡುತ್ತಾರೆ ಎಂದು ಕೇಳಿದ್ದೆ(&lt;a class="reference external" href="https://twitter.com/aravindavk/statuses/234366716875005955"&gt;ಇಲ್ಲಿ&lt;/a&gt;), ಆದರೆ ಈಗ ಅದರ ಬಗ್ಗೆ ಎಲ್ಲೂ ಮಾಹಿತಿಯಿಲ್ಲ. ಪ್ರತೀ ತಂತ್ರಾಂಶದ ಜೊತೆ ಇರಬೇಕಾದ ಲೈಸೆನ್ಸ್ ಪ್ರತಿ ಮತ್ತು ರಿಲೀಸ್ ನೋಟ್ಸ್ ಎಲ್ಲೂ ಕಾಣಲಿಲ್ಲ.&lt;/p&gt;
+&lt;p&gt;ಫಾಂಟ್ ಮಾಡುವುದು ಕಠಿಣವೇ, ಅದರಲ್ಲೂ ಬೇಕಾದ ಚಿತ್ರಗಳನ್ನು ಸಿದ್ದಪಡಿಸುವುದು ಕಷ್ಟದ ಕೆಲಸ. &lt;span class="strike"&gt;ಆದರೆ ಈಗಿನ ನುಡಿ ಫಾಂಟ್ ಗಳು ಮುಂಚೆ ಇದ್ದ ನುಡಿ ಫಾಂಟ್ ಗಳಲ್ಲಿನ ಆಕೃತಿಯಂತೆಯೇ ಕಾಣುಸುತ್ತಿದೆ, ಇದ್ದ ನುಡಿ ಫಾಂಟ್ ಗಳಿಗೆ ಯುನಿಕೋಡ್ ನಿಯಮಗಳನ್ನು ಹಾಕಿಕೊಡಲು ೧೮ ಲಕ್ಷವೇ?&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="update"&gt;
+&lt;h2&gt;UPDATE&lt;/h2&gt;
+&lt;p&gt;ಇವು ೧೮ ಲಕ್ಷದ ಯೋಜನೆಯಲ್ಲಿ ತಯಾರಾದ ಫಾಂಟ್ ಗಳಲ್ಲ ಅಂತ ತಿಳಿಸಿದ ಪವನಜ ಅವರಿಗೆ ಧನ್ಯವಾದಗಳು.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;ಕೊ.ಕೊ&lt;/strong&gt;: ನುಡಿ ASCII ಯಲ್ಲಿ 28 ಫಾಂಟ್‍ಗಳು ಸಿಕ್ಕವು. ಚಿತ್ರಗಳು &lt;a class="reference external" href="/images/nudi_ascii_fonts.png"&gt;ಇಲ್ಲಿವೆ&lt;/a&gt; ನೋಡಿ.&lt;/p&gt;
+&lt;/div&gt;
+</summary><category term="nudi"></category><category term="kannada"></category><category term="fonts"></category><category term="kannadablog"></category></entry><entry><title>ಗುಬ್ಬಿ ಮತ್ತು ನವಿಲು</title><link href="http://aravindavk.in/blog/gubbi-mattu-navilu/" rel="alternate"></link><updated>2011-12-14T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2011-12-14:blog/gubbi-mattu-navilu/</id><summary type="html">&lt;p&gt;ಗುಬ್ಬಿ ಮತ್ತು ನವಿಲನ್ನು ಹುಡುಕಲು ಹೋಗಬೇಡಿ ನಾನೀಗ ಬರೆದಿರುವುದು ಕನ್ನಡದ ಎರಡು ಹೊಸ ಫಾಂಟ್‍ಗಳ ಬಗ್ಗೆ :)&lt;/p&gt;
+&lt;p&gt;ಕನ್ನಡಕ್ಕೆ ಸರಿಯಾದ ಯುನಿಕೋಡ್ ಫಾಂಟ್‍ಗಳು ಇಲ್ಲ ಎಂಬ ಕೊರಗು ಇದ್ದೇ ಇತ್ತು. ಕೆಲವು ಫಾಂಟ್‍ಗಳು ಮುಕ್ತ ಲೈಸೆನ್ಸ್‍ನಲ್ಲಿ ಲಭ್ಯವಿದ್ದರೂ ಅದನ್ನು ಸರಿಪಡಿಸುವವರು ಇರಲಿಲ್ಲ. ಬಹಳ ದಿನಗಳಿಂದ ಸರಿಪಡಿಸಲು ಪ್ರಯತ್ನ ಪಡುತ್ತಿದ್ದರೂ ಅದರ ಬಗ್ಗೆ ಮಾಹಿತಿಗಳು ಸರಿಯಾಗಿ ಸಿಗುತ್ತಿರಲಿಲ್ಲ. ಕೆಲವೊಂದಷ್ಟು ಯುನಿಕೋಡ್ ರೂಲ್ಸ್ ಬಗ್ಗೆಯೇ ಸಂದೇಹಗಳು, ಇನ್ನು ಕೆಲವೊಂದಷ್ಟು ಫಾಂಟ್‍ನ ಜವಾಬ್ದಾರಿಯೋ ಅಥವಾ ರೆಂಡರಿಂಗ್ ಇಂಜಿನ್‍ನ ಜವಾಬ್ದಾರಿಯೋ ತಿಳಿಯುತ್ತಿರಲಿಲ್ಲ.&lt;/p&gt;
+&lt;p&gt;ಹೀಗೇ ಈಗಿರುವ ಫಾಂಟ್‍ಗಳಲ್ಲಿನ ತೊಂದರೆಗಳನ್ನು ಪಟ್ಟಿ ಮಾಡಿಕೊಂಡು, ಗ್ಲಿಫ್(ಅಕ್ಷರದ ಚಿತ್ರ) ಮಾಡಲು ಇರುವ ಸಾಧ್ಯತೆಗಳು ಹಾಗೂ ಅದಕ್ಕೆ ಬೇಕಾದ ತಂತ್ರಾಂಶಗಳ ಅಧ್ಯಯನದಲ್ಲಿ ತೊಡಗಿಕೊಂಡೆ. ಮೊನ್ನೆ &lt;a class="reference external" href="https://twitter.com/#!/vasudevkamath"&gt;ವಾಸುದೇವ್&lt;/a&gt; ಡೆಬಿಯನ್ ಪ್ಯಾಕೇಜ್ ಮಾಡುವಾಗ ಕೇಳಿದ, ಕೇದಗೆ ಫಾಂಟ್‍ಗೆ ಬಹಳ ಹಿಂದೆ ರಿಪೋರ್ಟ್ ಆದ ದೋಷವರದಿ ಹಾಗೇ ಇದೆ, ಅದನ್ನು ಸರಿಪಡಿಸಿ ಆ ಫಾಂಟ್ ಅನ್ನು ನೋಡಿಕೊಳ್ಳಬಹುದಾ ಅಂತ. ನಾನು ಇನ್ನೊಂದು ಫಾಂಟ್ ಕೆಲಸ ಅರ್ಧ ಮಾಡುತ್ತಿದುದರಿಂದ ನೋಡೋಣ ಎಂದಿದ್ದೆ. ಕೊನೆಗೆ ನೋಡೋಣ ನೋಡೋಣ ಎಂದು ಹಾಗೇ ಬಿಟ್ಟರೆ ಆಗದ ಕತೆ ಎಂದು ಆ ಫಾಂಟ್‍ನಲ್ಲಿದ್ದ ಬಗ್ ಫಿಕ್ಸ್ ಮಾಡಿದೆ, ಆ ದೋಷವರದಿಯಲ್ಲಿಲ್ಲದಿದ್ದರೂ ನನ್ನ ಪಟ್ಟಿಯಲ್ಲಿದ್ದ ಕೆಲವು ಬಗ್ ಫಿಕ್ಸ್ ಮಾಡಿದೆ. ಎಲ್ಲಾ ಮುಗಿದ ಮೇಲೆ, ಆ ಬದಲಾಯಿಸಿದ ಫಾಂಟ್‍ಗಳಿಗೆ ಅದೇ ಹೆಸರಿಡಬಹುದಾ ಮತ್ತು ನಾನೇ ನೋಡಿಕೊಳ್ಳುತ್ತೇನೆ ಎಂದು ಹೇಳಲು ಸಾಧ್ಯವಾ ಅಂತ ದ್ವಂದ್ವ ಆಯ್ತು.. ಆಗ ಸಹಾಯಕ್ಕೆ ಬಂದಿದ್ದು ಮೈಸೂರಿನ &lt;a class="reference external" href="https://twitter.com/#!/twistedlogix"&gt;ರವಿಶೇಖರ್&lt;/a&gt;. ಅವರ ಸಲಹೆಯಂತೆ ಹೊಸ ಹೆಸರು ಯೋಚಿಸುವಾಗ &amp;quot;ಗುಬ್ಬಿ&amp;quot; ಎಂದು ಹೇಳಿದೆ, ಅದು ಅವರಿಗೂ ಬಹಳ ಇಷ್ಟ ಆಯಿತು, ಇನ್ನೊಂದು ಹೆಸರನ್ನು ಹುಡುಕುವಾಗ ಅದೇ ಥೀಮ್ ಅಲ್ಲಿ ಹುಡುಕು ಅಂದರು, ಕೊನೆಗೆ &amp;quot;ನವಿಲು&amp;quot; ಆರಿಸಿದ್ದಾಯ್ತು. ಆ ಹೆಸರು ಓದಿಕೊಂಡರೇ ಒಂತರಾ ಆನಂದವಾಗ್ತಿತ್ತು :) ಎಲ್ಲಾ ಬದಲಾವಣೆಗಳು ಆದ ನಂತರ github ನಲ್ಲಿ ಅದನ್ನು ಹಾಕಿದ್ದಾಯ್ತು.&lt;/p&gt;
+&lt;div class="figure"&gt;
+&lt;img alt="Gubbi Showcase" src="/images/gubbi-showcase/m.png" /&gt;
+&lt;p class="caption"&gt;ಗುಬ್ಬಿ ಕಿರುನೋಟ&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="figure"&gt;
+&lt;img alt="Navilu Showcase" src="/images/navilu-showcase/m.png" /&gt;
+&lt;p class="caption"&gt;ನವಿಲು ಕಿರುನೋಟ&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;ಈ ಫಾಂಟ್‍ಗಳಲ್ಲಿ ಧೋಷಗಳಾವುದೂ ಇಲ್ಲವೆಂದಲ್ಲ, ಇನ್ನೂ ಕೆಲವು ತೊಂದರೆಗಳಿವೆ ಒಂದಷ್ಟು ಪಟ್ಟಿ ಮಾಡಿಕೊಂಡಿದ್ದೇನೆ, ನಿಮಗೆ ತೊಂದರೆಯಾದದ್ದೂ ಹೇಳಿ, ಮುಂಬರುವ ಆವೃತ್ತಿಯಲ್ಲಿ ಸರಿಪಡಿಸಬಹುದು. ಈ ಫಾಂಟ್‍ಗಳ ಬಗ್ಗೆ ಇಲ್ಲಿ ಮತ್ತು ಇಲ್ಲಿ ಓದಿರುತ್ತೀರಿ. ಈಗ ಮೊದಲನೇ ಆವೃತ್ತಿಯಲ್ಲಿ ಆಗಿರುವ ಬದಲಾವಣೆಗಳ ಬಗ್ಗೆ ನೋಡೋಣ.&lt;/p&gt;
+&lt;div class="section" id="id2"&gt;
+&lt;h2&gt;ತಪ್ಪಿದ್ದ ಮೊದಲನೇ ಅಕ್ಷರ &amp;quot;ಅ&amp;quot;&lt;/h2&gt;
+&lt;div class="figure"&gt;
+&lt;img alt="kedage_gubbi_a" src="/images/kedage-gubbi-a/m.png" /&gt;
+&lt;p class="caption"&gt;ಎಡಗಡೆ ಇರುವುದು ಕೇದಗೆ ಹಾಗು ಬಲಗಡೆ ಇರುವುದು ಗುಬ್ಬಿ.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id3"&gt;
+&lt;h2&gt;ಓಕಾರ ಬರೆಯುವಾಗಿನ ತೊಂದರೆಗಳು&lt;/h2&gt;
+&lt;p&gt;LibreOffice ಬಳಸುವರಿಗೆ ಅನುಭವ ಆಗಿರುತ್ತದೆ, &amp;quot;ಜಿನೋಮ್&amp;quot; ಎಂದು ಬರೆಯಲು ಹೋದರೆ &amp;quot;ಜಿ&amp;quot; ಮತ್ತು &amp;quot;ನೋ&amp;quot; ಕೂಡಿಕೊಂಡು ಓದಲು ಅಸಾಧ್ಯವಾಗುತ್ತದೆ. ಆದರೆ ಪಿಡಿಎಫ್ ಗೆ ಬದಲಾಯಿಸಿದಾಗ ಸರಿಯಾಗುತ್ತಿತ್ತು. ಅದು Libre Office ನ ತೊಂದರೆ ಎನಿಸಿದರೂ ಫಾಂಟ್ ನಲ್ಲೇ ಸರಿಪಡಿಸಬಹುದಾಗಿತ್ತು. ಕೆಳಗಿನ ಚಿತ್ರ ನೋಡಿ.&lt;/p&gt;
+&lt;div class="figure"&gt;
+&lt;img alt="bugs in libre" src="/images/kedage-bugs-libreoffice/m.png" /&gt;
+&lt;p class="caption"&gt;ಲಿಬ್ರೆ ಆಫೀಸ್ ಬಳಸುವಾಗಿನ ಫಾಂಟ್ ತೊಂದರೆಗಳು(ಎಡಗಡೆ ಕೇದಗೆ ಮತ್ತು ಬಲಗಡೆ ಗುಬ್ಬಿ)&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id4"&gt;
+&lt;h2&gt;ಅಳವಡಿಸದ ಅಕ್ಷರಗಳು&lt;/h2&gt;
+&lt;p&gt;Hyphen Minus, ರುಪಾಯಿ symbol, ಹಾಗೂ ಇನ್ನೂ ಕೆಲವು ಅಕ್ಷರಗಳು/ಚಿತ್ರಗಳು ಫಾಂಟ್ ನಲ್ಲಿ ಇರಲಿಲ್ಲ, ಹಾಗಾಗಿ ಅವಿಲ್ಲದೇ ಡಿಟಿಪಿ ಕೆಲಸಗಳನ್ನು ಮಾಡುವಾಗ ಅವುಗಳು ಸರಿಯಾಗಿ ಕಾಣಿಸುತ್ತಿರಲಿಲ್ಲ, ಕೆಲವಷ್ಟನ್ನು ಅಳವಡಿಸಿದ್ದಾಯಿತು. ಆದರೆ ಇನ್ನೂ ಬಹಳಷ್ಟು missing ಇದೆ.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id5"&gt;
+&lt;h2&gt;ತಪ್ಪಾಗಿ ಕಾಣಿಸುವ ಅಕ್ಷರಗಳು&lt;/h2&gt;
+&lt;p&gt;ಮಲ್ಲಿಗೆ ಫಾಂಟ್‍ನಲ್ಲಿ ವು ಬರೆದಿದ್ದು ಮ ತರಹ ಕಾಣಿಸುತ್ತಿತ್ತು, ಹಾಗೂ ಪು ಮತ್ತು ಫು ತಪ್ಪಿತ್ತು.&lt;/p&gt;
+&lt;div class="figure"&gt;
+&lt;img alt="bugs in libre" src="/images/mallige-bugs/m.png" /&gt;
+&lt;p class="caption"&gt;ಮಲ್ಲಿಗೆ ಮತ್ತು ನವಿಲು ಫಾಂಟ್‍ನಲ್ಲಿನ ವ್ಯತ್ಯಾಸ(ಎಡಗಡೆ ಮಲ್ಲಿಗೆ ಹಾಗೂ ಬಲಗಡೆ ನವಿಲು)&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;ಜನವರಿಯ ಕೊನೆಯ ವಾರದಲ್ಲಿ ಈ ಫಾಂಟ್‍ಗಳ ಎರಡನೇ ಆವೃತ್ತಿ ಬಿಡುಗಡೆ ಮಾಡುವ ಯೋಚನೆಯಿದೆ, ಅದರ ಒಳಗೆ ಸಾಧ್ಯವಾದಷ್ಟೂ ತೊಂದರೆಗಳನ್ನು ನಿವಾರಿಸುವ ಮನಸಿದೆ. ಇದೆಲ್ಲವನ್ನೂ ಸಾಧ್ಯವಾಗಿಸಲು ನಿಮ್ಮೆಲ್ಲರ ಸಹಕಾರ ಅಗತ್ಯವಿದೆ. ಈ ಫಾಂಟ್‍ಗಳನ್ನು ಬಳಸಿ, ತೊಂದರೆ ಕಂಡು ಬಂದಲ್ಲಿ ಹೇಳಿ.&lt;/p&gt;
+&lt;p&gt;ಫಾಂಟ್‍ಗಳನ್ನು ಮಾಡುವ ಮುಕ್ತ ತಂತ್ರಾಂಶಗಳ ಬಗ್ಗೆ, ಫಾಂಟ್ ತಂತ್ರಜ್ಞಾನದ ಬಗ್ಗೆ ಮುಂಬರುವ ದಿನಗಳಲ್ಲಿ ಬರೆಯುತ್ತೇನೆ. ನಾನು ಉಪಯೋಗಿಸಿರುವ ತಂತ್ರಾಂಶಗಳು FontForge, Python, Inkscape.&lt;/p&gt;
+&lt;p&gt;ಈ ಫಾಂಟ್‍ಗಳ ಬಗ್ಗೆ ವಾಸುದೇವ್ ಬರೆದಿರುವ &lt;a class="reference external" href="http://blog.copyninja.info/2011/12/kannada-gets-new-fonts.html"&gt;ಬ್ಲಾಗ್&lt;/a&gt; ಮತ್ತು ಶಿವು ಲಿನಕ್ಸಾಯಣದಲ್ಲಿ ಬರೆದಿರುವ &lt;a class="reference external" href="http://linuxaayana.net/2011/12/%E0%B2%97%E0%B3%81%E0%B2%AC%E0%B3%8D%E0%B2%AC%E0%B2%BF-%E0%B2%AE%E0%B2%A4%E0%B3%8D%E0%B2%A4%E0%B3%81-%E0%B2%A8%E0%B2%B5%E0%B2%BF%E0%B2%B2%E0%B3%81-%E0%B2%95%E0%B2%A8%E0%B3%8D%E0%B2%A8%E0%B2%A1/"&gt;ಬ್ಲಾಗ್&lt;/a&gt; ಓದಿ.&lt;/p&gt;
+&lt;p&gt;ಗುಬ್ಬಿ ಫಾಂಟ್ ಅನ್ನು &lt;a class="reference external" href="https://github.com/downloads/aravindavk/Gubbi/Gubbi.ttf"&gt;ಇಲ್ಲಿ&lt;/a&gt; ಹಾಗೂ ನವಿಲು ಫಾಂಟ್ ಅನ್ನು &lt;a class="reference external" href="https://github.com/downloads/aravindavk/Navilu/Navilu.ttf"&gt;ಇಲ್ಲಿ&lt;/a&gt; download ಮಾಡಿಕೊಳ್ಳಬಹುದು. ಲಿನಕ್ಸ್ ಉಪಯೋಗಿಸುತ್ತಿದ್ದರೆ, download ಮಾಡಿದ ಫಾಂಟ್‍ಗಳನ್ನು ನಿಮ್ಮ ಹೋಮ್ ಡೈರೆಕ್ಟರಿಯಲ್ಲಿ .fonts ಎಂಬ ಡೈರೆಕ್ಟರಿ ಒಳಗೆ ಕಾಪಿ ಮಾಡಿ, ಆಮೇಲೆ ಟರ್ಮಿನಲ್ ಓಪನ್ ಮಾಡಿ &lt;code&gt;fc-cache&lt;/code&gt; ಎಂದು ರನ್ ಮಾಡಿ. ವಿಂಡೋಸ್ ಬಳಸುತ್ತಿದ್ದರೆ ರೈಟ್ ಕ್ಲಿಕ್ ಮಾಡಿ ಇನ್‍ಸ್ಟಾಲ್ ಮಾಡಬಹುದು ಅನ್ನಿಸುತ್ತೆ, ಅಥವಾ C:WindowsFonts ಡೈರೆಕ್ಟರಿಗೆ ಕಾಪಿ ಮಾಡಿ. (ನಾನು ವಿಂಡೋಸ್‍ನಲ್ಲಿ ಬಳಸಿ ನೋಡಿಲ್ಲ).&lt;/p&gt;
+&lt;p&gt;ಗುಬ್ಬಿ ಮತ್ತು ನವಿಲು ಫಾಂಟ್‍ಗಳನ್ನು ಬದಲಾಯಿಸುವ ಹಾಗೂ ಪ್ರಯೋಗ ಮಾಡುವ ಯೋಚನೆಯೇನಾದರೂ ಇದ್ದರೆ &lt;a class="reference external" href="https://github.com/aravindavk/Gubbi"&gt;ಇಲ್ಲಿ&lt;/a&gt; ಮತ್ತು &lt;a class="reference external" href="https://github.com/aravindavk/Navilu"&gt;ಇಲ್ಲಿ&lt;/a&gt; source download ಮಾಡಿಕೊಳ್ಳಬಹುದು. :)&lt;/p&gt;
+&lt;/div&gt;
+</summary><category term="kannada"></category><category term="fonts"></category><category term="unicode"></category><category term="gubbi"></category><category term="navilu"></category><category term="kannadablog"></category></entry><entry><title>Space Glyph issue in Lohit Kannada Font</title><link href="http://aravindavk.in/blog/space-glyph-issue-in-lohit-kannada-font/" rel="alternate"></link><updated>2010-01-15T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2010-01-15:blog/space-glyph-issue-in-lohit-kannada-font/</id><summary type="html">&lt;p&gt;Lohit Kannada is one of the good fonts available for Kannada. But the “space” glyph has very less width, results in less space between the words.&lt;/p&gt;
+&lt;p&gt;This will have high impact on readability. I increased the width of “space” glyph from 128 to 540 using Fontforge and regenerated the ttf font, now it looks better.&lt;/p&gt;
+&lt;img alt="Without change" src="/images/lohit-kannada-space-bug-before.png" /&gt;
+&lt;img alt="After the change" src="/images/lohit-kannada-space-bug-after.png" /&gt;
+&lt;p&gt;Anybody facing similar issue?&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;[Update 2010-03-25 20:30:35]&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Issue is fixed in latest Lohit Kannada font, check &lt;a class="reference external" href="https://bugzilla.redhat.com/show_bug.cgi?id=559462"&gt;here&lt;/a&gt;&lt;/p&gt;
+</summary><category term="kannada"></category><category term="fonts"></category></entry></feed>

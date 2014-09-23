@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="cache-control" content="max-age=0" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <link href="/theme/img/fav.png" rel="icon" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="/theme/img/fav.png" />
+    <title>Tesseract OCR initial setup</title>
+    <link href="http://aravindavk.in/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="aravindavk Atom Feed" />
+    <link rel="stylesheet" href="/theme/css/pure-min.css" />
+    <link rel="stylesheet" href="/theme/css/side-menu.css" />
+    <link rel="stylesheet" href="/theme/css/main.css" />
+    <link rel="stylesheet" href="/theme/css/pygment-emacs-highlight.css" />
+  </head>
+  <body>
+    <div id="layout">
+      <!-- Menu toggle -->
+      <a href="#menu" id="menuLink" class="menu-link">
+        <!-- Hamburger icon -->
+        <span></span>
+      </a>
+      <div id="menu" class="pure-hidden-desktop pure-hidden-tablet">
+        <div class="pure-menu pure-menu-open">
+          <a class="pure-menu-heading logo" href="/"><img src="/theme/img/logo.png" alt="aravindavk"/></a>
+          <div class="social-icons">
+            <a href="http://localhost:8000/None" target="_blank" title="News">
+              <img src="/theme/img/feed.png" class="link-icon" alt="News"/>
+            </a>
+            <a href="http://twitter.com/aravindavk" target="_blank" title="Twitter">
+              <img src="/theme/img/twitter.png" class="link-icon" alt="Twitter"/>
+            </a>
+            <a href="https://plus.google.com/+aravindavk" target="_blank" title="Google Plus">
+              <img src="/theme/img/gplus.png" class="link-icon" alt="Google Plus"/>
+            </a>
+            <a href="https://github.com/aravindavk" target="_blank" title="Github">
+              <img src="/theme/img/github.png" class="link-icon" alt="Github"/>
+            </a>
+            <a href="http://www.flickr.com/photos/aravindavk" target="_blank" title="Flickr">
+              <img src="/theme/img/flickr.png" class="link-icon" alt="Flickr"/>
+            </a>
+            <a href="http://in.linkedin.com/in/aravindavk" target="_blank" title="LinkedIn">
+              <img src="/theme/img/linkedin.png" class="link-icon" alt="LinkedIn"/>
+            </a>
+          </div>
+          <ul>
+            <li class=""><a href="/">Home</a></li>
+            <li class=""><a href="/me">About</a></li>
+            <li class=""><a href="/projects">Projects</a></li>
+            <li class=""><a href="/blogs">Blogs</a></li>
+            <li class=""><a href="/talks">Talks & Articles</a></li>
+          </ul>
+        </div>
+        <div class="sep"></div>
+        <div class="copyright">&copy; 2008-2014 Aravinda VK, <br/>All rights reserved</div>
+      </div>
+
+      <div class="pure-g-r">
+        <div class="pure-u-4-5 content-left">
+          <div class="left article">
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        Tesseract OCR initial setup</h1>
+    </header>
+    <div class="pure-hidden-phone pure-hidden-tablet">
+<footer class="post-info">
+  <p class="author-and-date-info">
+    Posted on Thu 28 April 2011 by <a class="url fn" href="http://aravindavk.in">Aravinda VK</a>.
+  </p>
+</footer><!-- /.post-info -->
+<div class="sep"></div>    </div>
+    <div class="entry-content">
+      <div class="section" id="tesseract-ocr-is">
+<h2>Tesseract OCR is</h2>
+<blockquote>
+The <a class="reference external" href="http://code.google.com/p/tesseract-ocr/">Tesseract OCR</a> engine was one of the top 3 engines in the 1995 UNLV Accuracy test. Between 1995 and 2006 it had little work done on it, but it is probably one of the most accurate open source OCR engines available. The source code will read a binary, grey or color image and output text. A tiff reader is built in that will read uncompressed TIFF images, or libtiff can be added to read compressed images.</blockquote>
+<p>Tesseract OCR needs to be trained for Kannada and other Indic languages.</p>
+<p>Downloaded latest version of Tesseract OCR from svn repository and installed in my system.</p>
+<div class="highlight"><pre>svn checkout http://tesseract-ocr.googlecode.com/svn/trunk/ tesseract-ocr
+./configure
+make
+make install
+</pre></div>
+<p>Tesseract OCR looks for training data in <code>/usr/local/share/tessdata</code> directory. If we train anything new then we have to copy .traineddata file to this directory.</p>
+<p>I divided training process into four steps.</p>
+<ol class="arabic simple">
+<li>Image generation</li>
+<li>Generate box</li>
+<li>Edit Box file</li>
+<li>Generate trained data</li>
+</ol>
+<p>I use Gimp to create tif images required for training. If you have jpg or png image convert to tif using</p>
+<div class="highlight"><pre>convert -depth 4 sample.jpg sample.tif
+</pre></div>
+<p>I have <code>apps</code> directory in my home directory, which is added to PATH using</p>
+<div class="highlight"><pre><span class="nv">PATH</span><span class="o">=</span>/home/aravinda/apps:PATH; <span class="nb">export </span>PATH
+</pre></div>
+<p>I use this directory to save all my personal scripts and applications.</p>
+<p>Created a script called tessGenBox in apps directory, which accepts lang name as parameter.</p>
+<div class="highlight"><pre><span class="c">#!/bin/sh</span>
+tesseract <span class="nv">$1</span>.tif <span class="nv">$1</span> batch.nochop makebox
+</pre></div>
+<p>Since only one font is used for exploring Tesseract traning options, not worried much on naming conventions. (Actual file name format is [lang].[fontname].[exp][num])</p>
+<p>I downloaded <a class="reference external" href="https://github.com/zdenop/qt-box-editor/">QT based box editor</a> as mentioned in the Tesseract wiki. After the installation copied <code>qt-box-editor-1.04dev</code> file to apps directory and created shell script called tessBoxEdit in apps directory.</p>
+<div class="highlight"><pre><span class="c">#!/bin/sh</span>
+/home/aravinda/apps/qt-box-editor-1.04dev <span class="nv">$1</span>
+</pre></div>
+<p>Tif filename as parameter.</p>
+<p>I created one more script tessGenData, which I will use to generate trained data based on previously generated box file.(Accepts language name as parameter)</p>
+<div class="highlight"><pre><span class="c">#!/bin/sh</span>
+tesseract <span class="nv">$1</span>.tif <span class="nv">$1</span> nobatch box.train
+unicharset_extractor <span class="nv">$1</span>.box
+<span class="nb">echo</span> <span class="nv">$1</span> 0 0 0 0 0 &gt; font_properties
+mftraining -F font_properties -U unicharset <span class="nv">$1</span>.tr
+mftraining -F font_properties -U unicharset -O <span class="nv">$1</span>.unicharset <span class="nv">$1</span>.tr
+cntraining <span class="nv">$1</span>.tr
+mv Microfeat <span class="nv">$1</span>.Microfeat
+mv normproto <span class="nv">$1</span>.normproto
+mv pffmtable <span class="nv">$1</span>.pffmtable
+mv mfunicharset <span class="nv">$1</span>.mfunicharset
+mv inttemp <span class="nv">$1</span>.inttemp
+combine_tessdata <span class="nv">$1</span>.
+<span class="c"># Used su since I use Debian, use sudo if you are using Ubuntu</span>
+su -c <span class="s2">&quot;cp $1.traineddata /usr/local/share/tessdata/&quot;</span>
+</pre></div>
+<p>It will ask password at the end to copy trained data file to <code>/usr/local/share/tessdata</code></p>
+<p>I created two additional scripts to clean the space in between if required.</p>
+<p>tessCleanAfterBox - cleans the directory by removing all generated files except .box file</p>
+<div class="highlight"><pre><span class="c">#!/bin/sh</span>
+rm font_properties*
+rm <span class="nv">$1</span>.txt
+rm <span class="nv">$1</span>.normproto
+rm <span class="nv">$1</span>.traineddata
+rm <span class="nv">$1</span>.unicharset
+rm <span class="nv">$1</span>.mfunicharset
+rm <span class="nv">$1</span>.Microfeat
+rm <span class="nv">$1</span>.pffmtable
+rm <span class="nv">$1</span>.tr
+rm <span class="nv">$1</span>.inttemp
+rm unicharset
+rm *.bak
+</pre></div>
+<p>tessCleanAll - Cleans all data including box file except images.</p>
+<div class="highlight"><pre><span class="c">#!/bin/sh</span>
+rm font_properties*
+rm <span class="nv">$1</span>.txt
+rm <span class="nv">$1</span>.box
+rm <span class="nv">$1</span>.normproto
+rm <span class="nv">$1</span>.traineddata
+rm <span class="nv">$1</span>.unicharset
+rm <span class="nv">$1</span>.mfunicharset
+rm <span class="nv">$1</span>.Microfeat
+rm <span class="nv">$1</span>.pffmtable
+rm <span class="nv">$1</span>.tr
+rm <span class="nv">$1</span>.inttemp
+rm unicharset
+rm *.bak
+</pre></div>
+<p>Once these scripts are created, we need to make these files as executable.</p>
+<div class="highlight"><pre>chmod +x /home/aravinda/apps/tess*
+</pre></div>
+</div>
+<div class="section" id="usage">
+<h2>Usage</h2>
+<p>Let us imagine a name for lang(In the final deployment it should be kan for Kannada. For experimentation we can give any name)</p>
+<p>For this example, let lang as kan1</p>
+<ol class="arabic simple">
+<li>Create a image with sample text and save as kan1.tif</li>
+<li>Create a box file <code>tessGenBox kan1</code></li>
+<li>Edit box file <code>tessBoxEdit kan1</code></li>
+<li>Generate trained data <code>tessGenData kan1</code> and provide password.</li>
+</ol>
+<p>If you want to edit box file and train again</p>
+<ol class="arabic simple">
+<li>Edit box file <code>tessBoxEdit kan1</code></li>
+<li>Clean the directory <code>tessCleanAfterBox kan1</code></li>
+<li>Generate trained data <code>tessGenData kan1</code> and provide password.</li>
+</ol>
+<p>If image is changed, clean all and regenerate trained data.</p>
+<ol class="arabic simple">
+<li>Clean the directory <code>tessCleanAll kan1</code></li>
+<li>Create a box file <code>tessGenBox kan1</code></li>
+<li>Edit box file <code>tessBoxEdit kan1</code></li>
+<li>Generate trained data <code>tessGenData kan1</code> and provide password.</li>
+</ol>
+<p>If I forget above commands, I will just type tess and press tab twice to get list of all these commands.</p>
+<p>Now I can concentrate more on the pattern matching and other issues instead of memorizing each steps involved in the training.</p>
+<p>C &amp; S Welcome.</p>
+</div>
+
+    </div><!-- /.entry-content -->
+    <div class="pure-hidden-desktop">
+<footer class="post-info">
+  <p class="author-and-date-info">
+    Posted on Thu 28 April 2011 by <a class="url fn" href="http://aravindavk.in">Aravinda VK</a>.
+  </p>
+</footer><!-- /.post-info -->
+<div class="sep"></div>    </div>
+    <div class="permalink-div">
+      Permalink: <a href="http://aravindavk.in/blog/tesseract-ocr-initial-setup/" rel="bookmark" title="Permalink to Tesseract OCR initial setup">http://aravindavk.in/blog/tesseract-ocr-initial-setup/</a>
+    </div>
+<div class="comments">
+  <h2>Comments !</h2>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_identifier = "blog/tesseract-ocr-initial-setup/";
+    var disqus_url = "http://aravindavk.in/blog/tesseract-ocr-initial-setup/";
+    (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = 'http://vkaravinda.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+</div>
+  </article>
+</section>
+            <div class="copyright pure-hidden-desktop pure-hidden-tablet">&copy; 2008-2014 Aravinda VK, <br/>All rights reserved</div>
+          </div>
+        </div>
+        <div class="pure-u-1-5 pure-hidden-phone">
+          <div class="right">
+            <img class="me" src="/theme/img/me.jpg"/>
+            <div class="sep"></div>
+            <div class="pure-menu pure-menu-open">
+              <a class="pure-menu-heading logo" href="/"><img src="/theme/img/logo.png" alt="aravindavk"/></a>
+              <div class="social-icons">
+                <a href="http://localhost:8000/None" target="_blank" title="News">
+                  <img src="/theme/img/feed.png" class="link-icon" alt="News"/>
+                </a>
+                <a href="http://twitter.com/aravindavk" target="_blank" title="Twitter">
+                  <img src="/theme/img/twitter.png" class="link-icon" alt="Twitter"/>
+                </a>
+                <a href="https://plus.google.com/+aravindavk" target="_blank" title="Google Plus">
+                  <img src="/theme/img/gplus.png" class="link-icon" alt="Google Plus"/>
+                </a>
+                <a href="https://github.com/aravindavk" target="_blank" title="Github">
+                  <img src="/theme/img/github.png" class="link-icon" alt="Github"/>
+                </a>
+                <a href="http://www.flickr.com/photos/aravindavk" target="_blank" title="Flickr">
+                  <img src="/theme/img/flickr.png" class="link-icon" alt="Flickr"/>
+                </a>
+                <a href="http://in.linkedin.com/in/aravindavk" target="_blank" title="LinkedIn">
+                  <img src="/theme/img/linkedin.png" class="link-icon" alt="LinkedIn"/>
+                </a>
+              </div>
+              <ul>
+                <li class=""><a href="/">Home</a></li>
+                <li class=""><a href="/me">About</a></li>
+                <li class=""><a href="/projects">Projects</a></li>
+                <li class=""><a href="/blogs">Blogs</a></li>
+                <li class=""><a href="/talks">Talks & Articles</a></li>
+              </ul>
+            </div>
+            <div class="sep"></div>
+            <div class="copyright">&copy; 2008-2014 Aravinda VK, <br/>All rights reserved</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <script src="/theme/js/ui.js"></script>
+  </body>
+</html>

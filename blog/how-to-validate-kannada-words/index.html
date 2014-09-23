@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="cache-control" content="max-age=0" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <link href="/theme/img/fav.png" rel="icon" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="/theme/img/fav.png" />
+    <title>How to validate kannada words?</title>
+    <link href="http://aravindavk.in/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="aravindavk Atom Feed" />
+    <link rel="stylesheet" href="/theme/css/pure-min.css" />
+    <link rel="stylesheet" href="/theme/css/side-menu.css" />
+    <link rel="stylesheet" href="/theme/css/main.css" />
+    <link rel="stylesheet" href="/theme/css/pygment-emacs-highlight.css" />
+  </head>
+  <body>
+    <div id="layout">
+      <!-- Menu toggle -->
+      <a href="#menu" id="menuLink" class="menu-link">
+        <!-- Hamburger icon -->
+        <span></span>
+      </a>
+      <div id="menu" class="pure-hidden-desktop pure-hidden-tablet">
+        <div class="pure-menu pure-menu-open">
+          <a class="pure-menu-heading logo" href="/"><img src="/theme/img/logo.png" alt="aravindavk"/></a>
+          <div class="social-icons">
+            <a href="http://localhost:8000/None" target="_blank" title="News">
+              <img src="/theme/img/feed.png" class="link-icon" alt="News"/>
+            </a>
+            <a href="http://twitter.com/aravindavk" target="_blank" title="Twitter">
+              <img src="/theme/img/twitter.png" class="link-icon" alt="Twitter"/>
+            </a>
+            <a href="https://plus.google.com/+aravindavk" target="_blank" title="Google Plus">
+              <img src="/theme/img/gplus.png" class="link-icon" alt="Google Plus"/>
+            </a>
+            <a href="https://github.com/aravindavk" target="_blank" title="Github">
+              <img src="/theme/img/github.png" class="link-icon" alt="Github"/>
+            </a>
+            <a href="http://www.flickr.com/photos/aravindavk" target="_blank" title="Flickr">
+              <img src="/theme/img/flickr.png" class="link-icon" alt="Flickr"/>
+            </a>
+            <a href="http://in.linkedin.com/in/aravindavk" target="_blank" title="LinkedIn">
+              <img src="/theme/img/linkedin.png" class="link-icon" alt="LinkedIn"/>
+            </a>
+          </div>
+          <ul>
+            <li class=""><a href="/">Home</a></li>
+            <li class=""><a href="/me">About</a></li>
+            <li class=""><a href="/projects">Projects</a></li>
+            <li class=""><a href="/blogs">Blogs</a></li>
+            <li class=""><a href="/talks">Talks & Articles</a></li>
+          </ul>
+        </div>
+        <div class="sep"></div>
+        <div class="copyright">&copy; 2008-2014 Aravinda VK, <br/>All rights reserved</div>
+      </div>
+
+      <div class="pure-g-r">
+        <div class="pure-u-4-5 content-left">
+          <div class="left article">
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        How to validate kannada words?</h1>
+    </header>
+    <div class="pure-hidden-phone pure-hidden-tablet">
+<footer class="post-info">
+  <p class="author-and-date-info">
+    Posted on Mon 12 January 2009 by <a class="url fn" href="http://aravindavk.in">Aravinda VK</a>.
+  </p>
+</footer><!-- /.post-info -->
+<div class="sep"></div>    </div>
+    <div class="entry-content">
+      <p>In this article we will discuss the Unicode range validation using Python regular expressions and JavaScript regular expressions. For illustration i have used Kannada, same can be applied to other languages as well.</p>
+<div class="section" id="where-it-can-be-used">
+<h2>Where it can be used?</h2>
+<ul class="simple">
+<li>Suppose users can submit articles in your website and you need to check every article should have more than 60% Kannada words.</li>
+<li>Validation for localized websites</li>
+<li>and many more...</li>
+</ul>
+<p>Kannada Unicode range as per the standard is  u0C80 to u0CFF, refer <a class="reference external" href="http://unicode.org/charts/PDF/Unicode-4.0/U40-0C80.pdf">Unicode.org website</a></p>
+</div>
+<div class="section" id="using-python">
+<h2>Using Python</h2>
+<div class="highlight"><pre><span class="c"># file: validateKannadaWords.py</span>
+<span class="c"># -*- coding: utf-8 -*-</span>
+<span class="kn">import</span> <span class="nn">re</span>
+
+<span class="c"># function checks the input word is Kannada word or not</span>
+<span class="c"># @params word - Input word to validate</span>
+<span class="c"># @returns True - If success, False - If failure</span>
+<span class="c"># @author Aravinda VK</span>
+<span class="c"># @date - 09-Nov-2008</span>
+
+<span class="k">def</span> <span class="nf">isKannadaWord</span><span class="p">(</span><span class="n">word</span><span class="p">):</span>
+    <span class="n">rangeStart</span> <span class="o">=</span> <span class="s">ur&quot;\u0C80&quot;</span>
+    <span class="n">rangeEnd</span> <span class="o">=</span> <span class="s">ur&quot;\u0CFF&quot;</span>
+    <span class="n">pattern</span> <span class="o">=</span> <span class="n">rangeStart</span> <span class="o">+</span> <span class="s">&#39;-&#39;</span> <span class="o">+</span> <span class="n">rangeEnd</span>
+    <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s">&#39;^[&#39;</span> <span class="o">+</span> <span class="n">pattern</span> <span class="o">+</span> <span class="s">&#39;]+$&#39;</span><span class="p">,</span><span class="n">word</span><span class="p">)</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">True</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">False</span>
+</pre></div>
+<p>&quot;ur&quot; in above code refers to raw unicode.</p>
+<div class="section" id="how-to-use">
+<h3>How to use</h3>
+<div class="highlight"><pre><span class="n">myString</span> <span class="o">=</span> <span class="s">u&#39;ಅರವಿಂದ ಒಲವು ಅವಳು ಮತ್ತು ನಾಳೆ abcd ಹೆಹೆ &#39;</span>
+<span class="n">wordsList</span> <span class="o">=</span> <span class="n">myString</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">eachWord</span> <span class="ow">in</span> <span class="n">wordsList</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">isKannadaWord</span><span class="p">(</span><span class="n">eachWord</span><span class="p">)</span> <span class="p">:</span>
+        <span class="k">print</span> <span class="n">eachWord</span> <span class="o">+</span> <span class="s">&#39; is a Kannada word&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">print</span> <span class="n">eachWord</span> <span class="o">+</span> <span class="s">&#39; is not a Kannada word&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="using-javascript">
+<h2>Using Javascript</h2>
+<div class="highlight"><pre><span class="c1">// function checks the input word is Kannada word or not</span>
+<span class="c1">// @params word - Input word to validate</span>
+<span class="c1">// @returns True - If success, False - If failure</span>
+<span class="c1">// @author Aravinda VK</span>
+<span class="c1">// @date - 09-Nov-2008</span>
+
+<span class="kd">function</span> <span class="nx">isKannadaWord</span><span class="p">(</span><span class="nx">word</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">re</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="sr">/^[\u0C80-\u0CFF]+$/</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">word</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">re</span><span class="p">))</span>  <span class="p">{</span>
+        <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+<div class="section" id="id1">
+<h3>How to use</h3>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">inputwords</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">(</span><span class="s2">&quot;ಅರವಿಂದ&quot;</span><span class="p">,</span> <span class="s2">&quot;ಒಲವು&quot;</span><span class="p">,</span> <span class="s2">&quot;ಅವಳು&quot;</span><span class="p">,</span> <span class="s2">&quot;ಮತ್ತು&quot;</span><span class="p">,</span> <span class="s2">&quot;ನಾಳೆ&quot;</span><span class="p">,</span> <span class="s2">&quot;abcd&quot;</span><span class="p">,</span> <span class="s2">&quot;ಹೆಹೆ&quot;</span><span class="p">);</span>
+<span class="k">for</span><span class="p">(</span><span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="mi">2</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">isKannadaWord</span><span class="p">(</span><span class="nx">inputwords</span><span class="p">[</span><span class="nx">i</span><span class="p">]))</span> <span class="p">{</span>
+        <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s2">&quot;&lt;b&gt;&quot;</span> <span class="o">+</span> <span class="nx">inputwords</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;&lt;/b&gt; is a valid Kannada Word&lt;br/&gt;&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+        <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s2">&quot;&lt;b&gt;&quot;</span> <span class="o">+</span> <span class="nx">inputwords</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;&lt;/b&gt; is Not a Kannada Word&lt;br/&gt;&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+
+    </div><!-- /.entry-content -->
+    <div class="pure-hidden-desktop">
+<footer class="post-info">
+  <p class="author-and-date-info">
+    Posted on Mon 12 January 2009 by <a class="url fn" href="http://aravindavk.in">Aravinda VK</a>.
+  </p>
+</footer><!-- /.post-info -->
+<div class="sep"></div>    </div>
+    <div class="permalink-div">
+      Permalink: <a href="http://aravindavk.in/blog/how-to-validate-kannada-words/" rel="bookmark" title="Permalink to How to validate kannada words?">http://aravindavk.in/blog/how-to-validate-kannada-words/</a>
+    </div>
+<div class="comments">
+  <h2>Comments !</h2>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_identifier = "blog/how-to-validate-kannada-words/";
+    var disqus_url = "http://aravindavk.in/blog/how-to-validate-kannada-words/";
+    (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = 'http://vkaravinda.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+</div>
+  </article>
+</section>
+            <div class="copyright pure-hidden-desktop pure-hidden-tablet">&copy; 2008-2014 Aravinda VK, <br/>All rights reserved</div>
+          </div>
+        </div>
+        <div class="pure-u-1-5 pure-hidden-phone">
+          <div class="right">
+            <img class="me" src="/theme/img/me.jpg"/>
+            <div class="sep"></div>
+            <div class="pure-menu pure-menu-open">
+              <a class="pure-menu-heading logo" href="/"><img src="/theme/img/logo.png" alt="aravindavk"/></a>
+              <div class="social-icons">
+                <a href="http://localhost:8000/None" target="_blank" title="News">
+                  <img src="/theme/img/feed.png" class="link-icon" alt="News"/>
+                </a>
+                <a href="http://twitter.com/aravindavk" target="_blank" title="Twitter">
+                  <img src="/theme/img/twitter.png" class="link-icon" alt="Twitter"/>
+                </a>
+                <a href="https://plus.google.com/+aravindavk" target="_blank" title="Google Plus">
+                  <img src="/theme/img/gplus.png" class="link-icon" alt="Google Plus"/>
+                </a>
+                <a href="https://github.com/aravindavk" target="_blank" title="Github">
+                  <img src="/theme/img/github.png" class="link-icon" alt="Github"/>
+                </a>
+                <a href="http://www.flickr.com/photos/aravindavk" target="_blank" title="Flickr">
+                  <img src="/theme/img/flickr.png" class="link-icon" alt="Flickr"/>
+                </a>
+                <a href="http://in.linkedin.com/in/aravindavk" target="_blank" title="LinkedIn">
+                  <img src="/theme/img/linkedin.png" class="link-icon" alt="LinkedIn"/>
+                </a>
+              </div>
+              <ul>
+                <li class=""><a href="/">Home</a></li>
+                <li class=""><a href="/me">About</a></li>
+                <li class=""><a href="/projects">Projects</a></li>
+                <li class=""><a href="/blogs">Blogs</a></li>
+                <li class=""><a href="/talks">Talks & Articles</a></li>
+              </ul>
+            </div>
+            <div class="sep"></div>
+            <div class="copyright">&copy; 2008-2014 Aravinda VK, <br/>All rights reserved</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <script src="/theme/js/ui.js"></script>
+  </body>
+</html>
