@@ -13,19 +13,19 @@ Projects
 
 ASCII to Unicode Converter
 ==========================
-A tool to convert Kannada text written using ASCII format like Nudi/Baraha to Unicode. Project is available in `github <https://github.com/aravindavk/ascii2unicode>`__. Online version is available `here <http://aravindavk.github.com/ascii2unicode/>`__. Source code is released under GPL license.
+A tool to convert Kannada text written using ASCII format like Nudi/Baraha to Unicode. Project is available in `github <https://github.com/aravindavk/ascii2unicode>`__. Online version is available `here <http://aravindavk.in/ascii2unicode/>`__. Source code is released under GPL license.
 
 .. image:: /images/ascii2unicode.png
    :alt: ASCII2Unicode
-   :target: http://aravindavk.github.com/ascii2unicode/
+   :target: http://aravindavk.in/ascii2unicode/
 
 Diesel vs Petrol Car
 ====================
-Simple tool to analyse and decide which Car to buy based on usage, fuel efficiency and price. Project is available in `github <https://github.com/aravindavk/aravindavk.github.com/tree/master/diesel-vs-petrol-car>`__. Online version is available `here <http://aravindavk.github.com/diesel-vs-petrol-car/>`__. Source code is released under GPL license.
+Simple tool to analyse and decide which Car to buy based on usage, fuel efficiency and price. Project is available in `github <https://github.com/aravindavk/aravindavk.github.com/tree/master/diesel-vs-petrol-car>`__. Online version is available `here <http://aravindavk.in/diesel-vs-petrol-car/>`__. Source code is released under GPL license.
 
 .. image:: /images/diesel-vs-petrol-car.png
    :alt: Diesel vs Petrol Car
-   :target: http://aravindavk.github.com/diesel-vs-petrol-car/
+   :target: http://aravindavk.in/diesel-vs-petrol-car/
 
 Kannada Unicode font - Gubbi
 ============================

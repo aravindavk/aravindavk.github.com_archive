@@ -18,6 +18,15 @@ FEED_ALL_ATOM = 'feeds/all.atom.xml'
 CATEGORY_FEED_ATOM = 'feeds/category-%s.atom.xml'
 TAG_FEED_ATOM = 'feeds/tag-%s.atom.xml'
 
+# Blogroll
+SOCIAL_LINKS = (
+    ('News', "%s/%s" % (SITEURL, FEED_ALL_ATOM), 'feed.png'),
+    ('Twitter', 'http://twitter.com/aravindavk', 'twitter.png'),
+    ('Google Plus', 'https://plus.google.com/+aravindavk', 'gplus.png'),
+    ('Github', 'https://github.com/aravindavk', 'github.png'),
+    ('Flickr', 'http://www.flickr.com/photos/aravindavk', 'flickr.png'),
+    ('LinkedIn', 'http://in.linkedin.com/in/aravindavk', 'linkedin.png'),)
+
 TAGS_FOR_FEED = ["kannadablog", "glusterfsblog"]
 
 DELETE_OUTPUT_DIRECTORY = True
