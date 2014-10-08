@@ -9,6 +9,7 @@ CONFFILE=$(BASEDIR)/pelicanconf.py
 PUBLISHCONF=$(BASEDIR)/publishconf.py
 THEME=$(BASEDIR)/themes/hosabelaku
 GITHUB_PAGES_BRANCH=master
+GITHUB_SOURCE_BRANCH=websrc
 
 DEBUG ?= 0
 ifeq ($(DEBUG), 1)
@@ -63,6 +64,7 @@ publish:
 	$(PELICAN) $(INPUTDIR) -o $(OUTPUTDIR) -s $(PUBLISHCONF) $(PELICANOPTS) -t $(THEME)
 
 github: publish
+	git push origin $(GITHUB_SOURCE_BRANCH)
 	ghp-import -b $(GITHUB_PAGES_BRANCH) $(OUTPUTDIR)
 	git push origin $(GITHUB_PAGES_BRANCH)
 
