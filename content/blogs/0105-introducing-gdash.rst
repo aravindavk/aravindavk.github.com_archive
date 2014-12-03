@@ -5,9 +5,9 @@ Introducing gdash - GlusterFS Dashboard
 :author: Aravinda VK
 :date: 2014-12-04
 :tags: glusterfs,tools,glusterfsblog
-:summary: gdash is a super-young project, which shows gluster volume information about local, remote clusters.
+:summary: gdash is a super-young project, which shows GlusterFS volume information about local, remote clusters.
 
-gdash is a super-young project, which shows gluster volume information about local, remote clusters. This app is based on gluster's capability of executing :code:`gluster volume info` and :code:`gluster volume status` commands for a remote server using ``--remote-host`` option.
+gdash is a super-young project, which shows GlusterFS volume information about local, remote clusters. This app is based on GlusterFS's capability of executing :code:`gluster volume info` and :code:`gluster volume status` commands for a remote server using ``--remote-host`` option.
  
 If you can run :code:`gluster volume info --remote-host=<HOST_NAME>`, then you can monitor that cluster using gdash. Make sure you allow to access glusterd port(24007) for the machine where you will run gdash.
 
@@ -31,17 +31,17 @@ gdash is created using Python `Flask <http://flask.pocoo.org/>`__ and `ember <ht
 
 Usage
 =====
-Usecase 1 - Local Volumes
--------------------------
-Just run :code:`sudo gdash`, gdash starts running in port 8080. visit http://localhost:8080 to view gluster volumes of local machine.
-
-Usecase 2 - Remote Volumes
+Use case 1 - Local Volumes
 --------------------------
-Run :code:`sudo gdash --host 192.168.1.6`, visit http://localhost:8080 to view gluster volume information of remote host. Dashboard shows all the volumes which are part of that remote host.
+Just run :code:`sudo gdash`, gdash starts running in port 8080. visit http://localhost:8080 to view GlusterFS volumes of local machine.
 
-Usecase 3 - Multiple clusters
------------------------------
-Create a clusters.conf file as example shown below, specify atleast one host from each cluster.
+Use case 2 - Remote Volumes
+---------------------------
+Run :code:`sudo gdash --host 192.168.1.6`, visit http://localhost:8080 to view GlusterFS volume information of remote host. Dashboard shows all the volumes which are part of that remote host.
+
+Use case 3 - Multiple clusters
+------------------------------
+Create a clusters.conf file as example shown below, specify at least one host from each cluster.
 
 .. code-block:: cfg
 
@@ -55,9 +55,9 @@ Run :code:`gdash` using,
 
     sudo gdash --clusters ~/clusters.conf
 
-Usecase 4 - Multiple teams
---------------------------
-If two teams monitoring two clusters and if you don't want to share the other cluster details then, just run below commands in two terminals and give respective URL to each team. Other solution is create two seperate config files and run it seperately for different ports.
+Use case 4 - Multiple teams
+---------------------------
+If two teams monitoring two clusters and if you don't want to share the other cluster details then, just run below commands in two terminals and give respective URL to each team. Other solution is create two seperate config files and run it separately for different ports.
 
 .. code-block:: bash
 
