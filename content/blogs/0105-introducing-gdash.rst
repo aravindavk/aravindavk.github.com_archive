@@ -94,3 +94,4 @@ Available Options
                             Limit dashboard only for specified cluster
 
 
+Code is hosted in `github/aravindavk <https://github.com/aravindavk/gdash>`__, licensed under `MIT <https://github.com/aravindavk/gdash/blob/master/LICENSE.txt>`__.
