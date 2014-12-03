@@ -1,5 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>aravindavk</title><link href="http://aravindavk.in/" rel="alternate"></link><link href="http://aravindavk.in/feeds/all.atom.xml" rel="self"></link><id>http://aravindavk.in/</id><updated>2014-10-08T00:00:00+05:30</updated><entry><title>Rotating Rust programming logo</title><link href="http://aravindavk.in/blog/rotating-rust-logo/" rel="alternate"></link><updated>2014-10-08T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2014-10-08:blog/rotating-rust-logo/</id><summary type="html">&lt;p&gt;Today I learned to animate any shape in &lt;a class="reference external" href="http://en.wikipedia.org/wiki/Scalable_Vector_Graphics"&gt;SVG&lt;/a&gt; using &lt;a class="reference external" href="http://www.w3.org/TR/SVG/animate.html#AnimateTransformElement"&gt;animateTransform&lt;/a&gt; element, and tried it with &lt;a class="reference external" href="http://www.rust-lang.org/"&gt;Rust programming&lt;/a&gt; logo, here yo go :)&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>aravindavk</title><link href="http://aravindavk.in/" rel="alternate"></link><link href="http://aravindavk.in/feeds/all.atom.xml" rel="self"></link><id>http://aravindavk.in/</id><updated>2014-12-04T00:00:00+05:30</updated><entry><title>Introducing gdash - GlusterFS Dashboard</title><link href="http://aravindavk.in/blog/introducing-gdash/" rel="alternate"></link><updated>2014-12-04T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2014-12-04:blog/introducing-gdash/</id><summary type="html">&lt;p&gt;gdash is a super-young project, which shows GlusterFS volume information about local, remote clusters. This app is based on GlusterFS's capability of executing &lt;code&gt;gluster volume info&lt;/code&gt; and &lt;code&gt;gluster volume status&lt;/code&gt; commands for a remote server using &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;--remote-host&lt;/span&gt;&lt;/tt&gt; option.&lt;/p&gt;
+&lt;p&gt;If you can run &lt;code&gt;gluster volume info --remote-host=&amp;lt;HOST_NAME&amp;gt;&lt;/code&gt;, then you can monitor that cluster using gdash. Make sure you allow to access glusterd port(24007) for the machine where you will run gdash.&lt;/p&gt;
+&lt;p&gt;To install,&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;sudo pip install gdash
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;gdash is created using Python &lt;a class="reference external" href="http://flask.pocoo.org/"&gt;Flask&lt;/a&gt; and &lt;a class="reference external" href="http://emberjs.com/"&gt;ember&lt;/a&gt; (I used &lt;a class="reference external" href="http://ember-cli.com"&gt;ember-cli&lt;/a&gt;).&lt;/p&gt;
+&lt;div class="figure"&gt;
+&lt;img alt="gdash home screen" src="/images/gdash-home.png" /&gt;
+&lt;p class="caption"&gt;gdash home screen&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="figure"&gt;
+&lt;img alt="gdash detail screen" src="/images/gdash-detail.png" /&gt;
+&lt;p class="caption"&gt;gdash Volume details page&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="usage"&gt;
+&lt;h2&gt;Usage&lt;/h2&gt;
+&lt;div class="section" id="use-case-1-local-volumes"&gt;
+&lt;h3&gt;Use case 1 - Local Volumes&lt;/h3&gt;
+&lt;p&gt;Just run &lt;code&gt;sudo gdash&lt;/code&gt;, gdash starts running in port 8080. visit &lt;a class="reference external" href="http://localhost:8080"&gt;http://localhost:8080&lt;/a&gt; to view GlusterFS volumes of local machine.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="use-case-2-remote-volumes"&gt;
+&lt;h3&gt;Use case 2 - Remote Volumes&lt;/h3&gt;
+&lt;p&gt;Run &lt;code&gt;sudo gdash --host 192.168.1.6&lt;/code&gt;, visit &lt;a class="reference external" href="http://localhost:8080"&gt;http://localhost:8080&lt;/a&gt; to view GlusterFS volume information of remote host. Dashboard shows all the volumes which are part of that remote host.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="use-case-3-multiple-clusters"&gt;
+&lt;h3&gt;Use case 3 - Multiple clusters&lt;/h3&gt;
+&lt;p&gt;Create a clusters.conf file as example shown below, specify at least one host from each cluster.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;[clusters]&lt;/span&gt;
+&lt;span class="na"&gt;cluster1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;host1, host2, host3&lt;/span&gt;
+&lt;span class="na"&gt;cluster2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;host4, host5, host6&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Run &lt;code&gt;gdash&lt;/code&gt; using,&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;sudo gdash --clusters ~/clusters.conf
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="use-case-4-multiple-teams"&gt;
+&lt;h3&gt;Use case 4 - Multiple teams&lt;/h3&gt;
+&lt;p&gt;If two teams monitoring two clusters and if you don't want to share the other cluster details then, just run below commands in two terminals and give respective URL to each team. Other solution is create two seperate config files and run it separately for different ports.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# Team 1, who monitors cluster1 http://localhost:8001&lt;/span&gt;
+sudo gdash -p 8001 --clusters ~/clusters.conf --limit-cluster cluster1
+
+&lt;span class="c"&gt;# Team 2, who monitors cluster2 http://localhost:8002&lt;/span&gt;
+sudo gdash -p 8002 --clusters ~/clusters.conf --limit-cluster cluster2
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="available-options"&gt;
+&lt;h2&gt;Available Options&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;usage: gdash [-h] [--port PORT] [--cache CACHE] [--debug] [--host HOST]
+             [--clusters CLUSTERS] [--limit-cluster LIMIT_CLUSTER]
+
+GlusterFS dashboard
+-------------------
+
+This tool is based on remote execution support provided by
+GlusterFS cli for `volume info` and `volume status` commands
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --port PORT, -p PORT  Port
+  --cache CACHE, -c CACHE
+                        Cache output in seconds
+  --debug               DEBUG
+  --host HOST           Remote host which is part of cluster
+  --clusters CLUSTERS   Clusters CONF file
+  --limit-cluster LIMIT_CLUSTER
+                        Limit dashboard only for specified cluster
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Code is hosted in &lt;a class="reference external" href="https://github.com/aravindavk/gdash"&gt;github/aravindavk&lt;/a&gt;, licensed under &lt;a class="reference external" href="https://github.com/aravindavk/gdash/blob/master/LICENSE.txt"&gt;MIT&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+</summary><category term="glusterfs"></category><category term="tools"></category><category term="glusterfsblog"></category></entry><entry><title>Rotating Rust programming logo</title><link href="http://aravindavk.in/blog/rotating-rust-logo/" rel="alternate"></link><updated>2014-10-08T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2014-10-08:blog/rotating-rust-logo/</id><summary type="html">&lt;p&gt;Today I learned to animate any shape in &lt;a class="reference external" href="http://en.wikipedia.org/wiki/Scalable_Vector_Graphics"&gt;SVG&lt;/a&gt; using &lt;a class="reference external" href="http://www.w3.org/TR/SVG/animate.html#AnimateTransformElement"&gt;animateTransform&lt;/a&gt; element, and tried it with &lt;a class="reference external" href="http://www.rust-lang.org/"&gt;Rust programming&lt;/a&gt; logo, here yo go :)&lt;/p&gt;
 &lt;embed src="/images/rust_rotating.svg" type="image/svg+xml" /&gt;&lt;p&gt;I downloaded SVG from &lt;a class="reference external" href="http://en.wikipedia.org/wiki/File:Rust_programming_language_black_logo.svg"&gt;here&lt;/a&gt;, and added &lt;code&gt;animateTransform&lt;/code&gt; as child of &lt;code&gt;path&lt;/code&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;windows-1252&amp;quot;?&amp;gt;&lt;/span&gt;
 &lt;span class="cp"&gt;&amp;lt;!DOCTYPE svg PUBLIC &amp;quot;-//W3C//DTD SVG 1.1//EN&amp;quot; &amp;quot;http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd&amp;quot;&amp;gt;&lt;/span&gt;
