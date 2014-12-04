@@ -7,6 +7,9 @@ Introducing gdash - GlusterFS Dashboard
 :tags: glusterfs,tools,glusterfsblog
 :summary: gdash is a super-young project, which shows GlusterFS volume information about local, remote clusters.
 
+**UPDATE:** Added ``--gluster`` option to specify the path to gluster. By default it looks for ``/usr/sbin/gluster``, If you installed GlusterFS using source install then use :code:`sudo gdash --gluster /usr/local/sbin/gluster`. (Those who already installed gdash, can run :code:`sudo pip install -U gdash` to upgrade.)
+
+
 gdash is a super-young project, which shows GlusterFS volume information about local, remote clusters. This app is based on GlusterFS's capability of executing :code:`gluster volume info` and :code:`gluster volume status` commands for a remote server using ``--remote-host`` option.
  
 If you can run :code:`gluster volume info --remote-host=<HOST_NAME>`, then you can monitor that cluster using gdash. Make sure you allow to access glusterd port(24007) for the machine where you will run gdash.
