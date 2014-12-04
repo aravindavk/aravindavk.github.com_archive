@@ -4,6 +4,9 @@
 &lt;p&gt;To install,&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;sudo pip install gdash
 &lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;or&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;sudo easy_install gdash
+&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;gdash is created using Python &lt;a class="reference external" href="http://flask.pocoo.org/"&gt;Flask&lt;/a&gt; and &lt;a class="reference external" href="http://emberjs.com/"&gt;ember&lt;/a&gt; (I used &lt;a class="reference external" href="http://ember-cli.com"&gt;ember-cli&lt;/a&gt;).&lt;/p&gt;
 &lt;div class="figure"&gt;
 &lt;img alt="gdash home screen" src="/images/gdash-home.png" /&gt;
