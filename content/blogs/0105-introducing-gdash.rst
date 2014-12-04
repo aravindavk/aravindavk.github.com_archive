@@ -17,6 +17,12 @@ To install,
 
     sudo pip install gdash
 
+or
+
+.. code-block:: bash
+
+    sudo easy_install gdash
+
 gdash is created using Python `Flask <http://flask.pocoo.org/>`__ and `ember <http://emberjs.com/>`__ (I used `ember-cli <http://ember-cli.com>`__). 
 
 .. figure:: /images/gdash-home.png
