@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="google-site-verification" content="PwqxyVtbmKeb1wsrF8XJ5GQIPxlDxUupYnTEWPI3KLk" />
+    <meta http-equiv="cache-control" content="max-age=0" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <link href="/theme/img/fav.png" rel="icon" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="/theme/img/fav.png" />
+    <title>isatty in Rust</title>
+    <link href="http://aravindavk.in/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="aravindavk Atom Feed" />
+    <link rel="stylesheet" href="/theme/css/pure-min.css" />
+    <link rel="stylesheet" href="/theme/css/side-menu.css" />
+    <link rel="stylesheet" href="/theme/css/main.css" />
+    <link rel="stylesheet" href="/theme/css/pygment-emacs-highlight.css" />
+  </head>
+  <body>
+    <div id="layout">
+      <!-- Menu toggle -->
+      <a href="#menu" id="menuLink" class="menu-link">
+        <!-- Hamburger icon -->
+        <span></span>
+      </a>
+      <div id="menu" class="pure-hidden-desktop pure-hidden-tablet">
+        <div class="pure-menu pure-menu-open">
+          <a class="pure-menu-heading logo" href="/"><img src="/theme/img/logo.png" alt="aravindavk"/></a>
+          <div class="social-icons">
+            <a href="http://aravindavk.in/feeds/all.atom.xml" target="_blank" title="News">
+              <img src="/theme/img/feed.png" class="link-icon" alt="News"/>
+            </a>
+            <a href="http://twitter.com/aravindavk" target="_blank" title="Twitter">
+              <img src="/theme/img/twitter.png" class="link-icon" alt="Twitter"/>
+            </a>
+            <a href="https://plus.google.com/+aravindavk" target="_blank" title="Google Plus">
+              <img src="/theme/img/gplus.png" class="link-icon" alt="Google Plus"/>
+            </a>
+            <a href="https://github.com/aravindavk" target="_blank" title="Github">
+              <img src="/theme/img/github.png" class="link-icon" alt="Github"/>
+            </a>
+            <a href="http://www.flickr.com/photos/aravindavk" target="_blank" title="Flickr">
+              <img src="/theme/img/flickr.png" class="link-icon" alt="Flickr"/>
+            </a>
+            <a href="http://in.linkedin.com/in/aravindavk" target="_blank" title="LinkedIn">
+              <img src="/theme/img/linkedin.png" class="link-icon" alt="LinkedIn"/>
+            </a>
+          </div>
+          <ul>
+            <li class=""><a href="/">Home</a></li>
+            <li class=""><a href="/me">About</a></li>
+            <li class=""><a href="/projects">Projects</a></li>
+            <li class=""><a href="/blogs">Blogs</a></li>
+            <li class=""><a href="/talks">Talks & Articles</a></li>
+          </ul>
+        </div>
+        <div class="sep"></div>
+        <div class="copyright">&copy; 2008-2014 Aravinda VK, <br/>All rights reserved</div>
+      </div>
+
+      <div class="pure-g-r">
+        <div class="pure-u-4-5 content-left">
+          <div class="left article">
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        isatty in Rust</h1>
+    </header>
+    <div class="pure-hidden-phone pure-hidden-tablet">
+<footer class="post-info">
+  <p class="author-and-date-info">
+    Posted on Tue 16 December 2014 by <a class="url fn" href="http://aravindavk.in">Aravinda VK</a>.
+  </p>
+</footer><!-- /.post-info -->
+<div class="sep"></div>    </div>
+    <div class="entry-content">
+      <p>How to find a command line program is <a class="reference external" href="http://en.wikipedia.org/wiki/Pipeline_%28Unix%29">piped</a> from another program or that program was running directly with arguments? For example, <code>wc</code> command can be run as both ways.</p>
+<div class="highlight"><pre><span class="c"># Create a file /tmp/hello.txt</span>
+<span class="nb">echo</span> <span class="s2">&quot;Hello World&quot;</span> &gt; /tmp/hello.txt
+<span class="c"># wc can be used as both ways,</span>
+cat /tmp/hello.txt | wc
+<span class="c"># or</span>
+wc /tmp/hello.txt
+</pre></div>
+<p>In Python, it is very easy to identify how a command is run</p>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">isatty</span><span class="p">():</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="c"># do something with file, open the file and process it</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="c"># use for `line in sys.stdin` to read line by line</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="c"># do something with data</span>
+</pre></div>
+<div class="section" id="how-to-do-this-in-rust">
+<h2>How to do this in <a class="reference external" href="http://rust-lang.org">Rust</a>?</h2>
+<p>It is very easy in Rust too, see...</p>
+<div class="highlight"><pre><span class="k">use</span> <span class="n">std</span><span class="o">::</span><span class="n">io</span><span class="p">;</span>
+
+<span class="k">fn</span> <span class="n">main</span><span class="p">(){</span>
+    <span class="k">if</span> <span class="n">io</span><span class="o">::</span><span class="n">stdio</span><span class="o">::</span><span class="n">stdin_raw</span><span class="p">().</span><span class="n">isatty</span><span class="p">(){</span>
+        <span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&quot;Not pipe&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">else</span><span class="p">{</span>
+        <span class="k">let</span> <span class="k">mut</span> <span class="n">reader</span> <span class="o">=</span> <span class="n">io</span><span class="o">::</span><span class="n">stdin</span><span class="p">();</span>
+        <span class="k">loop</span><span class="p">{</span>
+            <span class="k">match</span> <span class="n">reader</span><span class="p">.</span><span class="n">read_line</span><span class="p">()</span> <span class="p">{</span>
+                <span class="n">Ok</span><span class="p">(</span><span class="n">txt</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&quot;Read: {}&quot;</span><span class="p">,</span> <span class="n">txt</span><span class="p">),</span>
+                <span class="n">Err</span><span class="p">(</span><span class="n">_e</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="k">break</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+<p>To handle all the errors except EOF,</p>
+<div class="highlight"><pre><span class="k">let</span> <span class="k">mut</span> <span class="n">reader</span> <span class="o">=</span> <span class="n">io</span><span class="o">::</span><span class="n">stdin</span><span class="p">();</span>
+<span class="k">loop</span><span class="p">{</span>
+    <span class="k">match</span> <span class="n">reader</span><span class="p">.</span><span class="n">read_line</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">Ok</span><span class="p">(</span><span class="n">txt</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&quot;Read: {}&quot;</span><span class="p">,</span> <span class="n">txt</span><span class="p">),</span>
+        <span class="n">Err</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="k">match</span> <span class="n">e</span><span class="p">.</span><span class="n">kind</span><span class="p">{</span>
+            <span class="n">io</span><span class="o">::</span><span class="n">EndOfFile</span> <span class="o">=&gt;</span> <span class="k">break</span><span class="p">,</span>
+            <span class="n">_</span> <span class="o">=&gt;</span> <span class="p">{</span>
+                    <span class="n">panic</span><span class="o">!</span><span class="p">(</span><span class="s">&quot;ERROR: {}&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+<p>We can now create <a class="reference external" href="http://en.wikipedia.org/wiki/Pipeline_%28Unix%29">pipe</a> aware applications easily in Rust, let me know if you find this useful.</p>
+<p>btw, Rust 1.0 is coming, see <a class="reference external" href="http://blog.rust-lang.org/2014/12/12/1.0-Timeline.html">here</a></p>
+<p><em>(Code examples here were built with &quot;rustc 0.13.0-nightly (126db549b 2014-12-15 00:07:35 +0000)&quot;)</em></p>
+</div>
+
+    </div><!-- /.entry-content -->
+    <div class="pure-hidden-desktop">
+<footer class="post-info">
+  <p class="author-and-date-info">
+    Posted on Tue 16 December 2014 by <a class="url fn" href="http://aravindavk.in">Aravinda VK</a>.
+  </p>
+</footer><!-- /.post-info -->
+<div class="sep"></div>    </div>
+    <div class="permalink-div">
+      Permalink: <a href="http://aravindavk.in/blog/isatty-in-rust/" rel="bookmark" title="Permalink to isatty in Rust">http://aravindavk.in/blog/isatty-in-rust/</a>
+    </div>
+<div class="comments">
+  <h2>Comments !</h2>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_identifier = "blog/isatty-in-rust/";
+    var disqus_url = "http://aravindavk.in/blog/isatty-in-rust/";
+    (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = 'http://vkaravinda.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+</div>
+  </article>
+</section>
+            <div class="copyright pure-hidden-desktop pure-hidden-tablet">&copy; 2008-2014 Aravinda VK, <br/>All rights reserved</div>
+          </div>
+        </div>
+        <div class="pure-u-1-5 pure-hidden-phone">
+          <div class="right">
+            <img class="me" src="/theme/img/me.jpg"/>
+            <div class="sep"></div>
+            <div class="pure-menu pure-menu-open">
+              <a class="pure-menu-heading logo" href="/"><img src="/theme/img/logo.png" alt="aravindavk"/></a>
+              <div class="social-icons">
+                <a href="http://aravindavk.in/feeds/all.atom.xml" target="_blank" title="News">
+                  <img src="/theme/img/feed.png" class="link-icon" alt="News"/>
+                </a>
+                <a href="http://twitter.com/aravindavk" target="_blank" title="Twitter">
+                  <img src="/theme/img/twitter.png" class="link-icon" alt="Twitter"/>
+                </a>
+                <a href="https://plus.google.com/+aravindavk" target="_blank" title="Google Plus">
+                  <img src="/theme/img/gplus.png" class="link-icon" alt="Google Plus"/>
+                </a>
+                <a href="https://github.com/aravindavk" target="_blank" title="Github">
+                  <img src="/theme/img/github.png" class="link-icon" alt="Github"/>
+                </a>
+                <a href="http://www.flickr.com/photos/aravindavk" target="_blank" title="Flickr">
+                  <img src="/theme/img/flickr.png" class="link-icon" alt="Flickr"/>
+                </a>
+                <a href="http://in.linkedin.com/in/aravindavk" target="_blank" title="LinkedIn">
+                  <img src="/theme/img/linkedin.png" class="link-icon" alt="LinkedIn"/>
+                </a>
+              </div>
+              <ul>
+                <li class=""><a href="/">Home</a></li>
+                <li class=""><a href="/me">About</a></li>
+                <li class=""><a href="/projects">Projects</a></li>
+                <li class=""><a href="/blogs">Blogs</a></li>
+                <li class=""><a href="/talks">Talks & Articles</a></li>
+              </ul>
+            </div>
+            <div class="sep"></div>
+            <div class="copyright">&copy; 2008-2014 Aravinda VK, <br/>All rights reserved</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <script src="/theme/js/ui.js"></script>
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-11830111-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+  </body>
+</html>
