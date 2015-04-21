@@ -5,11 +5,11 @@ Pebble Watchface development experiences
 :author: Aravinda VK
 :date: 2015-04-22
 :tags: pebble
-:summary: After seeing lots of videos and awesome watch faces, I wanted watchface in my language.
+:summary: After seeing lots of videos and awesome watch faces, I wanted a watchface in my language.
 
 I fell in love with the `Pebble <https://getpebble.com/>`__ Smart watch after reading `Thejesh's blog <http://thejeshgn.com/2015/01/08/liking-pebble-watch/>`__ about Pebble. I was about to get Pebble Steel, but that time they announced Pebble Time Steel with color epaper display and many more features. Now I am eagerly waiting for Pebble Time Steel :)
 
-After seeing lots of videos and awesome watch faces, I wanted watchface in my language. I created a sample app by embedding the Kannada Unicode font and ASCII font to test the Unicode support in Pebble. It has basic support for Unicode, but no support for complex rendering :(
+After seeing lots of videos and awesome watch faces, I wanted a watchface in my language. I created a sample app by embedding the Kannada Unicode font and ASCII font to test the Unicode support in Pebble. It has basic support for Unicode, but no support for complex rendering :(
 
 .. figure:: /images/pebble_unicode_ascii.png
    :alt: Pebble Unicode Kannada
