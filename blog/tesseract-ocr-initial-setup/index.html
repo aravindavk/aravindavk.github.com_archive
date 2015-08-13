@@ -97,10 +97,10 @@ make install
 <li>Generate trained data</li>
 </ol>
 <p>I use Gimp to create tif images required for training. If you have jpg or png image convert to tif using</p>
-<div class="highlight"><pre>convert -depth 4 sample.jpg sample.tif
+<div class="highlight"><pre>convert -depth <span class="m">4</span> sample.jpg sample.tif
 </pre></div>
 <p>I have <code>apps</code> directory in my home directory, which is added to PATH using</p>
-<div class="highlight"><pre><span class="nv">PATH</span><span class="o">=</span>/home/aravinda/apps:PATH; <span class="nb">export </span>PATH
+<div class="highlight"><pre><span class="nv">PATH</span><span class="o">=</span>/home/aravinda/apps:PATH<span class="p">;</span> <span class="nb">export </span>PATH
 </pre></div>
 <p>I use this directory to save all my personal scripts and applications.</p>
 <p>Created a script called tessGenBox in apps directory, which accepts lang name as parameter.</p>
@@ -117,7 +117,7 @@ tesseract <span class="nv">$1</span>.tif <span class="nv">$1</span> batch.nochop
 <div class="highlight"><pre><span class="c">#!/bin/sh</span>
 tesseract <span class="nv">$1</span>.tif <span class="nv">$1</span> nobatch box.train
 unicharset_extractor <span class="nv">$1</span>.box
-<span class="nb">echo</span> <span class="nv">$1</span> 0 0 0 0 0 &gt; font_properties
+<span class="nb">echo</span> <span class="nv">$1</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> &gt; font_properties
 mftraining -F font_properties -U unicharset <span class="nv">$1</span>.tr
 mftraining -F font_properties -U unicharset -O <span class="nv">$1</span>.unicharset <span class="nv">$1</span>.tr
 cntraining <span class="nv">$1</span>.tr
@@ -128,7 +128,7 @@ mv mfunicharset <span class="nv">$1</span>.mfunicharset
 mv inttemp <span class="nv">$1</span>.inttemp
 combine_tessdata <span class="nv">$1</span>.
 <span class="c"># Used su since I use Debian, use sudo if you are using Ubuntu</span>
-su -c <span class="s2">&quot;cp $1.traineddata /usr/local/share/tessdata/&quot;</span>
+su -c <span class="s2">&quot;cp </span><span class="nv">$1</span><span class="s2">.traineddata /usr/local/share/tessdata/&quot;</span>
 </pre></div>
 <p>It will ask password at the end to copy trained data file to <code>/usr/local/share/tessdata</code></p>
 <p>I created two additional scripts to clean the space in between if required.</p>

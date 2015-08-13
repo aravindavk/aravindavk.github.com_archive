@@ -82,7 +82,7 @@
 <blockquote class="twitter-tweet"><p>Installing Firefox OS on my Nexus S. Fingers crossed :)</p>&mdash; Aravinda (@aravindavk) <a href="https://twitter.com/aravindavk/status/270116962045153280" data-datetime="2012-11-18T10:51:16+00:00">November 18, 2012</a></blockquote><p>Booting is superfast and Unicode rendering is awesome, adding new fonts also easy. I just used adb (Android Debugger) to push the font from my system.</p>
 <blockquote class="twitter-tweet"><p>Installing fonts is so easy in <a href="https://twitter.com/search/%23FirefoxOS">#FirefoxOS</a>, <a href="https://twitter.com/search/%23kannada">#kannada</a> works like a charm :) <a href="https://twitter.com/search/%23mozilla">#mozilla</a> <a href="https://twitter.com/search/%23nexusS">#nexusS</a></p>&mdash; Aravinda (@aravindavk) <a href="https://twitter.com/aravindavk/status/270149288326221824" data-datetime="2012-11-18T12:59:44+00:00">November 18, 2012</a></blockquote><p>I took screenshots using ADB and ffmpeg.</p>
 <div class="highlight"><pre>./adb pull /dev/graphics/fb0
-ffmpeg -vframes 1 -f rawvideo -pix_fmt rgb32 -s 480x800 -i fb0 ~/firefoxos_screenshots/s1.png
+ffmpeg -vframes <span class="m">1</span> -f rawvideo -pix_fmt rgb32 -s 480x800 -i fb0 ~/firefoxos_screenshots/s1.png
 </pre></div>
 <img alt="Lock screen" src="/images/firefoxos/s1.png" />
 <img alt="Twitter app" src="/images/firefoxos/s2.png" />

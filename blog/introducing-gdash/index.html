@@ -120,10 +120,10 @@
 <h3>Use case 4 - Multiple teams</h3>
 <p>If two teams monitoring two clusters and if you don't want to share the other cluster details then, just run below commands in two terminals and give respective URL to each team. Other solution is create two seperate config files and run it separately for different ports.</p>
 <div class="highlight"><pre><span class="c"># Team 1, who monitors cluster1 http://localhost:8001</span>
-sudo gdash -p 8001 --clusters ~/clusters.conf --limit-cluster cluster1
+sudo gdash -p <span class="m">8001</span> --clusters ~/clusters.conf --limit-cluster cluster1
 
 <span class="c"># Team 2, who monitors cluster2 http://localhost:8002</span>
-sudo gdash -p 8002 --clusters ~/clusters.conf --limit-cluster cluster2
+sudo gdash -p <span class="m">8002</span> --clusters ~/clusters.conf --limit-cluster cluster2
 </pre></div>
 </div>
 </div>

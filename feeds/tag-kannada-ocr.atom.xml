@@ -19,10 +19,10 @@ make install
 &lt;li&gt;Generate trained data&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;I use Gimp to create tif images required for training. If you have jpg or png image convert to tif using&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;convert -depth 4 sample.jpg sample.tif
+&lt;div class="highlight"&gt;&lt;pre&gt;convert -depth &lt;span class="m"&gt;4&lt;/span&gt; sample.jpg sample.tif
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;I have &lt;code&gt;apps&lt;/code&gt; directory in my home directory, which is added to PATH using&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/home/aravinda/apps:PATH; &lt;span class="nb"&gt;export &lt;/span&gt;PATH
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/home/aravinda/apps:PATH&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nb"&gt;export &lt;/span&gt;PATH
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;I use this directory to save all my personal scripts and applications.&lt;/p&gt;
 &lt;p&gt;Created a script called tessGenBox in apps directory, which accepts lang name as parameter.&lt;/p&gt;
@@ -39,7 +39,7 @@ tesseract &lt;span class="nv"&gt;$1&lt;/span&gt;.tif &lt;span class="nv"&gt;$1&l
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#!/bin/sh&lt;/span&gt;
 tesseract &lt;span class="nv"&gt;$1&lt;/span&gt;.tif &lt;span class="nv"&gt;$1&lt;/span&gt; nobatch box.train
 unicharset_extractor &lt;span class="nv"&gt;$1&lt;/span&gt;.box
-&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$1&lt;/span&gt; 0 0 0 0 0 &amp;gt; font_properties
+&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$1&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt; &amp;gt; font_properties
 mftraining -F font_properties -U unicharset &lt;span class="nv"&gt;$1&lt;/span&gt;.tr
 mftraining -F font_properties -U unicharset -O &lt;span class="nv"&gt;$1&lt;/span&gt;.unicharset &lt;span class="nv"&gt;$1&lt;/span&gt;.tr
 cntraining &lt;span class="nv"&gt;$1&lt;/span&gt;.tr
@@ -50,7 +50,7 @@ mv mfunicharset &lt;span class="nv"&gt;$1&lt;/span&gt;.mfunicharset
 mv inttemp &lt;span class="nv"&gt;$1&lt;/span&gt;.inttemp
 combine_tessdata &lt;span class="nv"&gt;$1&lt;/span&gt;.
 &lt;span class="c"&gt;# Used su since I use Debian, use sudo if you are using Ubuntu&lt;/span&gt;
-su -c &lt;span class="s2"&gt;&amp;quot;cp $1.traineddata /usr/local/share/tessdata/&amp;quot;&lt;/span&gt;
+su -c &lt;span class="s2"&gt;&amp;quot;cp &lt;/span&gt;&lt;span class="nv"&gt;$1&lt;/span&gt;&lt;span class="s2"&gt;.traineddata /usr/local/share/tessdata/&amp;quot;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;It will ask password at the end to copy trained data file to &lt;code&gt;/usr/local/share/tessdata&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;I created two additional scripts to clean the space in between if required.&lt;/p&gt;

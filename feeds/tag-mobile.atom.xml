@@ -4,7 +4,7 @@
 &lt;blockquote class="twitter-tweet"&gt;&lt;p&gt;Installing Firefox OS on my Nexus S. Fingers crossed :)&lt;/p&gt;&amp;mdash; Aravinda (@aravindavk) &lt;a href="https://twitter.com/aravindavk/status/270116962045153280" data-datetime="2012-11-18T10:51:16+00:00"&gt;November 18, 2012&lt;/a&gt;&lt;/blockquote&gt;&lt;p&gt;Booting is superfast and Unicode rendering is awesome, adding new fonts also easy. I just used adb (Android Debugger) to push the font from my system.&lt;/p&gt;
 &lt;blockquote class="twitter-tweet"&gt;&lt;p&gt;Installing fonts is so easy in &lt;a href="https://twitter.com/search/%23FirefoxOS"&gt;#FirefoxOS&lt;/a&gt;, &lt;a href="https://twitter.com/search/%23kannada"&gt;#kannada&lt;/a&gt; works like a charm :) &lt;a href="https://twitter.com/search/%23mozilla"&gt;#mozilla&lt;/a&gt; &lt;a href="https://twitter.com/search/%23nexusS"&gt;#nexusS&lt;/a&gt;&lt;/p&gt;&amp;mdash; Aravinda (@aravindavk) &lt;a href="https://twitter.com/aravindavk/status/270149288326221824" data-datetime="2012-11-18T12:59:44+00:00"&gt;November 18, 2012&lt;/a&gt;&lt;/blockquote&gt;&lt;p&gt;I took screenshots using ADB and ffmpeg.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;./adb pull /dev/graphics/fb0
-ffmpeg -vframes 1 -f rawvideo -pix_fmt rgb32 -s 480x800 -i fb0 ~/firefoxos_screenshots/s1.png
+ffmpeg -vframes &lt;span class="m"&gt;1&lt;/span&gt; -f rawvideo -pix_fmt rgb32 -s 480x800 -i fb0 ~/firefoxos_screenshots/s1.png
 &lt;/pre&gt;&lt;/div&gt;
 &lt;img alt="Lock screen" src="/images/firefoxos/s1.png" /&gt;
 &lt;img alt="Twitter app" src="/images/firefoxos/s2.png" /&gt;

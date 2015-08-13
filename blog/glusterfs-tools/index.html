@@ -89,7 +89,7 @@ git clone https://github.com/aravindavk/glusterfs-tools.git
 </pre></div>
 <p>Create a shellscript to call gftools /usr/local/bin/gfvolumes</p>
 <div class="highlight"><pre><span class="c">#!/bin/bash</span>
-python /home/aravinda/sandbox/glusterfs-tools/gftools/volumes.py <span class="s2">&quot;$@&quot;</span>
+python /home/aravinda/sandbox/glusterfs-tools/gftools/volumes.py <span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span>
 </pre></div>
 <p>Make gfvolumes executable</p>
 <div class="highlight"><pre>chmod +x /usr/local/bin/gfvolumes

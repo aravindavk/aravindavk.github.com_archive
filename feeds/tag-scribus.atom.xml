@@ -14,7 +14,7 @@
 &lt;p&gt;Now run&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;myscribus
 cmake .
-make &amp;amp; make install
+make &lt;span class="p"&gt;&amp;amp;&lt;/span&gt; make install
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Compilation took almost an hour in my laptop. :)&lt;/p&gt;
 &lt;p&gt;Looks like Scribus still has issues in rendering complex scripts. Will provide more information about rendering issues in my next blog post.&lt;/p&gt;

@@ -14,7 +14,7 @@
 &lt;p&gt;Now run&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;myscribus
 cmake .
-make &amp;amp; make install
+make &lt;span class="p"&gt;&amp;amp;&lt;/span&gt; make install
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Compilation took almost an hour in my laptop. :)&lt;/p&gt;
 &lt;p&gt;Looks like Scribus still has issues in rendering complex scripts. Will provide more information about rendering issues in my next blog post.&lt;/p&gt;
@@ -44,23 +44,23 @@ gedit &lt;span class="nv"&gt;$HOME&lt;/span&gt;/.xinput.d/all_ALL
 &lt;p&gt;Copy below lines in the file all_ALL.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#file: all_ALL&lt;/span&gt;
 &lt;span class="nv"&gt;XIM&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;SCIM
-&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; -e /usr/bin/skim &lt;span class="o"&gt;]&lt;/span&gt;; &lt;span class="k"&gt;then&lt;/span&gt;
-&lt;span class="k"&gt;    &lt;/span&gt;&lt;span class="nv"&gt;XIM_PROGRAM&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot; &amp;quot;&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; -e /usr/bin/skim &lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;then&lt;/span&gt;
+    &lt;span class="nv"&gt;XIM_PROGRAM&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot; &amp;quot;&lt;/span&gt;
 &lt;span class="k"&gt;else&lt;/span&gt;
-&lt;span class="k"&gt;    &lt;/span&gt;&lt;span class="nv"&gt;XIM_PROGRAM&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/usr/bin/scim
+    &lt;span class="nv"&gt;XIM_PROGRAM&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/usr/bin/scim
 &lt;span class="k"&gt;fi&lt;/span&gt;
 &lt;span class="nv"&gt;XIM_ARGS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;-d&amp;quot;&lt;/span&gt;
-&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; -e /usr/lib/gtk-2.0/*/immodules/im-scim-bridge.so &lt;span class="o"&gt;]&lt;/span&gt;; &lt;span class="k"&gt;then&lt;/span&gt;
-&lt;span class="k"&gt;    &lt;/span&gt;&lt;span class="nv"&gt;GTK_IM_MODULE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;scim-bridge
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; -e /usr/lib/gtk-2.0/*/immodules/im-scim-bridge.so &lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;then&lt;/span&gt;
+    &lt;span class="nv"&gt;GTK_IM_MODULE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;scim-bridge
 &lt;span class="k"&gt;else&lt;/span&gt;
-&lt;span class="k"&gt;    &lt;/span&gt;&lt;span class="nv"&gt;GTK_IM_MODULE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;xim
+    &lt;span class="nv"&gt;GTK_IM_MODULE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;xim
 &lt;span class="k"&gt;fi&lt;/span&gt;
 &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; -e /usr/lib/qt3/plugins/inputmethods/im-scim-bridge.so -o &lt;span class="se"&gt;\&lt;/span&gt;
      -e /usr/lib/qt4/plugins/inputmethods/im-scim-bridge.so &lt;span class="o"&gt;]&lt;/span&gt;
 &lt;span class="k"&gt;then&lt;/span&gt;
-&lt;span class="k"&gt;    &lt;/span&gt;&lt;span class="nv"&gt;QT_IM_MODULE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;scim-bridge
+    &lt;span class="nv"&gt;QT_IM_MODULE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;scim-bridge
 &lt;span class="k"&gt;else&lt;/span&gt;
-&lt;span class="k"&gt;    &lt;/span&gt;&lt;span class="nv"&gt;QT_IM_MODULE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;xim
+    &lt;span class="nv"&gt;QT_IM_MODULE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;xim
 &lt;span class="k"&gt;fi&lt;/span&gt;
 
 &lt;span class="nv"&gt;DEPENDS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;scim | skim, scim-bridge-agent, scim-bridge-client-gtk | \&lt;/span&gt;

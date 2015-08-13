@@ -300,7 +300,7 @@ UPDATE: &lt;br/&gt;ಬೆಂಗಳೂರು ಟ್ರಾಫಿಕ್ ನ ಫೇ�
 &lt;h2&gt;Command line tool&lt;/h2&gt;
 &lt;p&gt;ಲಿನಕ್ಸ್ ಬಳಸುವವರಿಗೊಂದು ಸಿಹಿಸುದ್ದಿ :) ಈಗ ಈ ಕನ್ವರ್ಟರ್ command line application ಆಗಿಯೂ ಲಭ್ಯ. ಇಲ್ಲಿರುವ &amp;quot;&lt;a class="reference external" href="https://github.com/aravindavk/ascii2unicode/blob/master/knconverter"&gt;knconverter&lt;/a&gt;&amp;quot; download ಮಾಡಿಕೊಂಡು &lt;code&gt;/usr/local/bin&lt;/code&gt; ಗೆ ಕಾಪಿ ಮಾಡಿಕೊಳ್ಳಿ.(&lt;code&gt;sudo cp ~/Downloads/knconverter /usr/local/bin/&lt;/code&gt;). ಇದನ್ನು ರನ್ ಮಾಡಲು Python 3 ಬೇಕಾಗುತ್ತದೆ.&lt;/p&gt;
 &lt;p&gt;ವಿವಿಧ ರೀತಿಯಲ್ಲಿ ಇದನ್ನು ಬಳಸಬಹುದು.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;cat my_ascii_file.txt | knconverter &amp;gt; output.txt
+&lt;div class="highlight"&gt;&lt;pre&gt;cat my_ascii_file.txt &lt;span class="p"&gt;|&lt;/span&gt; knconverter &amp;gt; output.txt
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;knconverter my_ascii_file.txt
 &lt;/pre&gt;&lt;/div&gt;

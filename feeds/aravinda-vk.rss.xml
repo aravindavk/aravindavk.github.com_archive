@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>aravindavk</title><link>http://aravindavk.in/</link><description></description><atom:link href="http://aravindavk.in/feeds/aravinda-vk.rss.xml" rel="self"></atom:link><lastBuildDate>Tue, 02 Jun 2015 00:00:00 +0530</lastBuildDate><item><title>Developing Pebble Timeline Application - Webmon</title><link>http://aravindavk.in/blog/developing-pebble-timeline-app-webmon/</link><description>&lt;p&gt;Pebble firmware 3.0 introduced a new feature called &lt;a class="reference external" href="https://developer.getpebble.com/guides/timeline/"&gt;Timeline&lt;/a&gt;, the advantage of Timeline app is that processing happens in App server instead of in the Mobile / Watch, and can directly send notification to Watch (via the Timeline API website and phone, but no additional app required on the phone).&lt;/p&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>aravindavk</title><link>http://aravindavk.in/</link><description></description><atom:link href="http://aravindavk.in/feeds/aravinda-vk.rss.xml" rel="self"></atom:link><lastBuildDate>Thu, 13 Aug 2015 00:00:00 +0530</lastBuildDate><item><title>PPFನಲ್ಲಿ invest ಮಾಡುತ್ತಿದ್ದರೆ...</title><link>http://aravindavk.in/blog/ppf-investment/</link><description>&lt;p&gt;ನನ್ನ PPF(&lt;a class="reference external" href="https://en.wikipedia.org/wiki/Public_Provident_Fund_%28India%29"&gt;Public Provident Fund&lt;/a&gt;) ಅಕೌಂಟ್ ನಲ್ಲಿದ್ದ ಹಣವನ್ನು ನನ್ನ ಬಡ್ಡಿ ಲೆಖ್ಖದೊಂದಿಗೆ ಹೊಂದಿಸಲು ಪ್ರಯತ್ನ ಮಾಡ್ತಿದ್ದೆ. ಆದರೆ ಅಕೌಂಟಿನಲ್ಲಿದ್ದ ಹಣ ನನ್ನ ಲೆಕ್ಕಾಚಾರದಷ್ಟಿರಲಿಲ್ಲ. ಅದ್ಯಾಕೆ ಅಂತ ಓದುತ್ತಾ ಹೋದಂತೆ ಇದುವರೆಗೂ ಗಮನ ಹರಿಸದ ಬಹಳಷ್ಟು ವಿಚಾರಗಳು ತಿಳಿದವು. ನನ್ನಂತೆಯೇ ಯಾರಿಗಾದರೂ ಈ ತರಹದ ತೊಂದರೆ ಆಗಿದ್ದರೆ ಈ ಲೇಖನ ಸಹಾಯಕ್ಕೆ ಬರಬಹುದು ಹಾಗೂ ನನ್ನ ನೆನಪಿಗೂ ಇರುತ್ತೆ ಅಂತ ಬರೆಯುತ್ತಿದ್ದೇನೆ.&lt;/p&gt;
+&lt;p&gt;ನಾನು ಪ್ರತೀ ವರ್ಷ financial year ಮುಗಿಯುತ್ತೆ ಅನ್ನುವಾಗ, ಉಳಿತಾಯ ತೋರಿಸುವ ಸಲುವಾಗಿ, PPF ಅಕೌಂಟ್ ಗೆ ಹಣ ಹಾಕುತ್ತಿದ್ದೆ. ಆದರೆ ಈ ಕೆಳಗಿನ ವಿಷಯಗಳನ್ನು ಯೋಚಿಸದೆ ಇದುವರೆಗೂ ಕಡಿಮೆ ಬಡ್ಡಿ ಪಡೆಯುತ್ತಿದ್ದೆ, ಇನ್ನು ಮುಂದಿನ ವರ್ಷಗಳಲ್ಲಾದರೂ ಅವಕಾಶವನ್ನು ಚೆನ್ನಾಗಿ ಉಪಯೋಗಿಸಿಕೊಳ್ಳುತ್ತೇನೆ.&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;ಇಂಟರೆಷ್ಟ್ ವರ್ಷಕ್ಕೇ ಆದರೂ ಪ್ರತೀ ತಿಂಗಳೂ ಲೆಖ್ಖ ಹಾಕಿ ಕೊನೆಗೆ ಸೇರಿಸುತ್ತಾರೆ. ಉದಾಹರಣೆಗೆ, ಈ ವರ್ಷ ಜುಲೈ ನಲ್ಲಿ ಹಣ ಕಟ್ಟಿದ್ದರೆ, ಜುಲೈ ನಿಂದ ಮಾತ್ರ ಲೆಖ್ಖ ಮಾಡುತ್ತಾರೆ.&lt;/li&gt;
+&lt;li&gt;ಅದೇ ತರಹ ೫ನೇ ತಾರೀಕಿನ ಒಳಗೆ ಕಟ್ಟಿದ್ದರೆ ಮಾತ್ರ ಆ ಬಡ್ಡಿ ಹಣಕ್ಕೆ ಆ ತಿಂಗಳಿಂದೂ ಸೇರಿಸಿಕೊಳ್ಳುತ್ತಾರೆ. ಉದಾಹರಣೆಗೆ, ಜುಲೈ ೫ರ ಒಳಗೆ ಹಣ ಕಟ್ಟಿದ್ದರೆ, ಆ ಹಣಕ್ಕೆ ಜುಲೈ ಗೂ ಬಡ್ಡಿ ಸಿಗುತ್ತೆ, ಇಲ್ಲವಾದರೆ ಆ ಹಣಕ್ಕೆ ಆಗಷ್ಟ್ ನಿಂದ ಬಡ್ಡಿ.&lt;/li&gt;
+&lt;li&gt;PPF ಅಕೌಂಟ್ ಗೆ ವರ್ಷವೆಂದರೆ ಏಪ್ರಿಲ್ ನಿಂದ ಮಾರ್ಚ್ ವರೆಗೆ, ಬಡ್ಡಿಯ ಲೆಕ್ಕಾಚಾರವೂ ಹಾಗೇ. ಮಾರ್ಚ್ ೩೧ಕ್ಕೆ ನಮ್ಮ ಅಕೌಂಟ್ ಗೆ ಬಡ್ಡಿ ಸೇರಿಸುತ್ತಾರೆ.&lt;/li&gt;
+&lt;li&gt;ವರ್ಷಕ್ಕೆ ಒಮ್ಮೆ ಹಣ ಕಟ್ಟುವವರಾದರೆ, ಏಪ್ರಿಲ್ ೧-೫ನೇ ತಾರೀಕಿನ ಒಳಗೇ ಕಟ್ಟಿ. ಆಗ ಆ ವರ್ಷದಲ್ಲಿ ೧೨ ತಿಂಗಳೂ ಬಡ್ಡಿ ಸಿಗುತ್ತೆ.&lt;/li&gt;
+&lt;li&gt;ಪ್ರತೀ ತಿಂಗಳು ಹಣ ಕಟ್ಟುವವರಾದರೆ, ಪ್ರತೀ ತಿಂಗಳು ೧-೫ನೇ ತಾರೀಕಿನ ಒಳಗೆ ಕಟ್ಟಿ, ಇಲ್ಲದಿದ್ದರೆ ಆ ಹಣಕ್ಕೆ ಒಂದು ತಿಂಗಳ ಬಡ್ಡಿ ಇಲ್ಲವಾಗುತ್ತೆ.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="figure"&gt;
+&lt;img alt="ppf dashboard" src="/images/ppf_dashboard.png" /&gt;
+&lt;p class="caption"&gt;ನನ್ನ ಈಗಿನ dashboard, ಲಿಬ್ರೆ ಆಫೀಸ್ ತಂತ್ರಾಂಶ ಉಪಯೋಗಿಸಿ ಮಾಡಿಕೊಂಡಿದ್ದು.(ವರ್ಷಕ್ಕೆ ಒಮ್ಮೆ ಕಟ್ಟುವವರಿಗಾಗಿ)&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;ವಿ.ಸೂ:&lt;/strong&gt; ಚಿತ್ರದಲ್ಲಿರುವ ಹಣ, ನಿಜವಾಗಿಯೂ ನಾನು invest ಮಾಡಿರುವ ಹಣ ಅಲ್ಲ, ಉದಾಹರಣೆಗೋಸ್ಕರ ಅಷ್ಟೆ. :)&lt;/p&gt;
+&lt;p&gt;Months ಅಂದರೆ, ಆ ವರ್ಷ ಕಟ್ಟಿದ ಹಣಕ್ಕೆ ಬಡ್ಡಿ ಸಿಗುವ ತಿಂಗಳುಗಳು ಅಂತ. ಉದಾಹರಣೆಗೆ, ಏಪ್ರಿಲ್ ೨ಕ್ಕೆ ಹಣ ಕಟ್ಟಿದ್ದರೆ ೧೨ ತಿಂಗಳುಗಳು ಬಡ್ಡಿ ಸಿಗುತ್ತೆ, ಜೂನ್ ೧೦ ಕ್ಕೆ ಹಣ ಕಟ್ಟಿದ್ದರೆ, ಆ ವರ್ಷದಲ್ಲಿ ೯ ತಿಂಗಳುಗಳು ಬಡ್ಡಿ ಸಿಗುತ್ತೆ. ಜೂನ್ ೪ಕ್ಕೆ ಕಟ್ಟಿದ್ದರೆ, ೧೦ ತಿಂಗಳ ಬಡ್ಡಿ ಸಿಗುತ್ತೆ.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;Interest = Opening x 8.7% + (Yearly x ((8.7/12) x Number of Months)%)
+Closing = Opening + Yearly + Interest
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;ಹಣಕಾಸಿನ ವಿಚಾರವಾಗಿ ಬರೆಯುತ್ತಿರುವ ನನ್ನ ಮೊದಲ ಲೇಖನ. ಏನಾದರೂ ಸಲಹೆಗಳಿದ್ದರೆ, ಪ್ರಶ್ನೆಗಳಿದ್ದರೆ ಹೇಳಿ. ಇನ್ನು ಮುಂದೆಯೂ ಈ ತರಹದ ಲೇಖನಗಳನ್ನು ಬರೆಯುವ ಪ್ರಯತ್ನ ಮಾಡುವೆ. :)  &lt;tt class="docutils literal"&gt;#winwin&lt;/tt&gt;&lt;/p&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Aravinda VK</dc:creator><pubDate>Thu, 13 Aug 2015 00:00:00 +0530</pubDate><guid>tag:aravindavk.in,2015-08-13:blog/ppf-investment/</guid><category>finance</category><category>kannada</category></item><item><title>Developing Pebble Timeline Application - Webmon</title><link>http://aravindavk.in/blog/developing-pebble-timeline-app-webmon/</link><description>&lt;p&gt;Pebble firmware 3.0 introduced a new feature called &lt;a class="reference external" href="https://developer.getpebble.com/guides/timeline/"&gt;Timeline&lt;/a&gt;, the advantage of Timeline app is that processing happens in App server instead of in the Mobile / Watch, and can directly send notification to Watch (via the Timeline API website and phone, but no additional app required on the phone).&lt;/p&gt;
 &lt;p&gt;I created a Pebble Timeline application to monitor the status of websites called &lt;a class="reference external" href="https://apps.getpebble.com/en_US/application/554627a6ab49e41f8f00004b"&gt;Webmon&lt;/a&gt;. Sometimes friends/users will ping or email to inform that our website is not accessible for some reason. We may lose our business if we don't monitor them regularly.&lt;/p&gt;
 &lt;img alt="Webmon App Logo" src="/images/webmon_logo.png" /&gt;
 &lt;p&gt;I submitted this app as part of &lt;a class="reference external" href="https://developer.getpebble.com/blog/2015/04/14/the-timeline-challenge-is-live/"&gt;#timelinechallenge&lt;/a&gt;, but the app was not fully working that time and had issues with sending user Pins. I am not sure Pebble team looked at this app or not. :) And now most of the issues got resolved.&lt;/p&gt;
@@ -91,7 +110,7 @@
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# Create a file /tmp/hello.txt&lt;/span&gt;
 &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Hello World&amp;quot;&lt;/span&gt; &amp;gt; /tmp/hello.txt
 &lt;span class="c"&gt;# wc can be used as both ways,&lt;/span&gt;
-cat /tmp/hello.txt | wc
+cat /tmp/hello.txt &lt;span class="p"&gt;|&lt;/span&gt; wc
 &lt;span class="c"&gt;# or&lt;/span&gt;
 wc /tmp/hello.txt
 &lt;/pre&gt;&lt;/div&gt;
@@ -109,36 +128,36 @@ wc /tmp/hello.txt
 &lt;div class="section" id="how-to-do-this-in-rust"&gt;
 &lt;h2&gt;How to do this in &lt;a class="reference external" href="http://rust-lang.org"&gt;Rust&lt;/a&gt;?&lt;/h2&gt;
 &lt;p&gt;It is very easy in Rust too, see...&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;use&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;io&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;use&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;io&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 
-&lt;span class="k"&gt;fn&lt;/span&gt; &lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(){&lt;/span&gt;
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;io&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;stdio&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;stdin_raw&lt;/span&gt;&lt;span class="p"&gt;().&lt;/span&gt;&lt;span class="n"&gt;isatty&lt;/span&gt;&lt;span class="p"&gt;(){&lt;/span&gt;
-        &lt;span class="n"&gt;println&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Not pipe&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-    &lt;span class="p"&gt;}&lt;/span&gt;
-    &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
-        &lt;span class="k"&gt;let&lt;/span&gt; &lt;span class="k"&gt;mut&lt;/span&gt; &lt;span class="n"&gt;reader&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;io&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;stdin&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
-        &lt;span class="k"&gt;loop&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
-            &lt;span class="k"&gt;match&lt;/span&gt; &lt;span class="n"&gt;reader&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read_line&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-                &lt;span class="n"&gt;Ok&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;txt&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;println&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Read: {}&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;txt&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
-                &lt;span class="n"&gt;Err&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;_e&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;break&lt;/span&gt;
-            &lt;span class="p"&gt;}&lt;/span&gt;
-        &lt;span class="p"&gt;}&lt;/span&gt;
-    &lt;span class="p"&gt;}&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="k"&gt;fn&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(){&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;io&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;stdio&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;stdin_raw&lt;/span&gt;&lt;span class="p"&gt;().&lt;/span&gt;&lt;span class="n"&gt;isatty&lt;/span&gt;&lt;span class="p"&gt;(){&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nb"&gt;println&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Not pipe&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="kd"&gt;let&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;mut&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;reader&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;io&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;stdin&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="k"&gt;loop&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="k"&gt;match&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;reader&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read_line&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;                &lt;/span&gt;&lt;span class="nb"&gt;Ok&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;txt&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;println&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Read: {}&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;txt&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;                &lt;/span&gt;&lt;span class="nb"&gt;Err&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;_e&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;break&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;To handle all the errors except EOF,&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;let&lt;/span&gt; &lt;span class="k"&gt;mut&lt;/span&gt; &lt;span class="n"&gt;reader&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;io&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;stdin&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
-&lt;span class="k"&gt;loop&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="k"&gt;match&lt;/span&gt; &lt;span class="n"&gt;reader&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read_line&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-        &lt;span class="n"&gt;Ok&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;txt&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;println&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Read: {}&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;txt&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
-        &lt;span class="n"&gt;Err&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;match&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;kind&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
-            &lt;span class="n"&gt;io&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;EndOfFile&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;break&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-            &lt;span class="n"&gt;_&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-                    &lt;span class="n"&gt;panic&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;ERROR: {}&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-            &lt;span class="p"&gt;}&lt;/span&gt;
-        &lt;span class="p"&gt;}&lt;/span&gt;
-    &lt;span class="p"&gt;}&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kd"&gt;let&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;mut&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;reader&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;io&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;stdin&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="k"&gt;loop&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;match&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;reader&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read_line&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nb"&gt;Ok&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;txt&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;println&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Read: {}&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;txt&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nb"&gt;Err&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;match&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;kind&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="n"&gt;io&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;EndOfFile&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;break&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="n"&gt;_&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;                    &lt;/span&gt;&lt;span class="n"&gt;panic&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;ERROR: {}&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;We can now create &lt;a class="reference external" href="http://en.wikipedia.org/wiki/Pipeline_%28Unix%29"&gt;pipe&lt;/a&gt; aware applications easily in Rust, let me know if you find this useful.&lt;/p&gt;
 &lt;p&gt;btw, Rust 1.0 is coming, see &lt;a class="reference external" href="http://blog.rust-lang.org/2014/12/12/1.0-Timeline.html"&gt;here&lt;/a&gt;&lt;/p&gt;
@@ -187,10 +206,10 @@ wc /tmp/hello.txt
 &lt;h3&gt;Use case 4 - Multiple teams&lt;/h3&gt;
 &lt;p&gt;If two teams monitoring two clusters and if you don't want to share the other cluster details then, just run below commands in two terminals and give respective URL to each team. Other solution is create two seperate config files and run it separately for different ports.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# Team 1, who monitors cluster1 http://localhost:8001&lt;/span&gt;
-sudo gdash -p 8001 --clusters ~/clusters.conf --limit-cluster cluster1
+sudo gdash -p &lt;span class="m"&gt;8001&lt;/span&gt; --clusters ~/clusters.conf --limit-cluster cluster1
 
 &lt;span class="c"&gt;# Team 2, who monitors cluster2 http://localhost:8002&lt;/span&gt;
-sudo gdash -p 8002 --clusters ~/clusters.conf --limit-cluster cluster2
+sudo gdash -p &lt;span class="m"&gt;8002&lt;/span&gt; --clusters ~/clusters.conf --limit-cluster cluster2
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -443,22 +462,22 @@ set
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#!/bin/bash&lt;/span&gt;
 &lt;span class="nv"&gt;VOL&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;
 &lt;span class="nv"&gt;ARGS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;getopt -l &lt;span class="s2"&gt;&amp;quot;volname:&amp;quot;&lt;/span&gt;  -name &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;$@&lt;/span&gt;&lt;span class="k"&gt;)&lt;/span&gt;
-&lt;span class="nb"&gt;eval set&lt;/span&gt; -- &lt;span class="s2"&gt;&amp;quot;$ARGS&amp;quot;&lt;/span&gt;
-&lt;span class="k"&gt;while &lt;/span&gt;&lt;span class="nb"&gt;true&lt;/span&gt;; &lt;span class="k"&gt;do&lt;/span&gt;
-&lt;span class="k"&gt;    case&lt;/span&gt; &lt;span class="nv"&gt;$1&lt;/span&gt; in
+&lt;span class="nb"&gt;eval set&lt;/span&gt; -- &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$ARGS&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="nb"&gt;true&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;
+    &lt;span class="k"&gt;case&lt;/span&gt; &lt;span class="nv"&gt;$1&lt;/span&gt; in
         --volname&lt;span class="o"&gt;)&lt;/span&gt;
             &lt;span class="nb"&gt;shift&lt;/span&gt;
 &lt;span class="nb"&gt;            &lt;/span&gt;&lt;span class="nv"&gt;VOL&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$1&lt;/span&gt;
-            ;;
+            &lt;span class="p"&gt;;;&lt;/span&gt;
         *&lt;span class="o"&gt;)&lt;/span&gt;
             &lt;span class="nb"&gt;shift&lt;/span&gt;
 &lt;span class="nb"&gt;            break&lt;/span&gt;
-            ;;
+            &lt;span class="p"&gt;;;&lt;/span&gt;
     &lt;span class="k"&gt;esac&lt;/span&gt;
-&lt;span class="k"&gt;    &lt;/span&gt;&lt;span class="nb"&gt;shift&lt;/span&gt;
+    &lt;span class="nb"&gt;shift&lt;/span&gt;
 &lt;span class="k"&gt;done&lt;/span&gt;
 
-wall &lt;span class="s2"&gt;&amp;quot;Gluster Volume Created: $VOL&amp;quot;&lt;/span&gt;;
+wall &lt;span class="s2"&gt;&amp;quot;Gluster Volume Created: &lt;/span&gt;&lt;span class="nv"&gt;$VOL&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="section" id="experimental-project-glusterweb"&gt;
@@ -597,7 +616,7 @@ python rename_base_glyphs.py ../Navilu/Navilu.sfd
 python adjust_spacing.py ../Navilu/Navilu.sfd
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Now generate the fonts to test the changes. Harfbuzz can be used for testing.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;hb-view ../lohit2/kannada/Lohit-Kannada.ttf &lt;span class="s2"&gt;&amp;quot;$(cat stage1_tests.txt )&amp;quot;&lt;/span&gt; --output-file preview_lohit.png
+&lt;div class="highlight"&gt;&lt;pre&gt;hb-view ../lohit2/kannada/Lohit-Kannada.ttf &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;cat stage1_tests.txt &lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; --output-file preview_lohit.png
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Let me know if anybody interested to join and contribute to improve Kannada fonts.&lt;/p&gt;
 &lt;/div&gt;
@@ -716,7 +735,7 @@ git clone https://github.com/aravindavk/glusterfs-tools.git
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Create a shellscript to call gftools /usr/local/bin/gfvolumes&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#!/bin/bash&lt;/span&gt;
-python /home/aravinda/sandbox/glusterfs-tools/gftools/volumes.py &lt;span class="s2"&gt;&amp;quot;$@&amp;quot;&lt;/span&gt;
+python /home/aravinda/sandbox/glusterfs-tools/gftools/volumes.py &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$@&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Make gfvolumes executable&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;chmod +x /usr/local/bin/gfvolumes
@@ -929,8 +948,8 @@ python /home/aravinda/sandbox/glusterfs-tools/gftools/volumes.py &lt;span class=
   &lt;div style="height:5px;background-color:green;width:42%"&gt;
   &lt;/div&gt;
 &lt;/div&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nt"&gt;&amp;lt;style&amp;gt;&lt;/span&gt;
-&lt;span class="nc"&gt;.outer&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="k"&gt;width&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="m"&gt;100&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;background-color&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="m"&gt;#ddd&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;height&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="m"&gt;5px&lt;/span&gt;&lt;span class="p"&gt;;}&lt;/span&gt;
-&lt;span class="nc"&gt;.inner&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="k"&gt;width&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="m"&gt;42&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;background-color&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="nb"&gt;green&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;height&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="m"&gt;5px&lt;/span&gt;&lt;span class="p"&gt;;}&lt;/span&gt;
+&lt;span class="nc"&gt;.outer&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="k"&gt;width&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="m"&gt;100%&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;background-color&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="m"&gt;#ddd&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;height&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="m"&gt;5px&lt;/span&gt;&lt;span class="p"&gt;;}&lt;/span&gt;
+&lt;span class="nc"&gt;.inner&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="k"&gt;width&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="m"&gt;42%&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;background-color&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="nb"&gt;green&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;height&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="m"&gt;5px&lt;/span&gt;&lt;span class="p"&gt;;}&lt;/span&gt;
 &lt;span class="nc"&gt;.chart-label&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="k"&gt;color&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="m"&gt;#555&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;font-size&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="m"&gt;12px&lt;/span&gt;&lt;span class="p"&gt;;}&lt;/span&gt;
 &lt;span class="nt"&gt;&amp;lt;/style&amp;gt;&lt;/span&gt;
 &lt;span class="nt"&gt;&amp;lt;span&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;chart-label&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;42%&lt;span class="nt"&gt;&amp;lt;/span&amp;gt;&lt;/span&gt;
@@ -986,7 +1005,7 @@ python /home/aravinda/sandbox/glusterfs-tools/gftools/volumes.py &lt;span class=
 &lt;blockquote class="twitter-tweet"&gt;&lt;p&gt;Installing Firefox OS on my Nexus S. Fingers crossed :)&lt;/p&gt;&amp;mdash; Aravinda (@aravindavk) &lt;a href="https://twitter.com/aravindavk/status/270116962045153280" data-datetime="2012-11-18T10:51:16+00:00"&gt;November 18, 2012&lt;/a&gt;&lt;/blockquote&gt;&lt;p&gt;Booting is superfast and Unicode rendering is awesome, adding new fonts also easy. I just used adb (Android Debugger) to push the font from my system.&lt;/p&gt;
 &lt;blockquote class="twitter-tweet"&gt;&lt;p&gt;Installing fonts is so easy in &lt;a href="https://twitter.com/search/%23FirefoxOS"&gt;#FirefoxOS&lt;/a&gt;, &lt;a href="https://twitter.com/search/%23kannada"&gt;#kannada&lt;/a&gt; works like a charm :) &lt;a href="https://twitter.com/search/%23mozilla"&gt;#mozilla&lt;/a&gt; &lt;a href="https://twitter.com/search/%23nexusS"&gt;#nexusS&lt;/a&gt;&lt;/p&gt;&amp;mdash; Aravinda (@aravindavk) &lt;a href="https://twitter.com/aravindavk/status/270149288326221824" data-datetime="2012-11-18T12:59:44+00:00"&gt;November 18, 2012&lt;/a&gt;&lt;/blockquote&gt;&lt;p&gt;I took screenshots using ADB and ffmpeg.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;./adb pull /dev/graphics/fb0
-ffmpeg -vframes 1 -f rawvideo -pix_fmt rgb32 -s 480x800 -i fb0 ~/firefoxos_screenshots/s1.png
+ffmpeg -vframes &lt;span class="m"&gt;1&lt;/span&gt; -f rawvideo -pix_fmt rgb32 -s 480x800 -i fb0 ~/firefoxos_screenshots/s1.png
 &lt;/pre&gt;&lt;/div&gt;
 &lt;img alt="Lock screen" src="/images/firefoxos/s1.png" /&gt;
 &lt;img alt="Twitter app" src="/images/firefoxos/s2.png" /&gt;
@@ -1131,7 +1150,7 @@ ffmpeg -vframes 1 -f rawvideo -pix_fmt rgb32 -s 480x800 -i fb0 ~/firefoxos_scree
 &lt;h2&gt;Command line tool&lt;/h2&gt;
 &lt;p&gt;ಲಿನಕ್ಸ್ ಬಳಸುವವರಿಗೊಂದು ಸಿಹಿಸುದ್ದಿ :) ಈಗ ಈ ಕನ್ವರ್ಟರ್ command line application ಆಗಿಯೂ ಲಭ್ಯ. ಇಲ್ಲಿರುವ &amp;quot;&lt;a class="reference external" href="https://github.com/aravindavk/ascii2unicode/blob/master/knconverter"&gt;knconverter&lt;/a&gt;&amp;quot; download ಮಾಡಿಕೊಂಡು &lt;code&gt;/usr/local/bin&lt;/code&gt; ಗೆ ಕಾಪಿ ಮಾಡಿಕೊಳ್ಳಿ.(&lt;code&gt;sudo cp ~/Downloads/knconverter /usr/local/bin/&lt;/code&gt;). ಇದನ್ನು ರನ್ ಮಾಡಲು Python 3 ಬೇಕಾಗುತ್ತದೆ.&lt;/p&gt;
 &lt;p&gt;ವಿವಿಧ ರೀತಿಯಲ್ಲಿ ಇದನ್ನು ಬಳಸಬಹುದು.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;cat my_ascii_file.txt | knconverter &amp;gt; output.txt
+&lt;div class="highlight"&gt;&lt;pre&gt;cat my_ascii_file.txt &lt;span class="p"&gt;|&lt;/span&gt; knconverter &amp;gt; output.txt
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;knconverter my_ascii_file.txt
 &lt;/pre&gt;&lt;/div&gt;
@@ -1496,10 +1515,10 @@ make install
 &lt;li&gt;Generate trained data&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;I use Gimp to create tif images required for training. If you have jpg or png image convert to tif using&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;convert -depth 4 sample.jpg sample.tif
+&lt;div class="highlight"&gt;&lt;pre&gt;convert -depth &lt;span class="m"&gt;4&lt;/span&gt; sample.jpg sample.tif
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;I have &lt;code&gt;apps&lt;/code&gt; directory in my home directory, which is added to PATH using&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/home/aravinda/apps:PATH; &lt;span class="nb"&gt;export &lt;/span&gt;PATH
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/home/aravinda/apps:PATH&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nb"&gt;export &lt;/span&gt;PATH
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;I use this directory to save all my personal scripts and applications.&lt;/p&gt;
 &lt;p&gt;Created a script called tessGenBox in apps directory, which accepts lang name as parameter.&lt;/p&gt;
@@ -1516,7 +1535,7 @@ tesseract &lt;span class="nv"&gt;$1&lt;/span&gt;.tif &lt;span class="nv"&gt;$1&l
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#!/bin/sh&lt;/span&gt;
 tesseract &lt;span class="nv"&gt;$1&lt;/span&gt;.tif &lt;span class="nv"&gt;$1&lt;/span&gt; nobatch box.train
 unicharset_extractor &lt;span class="nv"&gt;$1&lt;/span&gt;.box
-&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$1&lt;/span&gt; 0 0 0 0 0 &amp;gt; font_properties
+&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$1&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt; &amp;gt; font_properties
 mftraining -F font_properties -U unicharset &lt;span class="nv"&gt;$1&lt;/span&gt;.tr
 mftraining -F font_properties -U unicharset -O &lt;span class="nv"&gt;$1&lt;/span&gt;.unicharset &lt;span class="nv"&gt;$1&lt;/span&gt;.tr
 cntraining &lt;span class="nv"&gt;$1&lt;/span&gt;.tr
@@ -1527,7 +1546,7 @@ mv mfunicharset &lt;span class="nv"&gt;$1&lt;/span&gt;.mfunicharset
 mv inttemp &lt;span class="nv"&gt;$1&lt;/span&gt;.inttemp
 combine_tessdata &lt;span class="nv"&gt;$1&lt;/span&gt;.
 &lt;span class="c"&gt;# Used su since I use Debian, use sudo if you are using Ubuntu&lt;/span&gt;
-su -c &lt;span class="s2"&gt;&amp;quot;cp $1.traineddata /usr/local/share/tessdata/&amp;quot;&lt;/span&gt;
+su -c &lt;span class="s2"&gt;&amp;quot;cp &lt;/span&gt;&lt;span class="nv"&gt;$1&lt;/span&gt;&lt;span class="s2"&gt;.traineddata /usr/local/share/tessdata/&amp;quot;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;It will ask password at the end to copy trained data file to &lt;code&gt;/usr/local/share/tessdata&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;I created two additional scripts to clean the space in between if required.&lt;/p&gt;
@@ -1658,9 +1677,9 @@ mount -o loop texlive-2010.iso /tmp/texlive
 &lt;p&gt;This will ask for prompt, type &amp;quot;I&amp;quot; to install in your system. TeXLive will be installed in &lt;code&gt;/usr/local/texlive/2010&lt;/code&gt; directory. We need to set the environment variable PATH for future use of XeTeX. If we set in .bashrc in home directory, then these will be only available to that user. Since we need system wide configuration we will add in &lt;code&gt;/etc/bash.bashrc&lt;/code&gt; or &lt;code&gt;/etc/profile&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;If you are adding in &lt;code&gt;/etc/profile&lt;/code&gt; then we have to logout and login to affect the changes. Make sure you add before the &lt;code&gt;export PATH&lt;/code&gt; statement in &lt;code&gt;/etc/profile&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;If you are planning to add in &lt;code&gt;/etc/bash.bashrc&lt;/code&gt; then add it in the end.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/usr/local/texlive/2010/bin/i386-linux:&lt;span class="nv"&gt;$PATH&lt;/span&gt;; &lt;span class="nb"&gt;export &lt;/span&gt;PATH
-&lt;span class="nv"&gt;MANPATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/usr/local/texlive/2010/texmf/doc/man:&lt;span class="nv"&gt;$MANPATH&lt;/span&gt;; &lt;span class="nb"&gt;export &lt;/span&gt;MANPATH
-&lt;span class="nv"&gt;INFOPATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/usr/local/texlive/2010/texmf/doc/info:&lt;span class="nv"&gt;$INFOPATH&lt;/span&gt;; &lt;span class="nb"&gt;export &lt;/span&gt;INFOPATH
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/usr/local/texlive/2010/bin/i386-linux:&lt;span class="nv"&gt;$PATH&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nb"&gt;export &lt;/span&gt;PATH
+&lt;span class="nv"&gt;MANPATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/usr/local/texlive/2010/texmf/doc/man:&lt;span class="nv"&gt;$MANPATH&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nb"&gt;export &lt;/span&gt;MANPATH
+&lt;span class="nv"&gt;INFOPATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/usr/local/texlive/2010/texmf/doc/info:&lt;span class="nv"&gt;$INFOPATH&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nb"&gt;export &lt;/span&gt;INFOPATH
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Add the following in &lt;code&gt;/etc/manpath.config&lt;/code&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;MANPATH_MAP /usr/local/texlive/2010/bin/i386-linux /usr/local/texlive/2010/texmf/doc/man
@@ -1734,7 +1753,7 @@ fmtutil --byfmt xelatex
 &lt;p&gt;Now run&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;myscribus
 cmake .
-make &amp;amp; make install
+make &lt;span class="p"&gt;&amp;amp;&lt;/span&gt; make install
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Compilation took almost an hour in my laptop. :)&lt;/p&gt;
 &lt;p&gt;Looks like Scribus still has issues in rendering complex scripts. Will provide more information about rendering issues in my next blog post.&lt;/p&gt;
@@ -2240,23 +2259,23 @@ gedit &lt;span class="nv"&gt;$HOME&lt;/span&gt;/.xinput.d/all_ALL
 &lt;p&gt;Copy below lines in the file all_ALL.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#file: all_ALL&lt;/span&gt;
 &lt;span class="nv"&gt;XIM&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;SCIM
-&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; -e /usr/bin/skim &lt;span class="o"&gt;]&lt;/span&gt;; &lt;span class="k"&gt;then&lt;/span&gt;
-&lt;span class="k"&gt;    &lt;/span&gt;&lt;span class="nv"&gt;XIM_PROGRAM&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot; &amp;quot;&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; -e /usr/bin/skim &lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;then&lt;/span&gt;
+    &lt;span class="nv"&gt;XIM_PROGRAM&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot; &amp;quot;&lt;/span&gt;
 &lt;span class="k"&gt;else&lt;/span&gt;
-&lt;span class="k"&gt;    &lt;/span&gt;&lt;span class="nv"&gt;XIM_PROGRAM&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/usr/bin/scim
+    &lt;span class="nv"&gt;XIM_PROGRAM&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/usr/bin/scim
 &lt;span class="k"&gt;fi&lt;/span&gt;
 &lt;span class="nv"&gt;XIM_ARGS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;-d&amp;quot;&lt;/span&gt;
-&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; -e /usr/lib/gtk-2.0/*/immodules/im-scim-bridge.so &lt;span class="o"&gt;]&lt;/span&gt;; &lt;span class="k"&gt;then&lt;/span&gt;
-&lt;span class="k"&gt;    &lt;/span&gt;&lt;span class="nv"&gt;GTK_IM_MODULE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;scim-bridge
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; -e /usr/lib/gtk-2.0/*/immodules/im-scim-bridge.so &lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;then&lt;/span&gt;
+    &lt;span class="nv"&gt;GTK_IM_MODULE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;scim-bridge
 &lt;span class="k"&gt;else&lt;/span&gt;
-&lt;span class="k"&gt;    &lt;/span&gt;&lt;span class="nv"&gt;GTK_IM_MODULE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;xim
+    &lt;span class="nv"&gt;GTK_IM_MODULE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;xim
 &lt;span class="k"&gt;fi&lt;/span&gt;
 &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; -e /usr/lib/qt3/plugins/inputmethods/im-scim-bridge.so -o &lt;span class="se"&gt;\&lt;/span&gt;
      -e /usr/lib/qt4/plugins/inputmethods/im-scim-bridge.so &lt;span class="o"&gt;]&lt;/span&gt;
 &lt;span class="k"&gt;then&lt;/span&gt;
-&lt;span class="k"&gt;    &lt;/span&gt;&lt;span class="nv"&gt;QT_IM_MODULE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;scim-bridge
+    &lt;span class="nv"&gt;QT_IM_MODULE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;scim-bridge
 &lt;span class="k"&gt;else&lt;/span&gt;
-&lt;span class="k"&gt;    &lt;/span&gt;&lt;span class="nv"&gt;QT_IM_MODULE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;xim
+    &lt;span class="nv"&gt;QT_IM_MODULE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;xim
 &lt;span class="k"&gt;fi&lt;/span&gt;
 
 &lt;span class="nv"&gt;DEPENDS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;scim | skim, scim-bridge-agent, scim-bridge-client-gtk | \&lt;/span&gt;

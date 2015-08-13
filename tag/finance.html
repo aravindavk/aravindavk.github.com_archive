@@ -11,7 +11,7 @@
     <meta http-equiv="pragma" content="no-cache" />
     <link href="/theme/img/fav.png" rel="icon" type="image/x-icon" />
     <link rel="apple-touch-icon" href="/theme/img/fav.png" />
-    <title>Installing Scribus svn in Debian Squeeze</title>
+    <title>aravindavk - finance</title>
     <link href="http://aravindavk.in/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="aravindavk Atom Feed" />
     <link rel="stylesheet" href="/theme/css/pure-min.css" />
     <link rel="stylesheet" href="/theme/css/side-menu.css" />
@@ -52,7 +52,7 @@
             <li class=""><a href="/">Home</a></li>
             <li class=""><a href="/me">About</a></li>
             <li class=""><a href="/projects">Projects</a></li>
-            <li class=""><a href="/blogs">Blogs</a></li>
+            <li class="pure-menu-selected"><a href="/blogs">Blogs</a></li>
             <li class=""><a href="/talks">Talks & Articles</a></li>
           </ul>
         </div>
@@ -64,64 +64,14 @@
         <div class="pure-u-4-5 content-left">
           <div class="left article">
 <section id="content" class="body">
-  <article>
-    <header>
-      <h1 class="entry-title">
-        Installing Scribus svn in Debian Squeeze</h1>
-    </header>
-    <div class="pure-hidden-phone pure-hidden-tablet">
-<footer class="post-info">
-  <p class="author-and-date-info">
-    Posted on Mon 11 April 2011 by <a class="url fn" href="http://aravindavk.in">Aravinda VK</a>.
-  </p>
-</footer><!-- /.post-info -->
-<div class="sep"></div>    </div>
-    <div class="entry-content">
-      <p>I heard that Unicode rending issues of complex scripts are fixed in svn version of Scribus(1.5). So I wanted to test it for Kannada.</p>
-<p>Downloaded svn source using following command to my Debian Squeeze machine.</p>
-<div class="highlight"><pre>svn co svn://scribus.net/trunk/Scribus myscribus
-</pre></div>
-<p>First installed cmake, which is required to compile Scribus.</p>
-<div class="highlight"><pre>apt-get install cmake
-</pre></div>
-<p>When I ran <code>cmake .</code> as root user, it started listing dependency issues. Installed development libraries as and when cmake throws error. Finally ended up installing following dev libraries.</p>
-<div class="highlight"><pre>apt-get install libtiff4-dev python-dev libfreetype6-dev
-                libcups2-dev libxml2-dev liblcms1-dev
-                libpixman-1-dev libaspel-dev libfontconfig1-dev
-</pre></div>
-<p>Now run</p>
-<div class="highlight"><pre><span class="nb">cd </span>myscribus
-cmake .
-make <span class="p">&amp;</span> make install
-</pre></div>
-<p>Compilation took almost an hour in my laptop. :)</p>
-<p>Looks like Scribus still has issues in rendering complex scripts. Will provide more information about rendering issues in my next blog post.</p>
+<h1>Blogs</h1>
 
-    </div><!-- /.entry-content -->
-    <div class="pure-hidden-desktop">
-<footer class="post-info">
-  <p class="author-and-date-info">
-    Posted on Mon 11 April 2011 by <a class="url fn" href="http://aravindavk.in">Aravinda VK</a>.
-  </p>
-</footer><!-- /.post-info -->
-<div class="sep"></div>    </div>
-    <div class="permalink-div">
-      Permalink: <a href="http://aravindavk.in/blog/installing-scribus-svn-in-debian-squeeze/" rel="bookmark" title="Permalink to Installing Scribus svn in Debian Squeeze">http://aravindavk.in/blog/installing-scribus-svn-in-debian-squeeze/</a>
-    </div>
-<div class="comments">
-  <h2>Comments !</h2>
-  <div id="disqus_thread"></div>
-  <script type="text/javascript">
-    var disqus_identifier = "blog/installing-scribus-svn-in-debian-squeeze/";
-    var disqus_url = "http://aravindavk.in/blog/installing-scribus-svn-in-debian-squeeze/";
-    (function() {
-    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-    dsq.src = 'http://vkaravinda.disqus.com/embed.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-  </script>
+<div class="article-title-row">
+  <div class="article-date pure-hidden-phone">13 Aug, 2015</div>
+  <a href="/blog/ppf-investment/">PPFನಲ್ಲಿ invest ಮಾಡುತ್ತಿದ್ದರೆ... </a>
+  <div class="mobile-posted-on pure-hidden-desktop pure-hidden-tablet">posted on 13 Aug, 2015</div>
 </div>
-  </article>
+<p class="summary pure-hidden-phone">ವರ್ಷಕ್ಕೆ ಒಮ್ಮೆ ಹಣ ಕಟ್ಟುವವರಾದರೆ, ಏಪ್ರಿಲ್ ೧-೫ನೇ ತಾರೀಕಿನ ಒಳಗೇ ಕಟ್ಟಿ. ಆಗ ಆ ವರ್ಷದಲ್ಲಿ ೧೨ ತಿಂಗಳೂ ಬಡ್ಡಿ ಸಿಗುತ್ತೆ. <a href="/blog/ppf-investment/">...</a></p>
 </section>
             <div class="copyright pure-hidden-desktop pure-hidden-tablet">&copy; 2008-2014 Aravinda VK, <br/>All rights reserved</div>
           </div>
@@ -156,7 +106,7 @@ make <span class="p">&amp;</span> make install
                 <li class=""><a href="/">Home</a></li>
                 <li class=""><a href="/me">About</a></li>
                 <li class=""><a href="/projects">Projects</a></li>
-                <li class=""><a href="/blogs">Blogs</a></li>
+                <li class="pure-menu-selected"><a href="/blogs">Blogs</a></li>
                 <li class=""><a href="/talks">Talks & Articles</a></li>
               </ul>
             </div>

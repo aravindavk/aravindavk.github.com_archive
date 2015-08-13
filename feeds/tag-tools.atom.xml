@@ -42,10 +42,10 @@
 &lt;h3&gt;Use case 4 - Multiple teams&lt;/h3&gt;
 &lt;p&gt;If two teams monitoring two clusters and if you don't want to share the other cluster details then, just run below commands in two terminals and give respective URL to each team. Other solution is create two seperate config files and run it separately for different ports.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# Team 1, who monitors cluster1 http://localhost:8001&lt;/span&gt;
-sudo gdash -p 8001 --clusters ~/clusters.conf --limit-cluster cluster1
+sudo gdash -p &lt;span class="m"&gt;8001&lt;/span&gt; --clusters ~/clusters.conf --limit-cluster cluster1
 
 &lt;span class="c"&gt;# Team 2, who monitors cluster2 http://localhost:8002&lt;/span&gt;
-sudo gdash -p 8002 --clusters ~/clusters.conf --limit-cluster cluster2
+sudo gdash -p &lt;span class="m"&gt;8002&lt;/span&gt; --clusters ~/clusters.conf --limit-cluster cluster2
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -176,7 +176,7 @@ git clone https://github.com/aravindavk/glusterfs-tools.git
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Create a shellscript to call gftools /usr/local/bin/gfvolumes&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#!/bin/bash&lt;/span&gt;
-python /home/aravinda/sandbox/glusterfs-tools/gftools/volumes.py &lt;span class="s2"&gt;&amp;quot;$@&amp;quot;&lt;/span&gt;
+python /home/aravinda/sandbox/glusterfs-tools/gftools/volumes.py &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$@&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Make gfvolumes executable&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;chmod +x /usr/local/bin/gfvolumes

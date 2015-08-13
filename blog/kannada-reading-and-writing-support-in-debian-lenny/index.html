@@ -91,23 +91,23 @@ gedit <span class="nv">$HOME</span>/.xinput.d/all_ALL
 <p>Copy below lines in the file all_ALL.</p>
 <div class="highlight"><pre><span class="c">#file: all_ALL</span>
 <span class="nv">XIM</span><span class="o">=</span>SCIM
-<span class="k">if</span> <span class="o">[</span> -e /usr/bin/skim <span class="o">]</span>; <span class="k">then</span>
-<span class="k">    </span><span class="nv">XIM_PROGRAM</span><span class="o">=</span><span class="s2">&quot; &quot;</span>
+<span class="k">if</span> <span class="o">[</span> -e /usr/bin/skim <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+    <span class="nv">XIM_PROGRAM</span><span class="o">=</span><span class="s2">&quot; &quot;</span>
 <span class="k">else</span>
-<span class="k">    </span><span class="nv">XIM_PROGRAM</span><span class="o">=</span>/usr/bin/scim
+    <span class="nv">XIM_PROGRAM</span><span class="o">=</span>/usr/bin/scim
 <span class="k">fi</span>
 <span class="nv">XIM_ARGS</span><span class="o">=</span><span class="s2">&quot;-d&quot;</span>
-<span class="k">if</span> <span class="o">[</span> -e /usr/lib/gtk-2.0/*/immodules/im-scim-bridge.so <span class="o">]</span>; <span class="k">then</span>
-<span class="k">    </span><span class="nv">GTK_IM_MODULE</span><span class="o">=</span>scim-bridge
+<span class="k">if</span> <span class="o">[</span> -e /usr/lib/gtk-2.0/*/immodules/im-scim-bridge.so <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+    <span class="nv">GTK_IM_MODULE</span><span class="o">=</span>scim-bridge
 <span class="k">else</span>
-<span class="k">    </span><span class="nv">GTK_IM_MODULE</span><span class="o">=</span>xim
+    <span class="nv">GTK_IM_MODULE</span><span class="o">=</span>xim
 <span class="k">fi</span>
 <span class="k">if</span> <span class="o">[</span> -e /usr/lib/qt3/plugins/inputmethods/im-scim-bridge.so -o <span class="se">\</span>
      -e /usr/lib/qt4/plugins/inputmethods/im-scim-bridge.so <span class="o">]</span>
 <span class="k">then</span>
-<span class="k">    </span><span class="nv">QT_IM_MODULE</span><span class="o">=</span>scim-bridge
+    <span class="nv">QT_IM_MODULE</span><span class="o">=</span>scim-bridge
 <span class="k">else</span>
-<span class="k">    </span><span class="nv">QT_IM_MODULE</span><span class="o">=</span>xim
+    <span class="nv">QT_IM_MODULE</span><span class="o">=</span>xim
 <span class="k">fi</span>
 
 <span class="nv">DEPENDS</span><span class="o">=</span><span class="s2">&quot;scim | skim, scim-bridge-agent, scim-bridge-client-gtk | \</span>

@@ -160,7 +160,7 @@ python rename_base_glyphs.py ../Navilu/Navilu.sfd
 python adjust_spacing.py ../Navilu/Navilu.sfd
 </pre></div>
 <p>Now generate the fonts to test the changes. Harfbuzz can be used for testing.</p>
-<div class="highlight"><pre>hb-view ../lohit2/kannada/Lohit-Kannada.ttf <span class="s2">&quot;$(cat stage1_tests.txt )&quot;</span> --output-file preview_lohit.png
+<div class="highlight"><pre>hb-view ../lohit2/kannada/Lohit-Kannada.ttf <span class="s2">&quot;</span><span class="k">$(</span>cat stage1_tests.txt <span class="k">)</span><span class="s2">&quot;</span> --output-file preview_lohit.png
 </pre></div>
 <p>Let me know if anybody interested to join and contribute to improve Kannada fonts.</p>
 </div>
