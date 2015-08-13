@@ -3,7 +3,7 @@ PPFನಲ್ಲಿ invest ಮಾಡುತ್ತಿದ್ದರೆ...
 
 :slug: ppf-investment
 :author: Aravinda VK
-:date: 2015-08-13
+:date: 2015-08-14
 :tags: finance, kannada
 :summary: ವರ್ಷಕ್ಕೆ ಒಮ್ಮೆ ಹಣ ಕಟ್ಟುವವರಾದರೆ, ಏಪ್ರಿಲ್ ೧-೫ನೇ ತಾರೀಕಿನ ಒಳಗೇ ಕಟ್ಟಿ. ಆಗ ಆ ವರ್ಷದಲ್ಲಿ ೧೨ ತಿಂಗಳೂ ಬಡ್ಡಿ ಸಿಗುತ್ತೆ.
 
