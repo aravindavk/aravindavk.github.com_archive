@@ -49,7 +49,7 @@ FAQs
 5. **Accepted Payment Types:** NEFT/Cash
 6. **Location:** Bengaluru
 7. **Specifications:** `http://www.nikon.co.in/en_IN/product/digital-slr-cameras/d90 <http://www.nikon.co.in/en_IN/product/digital-slr-cameras/d90>`__
-8. **Shutter Count:* * 21092
+8. **Shutter Count:** 21092
 9. **Purchase dates:**:
    Nikon D90 camera body + 18-105mm lens on 17 Nov 2010, 50mm Lens on 21 Nov 2012 and Remote on 20 Apr 2012
    
