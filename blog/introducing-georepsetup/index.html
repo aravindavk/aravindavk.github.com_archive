@@ -11,7 +11,7 @@
     <meta http-equiv="pragma" content="no-cache" />
     <link href="/theme/img/fav.png" rel="icon" type="image/x-icon" />
     <link rel="apple-touch-icon" href="/theme/img/fav.png" />
-    <title>aravindavk - geo-replication</title>
+    <title>Introducing georepsetup - Gluster Geo-replication Setup Tool</title>
     <link href="http://aravindavk.in/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="aravindavk Atom Feed" />
     <link rel="stylesheet" href="/theme/css/pure-min.css" />
     <link rel="stylesheet" href="/theme/css/side-menu.css" />
@@ -52,7 +52,7 @@
             <li class=""><a href="/">Home</a></li>
             <li class=""><a href="/me">About</a></li>
             <li class=""><a href="/projects">Projects</a></li>
-            <li class="pure-menu-selected"><a href="/blogs">Blogs</a></li>
+            <li class=""><a href="/blogs">Blogs</a></li>
             <li class=""><a href="/talks">Talks & Articles</a></li>
           </ul>
         </div>
@@ -64,20 +64,65 @@
         <div class="pure-u-4-5 content-left">
           <div class="left article">
 <section id="content" class="body">
-<h1>Blogs</h1>
+  <article>
+    <header>
+      <h1 class="entry-title">
+        Introducing georepsetup - Gluster Geo-replication Setup Tool</h1>
+    </header>
+    <div class="pure-hidden-phone pure-hidden-tablet">
+<footer class="post-info">
+  <p class="author-and-date-info">
+    Posted on Wed 02 September 2015 by <a class="url fn" href="http://aravindavk.in">Aravinda VK</a>.
+  </p>
+</footer><!-- /.post-info -->
+<div class="sep"></div>    </div>
+    <div class="entry-content">
+      <p>How many of you succeeded to set up Gluster Geo-replication for the first time? SSH keys need to be deployed to all Slave nodes from all Master nodes as part of the Geo-replication setup. So number of steps involved in setting up Geo-rep is not very easy to manage. We get more queries in <a class="reference external" href="http://www.gluster.org/mailman/listinfo/gluster-devel">gluster-devel</a> and <a class="reference external" href="http://www.gluster.org/mailman/listinfo/gluster-users">gluster-users</a> lists related to Geo-rep Setup than actually using Geo-replication, many users stopped trying Geo-replication after they faced issues during setup.</p>
+<p>With the release of Gluster 3.7, the Geo-replication got lots of improvements. Will write blog about new features and improvements in my next blog. Yesterday I wrote a CLI tool using Python to simplify the steps involved in Geo-replication setup. Now setting up Geo-replication is as easy as running one command. Yay!</p>
+<p>For example,</p>
+<div class="highlight"><pre>sudo georepsetup &lt;MASTERVOL&gt; &lt;SLAVEHOST&gt; &lt;SLAVEVOL&gt;
+</pre></div>
+<p>It prompts for the Root's Password of Slave node specified in the command. That's it!</p>
+<p>This command also produces a good summary as shown below. Now it is very easy to trace the errors and handle them.</p>
+<img alt="Summary" src="/images/georepsetup.png" />
+<div class="section" id="install">
+<h2>Install</h2>
+<p>Install this tool on any one master node where you wish to initiate the Geo-replication setup,</p>
+<div class="highlight"><pre>git clone https://github.com/aravindavk/georepsetup.git
+<span class="nb">cd </span>georepsetup
+sudo python setup.py install
+</pre></div>
+<p>This tool is not packaged as RPM/Deb Yet. Pull requests are Welcome :)</p>
+<p>Setting up non-root Geo-replication still involves some manual steps, will try to improve in future.</p>
+<p>Documentation is available <a class="reference external" href="https://github.com/aravindavk/georepsetup/blob/master/README.md">here</a></p>
+<p>Comments &amp; Suggestions Welcome.</p>
+</div>
 
-<div class="article-title-row">
-  <div class="article-date pure-hidden-phone">02 Sep, 2015</div>
-  <a href="/blog/introducing-georepsetup/">Introducing georepsetup - Gluster Geo-replication Setup Tool </a>
-  <div class="mobile-posted-on pure-hidden-desktop pure-hidden-tablet">posted on 02 Sep, 2015</div>
+    </div><!-- /.entry-content -->
+    <div class="pure-hidden-desktop">
+<footer class="post-info">
+  <p class="author-and-date-info">
+    Posted on Wed 02 September 2015 by <a class="url fn" href="http://aravindavk.in">Aravinda VK</a>.
+  </p>
+</footer><!-- /.post-info -->
+<div class="sep"></div>    </div>
+    <div class="permalink-div">
+      Permalink: <a href="http://aravindavk.in/blog/introducing-georepsetup/" rel="bookmark" title="Permalink to Introducing georepsetup - Gluster Geo-replication Setup Tool">http://aravindavk.in/blog/introducing-georepsetup/</a>
+    </div>
+<div class="comments">
+  <h2>Comments !</h2>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_identifier = "blog/introducing-georepsetup/";
+    var disqus_url = "http://aravindavk.in/blog/introducing-georepsetup/";
+    (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = 'http://vkaravinda.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
 </div>
-<p class="summary pure-hidden-phone"> <a href="/blog/introducing-georepsetup/">...</a></p>
-<div class="article-title-row">
-  <div class="article-date pure-hidden-phone">02 Apr, 2015</div>
-  <a href="/blog/glusterfs-georeplication-tutorials-1/">GlusterFS Geo-replication Tutorials - Understanding Session Creation </a>
-  <div class="mobile-posted-on pure-hidden-desktop pure-hidden-tablet">posted on 02 Apr, 2015</div>
-</div>
-<p class="summary pure-hidden-phone">Geo-replication is one of the awesome feature of GlusterFS <a href="/blog/glusterfs-georeplication-tutorials-1/">...</a></p>
+  </article>
 </section>
             <div class="copyright pure-hidden-desktop pure-hidden-tablet">&copy; 2008-2014 Aravinda VK, <br/>All rights reserved</div>
           </div>
@@ -112,7 +157,7 @@
                 <li class=""><a href="/">Home</a></li>
                 <li class=""><a href="/me">About</a></li>
                 <li class=""><a href="/projects">Projects</a></li>
-                <li class="pure-menu-selected"><a href="/blogs">Blogs</a></li>
+                <li class=""><a href="/blogs">Blogs</a></li>
                 <li class=""><a href="/talks">Talks & Articles</a></li>
               </ul>
             </div>

@@ -1,5 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>aravindavk</title><link href="http://aravindavk.in/" rel="alternate"></link><link href="http://aravindavk.in/feeds/tag-geo-replication.atom.xml" rel="self"></link><id>http://aravindavk.in/</id><updated>2015-04-02T00:00:00+05:30</updated><entry><title>GlusterFS Geo-replication Tutorials - Understanding Session Creation</title><link href="http://aravindavk.in/blog/glusterfs-georeplication-tutorials-1/" rel="alternate"></link><updated>2015-04-02T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2015-04-02:blog/glusterfs-georeplication-tutorials-1/</id><summary type="html">&lt;p&gt;Geo-replication is one of the awesome feature of &lt;a class="reference external" href="http://gluster.org/"&gt;GlusterFS&lt;/a&gt;. With this feature we can replicate data from one Gluster Volume to another geographically located Gluster Volume.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>aravindavk</title><link href="http://aravindavk.in/" rel="alternate"></link><link href="http://aravindavk.in/feeds/tag-geo-replication.atom.xml" rel="self"></link><id>http://aravindavk.in/</id><updated>2015-09-02T00:00:00+05:30</updated><entry><title>Introducing georepsetup - Gluster Geo-replication Setup Tool</title><link href="http://aravindavk.in/blog/introducing-georepsetup/" rel="alternate"></link><updated>2015-09-02T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2015-09-02:blog/introducing-georepsetup/</id><summary type="html">&lt;p&gt;How many of you succeeded to set up Gluster Geo-replication for the first time? SSH keys need to be deployed to all Slave nodes from all Master nodes as part of the Geo-replication setup. So number of steps involved in setting up Geo-rep is not very easy to manage. We get more queries in &lt;a class="reference external" href="http://www.gluster.org/mailman/listinfo/gluster-devel"&gt;gluster-devel&lt;/a&gt; and &lt;a class="reference external" href="http://www.gluster.org/mailman/listinfo/gluster-users"&gt;gluster-users&lt;/a&gt; lists related to Geo-rep Setup than actually using Geo-replication, many users stopped trying Geo-replication after they faced issues during setup.&lt;/p&gt;
+&lt;p&gt;With the release of Gluster 3.7, the Geo-replication got lots of improvements. Will write blog about new features and improvements in my next blog. Yesterday I wrote a CLI tool using Python to simplify the steps involved in Geo-replication setup. Now setting up Geo-replication is as easy as running one command. Yay!&lt;/p&gt;
+&lt;p&gt;For example,&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;sudo georepsetup &amp;lt;MASTERVOL&amp;gt; &amp;lt;SLAVEHOST&amp;gt; &amp;lt;SLAVEVOL&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;It prompts for the Root's Password of Slave node specified in the command. That's it!&lt;/p&gt;
+&lt;p&gt;This command also produces a good summary as shown below. Now it is very easy to trace the errors and handle them.&lt;/p&gt;
+&lt;img alt="Summary" src="/images/georepsetup.png" /&gt;
+&lt;div class="section" id="install"&gt;
+&lt;h2&gt;Install&lt;/h2&gt;
+&lt;p&gt;Install this tool on any one master node where you wish to initiate the Geo-replication setup,&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;git clone https://github.com/aravindavk/georepsetup.git
+&lt;span class="nb"&gt;cd &lt;/span&gt;georepsetup
+sudo python setup.py install
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This tool is not packaged as RPM/Deb Yet. Pull requests are Welcome :)&lt;/p&gt;
+&lt;p&gt;Setting up non-root Geo-replication still involves some manual steps, will try to improve in future.&lt;/p&gt;
+&lt;p&gt;Documentation is available &lt;a class="reference external" href="https://github.com/aravindavk/georepsetup/blob/master/README.md"&gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Comments &amp;amp; Suggestions Welcome.&lt;/p&gt;
+&lt;/div&gt;
+</summary><category term="geo-replication"></category><category term="gluster"></category><category term="glusterfsblog"></category></entry><entry><title>GlusterFS Geo-replication Tutorials - Understanding Session Creation</title><link href="http://aravindavk.in/blog/glusterfs-georeplication-tutorials-1/" rel="alternate"></link><updated>2015-04-02T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2015-04-02:blog/glusterfs-georeplication-tutorials-1/</id><summary type="html">&lt;p&gt;Geo-replication is one of the awesome feature of &lt;a class="reference external" href="http://gluster.org/"&gt;GlusterFS&lt;/a&gt;. With this feature we can replicate data from one Gluster Volume to another geographically located Gluster Volume.&lt;/p&gt;
 &lt;p&gt;This blog is first in a series of Understanding GlusterFS Geo-replication, Comments and Suggestions welcome.&lt;/p&gt;
 &lt;script async class="speakerdeck-embed" data-id="f509ae7c9216494fa690f8dfee0e91c1" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"&gt;
 &lt;/script&gt;&lt;p&gt;Link: &lt;a class="reference external" href="https://speakerdeck.com/aravindavk/understanding-glusterfs-geo-replication-session-creation"&gt;https://speakerdeck.com/aravindavk/understanding-glusterfs-geo-replication-session-creation&lt;/a&gt;&lt;/p&gt;

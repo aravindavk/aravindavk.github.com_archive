@@ -1,5 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>aravindavk</title><link>http://aravindavk.in/</link><description></description><atom:link href="http://aravindavk.in/feeds/aravinda-vk.rss.xml" rel="self"></atom:link><lastBuildDate>Mon, 31 Aug 2015 00:00:00 +0530</lastBuildDate><item><title>Selling My camera Nikon D90</title><link>http://aravindavk.in/blog/selling-camera-d90/</link><description>&lt;p&gt;I am selling my Nikon D90 Camera. Let me know if anybody interested in buying(Preferably in Bengaluru).&lt;/p&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>aravindavk</title><link>http://aravindavk.in/</link><description></description><atom:link href="http://aravindavk.in/feeds/aravinda-vk.rss.xml" rel="self"></atom:link><lastBuildDate>Wed, 02 Sep 2015 00:00:00 +0530</lastBuildDate><item><title>Introducing georepsetup - Gluster Geo-replication Setup Tool</title><link>http://aravindavk.in/blog/introducing-georepsetup/</link><description>&lt;p&gt;How many of you succeeded to set up Gluster Geo-replication for the first time? SSH keys need to be deployed to all Slave nodes from all Master nodes as part of the Geo-replication setup. So number of steps involved in setting up Geo-rep is not very easy to manage. We get more queries in &lt;a class="reference external" href="http://www.gluster.org/mailman/listinfo/gluster-devel"&gt;gluster-devel&lt;/a&gt; and &lt;a class="reference external" href="http://www.gluster.org/mailman/listinfo/gluster-users"&gt;gluster-users&lt;/a&gt; lists related to Geo-rep Setup than actually using Geo-replication, many users stopped trying Geo-replication after they faced issues during setup.&lt;/p&gt;
+&lt;p&gt;With the release of Gluster 3.7, the Geo-replication got lots of improvements. Will write blog about new features and improvements in my next blog. Yesterday I wrote a CLI tool using Python to simplify the steps involved in Geo-replication setup. Now setting up Geo-replication is as easy as running one command. Yay!&lt;/p&gt;
+&lt;p&gt;For example,&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;sudo georepsetup &amp;lt;MASTERVOL&amp;gt; &amp;lt;SLAVEHOST&amp;gt; &amp;lt;SLAVEVOL&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;It prompts for the Root's Password of Slave node specified in the command. That's it!&lt;/p&gt;
+&lt;p&gt;This command also produces a good summary as shown below. Now it is very easy to trace the errors and handle them.&lt;/p&gt;
+&lt;img alt="Summary" src="/images/georepsetup.png" /&gt;
+&lt;div class="section" id="install"&gt;
+&lt;h2&gt;Install&lt;/h2&gt;
+&lt;p&gt;Install this tool on any one master node where you wish to initiate the Geo-replication setup,&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;git clone https://github.com/aravindavk/georepsetup.git
+&lt;span class="nb"&gt;cd &lt;/span&gt;georepsetup
+sudo python setup.py install
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This tool is not packaged as RPM/Deb Yet. Pull requests are Welcome :)&lt;/p&gt;
+&lt;p&gt;Setting up non-root Geo-replication still involves some manual steps, will try to improve in future.&lt;/p&gt;
+&lt;p&gt;Documentation is available &lt;a class="reference external" href="https://github.com/aravindavk/georepsetup/blob/master/README.md"&gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Comments &amp;amp; Suggestions Welcome.&lt;/p&gt;
+&lt;/div&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Aravinda VK</dc:creator><pubDate>Wed, 02 Sep 2015 00:00:00 +0530</pubDate><guid>tag:aravindavk.in,2015-09-02:blog/introducing-georepsetup/</guid><category>geo-replication</category><category>gluster</category><category>glusterfsblog</category></item><item><title>Selling My camera Nikon D90</title><link>http://aravindavk.in/blog/selling-camera-d90/</link><description>&lt;p&gt;I am selling my Nikon D90 Camera. Let me know if anybody interested in buying(Preferably in Bengaluru).&lt;/p&gt;
 &lt;div class="section" id="included"&gt;
 &lt;h2&gt;Included:&lt;/h2&gt;
 &lt;ol class="arabic simple"&gt;
