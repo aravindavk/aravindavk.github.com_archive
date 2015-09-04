@@ -3,7 +3,7 @@
 from __future__ import unicode_literals
 
 AUTHOR = u'Aravinda VK'
-SITENAME = u'aravindavk'
+SITENAME = u'Aravinda VK'
 SITEURL = ''
 
 TIMEZONE = 'Asia/Kolkata'

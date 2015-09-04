@@ -5,7 +5,8 @@ Introducing georepsetup - Gluster Geo-replication Setup Tool
 :author: Aravinda VK
 :date: 2015-09-02
 :tags: geo-replication, gluster, glusterfsblog
-:summary: 
+:summary: Now setting up Geo-replication is as easy as running one command. Yay!
+:image: /images/georepsetup.png
 
 How many of you succeeded to set up Gluster Geo-replication for the first time? SSH keys need to be deployed to all Slave nodes from all Master nodes as part of the Geo-replication setup. So number of steps involved in setting up Geo-rep is not very easy to manage. We get more queries in `gluster-devel <http://www.gluster.org/mailman/listinfo/gluster-devel>`__ and `gluster-users <http://www.gluster.org/mailman/listinfo/gluster-users>`__ lists related to Geo-rep Setup than actually using Geo-replication, many users stopped trying Geo-replication after they faced issues during setup.
 
