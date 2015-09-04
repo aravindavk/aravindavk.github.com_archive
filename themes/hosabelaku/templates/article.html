@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 {% block title %}{{ article.title|striptags }}{% endblock %}
 {% block social_meta %}
-    <meta property="og:title" content="{{ article.title|striptags }}"/>
-    <meta property="twitter:title" content="{{ article.title|striptags }}"/>
-    <meta name="description" content="{{ article.summary|striptags }}"/>
-    <meta property="og:description" content="{{ article.summary|striptags }}"/>
-    <meta property="twitter:description" content="{{ article.summary|striptags }}"/>
-    <meta property="og:url" content="{{ SITEURL }}/{{ article.url }}"/>
-    <meta property="twitter:url" content="{{ SITEURL }}/{{ article.url }}"/>
-    <meta property="og:image" content="{{ SITEURL }}{{ article.image }}"/>
+    <meta property="og:title" content="{{ article.title|striptags }}" data-dynamic="true"/>
+    <meta property="twitter:title" content="{{ article.title|striptags }}" data-dynamic="true" />
+    <meta name="description" content="{{ article.summary|striptags }}" data-dynamic="true" />
+    <meta property="og:description" content="{{ article.summary|striptags }}" data-dynamic="true" />
+    <meta property="twitter:description" content="{{ article.summary|striptags }}" data-dynamic="true" />
+    <meta property="og:url" content="{{ SITEURL }}/{{ article.url }}" data-dynamic="true" />
+    <meta property="twitter:url" content="{{ SITEURL }}/{{ article.url }}" data-dynamic="true" />
+    <meta property="og:image" content="{{ SITEURL }}{{ article.image }}" data-dynamic="true" />
 {% endblock %}
 {% block content %}
 <section id="content" class="body">
