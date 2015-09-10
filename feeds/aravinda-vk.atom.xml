@@ -1,5 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Aravinda VK</title><link href="http://aravindavk.in/" rel="alternate"></link><link href="http://aravindavk.in/feeds/aravinda-vk.atom.xml" rel="self"></link><id>http://aravindavk.in/</id><updated>2015-09-02T00:00:00+05:30</updated><entry><title>Introducing georepsetup - Gluster Geo-replication Setup Tool</title><link href="http://aravindavk.in/blog/introducing-georepsetup/" rel="alternate"></link><updated>2015-09-02T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2015-09-02:blog/introducing-georepsetup/</id><summary type="html">&lt;p&gt;How many of you succeeded to set up Gluster Geo-replication for the first time? SSH keys need to be deployed to all Slave nodes from all Master nodes as part of the Geo-replication setup. So number of steps involved in setting up Geo-rep is not very easy to manage. We get more queries in &lt;a class="reference external" href="http://www.gluster.org/mailman/listinfo/gluster-devel"&gt;gluster-devel&lt;/a&gt; and &lt;a class="reference external" href="http://www.gluster.org/mailman/listinfo/gluster-users"&gt;gluster-users&lt;/a&gt; lists related to Geo-rep Setup than actually using Geo-replication, many users stopped trying Geo-replication after they faced issues during setup.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Aravinda VK</title><link href="http://aravindavk.in/" rel="alternate"></link><link href="http://aravindavk.in/feeds/aravinda-vk.atom.xml" rel="self"></link><id>http://aravindavk.in/</id><updated>2015-09-11T00:00:00+05:30</updated><entry><title>Simulating Race Conditions</title><link href="http://aravindavk.in/blog/simulating-race-conditions/" rel="alternate"></link><updated>2015-09-11T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2015-09-11:blog/simulating-race-conditions/</id><summary type="html">&lt;p&gt;&lt;a class="reference external" href="http://gluster.readthedocs.org/en/release-3.7.0/Features/tier/"&gt;Tiering&lt;/a&gt; feature is introduced in &lt;a class="reference external" href="http://www.gluster.org/"&gt;Gluster 3.7&lt;/a&gt; release. Geo-replication may not perform well with Tiering feature yet. Races can happen since Rebalance moves files from one brick to another brick(hot to cold and cold to hot), but the Changelog/Journal remails in old brick itself. We know there will be problems since each Geo-replication worker(per brick) processes Changelogs belonging to respective brick and sync the data independently. Sync happens as two step operation, Create entry in Slave with the GFID recorded in Changelog, then use Rsync to sync data(using GFID access)&lt;/p&gt;
+&lt;p&gt;To uncover the bugs we need to setup workload and run multiple times since issues may not happen always. But it is tedious to run multiple times with actual data. How about simulating/mocking it?&lt;/p&gt;
+&lt;p&gt;Let us consider simple case of Rebalance, A file &amp;quot;f1&amp;quot; is created in Brick1 and after some time it becomes hot and Rebalance moved it to Brick2.&lt;/p&gt;
+&lt;img alt="Rebalance explained" src="/images/rebalance.png" /&gt;
+&lt;p&gt;In Changelog we don't capture the Rebalance Traffic, so in respective brick changelogs will contain,&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;# Brick1 Changelog
+CREATE 0945daec-6f8c-438e-9bbf-b2ebf07543ef f1
+DATA 0945daec-6f8c-438e-9bbf-b2ebf07543ef
+
+# Brick2 Changelog
+DATA 0945daec-6f8c-438e-9bbf-b2ebf07543ef
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;If Brick1 worker processes fast, then Entry is created in Slave and Data Operation succeeds. Since Both the workers can independently, sequence of execution may be like&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;# Possible Sequence 1
+[Brick1] CREATE 0945daec-6f8c-438e-9bbf-b2ebf07543ef f1
+[Brick1] DATA 0945daec-6f8c-438e-9bbf-b2ebf07543ef
+[Brick2] DATA 0945daec-6f8c-438e-9bbf-b2ebf07543ef
+
+# Possible Sequence 2
+[Brick2] DATA 0945daec-6f8c-438e-9bbf-b2ebf07543ef
+[Brick1] CREATE 0945daec-6f8c-438e-9bbf-b2ebf07543ef f1
+[Brick1] DATA 0945daec-6f8c-438e-9bbf-b2ebf07543ef
+
+# Possible Sequence 3
+[Brick1] CREATE 0945daec-6f8c-438e-9bbf-b2ebf07543ef f1
+[Brick2] DATA 0945daec-6f8c-438e-9bbf-b2ebf07543ef
+[Brick1] DATA 0945daec-6f8c-438e-9bbf-b2ebf07543ef
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;We don't have any problems with first and last sequence, But in second sequence Rsync will try to sync data before Entry Creation and Fails.&lt;/p&gt;
+&lt;p&gt;To solve this issue, we thought if we record CREATE from Rebalance traffic then it will solve this problem. So now brick Changelogs looks like,&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;# Brick1 Changelog
+CREATE 0945daec-6f8c-438e-9bbf-b2ebf07543ef f1
+DATA 0945daec-6f8c-438e-9bbf-b2ebf07543ef
+
+# Brick2 Changelog
+CREATE 0945daec-6f8c-438e-9bbf-b2ebf07543ef f1
+DATA 0945daec-6f8c-438e-9bbf-b2ebf07543ef
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;and possible sequences,&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;# Possible Sequence 1
+[Brick1] CREATE 0945daec-6f8c-438e-9bbf-b2ebf07543ef f1
+[Brick1] DATA 0945daec-6f8c-438e-9bbf-b2ebf07543ef
+[Brick2] CREATE 0945daec-6f8c-438e-9bbf-b2ebf07543ef f1
+[Brick2] DATA 0945daec-6f8c-438e-9bbf-b2ebf07543ef
+
+# Possible Sequence 2
+[Brick2] CREATE 0945daec-6f8c-438e-9bbf-b2ebf07543ef f1
+[Brick1] CREATE 0945daec-6f8c-438e-9bbf-b2ebf07543ef f1
+[Brick1] DATA 0945daec-6f8c-438e-9bbf-b2ebf07543ef
+[Brick2] DATA 0945daec-6f8c-438e-9bbf-b2ebf07543ef
+
+# and many more...
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;We do not have that problem, second CREATE will fail with EEXIST, we ignore it since it is safe error. But will this approach solves all the problems with Rebalance? When more FOPs added, it is very difficult to visualize or guess the problem.&lt;/p&gt;
+&lt;p&gt;To mock the concurrent workload, Collect sequence from each bricks Changelog and mix both the sequences. We should make sure that order in each brick remains same after the mix.&lt;/p&gt;
+&lt;p&gt;For example,&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;b1 = [&amp;quot;A&amp;quot;, &amp;quot;B&amp;quot;, &amp;quot;C&amp;quot;, &amp;quot;D&amp;quot;, &amp;quot;E&amp;quot;]
+b2 = [&amp;quot;F&amp;quot;, &amp;quot;G&amp;quot;]
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;While mixing b2 in b1, for first element in b2 we can randomly choose a position in b1. Let us say random position we got is 2(Index is 2), and insert &amp;quot;F&amp;quot; in index 2 of b1&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;# before
+[&amp;quot;A&amp;quot;, &amp;quot;B&amp;quot;, &amp;quot;C&amp;quot;, &amp;quot;D&amp;quot;, &amp;quot;E&amp;quot;]
+# after
+[&amp;quot;A&amp;quot;, &amp;quot;B&amp;quot;, &amp;quot;F&amp;quot;, &amp;quot;C&amp;quot;, &amp;quot;D&amp;quot;, &amp;quot;E&amp;quot;]
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now, to insert &amp;quot;G&amp;quot;, we should randomly choose anywhere after &amp;quot;F&amp;quot;. Once we get the sequence, mock the FOPs and compare with expected values.&lt;/p&gt;
+&lt;p&gt;I added a &lt;a class="reference external" href="https://gist.github.com/aravindavk/193eda60b6049ad025f4"&gt;gist&lt;/a&gt; for testing following workload, it generates multiple sequences for testing.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;# f1 created in Brick1, Rebalanced to Brick2 and then Unlinked
+# Brick1 Changelog
+CREATE 0945daec-6f8c-438e-9bbf-b2ebf07543ef f1
+DATA 0945daec-6f8c-438e-9bbf-b2ebf07543ef
+
+# Brick2 Changelog
+CREATE 0945daec-6f8c-438e-9bbf-b2ebf07543ef f1
+DATA 0945daec-6f8c-438e-9bbf-b2ebf07543ef
+UNLINK 0945daec-6f8c-438e-9bbf-b2ebf07543ef f1
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Found two bugs.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Trying to sync data after UNLINK(Which can be handled in Geo-rep by Rsync retry)&lt;/li&gt;
+&lt;li&gt;Empty file gets created.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I just started simulating with Tiering + Geo-replication workload, I may encounter more problems with Renames(Simple, multiple and cyclic). Will update the results soon.&lt;/p&gt;
+&lt;p&gt;I am sharing the script since it can be easily modified to work with different workloads and to test other projects/components.&lt;/p&gt;
+&lt;p&gt;Let me know if this is useful. Comments and Suggestions Welcome.&lt;/p&gt;
+</summary><category term="gluster"></category><category term="glusterfsblog"></category></entry><entry><title>Introducing georepsetup - Gluster Geo-replication Setup Tool</title><link href="http://aravindavk.in/blog/introducing-georepsetup/" rel="alternate"></link><updated>2015-09-02T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2015-09-02:blog/introducing-georepsetup/</id><summary type="html">&lt;p&gt;How many of you succeeded to set up Gluster Geo-replication for the first time? SSH keys need to be deployed to all Slave nodes from all Master nodes as part of the Geo-replication setup. So number of steps involved in setting up Geo-rep is not very easy to manage. We get more queries in &lt;a class="reference external" href="http://www.gluster.org/mailman/listinfo/gluster-devel"&gt;gluster-devel&lt;/a&gt; and &lt;a class="reference external" href="http://www.gluster.org/mailman/listinfo/gluster-users"&gt;gluster-users&lt;/a&gt; lists related to Geo-rep Setup than actually using Geo-replication, many users stopped trying Geo-replication after they faced issues during setup.&lt;/p&gt;
 &lt;p&gt;With the release of Gluster 3.7, the Geo-replication got lots of improvements. Will write blog about new features and improvements in my next blog. Yesterday I wrote a CLI tool using Python to simplify the steps involved in Geo-replication setup. Now setting up Geo-replication is as easy as running one command. Yay!&lt;/p&gt;
 &lt;p&gt;For example,&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;sudo georepsetup &amp;lt;MASTERVOL&amp;gt; &amp;lt;SLAVEHOST&amp;gt; &amp;lt;SLAVEVOL&amp;gt;
