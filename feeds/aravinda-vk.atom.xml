@@ -1,5 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Aravinda VK</title><link href="http://aravindavk.in/" rel="alternate"></link><link href="http://aravindavk.in/feeds/aravinda-vk.atom.xml" rel="self"></link><id>http://aravindavk.in/</id><updated>2015-09-11T00:00:00+05:30</updated><entry><title>Simulating Race Conditions</title><link href="http://aravindavk.in/blog/simulating-race-conditions/" rel="alternate"></link><updated>2015-09-11T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2015-09-11:blog/simulating-race-conditions/</id><summary type="html">&lt;p&gt;&lt;a class="reference external" href="http://gluster.readthedocs.org/en/release-3.7.0/Features/tier/"&gt;Tiering&lt;/a&gt; feature is introduced in &lt;a class="reference external" href="http://www.gluster.org/"&gt;Gluster 3.7&lt;/a&gt; release. Geo-replication may not perform well with Tiering feature yet. Races can happen since Rebalance moves files from one brick to another brick(hot to cold and cold to hot), but the Changelog/Journal remails in old brick itself. We know there will be problems since each Geo-replication worker(per brick) processes Changelogs belonging to respective brick and sync the data independently. Sync happens as two step operation, Create entry in Slave with the GFID recorded in Changelog, then use Rsync to sync data(using GFID access)&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Aravinda VK</title><link href="http://aravindavk.in/" rel="alternate"></link><link href="http://aravindavk.in/feeds/aravinda-vk.atom.xml" rel="self"></link><id>http://aravindavk.in/</id><updated>2016-02-09T00:00:00+05:30</updated><entry><title>Interfaces for Gluster Management</title><link href="http://aravindavk.in/blog/interfaces-for-gluster-management/" rel="alternate"></link><updated>2016-02-09T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2016-02-09:blog/interfaces-for-gluster-management/</id><summary type="html">&lt;p&gt;Gluster provides CLIs to manage the Cluster, which can be
+programmatly consumed by passing &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;--xml&lt;/span&gt;&lt;/tt&gt; option. For example,&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;gluster volume info --xml
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;But Gluster CLIs are not enough for managing from remote place or to
+integrate with third party Management/Monitoring applications like &lt;a class="reference external" href="http://cockpit-project.org/"&gt;Cockpit&lt;/a&gt;,
+&lt;a class="reference external" href="https://github.com/skyrings/skyring"&gt;Skyring&lt;/a&gt;, &lt;a class="reference external" href="http://nagios.org/"&gt;Nagios&lt;/a&gt; etc. We need more interfaces to enable integration
+with these tools.&lt;/p&gt;
+&lt;div class="section" id="language-bindings-for-gluster-cli-commands"&gt;
+&lt;h2&gt;Language bindings for Gluster CLI commands&lt;/h2&gt;
+&lt;p&gt;How about importing the &lt;tt class="docutils literal"&gt;glustercli&lt;/tt&gt; in your favorite programming
+language and start using it?&lt;/p&gt;
+&lt;p&gt;For example in Python,&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;glustercli&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;volumes&lt;/span&gt;
+
+&lt;span class="n"&gt;gv1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;volumes&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Volume&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;gv1&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;gv1&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;start&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Status:&lt;/strong&gt; &lt;a class="reference external" href="https://github.com/aravindavk/glustertool/tree/master/glustertool/utils/glustercli"&gt;Python&lt;/a&gt; and &lt;a class="reference external" href="https://github.com/aravindavk/glustercli"&gt;Go&lt;/a&gt; bindings are in progress&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="ansible-apis-for-gluster"&gt;
+&lt;h2&gt;Ansible APIs for Gluster&lt;/h2&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://www.ansible.com/"&gt;Ansible&lt;/a&gt; is present favorite tool for Sysadmins.&lt;/p&gt;
+&lt;blockquote&gt;
+App deployment, configuration management and orchestration - all from one system. - www.ansible.com&lt;/blockquote&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://github.com/gluster/gdeploy"&gt;gdeploy&lt;/a&gt; (name may change in future) is a Ansible based tool for easy management of Gluster.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Status:&lt;/strong&gt; &lt;a class="reference external" href="https://github.com/gluster/gdeploy/blob/2.0/doc/gdeploy-2"&gt;gdeploy&lt;/a&gt; team is working on version 2.0&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="storaged-gluster-apis"&gt;
+&lt;h2&gt;Storaged Gluster APIs&lt;/h2&gt;
+&lt;p&gt;Gluster module for &lt;a class="reference external" href="http://storaged-project.github.io/"&gt;storaged&lt;/a&gt; enables integration with Cockpit. Cockpit
+can communicate with Storaged to get Gluster tasks done.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Status:&lt;/strong&gt; &lt;a class="reference external" href="https://samxan.wordpress.com/"&gt;Samikshan&lt;/a&gt; is working on this feature.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="rest-apis-for-gluster"&gt;
+&lt;h2&gt;REST APIs for Gluster&lt;/h2&gt;
+&lt;p&gt;Common API format to integrate with Web applications. Any
+web application can easily communicate with Gluster using HTTP calls.&lt;/p&gt;
+&lt;p&gt;For example, Web application can send HTTP POST request to Start the
+Volume&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;curl -X POST &lt;span class="se"&gt;\&lt;/span&gt;
+    -H &lt;span class="s2"&gt;&amp;quot;content-type: application/json&amp;quot;&lt;/span&gt; &lt;span class="se"&gt;\&lt;/span&gt;
+    -H &lt;span class="s2"&gt;&amp;quot;Date: Tue, 09 Feb 2016 12:38:10 +0000&amp;quot;&lt;/span&gt; &lt;span class="se"&gt;\&lt;/span&gt;
+    -H &lt;span class="s2"&gt;&amp;quot;Authorization: HMAC_SHA256 MyApp:g0b1IOmdRMOlPs2f5D4UJPgng9tNUuY0k+c+ee/k2Hk=&amp;quot;&lt;/span&gt; &lt;span class="se"&gt;\&lt;/span&gt;
+    http://hostname/v1/volumes/gv1/start
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Status:&lt;/strong&gt; In progress. Watch this space for more update about this feature :)&lt;/p&gt;
+&lt;p&gt;Are you using any interface for managing Gluster? Please share your
+experiences.&lt;/p&gt;
+&lt;/div&gt;
+</summary><category term="gluster"></category><category term="glusterfsblog"></category></entry><entry><title>Simulating Race Conditions</title><link href="http://aravindavk.in/blog/simulating-race-conditions/" rel="alternate"></link><updated>2015-09-11T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2015-09-11:blog/simulating-race-conditions/</id><summary type="html">&lt;p&gt;&lt;a class="reference external" href="http://gluster.readthedocs.org/en/release-3.7.0/Features/tier/"&gt;Tiering&lt;/a&gt; feature is introduced in &lt;a class="reference external" href="http://www.gluster.org/"&gt;Gluster 3.7&lt;/a&gt; release. Geo-replication may not perform well with Tiering feature yet. Races can happen since Rebalance moves files from one brick to another brick(hot to cold and cold to hot), but the Changelog/Journal remails in old brick itself. We know there will be problems since each Geo-replication worker(per brick) processes Changelogs belonging to respective brick and sync the data independently. Sync happens as two step operation, Create entry in Slave with the GFID recorded in Changelog, then use Rsync to sync data(using GFID access)&lt;/p&gt;
 &lt;p&gt;To uncover the bugs we need to setup workload and run multiple times since issues may not happen always. But it is tedious to run multiple times with actual data. How about simulating/mocking it?&lt;/p&gt;
 &lt;p&gt;Let us consider simple case of Rebalance, A file &amp;quot;f1&amp;quot; is created in Brick1 and after some time it becomes hot and Rebalance moved it to Brick2.&lt;/p&gt;
 &lt;img alt="Rebalance explained" src="/images/rebalance.png" /&gt;

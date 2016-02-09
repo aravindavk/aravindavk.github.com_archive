@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="google-site-verification" content="PwqxyVtbmKeb1wsrF8XJ5GQIPxlDxUupYnTEWPI3KLk" />
+    <meta http-equiv="cache-control" content="max-age=0" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <link href="/theme/img/fav.png" rel="icon" type="image/x-icon" />
+    <meta property="og:site_name" content="Aravinda VK"/>
+    <link rel="apple-touch-icon" href="/theme/img/fav.png" />
+    <title>Interfaces for Gluster Management</title>
+    <meta property="og:title" content="Interfaces for Gluster Management"/>
+    <meta property="twitter:title" content="Interfaces for Gluster Management"/>
+    <meta name="description" content="But Gluster CLIs are not enough for managing from remote place or to integrate with third party Management/Monitoring tools"/>
+    <meta property="og:description" content="But Gluster CLIs are not enough for managing from remote place or to integrate with third party Management/Monitoring tools"/>
+    <meta property="twitter:description" content="But Gluster CLIs are not enough for managing from remote place or to integrate with third party Management/Monitoring tools"/>
+    <meta property="og:url" content="http://aravindavk.in/blog/interfaces-for-gluster-management/" />
+    <meta property="twitter:url" content="http://aravindavk.in/blog/interfaces-for-gluster-management/" />
+    <meta property="og:image" content="http://aravindavk.in" />
+    <link href="http://aravindavk.in/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Aravinda VK Atom Feed" />
+    <link rel="stylesheet" href="/theme/css/pure-min.css" />
+    <link rel="stylesheet" href="/theme/css/side-menu.css" />
+    <link rel="stylesheet" href="/theme/css/main.css" />
+    <link rel="stylesheet" href="/theme/css/pygment-emacs-highlight.css" />
+  </head>
+  <body>
+    <div id="layout">
+      <!-- Menu toggle -->
+      <a href="#menu" id="menuLink" class="menu-link">
+        <!-- Hamburger icon -->
+        <span></span>
+      </a>
+      <div id="menu" class="pure-hidden-desktop pure-hidden-tablet">
+        <div class="pure-menu pure-menu-open">
+          <a class="pure-menu-heading logo" href="/"><img src="/theme/img/logo.png" alt="aravindavk"/></a>
+          <div class="social-icons">
+            <a href="http://aravindavk.in/feeds/all.atom.xml" target="_blank" title="News">
+              <img src="/theme/img/feed.png" class="link-icon" alt="News"/>
+            </a>
+            <a href="http://twitter.com/aravindavk" target="_blank" title="Twitter">
+              <img src="/theme/img/twitter.png" class="link-icon" alt="Twitter"/>
+            </a>
+            <a href="https://plus.google.com/+aravindavk" target="_blank" title="Google Plus">
+              <img src="/theme/img/gplus.png" class="link-icon" alt="Google Plus"/>
+            </a>
+            <a href="https://github.com/aravindavk" target="_blank" title="Github">
+              <img src="/theme/img/github.png" class="link-icon" alt="Github"/>
+            </a>
+            <a href="http://www.flickr.com/photos/aravindavk" target="_blank" title="Flickr">
+              <img src="/theme/img/flickr.png" class="link-icon" alt="Flickr"/>
+            </a>
+            <a href="http://in.linkedin.com/in/aravindavk" target="_blank" title="LinkedIn">
+              <img src="/theme/img/linkedin.png" class="link-icon" alt="LinkedIn"/>
+            </a>
+          </div>
+          <ul>
+            <li class=""><a href="/">Home</a></li>
+            <li class=""><a href="/me">About</a></li>
+            <li class=""><a href="/projects">Projects</a></li>
+            <li class=""><a href="/blogs">Blogs</a></li>
+            <li class=""><a href="/talks">Talks & Articles</a></li>
+          </ul>
+        </div>
+        <div class="sep"></div>
+        <div class="copyright">&copy; 2008-2014 Aravinda VK, <br/>All rights reserved</div>
+      </div>
+
+      <div class="pure-g-r">
+        <div class="pure-u-4-5 content-left">
+          <div class="left article">
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        Interfaces for Gluster Management</h1>
+    </header>
+    <div class="pure-hidden-phone pure-hidden-tablet">
+<footer class="post-info">
+  <p class="author-and-date-info">
+    Posted on Tue 09 February 2016 by <a class="url fn" href="http://aravindavk.in">Aravinda VK</a>.
+  </p>
+</footer><!-- /.post-info -->
+<div class="sep"></div>    </div>
+    <div class="entry-content">
+      <p>Gluster provides CLIs to manage the Cluster, which can be
+programmatly consumed by passing <tt class="docutils literal"><span class="pre">--xml</span></tt> option. For example,</p>
+<div class="highlight"><pre>gluster volume info --xml
+</pre></div>
+<p>But Gluster CLIs are not enough for managing from remote place or to
+integrate with third party Management/Monitoring applications like <a class="reference external" href="http://cockpit-project.org/">Cockpit</a>,
+<a class="reference external" href="https://github.com/skyrings/skyring">Skyring</a>, <a class="reference external" href="http://nagios.org/">Nagios</a> etc. We need more interfaces to enable integration
+with these tools.</p>
+<div class="section" id="language-bindings-for-gluster-cli-commands">
+<h2>Language bindings for Gluster CLI commands</h2>
+<p>How about importing the <tt class="docutils literal">glustercli</tt> in your favorite programming
+language and start using it?</p>
+<p>For example in Python,</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">glustercli</span> <span class="kn">import</span> <span class="n">volumes</span>
+
+<span class="n">gv1</span> <span class="o">=</span> <span class="n">volumes</span><span class="o">.</span><span class="n">Volume</span><span class="p">(</span><span class="s">&quot;gv1&quot;</span><span class="p">)</span>
+<span class="n">gv1</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</pre></div>
+<p><strong>Status:</strong> <a class="reference external" href="https://github.com/aravindavk/glustertool/tree/master/glustertool/utils/glustercli">Python</a> and <a class="reference external" href="https://github.com/aravindavk/glustercli">Go</a> bindings are in progress</p>
+</div>
+<div class="section" id="ansible-apis-for-gluster">
+<h2>Ansible APIs for Gluster</h2>
+<p><a class="reference external" href="http://www.ansible.com/">Ansible</a> is present favorite tool for Sysadmins.</p>
+<blockquote>
+App deployment, configuration management and orchestration - all from one system. - www.ansible.com</blockquote>
+<p><a class="reference external" href="https://github.com/gluster/gdeploy">gdeploy</a> (name may change in future) is a Ansible based tool for easy management of Gluster.</p>
+<p><strong>Status:</strong> <a class="reference external" href="https://github.com/gluster/gdeploy/blob/2.0/doc/gdeploy-2">gdeploy</a> team is working on version 2.0</p>
+</div>
+<div class="section" id="storaged-gluster-apis">
+<h2>Storaged Gluster APIs</h2>
+<p>Gluster module for <a class="reference external" href="http://storaged-project.github.io/">storaged</a> enables integration with Cockpit. Cockpit
+can communicate with Storaged to get Gluster tasks done.</p>
+<p><strong>Status:</strong> <a class="reference external" href="https://samxan.wordpress.com/">Samikshan</a> is working on this feature.</p>
+</div>
+<div class="section" id="rest-apis-for-gluster">
+<h2>REST APIs for Gluster</h2>
+<p>Common API format to integrate with Web applications. Any
+web application can easily communicate with Gluster using HTTP calls.</p>
+<p>For example, Web application can send HTTP POST request to Start the
+Volume</p>
+<div class="highlight"><pre>curl -X POST <span class="se">\</span>
+    -H <span class="s2">&quot;content-type: application/json&quot;</span> <span class="se">\</span>
+    -H <span class="s2">&quot;Date: Tue, 09 Feb 2016 12:38:10 +0000&quot;</span> <span class="se">\</span>
+    -H <span class="s2">&quot;Authorization: HMAC_SHA256 MyApp:g0b1IOmdRMOlPs2f5D4UJPgng9tNUuY0k+c+ee/k2Hk=&quot;</span> <span class="se">\</span>
+    http://hostname/v1/volumes/gv1/start
+</pre></div>
+<p><strong>Status:</strong> In progress. Watch this space for more update about this feature :)</p>
+<p>Are you using any interface for managing Gluster? Please share your
+experiences.</p>
+</div>
+
+    </div><!-- /.entry-content -->
+    <div class="pure-hidden-desktop">
+<footer class="post-info">
+  <p class="author-and-date-info">
+    Posted on Tue 09 February 2016 by <a class="url fn" href="http://aravindavk.in">Aravinda VK</a>.
+  </p>
+</footer><!-- /.post-info -->
+<div class="sep"></div>    </div>
+    <div class="permalink-div">
+      Permalink: <a href="http://aravindavk.in/blog/interfaces-for-gluster-management/" rel="bookmark" title="Permalink to Interfaces for Gluster Management">http://aravindavk.in/blog/interfaces-for-gluster-management/</a>
+    </div>
+<div class="comments">
+  <h2>Comments !</h2>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_identifier = "blog/interfaces-for-gluster-management/";
+    var disqus_url = "http://aravindavk.in/blog/interfaces-for-gluster-management/";
+    (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = 'http://vkaravinda.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+</div>
+  </article>
+</section>
+            <div class="copyright pure-hidden-desktop pure-hidden-tablet">&copy; 2008-2014 Aravinda VK, <br/>All rights reserved</div>
+          </div>
+        </div>
+        <div class="pure-u-1-5 pure-hidden-phone">
+          <div class="right">
+            <img class="me" src="/theme/img/me.jpg"/>
+            <div class="sep"></div>
+            <div class="pure-menu pure-menu-open">
+              <a class="pure-menu-heading logo" href="/"><img src="/theme/img/logo.png" alt="aravindavk"/></a>
+              <div class="social-icons">
+                <a href="http://aravindavk.in/feeds/all.atom.xml" target="_blank" title="News">
+                  <img src="/theme/img/feed.png" class="link-icon" alt="News"/>
+                </a>
+                <a href="http://twitter.com/aravindavk" target="_blank" title="Twitter">
+                  <img src="/theme/img/twitter.png" class="link-icon" alt="Twitter"/>
+                </a>
+                <a href="https://plus.google.com/+aravindavk" target="_blank" title="Google Plus">
+                  <img src="/theme/img/gplus.png" class="link-icon" alt="Google Plus"/>
+                </a>
+                <a href="https://github.com/aravindavk" target="_blank" title="Github">
+                  <img src="/theme/img/github.png" class="link-icon" alt="Github"/>
+                </a>
+                <a href="http://www.flickr.com/photos/aravindavk" target="_blank" title="Flickr">
+                  <img src="/theme/img/flickr.png" class="link-icon" alt="Flickr"/>
+                </a>
+                <a href="http://in.linkedin.com/in/aravindavk" target="_blank" title="LinkedIn">
+                  <img src="/theme/img/linkedin.png" class="link-icon" alt="LinkedIn"/>
+                </a>
+              </div>
+              <ul>
+                <li class=""><a href="/">Home</a></li>
+                <li class=""><a href="/me">About</a></li>
+                <li class=""><a href="/projects">Projects</a></li>
+                <li class=""><a href="/blogs">Blogs</a></li>
+                <li class=""><a href="/talks">Talks & Articles</a></li>
+              </ul>
+            </div>
+            <div class="sep"></div>
+            <div class="copyright">&copy; 2008-2014 Aravinda VK, <br/>All rights reserved</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <script src="/theme/js/ui.js"></script>
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-11830111-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+  </body>
+</html>
