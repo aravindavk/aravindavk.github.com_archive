@@ -1,5 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Aravinda VK</title><link href="http://aravindavk.in/" rel="alternate"></link><link href="http://aravindavk.in/feeds/all.atom.xml" rel="self"></link><id>http://aravindavk.in/</id><updated>2016-02-09T00:00:00+05:30</updated><entry><title>Interfaces for Gluster Management</title><link href="http://aravindavk.in/blog/interfaces-for-gluster-management/" rel="alternate"></link><updated>2016-02-09T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2016-02-09:blog/interfaces-for-gluster-management/</id><summary type="html">&lt;p&gt;Gluster provides CLIs to manage the Cluster, which can be
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Aravinda VK</title><link href="http://aravindavk.in/" rel="alternate"></link><link href="http://aravindavk.in/feeds/all.atom.xml" rel="self"></link><id>http://aravindavk.in/</id><updated>2016-03-14T00:00:00+05:30</updated><entry><title>Qcow2 snapshots and Gluster Geo-replication</title><link href="http://aravindavk.in/blog/qcow2-snapshots-and-gluster-georeplication/" rel="alternate"></link><updated>2016-03-14T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2016-03-14:blog/qcow2-snapshots-and-gluster-georeplication/</id><summary type="html">&lt;p&gt;Gluster introduced sharding feature to store large files(which can
+grow beyond a single brick) or to support running Virtual machines in
+Gluster Volumes. Read more about sharding &lt;a class="reference external" href="http://blog.gluster.org/2015/12/introducing-shard-translator/"&gt;here&lt;/a&gt; and
+&lt;a class="reference external" href="http://blog.gluster.org/2015/12/sharding-what-next-2/"&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="section" id="how-to-backup-vm-images"&gt;
+&lt;h2&gt;How to backup VM images?&lt;/h2&gt;
+&lt;p&gt;Backing up VM images is not easy, rsync will consume more CPU to
+calculate the checksum to sync only incremental changes.&lt;/p&gt;
+&lt;p&gt;Geo-replication is aware of Gluster Sharding feature and taking the
+advantage of syncing small sharded files instead of big qcow2 image
+files. But is the data consistent? In this blog we will understand how
+to backup VM images to DR site consistently.&lt;/p&gt;
+&lt;p&gt;Read &lt;a class="reference external" href="http://hrkscribbles.blogspot.in/2016/02/gluster-geo-replication-with-sharding.html"&gt;here&lt;/a&gt; to know more about Geo-replication support for sharding.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="setup"&gt;
+&lt;h2&gt;Setup:&lt;/h2&gt;
+&lt;p&gt;VMs hosted in Gluster Volume(Master Volume) and Geo-replicated to
+another Gluster Volume(Slave/Backup Volume). Sharding enabled in both
+the Gluster Volumes.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="using-internal-qcow2-snapshot"&gt;
+&lt;h2&gt;Using Internal Qcow2 snapshot:&lt;/h2&gt;
+&lt;p&gt;Before starting Geo-replication every day, take qcow2 snapshot of all
+the disks in Master Volume. Geo-rep will sync the data including the
+created snapshots.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;virsh snapshot-create-as --domain &amp;lt;DOMAIN&amp;gt; &amp;lt;SNAP_NAME&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;For example,&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;virsh snapshot-create-as --domain fedora22 sn1
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;But while taking internal snapshot, guest is &lt;strong&gt;paused&lt;/strong&gt; :(&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;# virsh list
+ Id    Name                           State
+----------------------------------------------------
+ 3     fedora22                       paused
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; If Guest has more RAM and actively modifying state, then more
+time to take Snapshot.&lt;/p&gt;
+&lt;p&gt;Run Geo-replication using the scheduler script, which will
+Set the checkpoint and automatically stops Geo-replication once
+checkpoint is reached.(This utility will be available with
+&lt;cite&gt;glusterfs-3.7.9&lt;/cite&gt; release.)&lt;/p&gt;
+&lt;p&gt;Run &lt;tt class="docutils literal"&gt;/usr/share/glusterfs/scripts/schedule_georep.py &lt;span class="pre"&gt;--help&lt;/span&gt;&lt;/tt&gt; for more
+details about the script.(&lt;tt class="docutils literal"&gt;/usr/local/share/&lt;/tt&gt; in case of source install)&lt;/p&gt;
+&lt;p&gt;Psudeo code:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;pool_dir=&amp;lt;PATH_OF_MASTER_VOL_MOUNT&amp;gt;
+images=$(ls ${pool_dir})
+For each images, take qcow2 snapshot
+Run schedule_georep script
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Once the scheduler script completes, check the &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;qemu-img&lt;/span&gt; info&lt;/tt&gt; in Slave
+and confirm that Geo-rep synced everything from master Volume
+including Snapshots created.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;qemu-img info /mnt/gv2/f22.qcow2
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Example Output:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;image: /mnt/gv2/f22.qcow2
+file format: qcow2
+virtual size: 20G (21474836480 bytes)
+disk size: 2.8G
+cluster_size: 65536
+Snapshot list:
+ID        TAG                 VM SIZE                DATE       VM CLOCK
+2         sn2                    693M 2016-02-23 18:40:10   01:37:34.881
+3         sn3                    693M 2016-02-23 18:47:06   01:44:15.950
+Format specific information:
+    compat: 1.1
+    lazy refcounts: false
+    refcount bits: 16
+    corrupt: false
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="using-external-qcow2-snapshot"&gt;
+&lt;h2&gt;Using External Qcow2 snapshot&lt;/h2&gt;
+&lt;p&gt;Once we take external snapshot, qcow2 image will become read only base
+image and snapshot file will become overlay(Read more about backing
+chain and overlay &lt;a class="reference external" href="https://kashyapc.fedorapeople.org/virt/lc-2012/snapshots-handout.html"&gt;here&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;New changes will be recorded in the overlay instead of base image,
+Since base image is frozen Geo-rep will sync the consistent image to
+Slave. Start Geo-replication and wait for scheduler script to end.&lt;/p&gt;
+&lt;p&gt;When multiple external snapshots taken, it is very difficult to
+maintain the backing chain and reverting to a snapshot is not easy
+when external snapshot is used. Once Geo-rep Scheduler script is
+complete, blockcommit the image in Master side to prevent growing
+backing chain.&lt;/p&gt;
+&lt;p&gt;Delete the external snapshot once the blockcommit returns success.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;pool_dir&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&amp;lt;PATH_OF_MASTER_VOL_MOUNT&amp;gt;
+
+&lt;span class="c"&gt;# Take External snapshot&lt;/span&gt;
+virsh snapshot-create-as --domain &amp;lt;DOMAIN&amp;gt; &amp;lt;SNAPNAME&amp;gt;  &lt;span class="se"&gt;\&lt;/span&gt;
+    --diskspec vda,file&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;pool_dir&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;/snaps/&amp;lt;SNAPNAME&amp;gt;.qcow2 &lt;span class="se"&gt;\&lt;/span&gt;
+    --disk-only --atomic --no-metadata
+
+&lt;span class="c"&gt;# Run Geo-replication&lt;/span&gt;
+/usr/share/glusterfs/scripts/schedule_georep.py &lt;span class="se"&gt;\&lt;/span&gt;
+    &amp;lt;MASTERVOL&amp;gt; &amp;lt;SLAVE&amp;gt; &amp;lt;SLAVEVOL&amp;gt;
+
+&lt;span class="c"&gt;# Blockcommit&lt;/span&gt;
+virsh blockcommit &amp;lt;DOMAIN&amp;gt; vda --active --verbose --pivot
+
+&lt;span class="c"&gt;# Remove the external Snapshot file&lt;/span&gt;
+rm &lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;pool_dir&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;/snaps/&amp;lt;SNAPNAME&amp;gt;.qcow2
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;With this method, Slave will always have consitent base image.&lt;/p&gt;
+&lt;p&gt;Ref: &lt;a class="reference external" href="http://wiki.libvirt.org/page/Live-disk-backup-with-active-blockcommit"&gt;http://wiki.libvirt.org/page/Live-disk-backup-with-active-blockcommit&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="conclusion"&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;We should use qcow2 external snapshot if Live backup is
+required. External snapshot file will be deleted once blockcommit is
+done in Master side.&lt;/p&gt;
+&lt;/div&gt;
+</summary><category term="gluster"></category><category term="glusterfsblog"></category></entry><entry><title>Interfaces for Gluster Management</title><link href="http://aravindavk.in/blog/interfaces-for-gluster-management/" rel="alternate"></link><updated>2016-02-09T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2016-02-09:blog/interfaces-for-gluster-management/</id><summary type="html">&lt;p&gt;Gluster provides CLIs to manage the Cluster, which can be
 programmatly consumed by passing &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;--xml&lt;/span&gt;&lt;/tt&gt; option. For example,&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;gluster volume info --xml
 &lt;/pre&gt;&lt;/div&gt;

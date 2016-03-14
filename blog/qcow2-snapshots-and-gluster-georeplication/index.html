@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="google-site-verification" content="PwqxyVtbmKeb1wsrF8XJ5GQIPxlDxUupYnTEWPI3KLk" />
+    <meta http-equiv="cache-control" content="max-age=0" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <link href="/theme/img/fav.png" rel="icon" type="image/x-icon" />
+    <meta property="og:site_name" content="Aravinda VK"/>
+    <link rel="apple-touch-icon" href="/theme/img/fav.png" />
+    <title>Qcow2 snapshots and Gluster Geo-replication</title>
+    <meta property="og:title" content="Qcow2 snapshots and Gluster Geo-replication"/>
+    <meta property="twitter:title" content="Qcow2 snapshots and Gluster Geo-replication"/>
+    <meta name="description" content="Geo-replication is aware of Gluster Sharding feature and taking the advantage of syncing small sharded files instead of big qcow2 image files"/>
+    <meta property="og:description" content="Geo-replication is aware of Gluster Sharding feature and taking the advantage of syncing small sharded files instead of big qcow2 image files"/>
+    <meta property="twitter:description" content="Geo-replication is aware of Gluster Sharding feature and taking the advantage of syncing small sharded files instead of big qcow2 image files"/>
+    <meta property="og:url" content="http://aravindavk.in/blog/qcow2-snapshots-and-gluster-georeplication/" />
+    <meta property="twitter:url" content="http://aravindavk.in/blog/qcow2-snapshots-and-gluster-georeplication/" />
+    <meta property="og:image" content="http://aravindavk.in" />
+    <link href="http://aravindavk.in/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Aravinda VK Atom Feed" />
+    <link rel="stylesheet" href="/theme/css/pure-min.css" />
+    <link rel="stylesheet" href="/theme/css/side-menu.css" />
+    <link rel="stylesheet" href="/theme/css/main.css" />
+    <link rel="stylesheet" href="/theme/css/pygment-emacs-highlight.css" />
+  </head>
+  <body>
+    <div id="layout">
+      <!-- Menu toggle -->
+      <a href="#menu" id="menuLink" class="menu-link">
+        <!-- Hamburger icon -->
+        <span></span>
+      </a>
+      <div id="menu" class="pure-hidden-desktop pure-hidden-tablet">
+        <div class="pure-menu pure-menu-open">
+          <a class="pure-menu-heading logo" href="/"><img src="/theme/img/logo.png" alt="aravindavk"/></a>
+          <div class="social-icons">
+            <a href="http://aravindavk.in/feeds/all.atom.xml" target="_blank" title="News">
+              <img src="/theme/img/feed.png" class="link-icon" alt="News"/>
+            </a>
+            <a href="http://twitter.com/aravindavk" target="_blank" title="Twitter">
+              <img src="/theme/img/twitter.png" class="link-icon" alt="Twitter"/>
+            </a>
+            <a href="https://plus.google.com/+aravindavk" target="_blank" title="Google Plus">
+              <img src="/theme/img/gplus.png" class="link-icon" alt="Google Plus"/>
+            </a>
+            <a href="https://github.com/aravindavk" target="_blank" title="Github">
+              <img src="/theme/img/github.png" class="link-icon" alt="Github"/>
+            </a>
+            <a href="http://www.flickr.com/photos/aravindavk" target="_blank" title="Flickr">
+              <img src="/theme/img/flickr.png" class="link-icon" alt="Flickr"/>
+            </a>
+            <a href="http://in.linkedin.com/in/aravindavk" target="_blank" title="LinkedIn">
+              <img src="/theme/img/linkedin.png" class="link-icon" alt="LinkedIn"/>
+            </a>
+          </div>
+          <ul>
+            <li class=""><a href="/">Home</a></li>
+            <li class=""><a href="/me">About</a></li>
+            <li class=""><a href="/projects">Projects</a></li>
+            <li class=""><a href="/blogs">Blogs</a></li>
+            <li class=""><a href="/talks">Talks & Articles</a></li>
+          </ul>
+        </div>
+        <div class="sep"></div>
+        <div class="copyright">&copy; 2008-2014 Aravinda VK, <br/>All rights reserved</div>
+      </div>
+
+      <div class="pure-g-r">
+        <div class="pure-u-4-5 content-left">
+          <div class="left article">
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        Qcow2 snapshots and Gluster Geo-replication</h1>
+    </header>
+    <div class="pure-hidden-phone pure-hidden-tablet">
+<footer class="post-info">
+  <p class="author-and-date-info">
+    Posted on Mon 14 March 2016 by <a class="url fn" href="http://aravindavk.in">Aravinda VK</a>.
+  </p>
+</footer><!-- /.post-info -->
+<div class="sep"></div>    </div>
+    <div class="entry-content">
+      <p>Gluster introduced sharding feature to store large files(which can
+grow beyond a single brick) or to support running Virtual machines in
+Gluster Volumes. Read more about sharding <a class="reference external" href="http://blog.gluster.org/2015/12/introducing-shard-translator/">here</a> and
+<a class="reference external" href="http://blog.gluster.org/2015/12/sharding-what-next-2/">here</a>.</p>
+<div class="section" id="how-to-backup-vm-images">
+<h2>How to backup VM images?</h2>
+<p>Backing up VM images is not easy, rsync will consume more CPU to
+calculate the checksum to sync only incremental changes.</p>
+<p>Geo-replication is aware of Gluster Sharding feature and taking the
+advantage of syncing small sharded files instead of big qcow2 image
+files. But is the data consistent? In this blog we will understand how
+to backup VM images to DR site consistently.</p>
+<p>Read <a class="reference external" href="http://hrkscribbles.blogspot.in/2016/02/gluster-geo-replication-with-sharding.html">here</a> to know more about Geo-replication support for sharding.</p>
+</div>
+<div class="section" id="setup">
+<h2>Setup:</h2>
+<p>VMs hosted in Gluster Volume(Master Volume) and Geo-replicated to
+another Gluster Volume(Slave/Backup Volume). Sharding enabled in both
+the Gluster Volumes.</p>
+</div>
+<div class="section" id="using-internal-qcow2-snapshot">
+<h2>Using Internal Qcow2 snapshot:</h2>
+<p>Before starting Geo-replication every day, take qcow2 snapshot of all
+the disks in Master Volume. Geo-rep will sync the data including the
+created snapshots.</p>
+<div class="highlight"><pre>virsh snapshot-create-as --domain &lt;DOMAIN&gt; &lt;SNAP_NAME&gt;
+</pre></div>
+<p>For example,</p>
+<div class="highlight"><pre>virsh snapshot-create-as --domain fedora22 sn1
+</pre></div>
+<p>But while taking internal snapshot, guest is <strong>paused</strong> :(</p>
+<div class="highlight"><pre># virsh list
+ Id    Name                           State
+----------------------------------------------------
+ 3     fedora22                       paused
+</pre></div>
+<p><strong>Note:</strong> If Guest has more RAM and actively modifying state, then more
+time to take Snapshot.</p>
+<p>Run Geo-replication using the scheduler script, which will
+Set the checkpoint and automatically stops Geo-replication once
+checkpoint is reached.(This utility will be available with
+<cite>glusterfs-3.7.9</cite> release.)</p>
+<p>Run <tt class="docutils literal">/usr/share/glusterfs/scripts/schedule_georep.py <span class="pre">--help</span></tt> for more
+details about the script.(<tt class="docutils literal">/usr/local/share/</tt> in case of source install)</p>
+<p>Psudeo code:</p>
+<div class="highlight"><pre>pool_dir=&lt;PATH_OF_MASTER_VOL_MOUNT&gt;
+images=$(ls ${pool_dir})
+For each images, take qcow2 snapshot
+Run schedule_georep script
+</pre></div>
+<p>Once the scheduler script completes, check the <tt class="docutils literal"><span class="pre">qemu-img</span> info</tt> in Slave
+and confirm that Geo-rep synced everything from master Volume
+including Snapshots created.</p>
+<div class="highlight"><pre>qemu-img info /mnt/gv2/f22.qcow2
+</pre></div>
+<p>Example Output:</p>
+<div class="highlight"><pre>image: /mnt/gv2/f22.qcow2
+file format: qcow2
+virtual size: 20G (21474836480 bytes)
+disk size: 2.8G
+cluster_size: 65536
+Snapshot list:
+ID        TAG                 VM SIZE                DATE       VM CLOCK
+2         sn2                    693M 2016-02-23 18:40:10   01:37:34.881
+3         sn3                    693M 2016-02-23 18:47:06   01:44:15.950
+Format specific information:
+    compat: 1.1
+    lazy refcounts: false
+    refcount bits: 16
+    corrupt: false
+</pre></div>
+</div>
+<div class="section" id="using-external-qcow2-snapshot">
+<h2>Using External Qcow2 snapshot</h2>
+<p>Once we take external snapshot, qcow2 image will become read only base
+image and snapshot file will become overlay(Read more about backing
+chain and overlay <a class="reference external" href="https://kashyapc.fedorapeople.org/virt/lc-2012/snapshots-handout.html">here</a>).</p>
+<p>New changes will be recorded in the overlay instead of base image,
+Since base image is frozen Geo-rep will sync the consistent image to
+Slave. Start Geo-replication and wait for scheduler script to end.</p>
+<p>When multiple external snapshots taken, it is very difficult to
+maintain the backing chain and reverting to a snapshot is not easy
+when external snapshot is used. Once Geo-rep Scheduler script is
+complete, blockcommit the image in Master side to prevent growing
+backing chain.</p>
+<p>Delete the external snapshot once the blockcommit returns success.</p>
+<div class="highlight"><pre><span class="nv">pool_dir</span><span class="o">=</span>&lt;PATH_OF_MASTER_VOL_MOUNT&gt;
+
+<span class="c"># Take External snapshot</span>
+virsh snapshot-create-as --domain &lt;DOMAIN&gt; &lt;SNAPNAME&gt;  <span class="se">\</span>
+    --diskspec vda,file<span class="o">=</span><span class="si">${</span><span class="nv">pool_dir</span><span class="si">}</span>/snaps/&lt;SNAPNAME&gt;.qcow2 <span class="se">\</span>
+    --disk-only --atomic --no-metadata
+
+<span class="c"># Run Geo-replication</span>
+/usr/share/glusterfs/scripts/schedule_georep.py <span class="se">\</span>
+    &lt;MASTERVOL&gt; &lt;SLAVE&gt; &lt;SLAVEVOL&gt;
+
+<span class="c"># Blockcommit</span>
+virsh blockcommit &lt;DOMAIN&gt; vda --active --verbose --pivot
+
+<span class="c"># Remove the external Snapshot file</span>
+rm <span class="si">${</span><span class="nv">pool_dir</span><span class="si">}</span>/snaps/&lt;SNAPNAME&gt;.qcow2
+</pre></div>
+<p>With this method, Slave will always have consitent base image.</p>
+<p>Ref: <a class="reference external" href="http://wiki.libvirt.org/page/Live-disk-backup-with-active-blockcommit">http://wiki.libvirt.org/page/Live-disk-backup-with-active-blockcommit</a></p>
+</div>
+<div class="section" id="conclusion">
+<h2>Conclusion</h2>
+<p>We should use qcow2 external snapshot if Live backup is
+required. External snapshot file will be deleted once blockcommit is
+done in Master side.</p>
+</div>
+
+    </div><!-- /.entry-content -->
+    <div class="pure-hidden-desktop">
+<footer class="post-info">
+  <p class="author-and-date-info">
+    Posted on Mon 14 March 2016 by <a class="url fn" href="http://aravindavk.in">Aravinda VK</a>.
+  </p>
+</footer><!-- /.post-info -->
+<div class="sep"></div>    </div>
+    <div class="permalink-div">
+      Permalink: <a href="http://aravindavk.in/blog/qcow2-snapshots-and-gluster-georeplication/" rel="bookmark" title="Permalink to Qcow2 snapshots and Gluster Geo-replication">http://aravindavk.in/blog/qcow2-snapshots-and-gluster-georeplication/</a>
+    </div>
+<div class="comments">
+  <h2>Comments !</h2>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_identifier = "blog/qcow2-snapshots-and-gluster-georeplication/";
+    var disqus_url = "http://aravindavk.in/blog/qcow2-snapshots-and-gluster-georeplication/";
+    (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = 'http://vkaravinda.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+</div>
+  </article>
+</section>
+            <div class="copyright pure-hidden-desktop pure-hidden-tablet">&copy; 2008-2014 Aravinda VK, <br/>All rights reserved</div>
+          </div>
+        </div>
+        <div class="pure-u-1-5 pure-hidden-phone">
+          <div class="right">
+            <img class="me" src="/theme/img/me.jpg"/>
+            <div class="sep"></div>
+            <div class="pure-menu pure-menu-open">
+              <a class="pure-menu-heading logo" href="/"><img src="/theme/img/logo.png" alt="aravindavk"/></a>
+              <div class="social-icons">
+                <a href="http://aravindavk.in/feeds/all.atom.xml" target="_blank" title="News">
+                  <img src="/theme/img/feed.png" class="link-icon" alt="News"/>
+                </a>
+                <a href="http://twitter.com/aravindavk" target="_blank" title="Twitter">
+                  <img src="/theme/img/twitter.png" class="link-icon" alt="Twitter"/>
+                </a>
+                <a href="https://plus.google.com/+aravindavk" target="_blank" title="Google Plus">
+                  <img src="/theme/img/gplus.png" class="link-icon" alt="Google Plus"/>
+                </a>
+                <a href="https://github.com/aravindavk" target="_blank" title="Github">
+                  <img src="/theme/img/github.png" class="link-icon" alt="Github"/>
+                </a>
+                <a href="http://www.flickr.com/photos/aravindavk" target="_blank" title="Flickr">
+                  <img src="/theme/img/flickr.png" class="link-icon" alt="Flickr"/>
+                </a>
+                <a href="http://in.linkedin.com/in/aravindavk" target="_blank" title="LinkedIn">
+                  <img src="/theme/img/linkedin.png" class="link-icon" alt="LinkedIn"/>
+                </a>
+              </div>
+              <ul>
+                <li class=""><a href="/">Home</a></li>
+                <li class=""><a href="/me">About</a></li>
+                <li class=""><a href="/projects">Projects</a></li>
+                <li class=""><a href="/blogs">Blogs</a></li>
+                <li class=""><a href="/talks">Talks & Articles</a></li>
+              </ul>
+            </div>
+            <div class="sep"></div>
+            <div class="copyright">&copy; 2008-2014 Aravinda VK, <br/>All rights reserved</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <script src="/theme/js/ui.js"></script>
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-11830111-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+  </body>
+</html>
