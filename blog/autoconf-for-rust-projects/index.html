@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="google-site-verification" content="PwqxyVtbmKeb1wsrF8XJ5GQIPxlDxUupYnTEWPI3KLk" />
+    <meta http-equiv="cache-control" content="max-age=0" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <link href="/theme/img/fav.png" rel="icon" type="image/x-icon" />
+    <meta property="og:site_name" content="Aravinda VK"/>
+    <link rel="apple-touch-icon" href="/theme/img/fav.png" />
+    <title>Autoconf for Rust Projects</title>
+    <meta property="og:title" content="Autoconf for Rust Projects"/>
+    <meta property="twitter:title" content="Autoconf for Rust Projects"/>
+    <meta name="description" content="In this blog we will discuss about using Autoconf for Rust projects along with Cargo."/>
+    <meta property="og:description" content="In this blog we will discuss about using Autoconf for Rust projects along with Cargo."/>
+    <meta property="twitter:description" content="In this blog we will discuss about using Autoconf for Rust projects along with Cargo."/>
+    <meta property="og:url" content="http://aravindavk.in/blog/autoconf-for-rust-projects/" />
+    <meta property="twitter:url" content="http://aravindavk.in/blog/autoconf-for-rust-projects/" />
+    <meta property="og:image" content="http://aravindavk.in" />
+    <link href="http://aravindavk.in/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Aravinda VK Atom Feed" />
+    <link rel="stylesheet" href="/theme/css/pure-min.css" />
+    <link rel="stylesheet" href="/theme/css/side-menu.css" />
+    <link rel="stylesheet" href="/theme/css/main.css" />
+    <link rel="stylesheet" href="/theme/css/pygment-emacs-highlight.css" />
+  </head>
+  <body>
+    <div id="layout">
+      <!-- Menu toggle -->
+      <a href="#menu" id="menuLink" class="menu-link">
+        <!-- Hamburger icon -->
+        <span></span>
+      </a>
+      <div id="menu" class="pure-hidden-desktop pure-hidden-tablet">
+        <div class="pure-menu pure-menu-open">
+          <a class="pure-menu-heading logo" href="/"><img src="/theme/img/logo.png" alt="aravindavk"/></a>
+          <div class="social-icons">
+            <a href="http://aravindavk.in/feeds/all.atom.xml" target="_blank" title="News">
+              <img src="/theme/img/feed.png" class="link-icon" alt="News"/>
+            </a>
+            <a href="http://twitter.com/aravindavk" target="_blank" title="Twitter">
+              <img src="/theme/img/twitter.png" class="link-icon" alt="Twitter"/>
+            </a>
+            <a href="https://plus.google.com/+aravindavk" target="_blank" title="Google Plus">
+              <img src="/theme/img/gplus.png" class="link-icon" alt="Google Plus"/>
+            </a>
+            <a href="https://github.com/aravindavk" target="_blank" title="Github">
+              <img src="/theme/img/github.png" class="link-icon" alt="Github"/>
+            </a>
+            <a href="http://www.flickr.com/photos/aravindavk" target="_blank" title="Flickr">
+              <img src="/theme/img/flickr.png" class="link-icon" alt="Flickr"/>
+            </a>
+            <a href="http://in.linkedin.com/in/aravindavk" target="_blank" title="LinkedIn">
+              <img src="/theme/img/linkedin.png" class="link-icon" alt="LinkedIn"/>
+            </a>
+          </div>
+          <ul>
+            <li class=""><a href="/">Home</a></li>
+            <li class=""><a href="/me">About</a></li>
+            <li class=""><a href="/projects">Projects</a></li>
+            <li class=""><a href="/blogs">Blogs</a></li>
+            <li class=""><a href="/talks">Talks & Articles</a></li>
+          </ul>
+        </div>
+        <div class="sep"></div>
+        <div class="copyright">&copy; 2008-2014 Aravinda VK, <br/>All rights reserved</div>
+      </div>
+
+      <div class="pure-g-r">
+        <div class="pure-u-4-5 content-left">
+          <div class="left article">
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        Autoconf for Rust Projects</h1>
+    </header>
+    <div class="pure-hidden-phone pure-hidden-tablet">
+<footer class="post-info">
+  <p class="author-and-date-info">
+    Posted on Tue 10 May 2016 by <a class="url fn" href="http://aravindavk.in">Aravinda VK</a>.
+  </p>
+</footer><!-- /.post-info -->
+<div class="sep"></div>    </div>
+    <div class="entry-content">
+      <p>Cargo is an awesome tool for managing <a class="reference external" href="http://rust-lang.org">Rust</a>
+projects, it takes care of all the Rust dependencies. But to package
+and distribute the generated files specific to target distribution is
+very difficult. For example, if the generated binary to be used by
+sudo user then we need to copy that to <tt class="docutils literal">/usr/sbin</tt> directory instead
+of <tt class="docutils literal">/usr/bin</tt> (sbin path may change for example <tt class="docutils literal">/usr/local/sbin</tt> ).</p>
+<p>In this blog we will discuss about using Autoconf for Rust projects
+along with Cargo.</p>
+<div class="section" id="example-simple-web-server-and-a-systemd-service-file">
+<h2>Example: Simple Web server and a systemd service file</h2>
+<p>Create a new project called <tt class="docutils literal">myservice</tt> using,</p>
+<div class="highlight"><pre>cargo new myservice --bin
+</pre></div>
+<p>Update <tt class="docutils literal">Cargo.toml</tt> with required Rust dependencies and other details.</p>
+<div class="highlight"><pre><span class="k">[package]</span>
+<span class="na">name</span> <span class="o">=</span> <span class="s">&quot;myservice&quot;</span>
+<span class="na">version</span> <span class="o">=</span> <span class="s">&quot;0.1.0&quot;</span>
+<span class="na">authors</span> <span class="o">=</span> <span class="s">[&quot;NAME &lt;EMAIL&gt;&quot;]</span>
+
+<span class="k">[dependencies]</span>
+<span class="na">iron</span> <span class="o">=</span> <span class="s">&quot;*&quot;</span>
+</pre></div>
+<p>and add the following example code in <tt class="docutils literal">src/main.rs</tt> (Copied from <a class="reference external" href="http://ironframework.io">http://ironframework.io</a>)</p>
+<div class="highlight"><pre><span class="k">extern</span><span class="w"> </span><span class="n">crate</span><span class="w"> </span><span class="n">iron</span><span class="p">;</span><span class="w"></span>
+
+<span class="kn">use</span><span class="w"> </span><span class="n">iron</span><span class="o">::</span><span class="n">prelude</span><span class="o">::*</span><span class="p">;</span><span class="w"></span>
+<span class="kn">use</span><span class="w"> </span><span class="n">iron</span><span class="o">::</span><span class="n">status</span><span class="p">;</span><span class="w"></span>
+
+<span class="k">fn</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">fn</span><span class="w"> </span><span class="n">hello_world</span><span class="p">(</span><span class="n">_</span><span class="o">:</span><span class="w"> </span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="n">Request</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">IronResult</span><span class="o">&lt;</span><span class="n">Response</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nb">Ok</span><span class="p">(</span><span class="n">Response</span><span class="o">::</span><span class="n">with</span><span class="p">((</span><span class="n">status</span><span class="o">::</span><span class="nb">Ok</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Hello World!&quot;</span><span class="p">)))</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">Iron</span><span class="o">::</span><span class="n">new</span><span class="p">(</span><span class="n">hello_world</span><span class="p">).</span><span class="n">http</span><span class="p">(</span><span class="s">&quot;localhost:3000&quot;</span><span class="p">).</span><span class="n">unwrap</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="nb">println</span><span class="o">!</span><span class="p">(</span><span class="s">&quot;On 3000&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+<p>Create a systemd unit file with the following content, we need Path of
+bin to add it to service file. We will take help of Autoconf to
+dynamically generate systemd unit file. Create a systemd unit file as
+<tt class="docutils literal">myserviced.service.in</tt> (Note the &#64;SBINDIR&#64; autoconf variable)</p>
+<div class="highlight"><pre><span class="k">[Unit]</span>
+<span class="na">Description</span><span class="o">=</span><span class="s">MyService</span>
+<span class="na">After</span><span class="o">=</span><span class="s">syslog.target network.target</span>
+
+<span class="k">[Service]</span>
+<span class="na">Type</span><span class="o">=</span><span class="s">simple</span>
+<span class="na">ExecStart</span><span class="o">=</span><span class="s">@SBINDIR@/myserviced</span>
+<span class="na">ExecReload</span><span class="o">=</span><span class="s">/bin/kill -SIGUSR2 $MAINPID</span>
+
+<span class="k">[Install]</span>
+<span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target</span>
+</pre></div>
+<p>If we use <tt class="docutils literal">&#64;sbindir&#64;</tt> then it will not expand completely, introduce
+a new variable <tt class="docutils literal">SBINDIR</tt> in <tt class="docutils literal">configure.ac</tt> which will expand
+completely with default path.</p>
+<p>Now we will create <tt class="docutils literal">configure.ac</tt> file</p>
+<div class="highlight"><pre>AC_INIT<span class="o">([</span>myservice<span class="o">]</span>, m4_esyscmd<span class="o">([</span>grep version Cargo.toml <span class="p">|</span> awk <span class="s1">&#39;{print $3}&#39;</span> <span class="p">|</span> tr -d <span class="s1">&#39;&quot;&#39;</span> <span class="p">|</span> tr -d <span class="s2">&quot;\n&quot;</span><span class="o">])</span>, <span class="o">[</span>YOUR_EMAIL<span class="o">])</span>
+
+<span class="nv">VERSION</span><span class="o">=</span><span class="k">$(</span>grep version Cargo.toml <span class="p">|</span> awk <span class="s1">&#39;{print $3}&#39;</span> <span class="p">|</span> tr -d <span class="s1">&#39;&quot;&#39;</span> <span class="p">|</span> tr -d <span class="s2">&quot;\n&quot;</span><span class="k">)</span>
+
+<span class="c"># Default value for sbindir</span>
+<span class="nv">prefix_temp</span><span class="o">=</span><span class="nv">$prefix</span>
+<span class="nv">exec_prefix_temp</span><span class="o">=</span><span class="nv">$exec_prefix</span>
+
+<span class="nb">test</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">prefix</span><span class="si">}</span><span class="s2">&quot;</span> <span class="o">=</span> <span class="s2">&quot;NONE&quot;</span> <span class="o">&amp;&amp;</span> <span class="nv">prefix</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">ac_default_prefix</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">test</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">exec_prefix</span><span class="si">}</span><span class="s2">&quot;</span> <span class="o">=</span> <span class="s2">&quot;NONE&quot;</span> <span class="o">&amp;&amp;</span> <span class="nv">exec_prefix</span><span class="o">=</span><span class="s1">&#39;${prefix}&#39;</span>
+
+<span class="c"># Initial Value is $exec_prefix/sbin</span>
+<span class="nv">sbintemp</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">sbindir</span><span class="si">}</span><span class="s2">&quot;</span>
+
+<span class="c"># Expands to $prefix/sbin</span>
+<span class="nb">eval </span><span class="nv">sbintemp</span><span class="o">=</span><span class="se">\&quot;</span><span class="si">${</span><span class="nv">sbintemp</span><span class="si">}</span><span class="se">\&quot;</span>
+<span class="c"># Expands to /usr/local/sbin or /usr/sbin if --prefix is passed</span>
+<span class="nb">eval </span><span class="nv">sbintemp</span><span class="o">=</span><span class="se">\&quot;</span><span class="si">${</span><span class="nv">sbintemp</span><span class="si">}</span><span class="se">\&quot;</span>
+<span class="nv">SBINDIR</span><span class="o">=</span><span class="si">${</span><span class="nv">sbintemp</span><span class="si">}</span>
+
+AC_SUBST<span class="o">(</span>SBINDIR<span class="o">)</span>
+AC_SUBST<span class="o">(</span>VERSION<span class="o">)</span>
+
+AC_CONFIG_FILES<span class="o">([</span>Makefile
+                 myserviced.service
+                 myservice.spec<span class="o">])</span>
+
+AC_OUTPUT
+</pre></div>
+<p>and <tt class="docutils literal">Makefile.in</tt> file</p>
+<div class="highlight"><pre>CWD :<span class="o">=</span> <span class="k">$(</span>shell <span class="nb">pwd</span><span class="k">)</span>
+TARDIR :<span class="o">=</span> myservice-@VERSION@
+RPMBUILD :<span class="o">=</span> <span class="k">$(</span>HOME<span class="k">)</span>/rpmbuild
+
+devbuild:
+    cargo build
+
+build:
+    cargo build --release
+
+dist:
+    @rm -fr ./dist
+    mkdir -p ./dist/<span class="k">$(</span>TARDIR<span class="k">)</span>
+    rsync -r --exclude .git/ --exclude dist/ --exclude target/ <span class="k">$(</span>CWD<span class="k">)</span>/ ./dist/<span class="k">$(</span>TARDIR<span class="k">)</span>
+    <span class="nb">cd</span> ./dist/<span class="p">;</span> tar -zcf <span class="k">$(</span>TARDIR<span class="k">)</span>.tar.gz <span class="k">$(</span>TARDIR<span class="k">)</span><span class="p">;</span>
+
+install: build
+    install -d <span class="k">$(</span>DESTDIR<span class="k">)</span>@SBINDIR@
+    install -d <span class="si">${</span><span class="nv">DESTDIR</span><span class="si">}</span>/usr/lib/systemd/system/
+    install -m <span class="m">755</span> ./target/release/myservice <span class="si">${</span><span class="nv">DESTDIR</span><span class="si">}</span>@SBINDIR@/myserviced
+    install -m <span class="m">0644</span> ./myserviced.service <span class="si">${</span><span class="nv">DESTDIR</span><span class="si">}</span>/usr/lib/systemd/system/myserviced.service
+
+rpm: dist
+    rm -rf <span class="k">$(</span>RPMBUILD<span class="k">)</span>/SOURCES/myservice*
+    rm -rf <span class="k">$(</span>RPMBUILD<span class="k">)</span>/BUILD/myservice*
+    mkdir -p <span class="k">$(</span>RPMBUILD<span class="k">)</span>/SOURCES
+    cp ./dist/myservice-@VERSION@.tar.gz <span class="k">$(</span>RPMBUILD<span class="k">)</span>/SOURCES<span class="p">;</span> <span class="se">\</span>
+    rpmbuild -ba myservice.spec
+</pre></div>
+<p>Now project will looks like,</p>
+<div class="highlight"><pre>$myservice/
+        - Cargo.toml
+            - src/
+                - main.rs
+            - Makefile.in
+            - configure.ac
+    - myservice.service.in
+</pre></div>
+<p>Run <tt class="docutils literal">autoconf</tt> to generate <tt class="docutils literal">configure</tt> file from <tt class="docutils literal">configure.ac</tt>
+file. Then run <tt class="docutils literal">./configure</tt>, it will generate following files</p>
+<div class="highlight"><pre>Makefile.in =&gt; Makefile
+myserviced.service.in =&gt; myserviced.service
+myservice.spec.in =&gt; myservice.spec
+</pre></div>
+<p>Steps to install <tt class="docutils literal">myservice</tt> (Source installation),</p>
+<div class="highlight"><pre>autoconf
+./configure
+sudo make install
+</pre></div>
+<p>make install will run cargo build --release, and copies generated
+binary to /usr/local/sbin and systemd service file to
+/usr/lib/systemd/system</p>
+<p>Binary can be installed to /usr/sbin by passing <tt class="docutils literal"><span class="pre">--prefix=/usr</span></tt> or
+<tt class="docutils literal"><span class="pre">--sbindir=/usr/sbin</span></tt> to configure(For example,
+<tt class="docutils literal">./configure <span class="pre">--prefix=/usr</span></tt> )</p>
+<p><tt class="docutils literal">myservice</tt> can now be enabled using,</p>
+<div class="highlight"><pre>sudo systemctl <span class="nb">enable </span>myserviced
+sudo systemctl start myserviced
+</pre></div>
+</div>
+<div class="section" id="bonus-generate-rpm-for-your-package">
+<h2>Bonus: Generate RPM for your package</h2>
+<p>Sample RPM spec file is available in the <a class="reference external" href="https://github.com/aravinda/rust_autoconf/myservice.spec.in">repo</a></p>
+<div class="highlight"><pre>autoconf
+./configure
+make rpm
+</pre></div>
+<p>Generated RPM will be available in <tt class="docutils literal">$HOME/rpmbuild/RPMS/x86_64/</tt></p>
+<div class="highlight"><pre>rpm -qlp <span class="nv">$HOME</span>/rpmbuild/RPMS/x86_64/myservice-0.1.0-1.fc23.x86_64.rpm
+</pre></div>
+<div class="highlight"><pre>/usr/lib/systemd/system/myserviced.service
+/usr/sbin/myserviced
+</pre></div>
+</div>
+<div class="section" id="rust-cargo-and-autoconf-version">
+<h2>Rust, Cargo and Autoconf Version</h2>
+<div class="highlight"><pre>rustc 1.8.0 (db2939409 2016-04-11)
+cargo 0.9.0-nightly (8fc3fd8 2016-02-29)
+autoconf (GNU Autoconf) 2.69
+</pre></div>
+<p>Reference project is available in github <a class="reference external" href="https://github.com/aravindavk/rust_autoconf">https://github.com/aravindavk/rust_autoconf</a></p>
+</div>
+
+    </div><!-- /.entry-content -->
+    <div class="pure-hidden-desktop">
+<footer class="post-info">
+  <p class="author-and-date-info">
+    Posted on Tue 10 May 2016 by <a class="url fn" href="http://aravindavk.in">Aravinda VK</a>.
+  </p>
+</footer><!-- /.post-info -->
+<div class="sep"></div>    </div>
+    <div class="permalink-div">
+      Permalink: <a href="http://aravindavk.in/blog/autoconf-for-rust-projects/" rel="bookmark" title="Permalink to Autoconf for Rust Projects">http://aravindavk.in/blog/autoconf-for-rust-projects/</a>
+    </div>
+<div class="comments">
+  <h2>Comments !</h2>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_identifier = "blog/autoconf-for-rust-projects/";
+    var disqus_url = "http://aravindavk.in/blog/autoconf-for-rust-projects/";
+    (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = 'http://vkaravinda.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+</div>
+  </article>
+</section>
+            <div class="copyright pure-hidden-desktop pure-hidden-tablet">&copy; 2008-2014 Aravinda VK, <br/>All rights reserved</div>
+          </div>
+        </div>
+        <div class="pure-u-1-5 pure-hidden-phone">
+          <div class="right">
+            <img class="me" src="/theme/img/me.jpg"/>
+            <div class="sep"></div>
+            <div class="pure-menu pure-menu-open">
+              <a class="pure-menu-heading logo" href="/"><img src="/theme/img/logo.png" alt="aravindavk"/></a>
+              <div class="social-icons">
+                <a href="http://aravindavk.in/feeds/all.atom.xml" target="_blank" title="News">
+                  <img src="/theme/img/feed.png" class="link-icon" alt="News"/>
+                </a>
+                <a href="http://twitter.com/aravindavk" target="_blank" title="Twitter">
+                  <img src="/theme/img/twitter.png" class="link-icon" alt="Twitter"/>
+                </a>
+                <a href="https://plus.google.com/+aravindavk" target="_blank" title="Google Plus">
+                  <img src="/theme/img/gplus.png" class="link-icon" alt="Google Plus"/>
+                </a>
+                <a href="https://github.com/aravindavk" target="_blank" title="Github">
+                  <img src="/theme/img/github.png" class="link-icon" alt="Github"/>
+                </a>
+                <a href="http://www.flickr.com/photos/aravindavk" target="_blank" title="Flickr">
+                  <img src="/theme/img/flickr.png" class="link-icon" alt="Flickr"/>
+                </a>
+                <a href="http://in.linkedin.com/in/aravindavk" target="_blank" title="LinkedIn">
+                  <img src="/theme/img/linkedin.png" class="link-icon" alt="LinkedIn"/>
+                </a>
+              </div>
+              <ul>
+                <li class=""><a href="/">Home</a></li>
+                <li class=""><a href="/me">About</a></li>
+                <li class=""><a href="/projects">Projects</a></li>
+                <li class=""><a href="/blogs">Blogs</a></li>
+                <li class=""><a href="/talks">Talks & Articles</a></li>
+              </ul>
+            </div>
+            <div class="sep"></div>
+            <div class="copyright">&copy; 2008-2014 Aravinda VK, <br/>All rights reserved</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <script src="/theme/js/ui.js"></script>
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-11830111-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+  </body>
+</html>

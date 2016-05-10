@@ -1,5 +1,174 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Aravinda VK</title><link href="http://aravindavk.in/" rel="alternate"></link><link href="http://aravindavk.in/feeds/all.atom.xml" rel="self"></link><id>http://aravindavk.in/</id><updated>2016-05-10T00:00:00+05:30</updated><entry><title>ಪುಟ್ಟಿಗೊಂದು ಬ್ಯಾಗ್</title><link href="http://aravindavk.in/blog/puttigondu-bag/" rel="alternate"></link><updated>2016-05-10T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2016-05-10:blog/puttigondu-bag/</id><summary type="html">&lt;p&gt;ಹೊಲಿಗೆ ಯಂತ್ರ ಬಂದಾಗಿನಿಂದ(ತಂದಾಗಿನಿಂದ) ಏನಾದರೂ ಕ್ರಿಯೇಟಿವ್ ಆಗಿ ಏನಾದ್ರೂ ಮಾಡಬೇಕು ಅಂತ
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Aravinda VK</title><link href="http://aravindavk.in/" rel="alternate"></link><link href="http://aravindavk.in/feeds/all.atom.xml" rel="self"></link><id>http://aravindavk.in/</id><updated>2016-05-10T00:00:00+05:30</updated><entry><title>Autoconf for Rust Projects</title><link href="http://aravindavk.in/blog/autoconf-for-rust-projects/" rel="alternate"></link><updated>2016-05-10T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2016-05-10:blog/autoconf-for-rust-projects/</id><summary type="html">&lt;p&gt;Cargo is an awesome tool for managing &lt;a class="reference external" href="http://rust-lang.org"&gt;Rust&lt;/a&gt;
+projects, it takes care of all the Rust dependencies. But to package
+and distribute the generated files specific to target distribution is
+very difficult. For example, if the generated binary to be used by
+sudo user then we need to copy that to &lt;tt class="docutils literal"&gt;/usr/sbin&lt;/tt&gt; directory instead
+of &lt;tt class="docutils literal"&gt;/usr/bin&lt;/tt&gt; (sbin path may change for example &lt;tt class="docutils literal"&gt;/usr/local/sbin&lt;/tt&gt; ).&lt;/p&gt;
+&lt;p&gt;In this blog we will discuss about using Autoconf for Rust projects
+along with Cargo.&lt;/p&gt;
+&lt;div class="section" id="example-simple-web-server-and-a-systemd-service-file"&gt;
+&lt;h2&gt;Example: Simple Web server and a systemd service file&lt;/h2&gt;
+&lt;p&gt;Create a new project called &lt;tt class="docutils literal"&gt;myservice&lt;/tt&gt; using,&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;cargo new myservice --bin
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Update &lt;tt class="docutils literal"&gt;Cargo.toml&lt;/tt&gt; with required Rust dependencies and other details.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;[package]&lt;/span&gt;
+&lt;span class="na"&gt;name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;myservice&amp;quot;&lt;/span&gt;
+&lt;span class="na"&gt;version&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;0.1.0&amp;quot;&lt;/span&gt;
+&lt;span class="na"&gt;authors&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;[&amp;quot;NAME &amp;lt;EMAIL&amp;gt;&amp;quot;]&lt;/span&gt;
+
+&lt;span class="k"&gt;[dependencies]&lt;/span&gt;
+&lt;span class="na"&gt;iron&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;*&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;and add the following example code in &lt;tt class="docutils literal"&gt;src/main.rs&lt;/tt&gt; (Copied from &lt;a class="reference external" href="http://ironframework.io"&gt;http://ironframework.io&lt;/a&gt;)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;extern&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;crate&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;iron&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="kn"&gt;use&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;iron&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;prelude&lt;/span&gt;&lt;span class="o"&gt;::*&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="kn"&gt;use&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;iron&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;status&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="k"&gt;fn&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;fn&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;hello_world&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;_&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="k"&gt;mut&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Request&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;IronResult&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;Response&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nb"&gt;Ok&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Response&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;with&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="n"&gt;status&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="nb"&gt;Ok&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Hello World!&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;Iron&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;new&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;hello_world&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;localhost:3000&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="n"&gt;unwrap&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nb"&gt;println&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;On 3000&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Create a systemd unit file with the following content, we need Path of
+bin to add it to service file. We will take help of Autoconf to
+dynamically generate systemd unit file. Create a systemd unit file as
+&lt;tt class="docutils literal"&gt;myserviced.service.in&lt;/tt&gt; (Note the &amp;#64;SBINDIR&amp;#64; autoconf variable)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;[Unit]&lt;/span&gt;
+&lt;span class="na"&gt;Description&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;MyService&lt;/span&gt;
+&lt;span class="na"&gt;After&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;syslog.target network.target&lt;/span&gt;
+
+&lt;span class="k"&gt;[Service]&lt;/span&gt;
+&lt;span class="na"&gt;Type&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;simple&lt;/span&gt;
+&lt;span class="na"&gt;ExecStart&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;@SBINDIR@/myserviced&lt;/span&gt;
+&lt;span class="na"&gt;ExecReload&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;/bin/kill -SIGUSR2 $MAINPID&lt;/span&gt;
+
+&lt;span class="k"&gt;[Install]&lt;/span&gt;
+&lt;span class="na"&gt;WantedBy&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;multi-user.target&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;If we use &lt;tt class="docutils literal"&gt;&amp;#64;sbindir&amp;#64;&lt;/tt&gt; then it will not expand completely, introduce
+a new variable &lt;tt class="docutils literal"&gt;SBINDIR&lt;/tt&gt; in &lt;tt class="docutils literal"&gt;configure.ac&lt;/tt&gt; which will expand
+completely with default path.&lt;/p&gt;
+&lt;p&gt;Now we will create &lt;tt class="docutils literal"&gt;configure.ac&lt;/tt&gt; file&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;AC_INIT&lt;span class="o"&gt;([&lt;/span&gt;myservice&lt;span class="o"&gt;]&lt;/span&gt;, m4_esyscmd&lt;span class="o"&gt;([&lt;/span&gt;grep version Cargo.toml &lt;span class="p"&gt;|&lt;/span&gt; awk &lt;span class="s1"&gt;&amp;#39;{print $3}&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; tr -d &lt;span class="s1"&gt;&amp;#39;&amp;quot;&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; tr -d &lt;span class="s2"&gt;&amp;quot;\n&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;])&lt;/span&gt;, &lt;span class="o"&gt;[&lt;/span&gt;YOUR_EMAIL&lt;span class="o"&gt;])&lt;/span&gt;
+
+&lt;span class="nv"&gt;VERSION&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;grep version Cargo.toml &lt;span class="p"&gt;|&lt;/span&gt; awk &lt;span class="s1"&gt;&amp;#39;{print $3}&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; tr -d &lt;span class="s1"&gt;&amp;#39;&amp;quot;&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; tr -d &lt;span class="s2"&gt;&amp;quot;\n&amp;quot;&lt;/span&gt;&lt;span class="k"&gt;)&lt;/span&gt;
+
+&lt;span class="c"&gt;# Default value for sbindir&lt;/span&gt;
+&lt;span class="nv"&gt;prefix_temp&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$prefix&lt;/span&gt;
+&lt;span class="nv"&gt;exec_prefix_temp&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$exec_prefix&lt;/span&gt;
+
+&lt;span class="nb"&gt;test&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;prefix&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;NONE&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="nv"&gt;prefix&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;ac_default_prefix&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="nb"&gt;test&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;exec_prefix&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;NONE&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="nv"&gt;exec_prefix&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;${prefix}&amp;#39;&lt;/span&gt;
+
+&lt;span class="c"&gt;# Initial Value is $exec_prefix/sbin&lt;/span&gt;
+&lt;span class="nv"&gt;sbintemp&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;sbindir&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+
+&lt;span class="c"&gt;# Expands to $prefix/sbin&lt;/span&gt;
+&lt;span class="nb"&gt;eval &lt;/span&gt;&lt;span class="nv"&gt;sbintemp&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="se"&gt;\&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;sbintemp&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="se"&gt;\&amp;quot;&lt;/span&gt;
+&lt;span class="c"&gt;# Expands to /usr/local/sbin or /usr/sbin if --prefix is passed&lt;/span&gt;
+&lt;span class="nb"&gt;eval &lt;/span&gt;&lt;span class="nv"&gt;sbintemp&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="se"&gt;\&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;sbintemp&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="se"&gt;\&amp;quot;&lt;/span&gt;
+&lt;span class="nv"&gt;SBINDIR&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;sbintemp&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;
+
+AC_SUBST&lt;span class="o"&gt;(&lt;/span&gt;SBINDIR&lt;span class="o"&gt;)&lt;/span&gt;
+AC_SUBST&lt;span class="o"&gt;(&lt;/span&gt;VERSION&lt;span class="o"&gt;)&lt;/span&gt;
+
+AC_CONFIG_FILES&lt;span class="o"&gt;([&lt;/span&gt;Makefile
+                 myserviced.service
+                 myservice.spec&lt;span class="o"&gt;])&lt;/span&gt;
+
+AC_OUTPUT
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;and &lt;tt class="docutils literal"&gt;Makefile.in&lt;/tt&gt; file&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;CWD :&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;$(&lt;/span&gt;shell &lt;span class="nb"&gt;pwd&lt;/span&gt;&lt;span class="k"&gt;)&lt;/span&gt;
+TARDIR :&lt;span class="o"&gt;=&lt;/span&gt; myservice-@VERSION@
+RPMBUILD :&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;$(&lt;/span&gt;HOME&lt;span class="k"&gt;)&lt;/span&gt;/rpmbuild
+
+devbuild:
+    cargo build
+
+build:
+    cargo build --release
+
+dist:
+    @rm -fr ./dist
+    mkdir -p ./dist/&lt;span class="k"&gt;$(&lt;/span&gt;TARDIR&lt;span class="k"&gt;)&lt;/span&gt;
+    rsync -r --exclude .git/ --exclude dist/ --exclude target/ &lt;span class="k"&gt;$(&lt;/span&gt;CWD&lt;span class="k"&gt;)&lt;/span&gt;/ ./dist/&lt;span class="k"&gt;$(&lt;/span&gt;TARDIR&lt;span class="k"&gt;)&lt;/span&gt;
+    &lt;span class="nb"&gt;cd&lt;/span&gt; ./dist/&lt;span class="p"&gt;;&lt;/span&gt; tar -zcf &lt;span class="k"&gt;$(&lt;/span&gt;TARDIR&lt;span class="k"&gt;)&lt;/span&gt;.tar.gz &lt;span class="k"&gt;$(&lt;/span&gt;TARDIR&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+install: build
+    install -d &lt;span class="k"&gt;$(&lt;/span&gt;DESTDIR&lt;span class="k"&gt;)&lt;/span&gt;@SBINDIR@
+    install -d &lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;DESTDIR&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;/usr/lib/systemd/system/
+    install -m &lt;span class="m"&gt;755&lt;/span&gt; ./target/release/myservice &lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;DESTDIR&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;@SBINDIR@/myserviced
+    install -m &lt;span class="m"&gt;0644&lt;/span&gt; ./myserviced.service &lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;DESTDIR&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;/usr/lib/systemd/system/myserviced.service
+
+rpm: dist
+    rm -rf &lt;span class="k"&gt;$(&lt;/span&gt;RPMBUILD&lt;span class="k"&gt;)&lt;/span&gt;/SOURCES/myservice*
+    rm -rf &lt;span class="k"&gt;$(&lt;/span&gt;RPMBUILD&lt;span class="k"&gt;)&lt;/span&gt;/BUILD/myservice*
+    mkdir -p &lt;span class="k"&gt;$(&lt;/span&gt;RPMBUILD&lt;span class="k"&gt;)&lt;/span&gt;/SOURCES
+    cp ./dist/myservice-@VERSION@.tar.gz &lt;span class="k"&gt;$(&lt;/span&gt;RPMBUILD&lt;span class="k"&gt;)&lt;/span&gt;/SOURCES&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="se"&gt;\&lt;/span&gt;
+    rpmbuild -ba myservice.spec
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now project will looks like,&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;$myservice/
+        - Cargo.toml
+            - src/
+                - main.rs
+            - Makefile.in
+            - configure.ac
+    - myservice.service.in
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Run &lt;tt class="docutils literal"&gt;autoconf&lt;/tt&gt; to generate &lt;tt class="docutils literal"&gt;configure&lt;/tt&gt; file from &lt;tt class="docutils literal"&gt;configure.ac&lt;/tt&gt;
+file. Then run &lt;tt class="docutils literal"&gt;./configure&lt;/tt&gt;, it will generate following files&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;Makefile.in =&amp;gt; Makefile
+myserviced.service.in =&amp;gt; myserviced.service
+myservice.spec.in =&amp;gt; myservice.spec
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Steps to install &lt;tt class="docutils literal"&gt;myservice&lt;/tt&gt; (Source installation),&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;autoconf
+./configure
+sudo make install
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;make install will run cargo build --release, and copies generated
+binary to /usr/local/sbin and systemd service file to
+/usr/lib/systemd/system&lt;/p&gt;
+&lt;p&gt;Binary can be installed to /usr/sbin by passing &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;--prefix=/usr&lt;/span&gt;&lt;/tt&gt; or
+&lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;--sbindir=/usr/sbin&lt;/span&gt;&lt;/tt&gt; to configure(For example,
+&lt;tt class="docutils literal"&gt;./configure &lt;span class="pre"&gt;--prefix=/usr&lt;/span&gt;&lt;/tt&gt; )&lt;/p&gt;
+&lt;p&gt;&lt;tt class="docutils literal"&gt;myservice&lt;/tt&gt; can now be enabled using,&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;sudo systemctl &lt;span class="nb"&gt;enable &lt;/span&gt;myserviced
+sudo systemctl start myserviced
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="bonus-generate-rpm-for-your-package"&gt;
+&lt;h2&gt;Bonus: Generate RPM for your package&lt;/h2&gt;
+&lt;p&gt;Sample RPM spec file is available in the &lt;a class="reference external" href="https://github.com/aravinda/rust_autoconf/myservice.spec.in"&gt;repo&lt;/a&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;autoconf
+./configure
+make rpm
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Generated RPM will be available in &lt;tt class="docutils literal"&gt;$HOME/rpmbuild/RPMS/x86_64/&lt;/tt&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;rpm -qlp &lt;span class="nv"&gt;$HOME&lt;/span&gt;/rpmbuild/RPMS/x86_64/myservice-0.1.0-1.fc23.x86_64.rpm
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;/usr/lib/systemd/system/myserviced.service
+/usr/sbin/myserviced
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="rust-cargo-and-autoconf-version"&gt;
+&lt;h2&gt;Rust, Cargo and Autoconf Version&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;rustc 1.8.0 (db2939409 2016-04-11)
+cargo 0.9.0-nightly (8fc3fd8 2016-02-29)
+autoconf (GNU Autoconf) 2.69
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Reference project is available in github &lt;a class="reference external" href="https://github.com/aravindavk/rust_autoconf"&gt;https://github.com/aravindavk/rust_autoconf&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+</summary><category term="rust"></category><category term="autoconf"></category></entry><entry><title>ಪುಟ್ಟಿಗೊಂದು ಬ್ಯಾಗ್</title><link href="http://aravindavk.in/blog/puttigondu-bag/" rel="alternate"></link><updated>2016-05-10T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2016-05-10:blog/puttigondu-bag/</id><summary type="html">&lt;p&gt;ಹೊಲಿಗೆ ಯಂತ್ರ ಬಂದಾಗಿನಿಂದ(ತಂದಾಗಿನಿಂದ) ಏನಾದರೂ ಕ್ರಿಯೇಟಿವ್ ಆಗಿ ಏನಾದ್ರೂ ಮಾಡಬೇಕು ಅಂತ
 ಅನ್ನಿಸುತ್ತಲೇ ಇತ್ತು. ಮೊನ್ನೆಯಿಂದ ಪುಟ್ಟಿಗೆ ಬ್ಯಾಗ್ ಹೊಲಿಯೋಣ ಅಂತ ಶುರು ಮಾಡಿದೆ. ಪೇಪರ್ ನಲ್ಲಿ ಡಿಸೈನ್
 ಬರೆದುಕೊಂಡು ಯೋಚಿಸಲಾರಂಭಿಸಿದೆ, ಹೇಗೆ ಮಾಡೋದು, ಯಾವ ಡಿಸೈನ್ ಅಂತೆಲ್ಲಾ. ಪ್ರತೀಸಲ ಯೋಚಿಸಿದಾಗಲೂ
 ಏನಾದರೂ ಹೊಸ ಐಡಿಯಾ ಬರ್ತಿತ್ತು, ಕೊನೆಗೂ ಒಂದು ಐಡಿಯಾ finalize ಮಾಡಿದೆ.&lt;/p&gt;

@@ -276,3 +276,6 @@ img + p > em, p.caption{
     margin-bottom: 10px;
     font-size: 11px;
 }
+.literal{
+    background-color: #eee;
+}
