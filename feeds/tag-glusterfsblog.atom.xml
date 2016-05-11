@@ -1,5 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Aravinda VK</title><link href="http://aravindavk.in/" rel="alternate"></link><link href="http://aravindavk.in/feeds/tag-glusterfsblog.atom.xml" rel="self"></link><id>http://aravindavk.in/</id><updated>2016-03-14T00:00:00+05:30</updated><entry><title>Qcow2 snapshots and Gluster Geo-replication</title><link href="http://aravindavk.in/blog/qcow2-snapshots-and-gluster-georeplication/" rel="alternate"></link><updated>2016-03-14T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2016-03-14:blog/qcow2-snapshots-and-gluster-georeplication/</id><summary type="html">&lt;p&gt;Gluster introduced sharding feature to store large files(which can
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Aravinda VK</title><link href="http://aravindavk.in/" rel="alternate"></link><link href="http://aravindavk.in/feeds/tag-glusterfsblog.atom.xml" rel="self"></link><id>http://aravindavk.in/</id><updated>2016-05-11T00:00:00+05:30</updated><entry><title>10 minutes introduction to Gluster Eventing Feature</title><link href="http://aravindavk.in/blog/10-mins-intro-to-gluster-eventing/" rel="alternate"></link><updated>2016-05-11T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2016-05-11:blog/10-mins-intro-to-gluster-eventing/</id><summary type="html">&lt;p&gt;Gluster Eventing is the new feature as part of Gluster.Next
+initiatives, it provides close to realtime notification and alerts for
+the Gluster cluster state changes.&lt;/p&gt;
+&lt;p&gt;Websockets APIs to consume events will be added later. Now we emit
+events via another popular mechanism called &amp;quot;Webhooks&amp;quot;.(Many popular
+products provide notifications via Webhooks &lt;a class="reference external" href="https://developer.github.com/webhooks/"&gt;Github,&lt;/a&gt; &lt;a class="reference external" href="https://developer.atlassian.com/jiradev/jira-apis/webhooks"&gt;Atlassian,&lt;/a&gt;
+&lt;a class="reference external" href="https://www.dropbox.com/developers/reference/webhooks"&gt;Dropbox,&lt;/a&gt; and many more)&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Webhooks&lt;/strong&gt; are similar to callbacks(over HTTP), on event Gluster will
+call the Webhook URL(via POST) which is configured. Webhook is a web server
+which listens on a URL, this can be deployed outside of the
+Cluster. Gluster nodes should be able to access this Webhook server on
+the configured port. We will discuss about adding/testing webhook
+later.&lt;/p&gt;
+&lt;p&gt;Example Webhook written in python,&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;flask&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Flask&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;request&lt;/span&gt;
+
+&lt;span class="n"&gt;app&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Flask&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;__name__&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="nd"&gt;@app.route&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/listen&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;methods&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;POST&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;events_listener&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="n"&gt;gluster_event&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;json&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;gluster_event&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="c"&gt;# No event to process, may be test call&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;OK&amp;quot;&lt;/span&gt;
+
+    &lt;span class="c"&gt;# Process gluster_event&lt;/span&gt;
+    &lt;span class="c"&gt;# {&lt;/span&gt;
+    &lt;span class="c"&gt;#  &amp;quot;nodeid&amp;quot;: NODEID,&lt;/span&gt;
+    &lt;span class="c"&gt;#  &amp;quot;ts&amp;quot;: EVENT_TIMESTAMP,&lt;/span&gt;
+    &lt;span class="c"&gt;#  &amp;quot;event&amp;quot;: EVENT_TYPE,&lt;/span&gt;
+    &lt;span class="c"&gt;#  &amp;quot;message&amp;quot;: EVENT_DATA&lt;/span&gt;
+    &lt;span class="c"&gt;# }&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;OK&amp;quot;&lt;/span&gt;
+
+&lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;run&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;host&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;0.0.0.0&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;port&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;9000&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Eventing feature is not yet available in any of the releases, patch is
+under review in upstream master(&lt;a class="reference external" href="http://review.gluster.org/14248"&gt;http://review.gluster.org/14248&lt;/a&gt;). If anybody interested in trying it
+out can cherrypick the patch from review.gluster.org&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;git clone http://review.gluster.org/glusterfs
+&lt;span class="nb"&gt;cd &lt;/span&gt;glusterfs
+git fetch http://review.gluster.org/glusterfs refs/changes/48/14248/5
+git checkout FETCH_HEAD
+git checkout -b &amp;lt;YOUR_BRANCH_NAME&amp;gt;
+./autogen.sh
+./configure
+make
+make install
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Start the Eventing using,&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;gluster-eventing start
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Other commands available are stop, restart, reload and
+status. &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;gluster-eventing&lt;/span&gt; &lt;span class="pre"&gt;--help&lt;/span&gt;&lt;/tt&gt; for more details.&lt;/p&gt;
+&lt;p&gt;Now Gluster can send out notifications via Webhooks. Setup a web
+server listening to a POST request and register that URL to Gluster
+Eventing. Thats all.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;gluster-eventing webhook-add &amp;lt;MY_WEB_SERVER_URL&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;For example, if my webserver is running at &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;http://192.168.122.188:9000/listen&lt;/span&gt;&lt;/tt&gt;
+then register using,&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;gluster-eventing webhook-add &lt;span class="sb"&gt;``&lt;/span&gt;http://192.168.122.188:9000/listen&lt;span class="sb"&gt;``&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;We can also test if web server is accessible from all Gluster nodes
+using &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;webhook-test&lt;/span&gt;&lt;/tt&gt; subcommand.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;gluster-eventing webhook-test http://192.168.122.188:9000/listen
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;With the initial patch only basic events are covered, I will add more
+events once this patch gets merged. Following events are available
+now.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;Volume Create
+Volume Delete
+Volume Start
+Volume Stop
+Peer Attach
+Peer Detach
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Created a small demo to show this eventing feature, it uses Web server
+which is included with the patch for Testing.(laptop hostname is &lt;tt class="docutils literal"&gt;sonne&lt;/tt&gt;)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;/usr/share/glusterfs/scripts/eventsdash.py --port 8080
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Login to Gluster node and start the eventing,&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;gluster-eventing start
+gluster-eventing webhook-add http://sonne:8080/listen
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;And then login to VM and run Gluster commands to probe/detach peer,
+volume create, start etc and Observe the realtime notifications for
+the same where eventsdash is running.&lt;/p&gt;
+&lt;p&gt;Example,&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;ssh root@fvm1
+gluster peer attach fvm2
+gluster volume create gv1 fvm1:/bricks/b1 fvm2:/bricks/b2 force
+gluster volume start gv1
+gluster volume stop gv1
+gluster volume delete gv1
+gluster peer detach fvm2
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Demo also includes a Web UI which refreshes its UI automatically when
+something changes in Cluster.(I am still fine tuning this UI, not yet
+available with the patch. But soon will be available as seperate repo
+in my github)&lt;/p&gt;
+&lt;iframe width="640" height="360" src="https://www.youtube.com/embed/urzong5sKqc" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;&lt;div class="section" id="faq"&gt;
+&lt;h2&gt;FAQ:&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p class="first"&gt;&lt;strong&gt;Will this feature available in 3.8 release?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Sadly No. I couldn't get this merged before 3.8 feature freeze :(&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;&lt;strong&gt;Is it possible to create a simple Gluster dashboard outside the
+cluster?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;It is possible, along with the events we also need REST APIs to get
+more information from cluster or to perform any action in cluster.
+(WIP REST APIs are available &lt;a class="reference external" href="https://github.com/aravindavk/glusterfs-restapi"&gt;here&lt;/a&gt;)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;&lt;strong&gt;Is it possible to filter only alerts or critical notifications?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Thanks &lt;a class="reference external" href="http://hrkscribbles.blogspot.in/"&gt;Kotresh&lt;/a&gt; for the
+suggestion. Yes it is possible to add event_type and event_group
+information to the dict so that it can be filtered easily.(Not yet
+available now, but will add this feature once this patch gets merged
+in Master)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;&lt;strong&gt;Is documentation available to know more about eventing design and
+internals?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Design spec available &lt;a class="reference external" href="http://review.gluster.org/13115"&gt;here&lt;/a&gt;
+(which discusses about Websockets, currently we don't have
+Websockets support). Usage documentation is available in the commit
+message of the patch(&lt;a class="reference external" href="http://review.gluster.org/14248"&gt;http://review.gluster.org/14248&lt;/a&gt;).&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Comments and Suggestions Welcome.&lt;/p&gt;
+&lt;/div&gt;
+</summary><category term="gluster"></category><category term="glusterfsblog"></category></entry><entry><title>Qcow2 snapshots and Gluster Geo-replication</title><link href="http://aravindavk.in/blog/qcow2-snapshots-and-gluster-georeplication/" rel="alternate"></link><updated>2016-03-14T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2016-03-14:blog/qcow2-snapshots-and-gluster-georeplication/</id><summary type="html">&lt;p&gt;Gluster introduced sharding feature to store large files(which can
 grow beyond a single brick) or to support running Virtual machines in
 Gluster Volumes. Read more about sharding &lt;a class="reference external" href="http://blog.gluster.org/2015/12/introducing-shard-translator/"&gt;here&lt;/a&gt; and
 &lt;a class="reference external" href="http://blog.gluster.org/2015/12/sharding-what-next-2/"&gt;here&lt;/a&gt;.&lt;/p&gt;
