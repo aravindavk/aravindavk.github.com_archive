@@ -8,6 +8,12 @@
 :summary: It provides close to realtime notification and alerts for
           the Gluster cluster state changes.
 
+.. raw:: html
+
+    <div class="notice-update">
+    Demo video is included in the end, or you can directly watch it on <a href="https://www.youtube.com/watch?v=urzong5sKqc">Youtube</a>
+    </div>
+
 Gluster Eventing is the new feature as part of Gluster.Next
 initiatives, it provides close to realtime notification and alerts for
 the Gluster cluster state changes.
