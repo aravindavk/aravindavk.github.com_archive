@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aravinda VK</title><link>http://aravindavk.in/</link><description></description><atom:link href="http://aravindavk.in/feeds/aravinda-vk.rss.xml" rel="self"></atom:link><lastBuildDate>Wed, 11 May 2016 00:00:00 +0530</lastBuildDate><item><title>10 minutes introduction to Gluster Eventing Feature</title><link>http://aravindavk.in/blog/10-mins-intro-to-gluster-eventing/</link><description>&lt;p&gt;Gluster Eventing is the new feature as part of Gluster.Next
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aravinda VK</title><link>http://aravindavk.in/</link><description></description><atom:link href="http://aravindavk.in/feeds/aravinda-vk.rss.xml" rel="self"></atom:link><lastBuildDate>Wed, 11 May 2016 00:00:00 +0530</lastBuildDate><item><title>10 minutes introduction to Gluster Eventing Feature</title><link>http://aravindavk.in/blog/10-mins-intro-to-gluster-eventing/</link><description>&lt;div class="notice-update"&gt;
+Demo video is included in the end, or you can directly watch it on &lt;a href="https://www.youtube.com/watch?v=urzong5sKqc"&gt;Youtube&lt;/a&gt;
+&lt;/div&gt;&lt;p&gt;Gluster Eventing is the new feature as part of Gluster.Next
 initiatives, it provides close to realtime notification and alerts for
 the Gluster cluster state changes.&lt;/p&gt;
 &lt;p&gt;Websockets APIs to consume events will be added later. Now we emit
