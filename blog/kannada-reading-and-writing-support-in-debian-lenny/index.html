@@ -88,17 +88,17 @@
     <div class="entry-content">
       <p>Now it is very easy to enable and configure Kannada in Debian. Install the following packages using apt-get or synaptic package manager.</p>
 <p>If you are a GNOME user then</p>
-<div class="highlight"><pre>apt-get install ttf-kannada-fonts scim-bridge-client-gtk scim-m17n
+<div class="highlight"><pre><span></span>apt-get install ttf-kannada-fonts scim-bridge-client-gtk scim-m17n
 </pre></div>
 <p>If You are KDE 4.x user then</p>
-<div class="highlight"><pre>apt-get install ttf-kannada-fonts scim-bridge-client-qt4 scim-m17n
+<div class="highlight"><pre><span></span>apt-get install ttf-kannada-fonts scim-bridge-client-qt4 scim-m17n
 </pre></div>
 <p>Create a folder in your home directory with name &quot;.xinput.d&quot; and create a file &quot;all_ALL&quot; inside the folder created just now.</p>
-<div class="highlight"><pre>mkdir <span class="nv">$HOME</span>/.xinput.d
+<div class="highlight"><pre><span></span>mkdir <span class="nv">$HOME</span>/.xinput.d
 gedit <span class="nv">$HOME</span>/.xinput.d/all_ALL
 </pre></div>
 <p>Copy below lines in the file all_ALL.</p>
-<div class="highlight"><pre><span class="c">#file: all_ALL</span>
+<div class="highlight"><pre><span></span><span class="c1">#file: all_ALL</span>
 <span class="nv">XIM</span><span class="o">=</span>SCIM
 <span class="k">if</span> <span class="o">[</span> -e /usr/bin/skim <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
     <span class="nv">XIM_PROGRAM</span><span class="o">=</span><span class="s2">&quot; &quot;</span>

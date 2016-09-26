@@ -88,19 +88,19 @@
     <div class="entry-content">
       <p>Today I wrote a small utility using <a class="reference external" href="http://golang.org/">golang</a> to convert xml output of command <code>gluster volume info</code> to json.</p>
 <p>Download the binary from <a class="reference external" href="https://github.com/aravindavk/gvolinfojson/releases/download/1.0/gvolinfojson">here</a> and copy to /usr/local/bin directory(or any other directory, which is available in PATH).</p>
-<div class="highlight"><pre>wget https://github.com/aravindavk/gvolinfojson/releases/download/1.0/gvolinfojson
+<div class="highlight"><pre><span></span>wget https://github.com/aravindavk/gvolinfojson/releases/download/1.0/gvolinfojson
 sudo cp gvolinfojson /usr/local/bin/
 sudo chmod +x /usr/local/bin/gvolinfojson
 </pre></div>
 <p>Or</p>
 <p>If you have golang installed(make sure <code>$GOPATH/bin</code> is available in PATH), then</p>
-<div class="highlight"><pre>go get github.com/aravindavk/gvolinfojson
+<div class="highlight"><pre><span></span>go get github.com/aravindavk/gvolinfojson
 </pre></div>
 <p>To use it with gluster volume info command,</p>
-<div class="highlight"><pre>sudo gluster volume info --xml | gvolinfojson
+<div class="highlight"><pre><span></span>sudo gluster volume info --xml | gvolinfojson
 </pre></div>
 <p>Thats it, you will get the json output of volume info command. If you need pretty json output then</p>
-<div class="highlight"><pre>sudo gluster volume info --xml | gvolinfojson --pretty
+<div class="highlight"><pre><span></span>sudo gluster volume info --xml | gvolinfojson --pretty
 </pre></div>
 <p>Source code is available <a class="reference external" href="https://github.com/aravindavk/gvolinfojson">here</a>.</p>
 <p>C &amp; S Welcome.</p>

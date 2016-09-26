@@ -88,7 +88,7 @@
     <div class="entry-content">
       <p>Gluster provides CLIs to manage the Cluster, which can be
 programmatly consumed by passing <tt class="docutils literal"><span class="pre">--xml</span></tt> option. For example,</p>
-<div class="highlight"><pre>gluster volume info --xml
+<div class="highlight"><pre><span></span>gluster volume info --xml
 </pre></div>
 <p>But Gluster CLIs are not enough for managing from remote place or to
 integrate with third party Management/Monitoring applications like <a class="reference external" href="http://cockpit-project.org/">Cockpit</a>,
@@ -99,9 +99,9 @@ with these tools.</p>
 <p>How about importing the <tt class="docutils literal">glustercli</tt> in your favorite programming
 language and start using it?</p>
 <p>For example in Python,</p>
-<div class="highlight"><pre><span class="kn">from</span> <span class="nn">glustercli</span> <span class="kn">import</span> <span class="n">volumes</span>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">glustercli</span> <span class="kn">import</span> <span class="n">volumes</span>
 
-<span class="n">gv1</span> <span class="o">=</span> <span class="n">volumes</span><span class="o">.</span><span class="n">Volume</span><span class="p">(</span><span class="s">&quot;gv1&quot;</span><span class="p">)</span>
+<span class="n">gv1</span> <span class="o">=</span> <span class="n">volumes</span><span class="o">.</span><span class="n">Volume</span><span class="p">(</span><span class="s2">&quot;gv1&quot;</span><span class="p">)</span>
 <span class="n">gv1</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
 </pre></div>
 <p><strong>Status:</strong> <a class="reference external" href="https://github.com/aravindavk/glustertool/tree/master/glustertool/utils/glustercli">Python</a> and <a class="reference external" href="https://github.com/aravindavk/glustercli">Go</a> bindings are in progress</p>
@@ -126,7 +126,7 @@ can communicate with Storaged to get Gluster tasks done.</p>
 web application can easily communicate with Gluster using HTTP calls.</p>
 <p>For example, Web application can send HTTP POST request to Start the
 Volume</p>
-<div class="highlight"><pre>curl -X POST <span class="se">\</span>
+<div class="highlight"><pre><span></span>curl -X POST <span class="se">\</span>
     -H <span class="s2">&quot;content-type: application/json&quot;</span> <span class="se">\</span>
     -H <span class="s2">&quot;Date: Tue, 09 Feb 2016 12:38:10 +0000&quot;</span> <span class="se">\</span>
     -H <span class="s2">&quot;Authorization: HMAC_SHA256 MyApp:g0b1IOmdRMOlPs2f5D4UJPgng9tNUuY0k+c+ee/k2Hk=&quot;</span> <span class="se">\</span>

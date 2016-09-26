@@ -87,7 +87,7 @@
 <div class="sep"></div>    </div>
     <div class="entry-content">
       <p>In my CouchDB application, blog/photo is identified by the type field in the document.</p>
-<div class="highlight"><pre><span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="p">{</span>
     <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;blog&quot;</span><span class="p">,</span>
     <span class="s2">&quot;title&quot;</span><span class="o">:</span> <span class="s2">&quot;First Blog&quot;</span><span class="p">,</span>
     <span class="s2">&quot;when_created&quot;</span><span class="o">:</span> <span class="s2">&quot;01/20/2011 15:30:00&quot;</span><span class="p">,</span>
@@ -102,7 +102,7 @@
 <span class="p">}</span>
 </pre></div>
 <p>To get the latest content, I created a view with map function as below.</p>
-<div class="highlight"><pre><span class="c1">// View name: latest</span>
+<div class="highlight"><pre><span></span><span class="c1">// View name: latest</span>
 <span class="kd">function</span> <span class="p">(</span><span class="nx">doc</span><span class="p">){</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">doc</span><span class="p">.</span><span class="nx">type</span> <span class="o">==</span> <span class="s2">&quot;blog&quot;</span> <span class="o">||</span> <span class="nx">doc</span><span class="p">.</span><span class="nx">type</span> <span class="o">==</span> <span class="s2">&quot;photo&quot;</span><span class="p">)</span> <span class="p">{</span>
         <span class="nx">emit</span><span class="p">(</span><span class="nx">doc</span><span class="p">.</span><span class="nx">when_created</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
@@ -111,7 +111,7 @@
 </pre></div>
 <p>Now I can sort the view by when_created field.</p>
 <p>Similarly I created two other views for latest blogs and latest photos as below.</p>
-<div class="highlight"><pre><span class="c1">// View name: latestblogs</span>
+<div class="highlight"><pre><span></span><span class="c1">// View name: latestblogs</span>
 <span class="kd">function</span> <span class="p">(</span><span class="nx">doc</span><span class="p">){</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">doc</span><span class="p">.</span><span class="nx">type</span> <span class="o">==</span> <span class="s2">&quot;blog&quot;</span><span class="p">)</span> <span class="p">{</span>
         <span class="nx">emit</span><span class="p">(</span><span class="nx">doc</span><span class="p">.</span><span class="nx">when_created</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
@@ -127,7 +127,7 @@
 </pre></div>
 <p>But the view &quot;latest&quot; will have duplicate data, It contains the data which is already available in &quot;latestblogs&quot; and &quot;latestphotos&quot; views.</p>
 <p>So I planned to create a single view function with complex key as below.</p>
-<div class="highlight"><pre><span class="c1">// View name: latest2</span>
+<div class="highlight"><pre><span></span><span class="c1">// View name: latest2</span>
 <span class="kd">function</span> <span class="p">(</span><span class="nx">doc</span><span class="p">){</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">doc</span><span class="p">.</span><span class="nx">type</span> <span class="o">==</span> <span class="s2">&quot;blog&quot;</span> <span class="o">||</span> <span class="nx">doc</span><span class="p">.</span><span class="nx">type</span> <span class="o">==</span> <span class="s2">&quot;photo&quot;</span><span class="p">)</span> <span class="p">{</span>
         <span class="nx">emit</span><span class="p">([</span><span class="nx">doc</span><span class="p">.</span><span class="nx">type</span><span class="p">,</span> <span class="nx">doc</span><span class="p">.</span><span class="nx">when_created</span><span class="p">],</span> <span class="kc">null</span><span class="p">);</span>
@@ -135,7 +135,7 @@
 <span class="p">}</span>
 </pre></div>
 <p>Now I can get list of new blogs/photos by adding startkey and endkey to the view as below</p>
-<div class="highlight"><pre><span class="c1">// List of new blogs:</span>
+<div class="highlight"><pre><span></span><span class="c1">// List of new blogs:</span>
 <span class="nx">startkey</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;blog&quot;</span><span class="p">,</span> <span class="p">{}]</span> <span class="nx">endkey</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;blog&quot;</span><span class="p">]</span> <span class="nx">descending</span><span class="o">=</span><span class="kc">true</span>
 
 <span class="c1">// List of new blogs:</span>

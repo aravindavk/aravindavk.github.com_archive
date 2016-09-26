@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Aravinda VK</title><link href="http://aravindavk.in/" rel="alternate"></link><link href="http://aravindavk.in/feeds/tag-sql.atom.xml" rel="self"></link><id>http://aravindavk.in/</id><updated>2013-04-09T00:00:00+05:30</updated><entry><title>SMS trend analysis - Android</title><link href="http://aravindavk.in/blog/sms-trend-analysis-android/" rel="alternate"></link><updated>2013-04-09T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2013-04-09:blog/sms-trend-analysis-android/</id><summary type="html">&lt;p&gt;Now a days my incoming and outgoing SMS trend looks like this for some(known) reason :)&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Aravinda VK</title><link href="http://aravindavk.in/" rel="alternate"></link><link href="http://aravindavk.in/feeds/tag-sql.atom.xml" rel="self"></link><id>http://aravindavk.in/</id><updated>2013-04-09T00:00:00+05:30</updated><entry><title>SMS trend analysis - Android</title><link href="http://aravindavk.in/blog/sms-trend-analysis-android/" rel="alternate"></link><published>2013-04-09T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2013-04-09:blog/sms-trend-analysis-android/</id><summary type="html">&lt;p&gt;Now a days my incoming and outgoing SMS trend looks like this for some(known) reason :)&lt;/p&gt;
 &lt;div class="figure"&gt;
 &lt;img alt="Incoming sms trend" src="/images/incoming_sms_trend.png" /&gt;
 &lt;p class="caption"&gt;Incoming SMS trend(Nov 2012 - Apr 2013)&lt;/p&gt;
@@ -23,19 +23,19 @@
 &lt;div class="section" id="idea"&gt;
 &lt;h2&gt;Idea:&lt;/h2&gt;
 &lt;p&gt;In Android, SMS data is stored in sqlite database, and it is located in the following directory(in phone).&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;/data/data/com.android.providers.telephony/databases/mmssms.db
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;/data/data/com.android.providers.telephony/databases/mmssms.db
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;So we can run sql queries to get the details from sms table as per our need. To access the data from db, Android phone should be rooted.&lt;/p&gt;
 &lt;p&gt;Add &lt;code&gt;adb&lt;/code&gt; path(in my machine adb path is &lt;code&gt;/home/aravinda/android-sdk/platform-tools/&lt;/code&gt;) to environment variable PATH, and run &lt;code&gt;adb&lt;/code&gt; as root.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;adb root
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;adb root
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;In sqlite we can see the list of tables present in a database using &lt;code&gt;.tables&lt;/code&gt; (&lt;code&gt;sqlite3 &amp;lt;db path&amp;gt; &amp;quot;.tables&amp;quot;&lt;/code&gt;) query.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;adb shell &lt;span class="s1"&gt;&amp;#39;sqlite3 /data/data/com.android.providers.telephony/databases/mmssms.db &amp;quot;.tables&amp;quot;&amp;#39;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;adb shell &lt;span class="s1"&gt;&amp;#39;sqlite3 /data/data/com.android.providers.telephony/databases/mmssms.db &amp;quot;.tables&amp;quot;&amp;#39;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;and we can get schema of the required sqlite table using &lt;code&gt;.schema &amp;lt;table name&amp;gt;&lt;/code&gt; query.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;adb shell &lt;span class="s1"&gt;&amp;#39;sqlite3 /data/data/com.android.providers.telephony/databases/mmssms.db &amp;quot;.schema sms&amp;quot;&amp;#39;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;adb shell &lt;span class="s1"&gt;&amp;#39;sqlite3 /data/data/com.android.providers.telephony/databases/mmssms.db &amp;quot;.schema sms&amp;quot;&amp;#39;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;CREATE&lt;/span&gt; &lt;span class="k"&gt;TABLE&lt;/span&gt; &lt;span class="n"&gt;sms&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;CREATE&lt;/span&gt; &lt;span class="k"&gt;TABLE&lt;/span&gt; &lt;span class="n"&gt;sms&lt;/span&gt;
 &lt;span class="p"&gt;(&lt;/span&gt;
     &lt;span class="n"&gt;_id&lt;/span&gt;                &lt;span class="nb"&gt;INTEGER&lt;/span&gt; &lt;span class="k"&gt;PRIMARY&lt;/span&gt; &lt;span class="k"&gt;KEY&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
     &lt;span class="n"&gt;thread_id&lt;/span&gt;          &lt;span class="nb"&gt;INTEGER&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
@@ -71,7 +71,7 @@
 &lt;p&gt;&lt;strong&gt;The only limitation is your imagination :D&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Example&lt;/strong&gt;: Number of sms sent per day.&lt;/p&gt;
 &lt;p&gt;Query is&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;SELECT&lt;/span&gt; &lt;span class="n"&gt;STRFTIME&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;&amp;quot;%Y%m%d&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;DATETIME&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;date&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;&amp;quot;unixepoch&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;&amp;quot;localtime&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="n"&gt;dte&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;SELECT&lt;/span&gt; &lt;span class="n"&gt;STRFTIME&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;&amp;quot;%Y%m%d&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;DATETIME&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;date&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;&amp;quot;unixepoch&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;&amp;quot;localtime&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="n"&gt;dte&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
        &lt;span class="k"&gt;COUNT&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;_id&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="k"&gt;FROM&lt;/span&gt; &lt;span class="n"&gt;sms&lt;/span&gt;
 &lt;span class="k"&gt;WHERE&lt;/span&gt; &lt;span class="k"&gt;type&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
@@ -79,12 +79,12 @@
 &lt;span class="k"&gt;ORDER&lt;/span&gt; &lt;span class="k"&gt;BY&lt;/span&gt; &lt;span class="n"&gt;dte&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;where type 2 is sent and 1 is received.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;adb shell &lt;span class="s1"&gt;&amp;#39;sqlite3 /data/data/com.android.providers.telephony/databases/mmssms.db \&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;adb shell &lt;span class="s1"&gt;&amp;#39;sqlite3 /data/data/com.android.providers.telephony/databases/mmssms.db \&lt;/span&gt;
 &lt;span class="s1"&gt;&amp;quot;SELECT STRFTIME(\&amp;quot;%Y%m%d\&amp;quot;, DATETIME(date/1000, \&amp;quot;unixepoch\&amp;quot;, \&amp;quot;localtime\&amp;quot;)) dte,  \&lt;/span&gt;
 &lt;span class="s1"&gt;COUNT(_id) FROM sms WHERE type = 2 GROUP BY dte ORDER BY dte&amp;quot;&amp;#39;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;If you want to find number of sms sent per day for a particular phone number then add the condition in WHERE clause as follows&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;SELECT&lt;/span&gt; &lt;span class="n"&gt;STRFTIME&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;&amp;quot;%Y%m%d&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;DATETIME&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;date&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;&amp;quot;unixepoch&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;&amp;quot;localtime&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="n"&gt;dte&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;SELECT&lt;/span&gt; &lt;span class="n"&gt;STRFTIME&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;&amp;quot;%Y%m%d&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;DATETIME&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;date&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;&amp;quot;unixepoch&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;&amp;quot;localtime&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="n"&gt;dte&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
        &lt;span class="k"&gt;COUNT&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;_id&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="k"&gt;FROM&lt;/span&gt; &lt;span class="n"&gt;sms&lt;/span&gt;
 &lt;span class="k"&gt;WHERE&lt;/span&gt; &lt;span class="k"&gt;type&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;

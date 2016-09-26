@@ -1,5 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Aravinda VK</title><link href="http://aravindavk.in/" rel="alternate"></link><link href="http://aravindavk.in/feeds/tag-gluster.atom.xml" rel="self"></link><id>http://aravindavk.in/</id><updated>2016-05-11T00:00:00+05:30</updated><entry><title>10 minutes introduction to Gluster Eventing Feature</title><link href="http://aravindavk.in/blog/10-mins-intro-to-gluster-eventing/" rel="alternate"></link><updated>2016-05-11T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2016-05-11:blog/10-mins-intro-to-gluster-eventing/</id><summary type="html">&lt;div class="notice-update"&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Aravinda VK</title><link href="http://aravindavk.in/" rel="alternate"></link><link href="http://aravindavk.in/feeds/tag-gluster.atom.xml" rel="self"></link><id>http://aravindavk.in/</id><updated>2016-09-26T00:00:00+05:30</updated><entry><title>Effective Gluster Monitoring using Events APIs</title><link href="http://aravindavk.in/blog/effective-gluster-monitoring-eventsapis/" rel="alternate"></link><published>2016-09-26T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2016-09-26:blog/effective-gluster-monitoring-eventsapis/</id><summary type="html">&lt;p&gt;Last week I got opportunity to present about Gluster Events APIs in
+&lt;a class="reference external" href="http://www.meetup.com/glusterfs-India/events/233515975"&gt;Gluster meetup Bangalore&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Events APIs will be available with &lt;tt class="docutils literal"&gt;Gluster 3.9&lt;/tt&gt; release.(&lt;a class="reference external" href="http://www.gluster.org/pipermail/maintainers/2016-September/001442.html"&gt;Release
+Candidate&lt;/a&gt;
+is available if anybody interested in testing)&lt;/p&gt;
+&lt;p&gt;Without Events APIs, one way to get status of Cluster is by
+calling Gluster status command/api in periodic intervals.&lt;/p&gt;
+&lt;p&gt;Below illustration shows calling &lt;tt class="docutils literal"&gt;status&lt;/tt&gt; once every 10 seconds.&lt;/p&gt;
+&lt;img alt="Get Cluster status without Events APIs" src="/images/gluster_monitor_without_events.jpg" /&gt;
+&lt;p&gt;With Events APIs, setup a listener Webhook and register with Gluster
+using &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;gluster-eventsapi&lt;/span&gt; &lt;span class="pre"&gt;webhook-add&lt;/span&gt; &amp;lt;URL&amp;gt;&lt;/tt&gt;. Call Gluster status
+command whenever webhook receives an Event.(Check &lt;a class="reference external" href="http://aravindavk.in/blog/10-mins-intro-to-gluster-eventing/"&gt;this&lt;/a&gt; blog
+to know Webhooks and Events APIs in detail)&lt;/p&gt;
+&lt;img alt="Get Cluster status with Events APIs" src="/images/gluster_monitor_with_events.jpg" /&gt;
+&lt;p&gt;As part of presentation, created some visualizations to show how these
+real time notifications can be used to refresh the UI automatically
+when Gluster cluster state changes.&lt;/p&gt;
+&lt;p&gt;Following gif shows the UI change immediately after creating a Gluster
+Volume.&lt;/p&gt;
+&lt;img alt="Gluster Volume Create and Start" src="/images/create_start_volume.gif" /&gt;
+&lt;p&gt;When a brick process is killed,&lt;/p&gt;
+&lt;img alt="Brick Process Killed" src="/images/brick_down.gif" /&gt;
+&lt;p&gt;Volume Stop,&lt;/p&gt;
+&lt;img alt="Volume Stop" src="/images/volume_stop.gif" /&gt;
+&lt;div class="section" id="references"&gt;
+&lt;h2&gt;References:&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Documentation for the Events APIs feature is available
+&lt;a class="reference external" href="http://gluster.readthedocs.io/en/latest/Administrator%20Guide/Events%20APIs/"&gt;here&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Gif images created using &lt;tt class="docutils literal"&gt;byzanz&lt;/tt&gt; tool.(Example: &lt;tt class="docutils literal"&gt;sleep 2;
+&lt;span class="pre"&gt;byzanz-record&lt;/span&gt; &lt;span class="pre"&gt;--duration=5&lt;/span&gt; &lt;span class="pre"&gt;--x=500&lt;/span&gt; &lt;span class="pre"&gt;--y=0&lt;/span&gt; &lt;span class="pre"&gt;--width=1024&lt;/span&gt; &lt;span class="pre"&gt;--height=800&lt;/span&gt;
+volume_stop.gif&lt;/tt&gt;&lt;/li&gt;
+&lt;li&gt;Illustrations are created using &lt;a class="reference external" href="http://mypaint.org/"&gt;mypaint&lt;/a&gt; software and Wacom Tablet.&lt;/li&gt;
+&lt;li&gt;Dashboard prototype was created using &lt;a class="reference external" href="http://python.org/"&gt;Python&lt;/a&gt; &lt;a class="reference external" href="http://flask.pocoo.org/"&gt;Flask&lt;/a&gt; + &lt;a class="reference external" href="http://elm-lang.org/"&gt;Elm&lt;/a&gt; + Websockets&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+</summary><category term="gluster"></category><category term="glusterfsblog"></category></entry><entry><title>10 minutes introduction to Gluster Eventing Feature</title><link href="http://aravindavk.in/blog/10-mins-intro-to-gluster-eventing/" rel="alternate"></link><published>2016-05-11T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2016-05-11:blog/10-mins-intro-to-gluster-eventing/</id><summary type="html">&lt;div class="notice-update"&gt;
 Demo video is included in the end, or you can directly watch it on &lt;a href="https://www.youtube.com/watch?v=urzong5sKqc"&gt;Youtube&lt;/a&gt;
 &lt;/div&gt;&lt;p&gt;Gluster Eventing is the new feature as part of Gluster.Next
 initiatives, it provides close to realtime notification and alerts for
@@ -15,33 +51,33 @@ Cluster. Gluster nodes should be able to access this Webhook server on
 the configured port. We will discuss about adding/testing webhook
 later.&lt;/p&gt;
 &lt;p&gt;Example Webhook written in python,&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;flask&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Flask&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;request&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;flask&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Flask&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;request&lt;/span&gt;
 
 &lt;span class="n"&gt;app&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Flask&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;__name__&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
-&lt;span class="nd"&gt;@app.route&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/listen&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;methods&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;POST&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="nd"&gt;@app.route&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;/listen&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;methods&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;POST&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;events_listener&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
     &lt;span class="n"&gt;gluster_event&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;json&lt;/span&gt;
     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;gluster_event&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-        &lt;span class="c"&gt;# No event to process, may be test call&lt;/span&gt;
-        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;OK&amp;quot;&lt;/span&gt;
+        &lt;span class="c1"&gt;# No event to process, may be test call&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;OK&amp;quot;&lt;/span&gt;
 
-    &lt;span class="c"&gt;# Process gluster_event&lt;/span&gt;
-    &lt;span class="c"&gt;# {&lt;/span&gt;
-    &lt;span class="c"&gt;#  &amp;quot;nodeid&amp;quot;: NODEID,&lt;/span&gt;
-    &lt;span class="c"&gt;#  &amp;quot;ts&amp;quot;: EVENT_TIMESTAMP,&lt;/span&gt;
-    &lt;span class="c"&gt;#  &amp;quot;event&amp;quot;: EVENT_TYPE,&lt;/span&gt;
-    &lt;span class="c"&gt;#  &amp;quot;message&amp;quot;: EVENT_DATA&lt;/span&gt;
-    &lt;span class="c"&gt;# }&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;OK&amp;quot;&lt;/span&gt;
+    &lt;span class="c1"&gt;# Process gluster_event&lt;/span&gt;
+    &lt;span class="c1"&gt;# {&lt;/span&gt;
+    &lt;span class="c1"&gt;#  &amp;quot;nodeid&amp;quot;: NODEID,&lt;/span&gt;
+    &lt;span class="c1"&gt;#  &amp;quot;ts&amp;quot;: EVENT_TIMESTAMP,&lt;/span&gt;
+    &lt;span class="c1"&gt;#  &amp;quot;event&amp;quot;: EVENT_TYPE,&lt;/span&gt;
+    &lt;span class="c1"&gt;#  &amp;quot;message&amp;quot;: EVENT_DATA&lt;/span&gt;
+    &lt;span class="c1"&gt;# }&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;OK&amp;quot;&lt;/span&gt;
 
-&lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;run&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;host&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;0.0.0.0&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;port&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;9000&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;run&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;host&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;0.0.0.0&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;port&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;9000&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Eventing feature is not yet available in any of the releases, patch is
 under review in upstream master(&lt;a class="reference external" href="http://review.gluster.org/14248"&gt;http://review.gluster.org/14248&lt;/a&gt;). If anybody interested in trying it
 out can cherrypick the patch from review.gluster.org&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;git clone http://review.gluster.org/glusterfs
-&lt;span class="nb"&gt;cd &lt;/span&gt;glusterfs
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;git clone http://review.gluster.org/glusterfs
+&lt;span class="nb"&gt;cd&lt;/span&gt; glusterfs
 git fetch http://review.gluster.org/glusterfs refs/changes/48/14248/5
 git checkout FETCH_HEAD
 git checkout -b &amp;lt;YOUR_BRANCH_NAME&amp;gt;
@@ -51,27 +87,27 @@ make
 make install
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Start the Eventing using,&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;gluster-eventing start
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;gluster-eventing start
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Other commands available are stop, restart, reload and
 status. &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;gluster-eventing&lt;/span&gt; &lt;span class="pre"&gt;--help&lt;/span&gt;&lt;/tt&gt; for more details.&lt;/p&gt;
 &lt;p&gt;Now Gluster can send out notifications via Webhooks. Setup a web
 server listening to a POST request and register that URL to Gluster
 Eventing. Thats all.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;gluster-eventing webhook-add &amp;lt;MY_WEB_SERVER_URL&amp;gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;gluster-eventing webhook-add &amp;lt;MY_WEB_SERVER_URL&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;For example, if my webserver is running at &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;http://192.168.122.188:9000/listen&lt;/span&gt;&lt;/tt&gt;
 then register using,&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;gluster-eventing webhook-add &lt;span class="sb"&gt;``&lt;/span&gt;http://192.168.122.188:9000/listen&lt;span class="sb"&gt;``&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;gluster-eventing webhook-add &lt;span class="sb"&gt;``&lt;/span&gt;http://192.168.122.188:9000/listen&lt;span class="sb"&gt;``&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;We can also test if web server is accessible from all Gluster nodes
 using &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;webhook-test&lt;/span&gt;&lt;/tt&gt; subcommand.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;gluster-eventing webhook-test http://192.168.122.188:9000/listen
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;gluster-eventing webhook-test http://192.168.122.188:9000/listen
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;With the initial patch only basic events are covered, I will add more
 events once this patch gets merged. Following events are available
 now.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;Volume Create
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Volume Create
 Volume Delete
 Volume Start
 Volume Stop
@@ -80,17 +116,17 @@ Peer Detach
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Created a small demo to show this eventing feature, it uses Web server
 which is included with the patch for Testing.(laptop hostname is &lt;tt class="docutils literal"&gt;sonne&lt;/tt&gt;)&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;/usr/share/glusterfs/scripts/eventsdash.py --port 8080
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;/usr/share/glusterfs/scripts/eventsdash.py --port 8080
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Login to Gluster node and start the eventing,&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;gluster-eventing start
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;gluster-eventing start
 gluster-eventing webhook-add http://sonne:8080/listen
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;And then login to VM and run Gluster commands to probe/detach peer,
 volume create, start etc and Observe the realtime notifications for
 the same where eventsdash is running.&lt;/p&gt;
 &lt;p&gt;Example,&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;ssh root@fvm1
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;ssh root@fvm1
 gluster peer attach fvm2
 gluster volume create gv1 fvm1:/bricks/b1 fvm2:/bricks/b2 force
 gluster volume start gv1
@@ -131,7 +167,7 @@ message of the patch(&lt;a class="reference external" href="http://review.gluste
 &lt;/ul&gt;
 &lt;p&gt;Comments and Suggestions Welcome.&lt;/p&gt;
 &lt;/div&gt;
-</summary><category term="gluster"></category><category term="glusterfsblog"></category></entry><entry><title>Qcow2 snapshots and Gluster Geo-replication</title><link href="http://aravindavk.in/blog/qcow2-snapshots-and-gluster-georeplication/" rel="alternate"></link><updated>2016-03-14T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2016-03-14:blog/qcow2-snapshots-and-gluster-georeplication/</id><summary type="html">&lt;p&gt;Gluster introduced sharding feature to store large files(which can
+</summary><category term="gluster"></category><category term="glusterfsblog"></category></entry><entry><title>Qcow2 snapshots and Gluster Geo-replication</title><link href="http://aravindavk.in/blog/qcow2-snapshots-and-gluster-georeplication/" rel="alternate"></link><published>2016-03-14T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2016-03-14:blog/qcow2-snapshots-and-gluster-georeplication/</id><summary type="html">&lt;p&gt;Gluster introduced sharding feature to store large files(which can
 grow beyond a single brick) or to support running Virtual machines in
 Gluster Volumes. Read more about sharding &lt;a class="reference external" href="http://blog.gluster.org/2015/12/introducing-shard-translator/"&gt;here&lt;/a&gt; and
 &lt;a class="reference external" href="http://blog.gluster.org/2015/12/sharding-what-next-2/"&gt;here&lt;/a&gt;.&lt;/p&gt;
@@ -156,13 +192,13 @@ the Gluster Volumes.&lt;/p&gt;
 &lt;p&gt;Before starting Geo-replication every day, take qcow2 snapshot of all
 the disks in Master Volume. Geo-rep will sync the data including the
 created snapshots.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;virsh snapshot-create-as --domain &amp;lt;DOMAIN&amp;gt; &amp;lt;SNAP_NAME&amp;gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;virsh snapshot-create-as --domain &amp;lt;DOMAIN&amp;gt; &amp;lt;SNAP_NAME&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;For example,&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;virsh snapshot-create-as --domain fedora22 sn1
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;virsh snapshot-create-as --domain fedora22 sn1
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;But while taking internal snapshot, guest is &lt;strong&gt;paused&lt;/strong&gt; :(&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;# virsh list
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# virsh list
  Id    Name                           State
 ----------------------------------------------------
  3     fedora22                       paused
@@ -176,7 +212,7 @@ checkpoint is reached.(This utility will be available with
 &lt;p&gt;Run &lt;tt class="docutils literal"&gt;/usr/share/glusterfs/scripts/schedule_georep.py &lt;span class="pre"&gt;--help&lt;/span&gt;&lt;/tt&gt; for more
 details about the script.(&lt;tt class="docutils literal"&gt;/usr/local/share/&lt;/tt&gt; in case of source install)&lt;/p&gt;
 &lt;p&gt;Psudeo code:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;pool_dir=&amp;lt;PATH_OF_MASTER_VOL_MOUNT&amp;gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pool_dir=&amp;lt;PATH_OF_MASTER_VOL_MOUNT&amp;gt;
 images=$(ls ${pool_dir})
 For each images, take qcow2 snapshot
 Run schedule_georep script
@@ -184,10 +220,10 @@ Run schedule_georep script
 &lt;p&gt;Once the scheduler script completes, check the &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;qemu-img&lt;/span&gt; info&lt;/tt&gt; in Slave
 and confirm that Geo-rep synced everything from master Volume
 including Snapshots created.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;qemu-img info /mnt/gv2/f22.qcow2
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;qemu-img info /mnt/gv2/f22.qcow2
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Example Output:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;image: /mnt/gv2/f22.qcow2
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;image: /mnt/gv2/f22.qcow2
 file format: qcow2
 virtual size: 20G (21474836480 bytes)
 disk size: 2.8G
@@ -217,21 +253,21 @@ when external snapshot is used. Once Geo-rep Scheduler script is
 complete, blockcommit the image in Master side to prevent growing
 backing chain.&lt;/p&gt;
 &lt;p&gt;Delete the external snapshot once the blockcommit returns success.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;pool_dir&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&amp;lt;PATH_OF_MASTER_VOL_MOUNT&amp;gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nv"&gt;pool_dir&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&amp;lt;PATH_OF_MASTER_VOL_MOUNT&amp;gt;
 
-&lt;span class="c"&gt;# Take External snapshot&lt;/span&gt;
+&lt;span class="c1"&gt;# Take External snapshot&lt;/span&gt;
 virsh snapshot-create-as --domain &amp;lt;DOMAIN&amp;gt; &amp;lt;SNAPNAME&amp;gt;  &lt;span class="se"&gt;\&lt;/span&gt;
     --diskspec vda,file&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;pool_dir&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;/snaps/&amp;lt;SNAPNAME&amp;gt;.qcow2 &lt;span class="se"&gt;\&lt;/span&gt;
     --disk-only --atomic --no-metadata
 
-&lt;span class="c"&gt;# Run Geo-replication&lt;/span&gt;
+&lt;span class="c1"&gt;# Run Geo-replication&lt;/span&gt;
 /usr/share/glusterfs/scripts/schedule_georep.py &lt;span class="se"&gt;\&lt;/span&gt;
     &amp;lt;MASTERVOL&amp;gt; &amp;lt;SLAVE&amp;gt; &amp;lt;SLAVEVOL&amp;gt;
 
-&lt;span class="c"&gt;# Blockcommit&lt;/span&gt;
+&lt;span class="c1"&gt;# Blockcommit&lt;/span&gt;
 virsh blockcommit &amp;lt;DOMAIN&amp;gt; vda --active --verbose --pivot
 
-&lt;span class="c"&gt;# Remove the external Snapshot file&lt;/span&gt;
+&lt;span class="c1"&gt;# Remove the external Snapshot file&lt;/span&gt;
 rm &lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;pool_dir&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;/snaps/&amp;lt;SNAPNAME&amp;gt;.qcow2
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;With this method, Slave will always have consitent base image.&lt;/p&gt;
@@ -243,9 +279,9 @@ rm &lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;pool_dir&lt;/spa
 required. External snapshot file will be deleted once blockcommit is
 done in Master side.&lt;/p&gt;
 &lt;/div&gt;
-</summary><category term="gluster"></category><category term="glusterfsblog"></category></entry><entry><title>Interfaces for Gluster Management</title><link href="http://aravindavk.in/blog/interfaces-for-gluster-management/" rel="alternate"></link><updated>2016-02-09T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2016-02-09:blog/interfaces-for-gluster-management/</id><summary type="html">&lt;p&gt;Gluster provides CLIs to manage the Cluster, which can be
+</summary><category term="gluster"></category><category term="glusterfsblog"></category></entry><entry><title>Interfaces for Gluster Management</title><link href="http://aravindavk.in/blog/interfaces-for-gluster-management/" rel="alternate"></link><published>2016-02-09T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2016-02-09:blog/interfaces-for-gluster-management/</id><summary type="html">&lt;p&gt;Gluster provides CLIs to manage the Cluster, which can be
 programmatly consumed by passing &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;--xml&lt;/span&gt;&lt;/tt&gt; option. For example,&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;gluster volume info --xml
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;gluster volume info --xml
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;But Gluster CLIs are not enough for managing from remote place or to
 integrate with third party Management/Monitoring applications like &lt;a class="reference external" href="http://cockpit-project.org/"&gt;Cockpit&lt;/a&gt;,
@@ -256,9 +292,9 @@ with these tools.&lt;/p&gt;
 &lt;p&gt;How about importing the &lt;tt class="docutils literal"&gt;glustercli&lt;/tt&gt; in your favorite programming
 language and start using it?&lt;/p&gt;
 &lt;p&gt;For example in Python,&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;glustercli&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;volumes&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;glustercli&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;volumes&lt;/span&gt;
 
-&lt;span class="n"&gt;gv1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;volumes&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Volume&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;gv1&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;gv1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;volumes&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Volume&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;gv1&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;gv1&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;start&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;strong&gt;Status:&lt;/strong&gt; &lt;a class="reference external" href="https://github.com/aravindavk/glustertool/tree/master/glustertool/utils/glustercli"&gt;Python&lt;/a&gt; and &lt;a class="reference external" href="https://github.com/aravindavk/glustercli"&gt;Go&lt;/a&gt; bindings are in progress&lt;/p&gt;
@@ -283,7 +319,7 @@ can communicate with Storaged to get Gluster tasks done.&lt;/p&gt;
 web application can easily communicate with Gluster using HTTP calls.&lt;/p&gt;
 &lt;p&gt;For example, Web application can send HTTP POST request to Start the
 Volume&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;curl -X POST &lt;span class="se"&gt;\&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;curl -X POST &lt;span class="se"&gt;\&lt;/span&gt;
     -H &lt;span class="s2"&gt;&amp;quot;content-type: application/json&amp;quot;&lt;/span&gt; &lt;span class="se"&gt;\&lt;/span&gt;
     -H &lt;span class="s2"&gt;&amp;quot;Date: Tue, 09 Feb 2016 12:38:10 +0000&amp;quot;&lt;/span&gt; &lt;span class="se"&gt;\&lt;/span&gt;
     -H &lt;span class="s2"&gt;&amp;quot;Authorization: HMAC_SHA256 MyApp:g0b1IOmdRMOlPs2f5D4UJPgng9tNUuY0k+c+ee/k2Hk=&amp;quot;&lt;/span&gt; &lt;span class="se"&gt;\&lt;/span&gt;
@@ -293,12 +329,12 @@ Volume&lt;/p&gt;
 &lt;p&gt;Are you using any interface for managing Gluster? Please share your
 experiences.&lt;/p&gt;
 &lt;/div&gt;
-</summary><category term="gluster"></category><category term="glusterfsblog"></category></entry><entry><title>Simulating Race Conditions</title><link href="http://aravindavk.in/blog/simulating-race-conditions/" rel="alternate"></link><updated>2015-09-11T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2015-09-11:blog/simulating-race-conditions/</id><summary type="html">&lt;p&gt;&lt;a class="reference external" href="http://gluster.readthedocs.org/en/release-3.7.0/Features/tier/"&gt;Tiering&lt;/a&gt; feature is introduced in &lt;a class="reference external" href="http://www.gluster.org/"&gt;Gluster 3.7&lt;/a&gt; release. Geo-replication may not perform well with Tiering feature yet. Races can happen since Rebalance moves files from one brick to another brick(hot to cold and cold to hot), but the Changelog/Journal remails in old brick itself. We know there will be problems since each Geo-replication worker(per brick) processes Changelogs belonging to respective brick and sync the data independently. Sync happens as two step operation, Create entry in Slave with the GFID recorded in Changelog, then use Rsync to sync data(using GFID access)&lt;/p&gt;
+</summary><category term="gluster"></category><category term="glusterfsblog"></category></entry><entry><title>Simulating Race Conditions</title><link href="http://aravindavk.in/blog/simulating-race-conditions/" rel="alternate"></link><published>2015-09-11T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2015-09-11:blog/simulating-race-conditions/</id><summary type="html">&lt;p&gt;&lt;a class="reference external" href="http://gluster.readthedocs.org/en/release-3.7.0/Features/tier/"&gt;Tiering&lt;/a&gt; feature is introduced in &lt;a class="reference external" href="http://www.gluster.org/"&gt;Gluster 3.7&lt;/a&gt; release. Geo-replication may not perform well with Tiering feature yet. Races can happen since Rebalance moves files from one brick to another brick(hot to cold and cold to hot), but the Changelog/Journal remails in old brick itself. We know there will be problems since each Geo-replication worker(per brick) processes Changelogs belonging to respective brick and sync the data independently. Sync happens as two step operation, Create entry in Slave with the GFID recorded in Changelog, then use Rsync to sync data(using GFID access)&lt;/p&gt;
 &lt;p&gt;To uncover the bugs we need to setup workload and run multiple times since issues may not happen always. But it is tedious to run multiple times with actual data. How about simulating/mocking it?&lt;/p&gt;
 &lt;p&gt;Let us consider simple case of Rebalance, A file &amp;quot;f1&amp;quot; is created in Brick1 and after some time it becomes hot and Rebalance moved it to Brick2.&lt;/p&gt;
 &lt;img alt="Rebalance explained" src="/images/rebalance.png" /&gt;
 &lt;p&gt;In Changelog we don't capture the Rebalance Traffic, so in respective brick changelogs will contain,&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;# Brick1 Changelog
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# Brick1 Changelog
 CREATE 0945daec-6f8c-438e-9bbf-b2ebf07543ef f1
 DATA 0945daec-6f8c-438e-9bbf-b2ebf07543ef
 
@@ -306,7 +342,7 @@ DATA 0945daec-6f8c-438e-9bbf-b2ebf07543ef
 DATA 0945daec-6f8c-438e-9bbf-b2ebf07543ef
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;If Brick1 worker processes fast, then Entry is created in Slave and Data Operation succeeds. Since Both the workers can independently, sequence of execution may be like&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;# Possible Sequence 1
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# Possible Sequence 1
 [Brick1] CREATE 0945daec-6f8c-438e-9bbf-b2ebf07543ef f1
 [Brick1] DATA 0945daec-6f8c-438e-9bbf-b2ebf07543ef
 [Brick2] DATA 0945daec-6f8c-438e-9bbf-b2ebf07543ef
@@ -323,7 +359,7 @@ DATA 0945daec-6f8c-438e-9bbf-b2ebf07543ef
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;We don't have any problems with first and last sequence, But in second sequence Rsync will try to sync data before Entry Creation and Fails.&lt;/p&gt;
 &lt;p&gt;To solve this issue, we thought if we record CREATE from Rebalance traffic then it will solve this problem. So now brick Changelogs looks like,&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;# Brick1 Changelog
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# Brick1 Changelog
 CREATE 0945daec-6f8c-438e-9bbf-b2ebf07543ef f1
 DATA 0945daec-6f8c-438e-9bbf-b2ebf07543ef
 
@@ -332,7 +368,7 @@ CREATE 0945daec-6f8c-438e-9bbf-b2ebf07543ef f1
 DATA 0945daec-6f8c-438e-9bbf-b2ebf07543ef
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;and possible sequences,&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;# Possible Sequence 1
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# Possible Sequence 1
 [Brick1] CREATE 0945daec-6f8c-438e-9bbf-b2ebf07543ef f1
 [Brick1] DATA 0945daec-6f8c-438e-9bbf-b2ebf07543ef
 [Brick2] CREATE 0945daec-6f8c-438e-9bbf-b2ebf07543ef f1
@@ -349,18 +385,18 @@ DATA 0945daec-6f8c-438e-9bbf-b2ebf07543ef
 &lt;p&gt;We do not have that problem, second CREATE will fail with EEXIST, we ignore it since it is safe error. But will this approach solves all the problems with Rebalance? When more FOPs added, it is very difficult to visualize or guess the problem.&lt;/p&gt;
 &lt;p&gt;To mock the concurrent workload, Collect sequence from each bricks Changelog and mix both the sequences. We should make sure that order in each brick remains same after the mix.&lt;/p&gt;
 &lt;p&gt;For example,&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;b1 = [&amp;quot;A&amp;quot;, &amp;quot;B&amp;quot;, &amp;quot;C&amp;quot;, &amp;quot;D&amp;quot;, &amp;quot;E&amp;quot;]
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;b1 = [&amp;quot;A&amp;quot;, &amp;quot;B&amp;quot;, &amp;quot;C&amp;quot;, &amp;quot;D&amp;quot;, &amp;quot;E&amp;quot;]
 b2 = [&amp;quot;F&amp;quot;, &amp;quot;G&amp;quot;]
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;While mixing b2 in b1, for first element in b2 we can randomly choose a position in b1. Let us say random position we got is 2(Index is 2), and insert &amp;quot;F&amp;quot; in index 2 of b1&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;# before
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# before
 [&amp;quot;A&amp;quot;, &amp;quot;B&amp;quot;, &amp;quot;C&amp;quot;, &amp;quot;D&amp;quot;, &amp;quot;E&amp;quot;]
 # after
 [&amp;quot;A&amp;quot;, &amp;quot;B&amp;quot;, &amp;quot;F&amp;quot;, &amp;quot;C&amp;quot;, &amp;quot;D&amp;quot;, &amp;quot;E&amp;quot;]
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Now, to insert &amp;quot;G&amp;quot;, we should randomly choose anywhere after &amp;quot;F&amp;quot;. Once we get the sequence, mock the FOPs and compare with expected values.&lt;/p&gt;
 &lt;p&gt;I added a &lt;a class="reference external" href="https://gist.github.com/aravindavk/193eda60b6049ad025f4"&gt;gist&lt;/a&gt; for testing following workload, it generates multiple sequences for testing.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;# f1 created in Brick1, Rebalanced to Brick2 and then Unlinked
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# f1 created in Brick1, Rebalanced to Brick2 and then Unlinked
 # Brick1 Changelog
 CREATE 0945daec-6f8c-438e-9bbf-b2ebf07543ef f1
 DATA 0945daec-6f8c-438e-9bbf-b2ebf07543ef
@@ -378,10 +414,10 @@ UNLINK 0945daec-6f8c-438e-9bbf-b2ebf07543ef f1
 &lt;p&gt;I just started simulating with Tiering + Geo-replication workload, I may encounter more problems with Renames(Simple, multiple and cyclic). Will update the results soon.&lt;/p&gt;
 &lt;p&gt;I am sharing the script since it can be easily modified to work with different workloads and to test other projects/components.&lt;/p&gt;
 &lt;p&gt;Let me know if this is useful. Comments and Suggestions Welcome.&lt;/p&gt;
-</summary><category term="gluster"></category><category term="glusterfsblog"></category></entry><entry><title>Introducing georepsetup - Gluster Geo-replication Setup Tool</title><link href="http://aravindavk.in/blog/introducing-georepsetup/" rel="alternate"></link><updated>2015-09-02T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2015-09-02:blog/introducing-georepsetup/</id><summary type="html">&lt;p&gt;How many of you succeeded to set up Gluster Geo-replication for the first time? SSH keys need to be deployed to all Slave nodes from all Master nodes as part of the Geo-replication setup. So number of steps involved in setting up Geo-rep is not very easy to manage. We get more queries in &lt;a class="reference external" href="http://www.gluster.org/mailman/listinfo/gluster-devel"&gt;gluster-devel&lt;/a&gt; and &lt;a class="reference external" href="http://www.gluster.org/mailman/listinfo/gluster-users"&gt;gluster-users&lt;/a&gt; lists related to Geo-rep Setup than actually using Geo-replication, many users stopped trying Geo-replication after they faced issues during setup.&lt;/p&gt;
+</summary><category term="gluster"></category><category term="glusterfsblog"></category></entry><entry><title>Introducing georepsetup - Gluster Geo-replication Setup Tool</title><link href="http://aravindavk.in/blog/introducing-georepsetup/" rel="alternate"></link><published>2015-09-02T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2015-09-02:blog/introducing-georepsetup/</id><summary type="html">&lt;p&gt;How many of you succeeded to set up Gluster Geo-replication for the first time? SSH keys need to be deployed to all Slave nodes from all Master nodes as part of the Geo-replication setup. So number of steps involved in setting up Geo-rep is not very easy to manage. We get more queries in &lt;a class="reference external" href="http://www.gluster.org/mailman/listinfo/gluster-devel"&gt;gluster-devel&lt;/a&gt; and &lt;a class="reference external" href="http://www.gluster.org/mailman/listinfo/gluster-users"&gt;gluster-users&lt;/a&gt; lists related to Geo-rep Setup than actually using Geo-replication, many users stopped trying Geo-replication after they faced issues during setup.&lt;/p&gt;
 &lt;p&gt;With the release of Gluster 3.7, the Geo-replication got lots of improvements. Will write blog about new features and improvements in my next blog. Yesterday I wrote a CLI tool using Python to simplify the steps involved in Geo-replication setup. Now setting up Geo-replication is as easy as running one command. Yay!&lt;/p&gt;
 &lt;p&gt;For example,&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;sudo georepsetup &amp;lt;MASTERVOL&amp;gt; &amp;lt;SLAVEHOST&amp;gt; &amp;lt;SLAVEVOL&amp;gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo georepsetup &amp;lt;MASTERVOL&amp;gt; &amp;lt;SLAVEHOST&amp;gt; &amp;lt;SLAVEVOL&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;It prompts for the Root's Password of Slave node specified in the command. That's it!&lt;/p&gt;
 &lt;p&gt;This command also produces a good summary as shown below. Now it is very easy to trace the errors and handle them.&lt;/p&gt;
@@ -389,8 +425,8 @@ UNLINK 0945daec-6f8c-438e-9bbf-b2ebf07543ef f1
 &lt;div class="section" id="install"&gt;
 &lt;h2&gt;Install&lt;/h2&gt;
 &lt;p&gt;Install this tool on any one master node where you wish to initiate the Geo-replication setup,&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;git clone https://github.com/aravindavk/georepsetup.git
-&lt;span class="nb"&gt;cd &lt;/span&gt;georepsetup
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;git clone https://github.com/aravindavk/georepsetup.git
+&lt;span class="nb"&gt;cd&lt;/span&gt; georepsetup
 sudo python setup.py install
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;This tool is not packaged as RPM/Deb Yet. Pull requests are Welcome :)&lt;/p&gt;

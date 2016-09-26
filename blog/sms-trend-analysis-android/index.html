@@ -110,19 +110,19 @@
 <div class="section" id="idea">
 <h2>Idea:</h2>
 <p>In Android, SMS data is stored in sqlite database, and it is located in the following directory(in phone).</p>
-<div class="highlight"><pre>/data/data/com.android.providers.telephony/databases/mmssms.db
+<div class="highlight"><pre><span></span>/data/data/com.android.providers.telephony/databases/mmssms.db
 </pre></div>
 <p>So we can run sql queries to get the details from sms table as per our need. To access the data from db, Android phone should be rooted.</p>
 <p>Add <code>adb</code> path(in my machine adb path is <code>/home/aravinda/android-sdk/platform-tools/</code>) to environment variable PATH, and run <code>adb</code> as root.</p>
-<div class="highlight"><pre>adb root
+<div class="highlight"><pre><span></span>adb root
 </pre></div>
 <p>In sqlite we can see the list of tables present in a database using <code>.tables</code> (<code>sqlite3 &lt;db path&gt; &quot;.tables&quot;</code>) query.</p>
-<div class="highlight"><pre>adb shell <span class="s1">&#39;sqlite3 /data/data/com.android.providers.telephony/databases/mmssms.db &quot;.tables&quot;&#39;</span>
+<div class="highlight"><pre><span></span>adb shell <span class="s1">&#39;sqlite3 /data/data/com.android.providers.telephony/databases/mmssms.db &quot;.tables&quot;&#39;</span>
 </pre></div>
 <p>and we can get schema of the required sqlite table using <code>.schema &lt;table name&gt;</code> query.</p>
-<div class="highlight"><pre>adb shell <span class="s1">&#39;sqlite3 /data/data/com.android.providers.telephony/databases/mmssms.db &quot;.schema sms&quot;&#39;</span>
+<div class="highlight"><pre><span></span>adb shell <span class="s1">&#39;sqlite3 /data/data/com.android.providers.telephony/databases/mmssms.db &quot;.schema sms&quot;&#39;</span>
 </pre></div>
-<div class="highlight"><pre><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">sms</span>
+<div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">sms</span>
 <span class="p">(</span>
     <span class="n">_id</span>                <span class="nb">INTEGER</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
     <span class="n">thread_id</span>          <span class="nb">INTEGER</span><span class="p">,</span>
@@ -158,7 +158,7 @@
 <p><strong>The only limitation is your imagination :D</strong></p>
 <p><strong>Example</strong>: Number of sms sent per day.</p>
 <p>Query is</p>
-<div class="highlight"><pre><span class="k">SELECT</span> <span class="n">STRFTIME</span><span class="p">(</span><span class="ss">&quot;%Y%m%d&quot;</span><span class="p">,</span> <span class="n">DATETIME</span><span class="p">(</span><span class="nb">date</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span> <span class="ss">&quot;unixepoch&quot;</span><span class="p">,</span> <span class="ss">&quot;localtime&quot;</span><span class="p">))</span> <span class="n">dte</span><span class="p">,</span>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">STRFTIME</span><span class="p">(</span><span class="ss">&quot;%Y%m%d&quot;</span><span class="p">,</span> <span class="n">DATETIME</span><span class="p">(</span><span class="nb">date</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span> <span class="ss">&quot;unixepoch&quot;</span><span class="p">,</span> <span class="ss">&quot;localtime&quot;</span><span class="p">))</span> <span class="n">dte</span><span class="p">,</span>
        <span class="k">COUNT</span><span class="p">(</span><span class="n">_id</span><span class="p">)</span>
 <span class="k">FROM</span> <span class="n">sms</span>
 <span class="k">WHERE</span> <span class="k">type</span> <span class="o">=</span> <span class="mi">2</span>
@@ -166,12 +166,12 @@
 <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">dte</span>
 </pre></div>
 <p>where type 2 is sent and 1 is received.</p>
-<div class="highlight"><pre>adb shell <span class="s1">&#39;sqlite3 /data/data/com.android.providers.telephony/databases/mmssms.db \</span>
+<div class="highlight"><pre><span></span>adb shell <span class="s1">&#39;sqlite3 /data/data/com.android.providers.telephony/databases/mmssms.db \</span>
 <span class="s1">&quot;SELECT STRFTIME(\&quot;%Y%m%d\&quot;, DATETIME(date/1000, \&quot;unixepoch\&quot;, \&quot;localtime\&quot;)) dte,  \</span>
 <span class="s1">COUNT(_id) FROM sms WHERE type = 2 GROUP BY dte ORDER BY dte&quot;&#39;</span>
 </pre></div>
 <p>If you want to find number of sms sent per day for a particular phone number then add the condition in WHERE clause as follows</p>
-<div class="highlight"><pre><span class="k">SELECT</span> <span class="n">STRFTIME</span><span class="p">(</span><span class="ss">&quot;%Y%m%d&quot;</span><span class="p">,</span> <span class="n">DATETIME</span><span class="p">(</span><span class="nb">date</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span> <span class="ss">&quot;unixepoch&quot;</span><span class="p">,</span> <span class="ss">&quot;localtime&quot;</span><span class="p">))</span> <span class="n">dte</span><span class="p">,</span>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">STRFTIME</span><span class="p">(</span><span class="ss">&quot;%Y%m%d&quot;</span><span class="p">,</span> <span class="n">DATETIME</span><span class="p">(</span><span class="nb">date</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span> <span class="ss">&quot;unixepoch&quot;</span><span class="p">,</span> <span class="ss">&quot;localtime&quot;</span><span class="p">))</span> <span class="n">dte</span><span class="p">,</span>
        <span class="k">COUNT</span><span class="p">(</span><span class="n">_id</span><span class="p">)</span>
 <span class="k">FROM</span> <span class="n">sms</span>
 <span class="k">WHERE</span> <span class="k">type</span> <span class="o">=</span> <span class="mi">2</span>

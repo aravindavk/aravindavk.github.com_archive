@@ -88,11 +88,11 @@
     <div class="entry-content">
       <p><a class="reference external" href="http://en.wikipedia.org/wiki/Fortune_%28program%29">fortune</a> is an awesome application in Gnu/Linux, which picks random quote from the dictionary and displays it.</p>
 <p>Install fortune package in your system, just type <code>fortune</code> in command prompt to see how it will work. Refer manual page to see the options available in fortune.</p>
-<div class="highlight"><pre>man fortune
+<div class="highlight"><pre><span></span>man fortune
 </pre></div>
 <p>It will be nice if we create the database for Kannada quotes in the format as required by the fortune.</p>
 <p>Let us discuss the format of the file with an example. (File is named as kan)</p>
-<div class="highlight"><pre>ಹುಲ್ಲಾಗು ಬೆಟ್ಟದಡಿ, ಮನೆಗೆ ಮಲ್ಲಿಗೆಯಾಗು
+<div class="highlight"><pre><span></span>ಹುಲ್ಲಾಗು ಬೆಟ್ಟದಡಿ, ಮನೆಗೆ ಮಲ್ಲಿಗೆಯಾಗು
 ಕಲ್ಲಾಗು ಕಷ್ಟಗಳ ಮಳೆಯ ವಿಧಿ ಸುರಿಯೇ
 ಬೆಲ್ಲ ಸಕ್ಕರೆಯಾಗು ದೀನ ದುರ್ಬಲರಿಂಗೆ
 ಎಲ್ಲರೊಳಗೊಂದಾಗು ಮಂಕುತಿಮ್ಮ
@@ -108,13 +108,13 @@
 ಹಸನು ಹಗುರದ ಬಾಳು
 </pre></div>
 <p>Use % as delimiter to seperate one quote to another. Once the above file is ready with all the required quotes, then use following command to compile this file into fortune dictionary.</p>
-<div class="highlight"><pre>strfile kan kan.dat
+<div class="highlight"><pre><span></span>strfile kan kan.dat
 </pre></div>
 <p>Now a dat file is created in that directory. Copy both the files into fortunes directory. (Below mentioned folder format is with respect to Debian)</p>
-<div class="highlight"><pre>cp kan* /usr/share/games/fortunes/
+<div class="highlight"><pre><span></span>cp kan* /usr/share/games/fortunes/
 </pre></div>
 <p>Now everything is ready. Run fortune by passing new dict name as parameter.</p>
-<div class="highlight"><pre>fortune kan
+<div class="highlight"><pre><span></span>fortune kan
 </pre></div>
 <p>When we find more quotes, we can add to the same dict and use it.</p>
 <p>Enjoy!</p>

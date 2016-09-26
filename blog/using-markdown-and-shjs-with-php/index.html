@@ -100,7 +100,7 @@
 <blockquote>
 Markdown is a text-to-HTML conversion tool for web writers. Markdown allows you to write using an easy-to-read, easy-to-write plain text format, then convert it to structurally valid XHTML (or HTML).</blockquote>
 <p>For example</p>
-<div class="highlight"><pre># Heading 1
+<div class="highlight"><pre><span></span># Heading 1
 ## Heading 2
 
 ** Bold **
@@ -117,26 +117,26 @@ Adding inline image
 [Link](http://localhost)
 </pre></div>
 <p>will be converted to</p>
-<div class="highlight"><pre><span class="nt">&lt;h1&gt;</span>Heading 1<span class="nt">&lt;/h1&gt;</span>
-<span class="nt">&lt;h2&gt;</span>Heading 2<span class="nt">&lt;/h2&gt;</span>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Heading 1<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>Heading 2<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
 
-<span class="nt">&lt;p&gt;&lt;strong&gt;</span> Bold <span class="nt">&lt;/strong&gt;</span>
-<span class="nt">&lt;em&gt;</span> Italic <span class="nt">&lt;/em&gt;&lt;/p&gt;</span>
-<span class="nt">&lt;blockquote&gt;</span>
-<span class="nt">&lt;p&gt;</span>blockquote<span class="nt">&lt;/p&gt;</span>
-<span class="nt">&lt;/blockquote&gt;</span>
-<span class="nt">&lt;p&gt;&lt;code&gt;</span>single line code<span class="nt">&lt;/code&gt;&lt;/p&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;&lt;</span><span class="nt">strong</span><span class="p">&gt;</span> Bold <span class="p">&lt;/</span><span class="nt">strong</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">em</span><span class="p">&gt;</span> Italic <span class="p">&lt;/</span><span class="nt">em</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">blockquote</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>blockquote<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">blockquote</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;&lt;</span><span class="nt">code</span><span class="p">&gt;</span>single line code<span class="p">&lt;/</span><span class="nt">code</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 
-<span class="nt">&lt;p&gt;</span>Adding inline image<span class="nt">&lt;/p&gt;</span>
-<span class="nt">&lt;p&gt;&lt;img</span> <span class="na">alt=</span><span class="s">&quot;Alt Text&quot;</span> <span class="na">src=</span><span class="s">&quot;a.jpg&quot;</span> <span class="nt">/&gt;&lt;/p&gt;</span>
-<span class="nt">&lt;p&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://localhost&quot;</span><span class="nt">&gt;</span>Link<span class="nt">&lt;/a&gt;&lt;/p&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Adding inline image<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;&lt;</span><span class="nt">img</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;Alt Text&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;a.jpg&quot;</span> <span class="p">/&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;http://localhost&quot;</span><span class="p">&gt;</span>Link<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 </pre></div>
 <p>Click <a class="reference external" href="http://daringfireball.net/projects/markdown/">here</a> for more details about markdown.</p>
 </div>
 <div class="section" id="markdown-php">
 <h2>Markdown PHP</h2>
 <p>PHP implementation of markdown is available <a class="reference external" href="http://michelf.com/projects/php-markdown/">here</a>. We can store the content in database in the markdown format itself, While displaying to user we can convert to HTML using the Markdown PHP library.</p>
-<div class="highlight"><pre><span class="cp">&lt;?php</span>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
 <span class="k">require_once</span> <span class="s1">&#39;markdown.php&#39;</span><span class="p">;</span>
 <span class="nv">$text</span> <span class="o">=</span> <span class="s1">&#39;</span>
 <span class="s1"># Heading 1</span>
@@ -153,14 +153,14 @@ Adding inline image
 <h2>SHJS - Syntax highlighter using JS</h2>
 <p>It will be good if we able to highlight the code inside pre element, I found a Javascript utility SHJS(Syntax Highlighter with JavaScript), which has very good features and multiple themes support. Read the documentation about SHJS <a class="reference external" href="http://shjs.sourceforge.net/">here</a>.</p>
 <p>SHJS library requires class to be defined in pre tag like <code>&lt;pre class=&quot;sh_php&quot;&gt;</code> for PHP code, but it is not possible to add class in markdown syntax, so we will write an PHP function to add the class to each pre element. We need to add <code>#!sh_php</code> (php is used as example, that will change depending on the language) in the markdown text whereever highlighting is required.</p>
-<div class="highlight"><pre><span class="x">#!sh_php</span>
+<div class="highlight"><pre><span></span><span class="x">#!sh_php</span>
 <span class="cp">&lt;?php</span>
 <span class="c1"># This is an example text file to show how to add language</span>
 <span class="c1"># header for syntax highlight</span>
 <span class="k">echo</span> <span class="s1">&#39;Hello World&#39;</span><span class="p">;</span>
 </pre></div>
 <p>PHP function to replace <code>#!sh_php</code> to <code>&lt;pre class=&quot;sh_php&quot;&gt;</code> is</p>
-<div class="highlight"><pre><span class="cp">&lt;?php</span>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
 <span class="k">function</span> <span class="nf">addClassToPre</span><span class="p">(</span><span class="nv">$text</span><span class="p">){</span>
     <span class="c1">// Add respective class to pre tag</span>
     <span class="nv">$op</span> <span class="o">=</span> <span class="nb">preg_replace</span><span class="p">(</span><span class="s1">&#39;/&lt;pre&gt;&lt;code&gt;#!([^\\n]+)/&#39;</span><span class="p">,</span>
@@ -170,7 +170,7 @@ Adding inline image
 <span class="p">}</span>
 </pre></div>
 <p>If we load all the syntax highlight JavaScript files then it affects loading time, so we will add only required JavaScript files for syntax highlight based on the languages used in the content.</p>
-<div class="highlight"><pre><span class="cp">&lt;?php</span>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
 <span class="k">function</span> <span class="nf">addRespectiveJsFiles</span><span class="p">(</span><span class="nv">$text</span><span class="p">){</span>
     <span class="nb">preg_match_all</span><span class="p">(</span><span class="s1">&#39;/&lt;pre&gt;&lt;code&gt;#!([^\\n]+)/&#39;</span><span class="p">,</span><span class="nx">Markdown</span><span class="p">(</span><span class="nv">$text</span><span class="p">),</span> <span class="nv">$result</span><span class="p">);</span>
     <span class="nv">$jsFiles</span> <span class="o">=</span> <span class="nb">array_unique</span><span class="p">(</span><span class="nv">$result</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
@@ -186,7 +186,7 @@ Adding inline image
 </div>
 <div class="section" id="how-to-use">
 <h2>How To Use?</h2>
-<div class="highlight"><pre><span class="x">&lt;script type=&quot;text/javascript&quot; src=&quot;sh_main.js&quot;&gt;&lt;/script&gt;</span>
+<div class="highlight"><pre><span></span><span class="x">&lt;script type=&quot;text/javascript&quot; src=&quot;sh_main.js&quot;&gt;&lt;/script&gt;</span>
 <span class="x">&lt;link type=&quot;text/css&quot; rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;</span>
 <span class="x">&lt;link type=&quot;text/css&quot; rel=&quot;stylesheet&quot; href=&quot;css/sh_emacs.css&quot;&gt;</span>
 

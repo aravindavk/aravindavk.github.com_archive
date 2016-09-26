@@ -88,18 +88,18 @@
     <div class="entry-content">
       <p>I heard that Unicode rending issues of complex scripts are fixed in svn version of Scribus(1.5). So I wanted to test it for Kannada.</p>
 <p>Downloaded svn source using following command to my Debian Squeeze machine.</p>
-<div class="highlight"><pre>svn co svn://scribus.net/trunk/Scribus myscribus
+<div class="highlight"><pre><span></span>svn co svn://scribus.net/trunk/Scribus myscribus
 </pre></div>
 <p>First installed cmake, which is required to compile Scribus.</p>
-<div class="highlight"><pre>apt-get install cmake
+<div class="highlight"><pre><span></span>apt-get install cmake
 </pre></div>
 <p>When I ran <code>cmake .</code> as root user, it started listing dependency issues. Installed development libraries as and when cmake throws error. Finally ended up installing following dev libraries.</p>
-<div class="highlight"><pre>apt-get install libtiff4-dev python-dev libfreetype6-dev
+<div class="highlight"><pre><span></span>apt-get install libtiff4-dev python-dev libfreetype6-dev
                 libcups2-dev libxml2-dev liblcms1-dev
                 libpixman-1-dev libaspel-dev libfontconfig1-dev
 </pre></div>
 <p>Now run</p>
-<div class="highlight"><pre><span class="nb">cd </span>myscribus
+<div class="highlight"><pre><span></span><span class="nb">cd</span> myscribus
 cmake .
 make <span class="p">&amp;</span> make install
 </pre></div>

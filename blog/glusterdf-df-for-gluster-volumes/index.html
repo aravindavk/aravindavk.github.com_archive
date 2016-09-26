@@ -88,8 +88,8 @@
     <div class="entry-content">
       <p>A CLI utility to check the disk usage of <a class="reference external" href="http://gluster.org/">glusterfs</a> volumes. Using <code>df</code> command we can view the disk usage of only mounted glusterfs volumes. This utility takes care of mounting gluster volumes available in the machine where this command is executed. glusterdf uses <a class="reference external" href="https://github.com/gluster/glusterfs/tree/master/api">libgfapi</a> provided by glusterfs to fetch the statvfs information.</p>
 <p>Installation is very simple,</p>
-<div class="highlight"><pre>git clone https://github.com/aravindavk/glusterfs-tools.git
-<span class="nb">cd </span>glusterfs-tools
+<div class="highlight"><pre><span></span>git clone https://github.com/aravindavk/glusterfs-tools.git
+<span class="nb">cd</span> glusterfs-tools
 sudo python setup.py install
 </pre></div>
 <p>You can also clone this project from <a class="reference external" href="https://forge.gluster.org/glusterfs-tools">forge.gluster.org/glusterfs-tools</a></p>
@@ -122,30 +122,30 @@ sudo python setup.py install
 </div>
 <p>In my previous blog(<a class="reference external" href="http://aravindavk.in/blog/glusterfs-tools/">this</a>) I wrote about gfvolumes(now it is <cite>glustervolumes</cite>). glusterfs-tools is rewritten as python library which can be used with your Python programs.</p>
 <p>For example</p>
-<div class="highlight"><pre><span class="kn">from</span> <span class="nn">glusterfstools</span> <span class="kn">import</span> <span class="n">volumes</span><span class="p">,</span> <span class="n">gfapi</span>
-<span class="c"># Get all volumes</span>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">glusterfstools</span> <span class="kn">import</span> <span class="n">volumes</span><span class="p">,</span> <span class="n">gfapi</span>
+<span class="c1"># Get all volumes</span>
 <span class="n">vols</span> <span class="o">=</span> <span class="n">volumes</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-<span class="c"># Get a specific volume information</span>
-<span class="n">vol</span> <span class="o">=</span> <span class="n">volumes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;gv1&quot;</span><span class="p">)</span>
-<span class="c"># Search volumes by status</span>
-<span class="n">down_volumes</span> <span class="o">=</span> <span class="n">volumes</span><span class="o">.</span><span class="n">search</span><span class="p">({</span><span class="s">&quot;status&quot;</span><span class="p">:</span> <span class="s">&quot;down&quot;</span><span class="p">})</span>
-<span class="c"># Search volumes by type</span>
-<span class="n">distribute_volumes</span> <span class="o">=</span> <span class="n">volumes</span><span class="o">.</span><span class="n">search</span><span class="p">({</span><span class="s">&quot;type&quot;</span><span class="p">:</span> <span class="s">&quot;distribute&quot;</span><span class="p">})</span>
-<span class="c"># Statvfs information</span>
-<span class="n">vol_statvfs</span> <span class="o">=</span> <span class="n">gfapi</span><span class="o">.</span><span class="n">statvfs</span><span class="p">(</span><span class="s">&quot;gv1&quot;</span><span class="p">)</span>
-<span class="c"># To view information about gluster volumes which are down</span>
-<span class="c"># and having bricks like &quot;/gfs&quot;</span>
-<span class="n">vols</span> <span class="o">=</span> <span class="n">volumes</span><span class="o">.</span><span class="n">search</span><span class="p">({</span><span class="s">&quot;status&quot;</span><span class="p">:</span> <span class="s">&quot;down&quot;</span><span class="p">,</span> <span class="s">&quot;volumewithbricks&quot;</span><span class="p">:</span> <span class="s">&quot;/gfs&quot;</span><span class="p">})</span>
-<span class="c"># To view filters available</span>
+<span class="c1"># Get a specific volume information</span>
+<span class="n">vol</span> <span class="o">=</span> <span class="n">volumes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;gv1&quot;</span><span class="p">)</span>
+<span class="c1"># Search volumes by status</span>
+<span class="n">down_volumes</span> <span class="o">=</span> <span class="n">volumes</span><span class="o">.</span><span class="n">search</span><span class="p">({</span><span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;down&quot;</span><span class="p">})</span>
+<span class="c1"># Search volumes by type</span>
+<span class="n">distribute_volumes</span> <span class="o">=</span> <span class="n">volumes</span><span class="o">.</span><span class="n">search</span><span class="p">({</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;distribute&quot;</span><span class="p">})</span>
+<span class="c1"># Statvfs information</span>
+<span class="n">vol_statvfs</span> <span class="o">=</span> <span class="n">gfapi</span><span class="o">.</span><span class="n">statvfs</span><span class="p">(</span><span class="s2">&quot;gv1&quot;</span><span class="p">)</span>
+<span class="c1"># To view information about gluster volumes which are down</span>
+<span class="c1"># and having bricks like &quot;/gfs&quot;</span>
+<span class="n">vols</span> <span class="o">=</span> <span class="n">volumes</span><span class="o">.</span><span class="n">search</span><span class="p">({</span><span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;down&quot;</span><span class="p">,</span> <span class="s2">&quot;volumewithbricks&quot;</span><span class="p">:</span> <span class="s2">&quot;/gfs&quot;</span><span class="p">})</span>
+<span class="c1"># To view filters available</span>
 <span class="k">print</span> <span class="p">(</span><span class="n">volumes</span><span class="o">.</span><span class="n">filters</span><span class="p">())</span>
 </pre></div>
 <p>volumes.search accepts filters as parameter, extending volume filters is very simple. For example name filter looks like this(<a class="reference external" href="https://github.com/aravindavk/glusterfs-tools/blob/master/src/glusterfstools/volumefilters.py">src/glusterfstools/volumefilters.py</a>)</p>
-<div class="highlight"><pre><span class="nd">@filter</span><span class="p">(</span><span class="s">&quot;name&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="nd">@filter</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">name_filter</span><span class="p">(</span><span class="n">vols</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">is_match</span><span class="p">(</span><span class="n">vol</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">value</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;all&#39;</span><span class="p">]</span> <span class="ow">or</span> \
-            <span class="n">vol</span><span class="p">[</span><span class="s">&quot;name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">value</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="ow">or</span> \
-            <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">vol</span><span class="p">[</span><span class="s">&quot;name&quot;</span><span class="p">]):</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;all&#39;</span><span class="p">]</span> <span class="ow">or</span> \
+            <span class="n">vol</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">value</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="ow">or</span> \
+            <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">vol</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]):</span>
             <span class="k">return</span> <span class="bp">True</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">False</span>
@@ -153,10 +153,10 @@ sudo python setup.py install
     <span class="k">return</span> <span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">vols</span> <span class="k">if</span> <span class="n">is_match</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">value</span><span class="p">)]</span>
 </pre></div>
 <p>The filter can be used as below</p>
-<div class="highlight"><pre><span class="kn">from</span> <span class="nn">glusterfstools</span> <span class="kn">import</span> <span class="n">volumes</span>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">glusterfstools</span> <span class="kn">import</span> <span class="n">volumes</span>
 
-<span class="c"># Filters the volumes with name either gv1 or gv2</span>
-<span class="n">filters</span> <span class="o">=</span> <span class="p">{</span><span class="s">&quot;name&quot;</span><span class="p">:</span> <span class="s">&quot;gv[12]&quot;</span><span class="p">}</span>
+<span class="c1"># Filters the volumes with name either gv1 or gv2</span>
+<span class="n">filters</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;gv[12]&quot;</span><span class="p">}</span>
 <span class="k">print</span> <span class="n">volumes</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">filters</span><span class="p">)</span>
 </pre></div>
 

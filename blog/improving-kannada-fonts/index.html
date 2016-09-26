@@ -149,27 +149,27 @@
 <li>Testing</li>
 </ol>
 <p>Today I completed first stage, created two <a class="reference external" href="https://github.com/aravindavk/fontscripts">python scripts</a> to change the glyph names and to adjust left and right space.</p>
-<div class="highlight"><pre><span class="nb">cd</span> <span class="nv">$WORK</span>
+<div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$WORK</span>
 git clone https://github.com/aravindavk/fontscripts.git
 git clone https://github.com/aravindavk/lohit2.git
 git clone https://github.com/aravindavk/Gubbi.git
 git clone https://github.com/aravindavk/Navilu.git
-<span class="nb">cd </span>fontscripts
+<span class="nb">cd</span> fontscripts
 
-<span class="c"># Lohit Kannada</span>
+<span class="c1"># Lohit Kannada</span>
 python rename_base_glyphs.py ../lohit2/kannada/Lohit-Kannada.sfd
 python adjust_spacing.py ../lohit2/kannada/Lohit-Kannada.sfd
 
-<span class="c"># Gubbi</span>
+<span class="c1"># Gubbi</span>
 python rename_base_glyphs.py ../Gubbi/Gubbi.sfd
 python adjust_spacing.py ../Gubbi/Gubbi.sfd
 
-<span class="c"># Navilu</span>
+<span class="c1"># Navilu</span>
 python rename_base_glyphs.py ../Navilu/Navilu.sfd
 python adjust_spacing.py ../Navilu/Navilu.sfd
 </pre></div>
 <p>Now generate the fonts to test the changes. Harfbuzz can be used for testing.</p>
-<div class="highlight"><pre>hb-view ../lohit2/kannada/Lohit-Kannada.ttf <span class="s2">&quot;</span><span class="k">$(</span>cat stage1_tests.txt <span class="k">)</span><span class="s2">&quot;</span> --output-file preview_lohit.png
+<div class="highlight"><pre><span></span>hb-view ../lohit2/kannada/Lohit-Kannada.ttf <span class="s2">&quot;</span><span class="k">$(</span>cat stage1_tests.txt <span class="k">)</span><span class="s2">&quot;</span> --output-file preview_lohit.png
 </pre></div>
 <p>Let me know if anybody interested to join and contribute to improve Kannada fonts.</p>
 </div>

@@ -101,7 +101,7 @@
 <p>If the required shape can't be achieved by joining two or more base glyphs as group 1, then we need separate ligature.</p>
 <img alt="Group 2" src="/images/fontrules/group2.png" />
 <p>Rule:</p>
-<div class="highlight"><pre>sub \uni0C95 \uni0CBF by \uni0C95_uni0CBF.abvs;
+<div class="highlight"><pre><span></span>sub \uni0C95 \uni0CBF by \uni0C95_uni0CBF.abvs;
 </pre></div>
 <p>Where uni0C95 uni0CBF and uni0C95_uni0CBF.abvs are glyph names(Unicode code of &quot;ka&quot; is U+0C95) (<a class="reference external" href="http://www.unicode.org/charts/PDF/U0C80.pdf">Refer</a>).</p>
 <p>In <a class="reference external" href="http://www.mediawiki.org/wiki/Language_portal/Pune_LanguageSummit_November_2013">#languageSummitPune</a> we(me, <a class="reference external" href="http://pravin-s.blogspot.in/">Pravin</a>, <a class="reference external" href="http://snehakore.blogspot.in/">Sneha</a>, <a class="reference external" href="http://thottingal.in/">Santhosh</a> and many others) discussed lot about glyph naming standard, will write about importance of glyph names in my next blog.</p>
@@ -113,7 +113,7 @@
 <p>Following consonants can be derived using half form of &quot;ka&quot;</p>
 <img alt="Group 3 detail" src="/images/fontrules/group3-detail.png" />
 <p>Rule:</p>
-<div class="highlight"><pre>sub \uni0C95&#39; [\uni0CCD \uni0CBE \uni0CC6 \uni0CCA \uni0CCC] by \uni0C95.half;
+<div class="highlight"><pre><span></span>sub \uni0C95&#39; [\uni0CCD \uni0CBE \uni0CC6 \uni0CCA \uni0CCC] by \uni0C95.half;
 </pre></div>
 </div>
 <div class="section" id="group-four-no-rule-required-because-of-normalization">
@@ -127,7 +127,7 @@
 <h2>Featurefile</h2>
 <p>We can create featurefile and import all rules into the font using fontforge tool. Read <a class="reference external" href="http://www.adobe.com/devnet/opentype/afdko/topic_feature_file_syntax.html">this</a> article to know more about featurefile syntax and specification.</p>
 <p>For consonant forms of &quot;ka&quot; final featurefile looks like this..</p>
-<div class="highlight"><pre>lookup kn_abvs_lookup1 {
+<div class="highlight"><pre><span></span>lookup kn_abvs_lookup1 {
     lookupflag 0;
     sub \uni0C95 \uni0CBF by \uni0C95_uni0CBF.abvs;
 } kn_abvs_lookup1;
@@ -150,10 +150,10 @@ feature abvs {
 } abvs;
 </pre></div>
 <p>Once we save the above content in knda_gsub.fea, download the python script from <a class="reference external" href="https://raw.github.com/aravindavk/fontforge-python-cookbook/master/apply_gsub_featurefile.py">here</a> and run</p>
-<div class="highlight"><pre>python apply_gsub_featurefile.py &lt;sfd file path&gt; &lt;fea file path&gt;
+<div class="highlight"><pre><span></span>python apply_gsub_featurefile.py &lt;sfd file path&gt; &lt;fea file path&gt;
 </pre></div>
 <p>For example:</p>
-<div class="highlight"><pre>python apply_gsub_featurefile.py Lohit-Kannada.sfd knda_gsub.fea
+<div class="highlight"><pre><span></span>python apply_gsub_featurefile.py Lohit-Kannada.sfd knda_gsub.fea
 </pre></div>
 </div>
 

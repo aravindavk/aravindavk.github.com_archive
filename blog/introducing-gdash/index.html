@@ -90,10 +90,10 @@
 <p>gdash is a super-young project, which shows GlusterFS volume information about local, remote clusters. This app is based on GlusterFS's capability of executing <code>gluster volume info</code> and <code>gluster volume status</code> commands for a remote server using <tt class="docutils literal"><span class="pre">--remote-host</span></tt> option.</p>
 <p>If you can run <code>gluster volume info --remote-host=&lt;HOST_NAME&gt;</code>, then you can monitor that cluster using gdash. Make sure you allow to access glusterd port(24007) for the machine where you will run gdash.</p>
 <p>To install,</p>
-<div class="highlight"><pre>sudo pip install gdash
+<div class="highlight"><pre><span></span>sudo pip install gdash
 </pre></div>
 <p>or</p>
-<div class="highlight"><pre>sudo easy_install gdash
+<div class="highlight"><pre><span></span>sudo easy_install gdash
 </pre></div>
 <p>gdash is created using Python <a class="reference external" href="http://flask.pocoo.org/">Flask</a> and <a class="reference external" href="http://emberjs.com/">ember</a> (I used <a class="reference external" href="http://ember-cli.com">ember-cli</a>).</p>
 <div class="figure">
@@ -117,28 +117,28 @@
 <div class="section" id="use-case-3-multiple-clusters">
 <h3>Use case 3 - Multiple clusters</h3>
 <p>Create a clusters.conf file as example shown below, specify at least one host from each cluster.</p>
-<div class="highlight"><pre><span class="k">[clusters]</span>
+<div class="highlight"><pre><span></span><span class="k">[clusters]</span>
 <span class="na">cluster1</span> <span class="o">=</span> <span class="s">host1, host2, host3</span>
 <span class="na">cluster2</span> <span class="o">=</span> <span class="s">host4, host5, host6</span>
 </pre></div>
 <p>Run <code>gdash</code> using,</p>
-<div class="highlight"><pre>sudo gdash --clusters ~/clusters.conf
+<div class="highlight"><pre><span></span>sudo gdash --clusters ~/clusters.conf
 </pre></div>
 </div>
 <div class="section" id="use-case-4-multiple-teams">
 <h3>Use case 4 - Multiple teams</h3>
 <p>If two teams monitoring two clusters and if you don't want to share the other cluster details then, just run below commands in two terminals and give respective URL to each team. Other solution is create two seperate config files and run it separately for different ports.</p>
-<div class="highlight"><pre><span class="c"># Team 1, who monitors cluster1 http://localhost:8001</span>
+<div class="highlight"><pre><span></span><span class="c1"># Team 1, who monitors cluster1 http://localhost:8001</span>
 sudo gdash -p <span class="m">8001</span> --clusters ~/clusters.conf --limit-cluster cluster1
 
-<span class="c"># Team 2, who monitors cluster2 http://localhost:8002</span>
+<span class="c1"># Team 2, who monitors cluster2 http://localhost:8002</span>
 sudo gdash -p <span class="m">8002</span> --clusters ~/clusters.conf --limit-cluster cluster2
 </pre></div>
 </div>
 </div>
 <div class="section" id="available-options">
 <h2>Available Options</h2>
-<div class="highlight"><pre>usage: gdash [-h] [--port PORT] [--cache CACHE] [--debug] [--host HOST]
+<div class="highlight"><pre><span></span>usage: gdash [-h] [--port PORT] [--cache CACHE] [--debug] [--host HOST]
              [--clusters CLUSTERS] [--limit-cluster LIMIT_CLUSTER]
 
 GlusterFS dashboard

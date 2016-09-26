@@ -93,15 +93,15 @@ UPDATE: <br/>Installation and usage is simplified with the new release of gluste
 GlusterFS is an open source, distributed file system capable of scaling to several petabytes (actually, 72 brontobytes!) and handling thousands of clients. GlusterFS clusters together storage building blocks over Infiniband RDMA or TCP/IP interconnect, aggregating disk and memory resources and managing data in a single global namespace. GlusterFS is based on a stackable user space design and can deliver exceptional performance for diverse workloads.</blockquote>
 <p>Gluster CLI has limited features to view and filter the volume info. I started a small project to enhance Gluster CLI for personal use. As of now it consists of a tool to list Gluster volumes in tabular format. Other intersesting features includes filtering the output based on name, type, status, bricks etc.</p>
 <p>Clone the project(I cloned it to <code>/home/aravinda/sandbox/</code>)</p>
-<div class="highlight"><pre><span class="nb">cd</span> /home/aravinda/sandbox
+<div class="highlight"><pre><span></span><span class="nb">cd</span> /home/aravinda/sandbox
 git clone https://github.com/aravindavk/glusterfs-tools.git
 </pre></div>
 <p>Create a shellscript to call gftools /usr/local/bin/gfvolumes</p>
-<div class="highlight"><pre><span class="c">#!/bin/bash</span>
+<div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 python /home/aravinda/sandbox/glusterfs-tools/gftools/volumes.py <span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span>
 </pre></div>
 <p>Make gfvolumes executable</p>
-<div class="highlight"><pre>chmod +x /usr/local/bin/gfvolumes
+<div class="highlight"><pre><span></span>chmod +x /usr/local/bin/gfvolumes
 </pre></div>
 <p>Now we can run <code>sudo gfvolumes</code> to see the list of glusterfs volumes. Type <code>gfvolumes --help</code> for help.</p>
 <div class="figure">
@@ -130,12 +130,12 @@ python /home/aravinda/sandbox/glusterfs-tools/gftools/volumes.py <span class="s2
 <p class="caption">JSON Format</p>
 </div>
 <p>We can easily import this in our python script.</p>
-<div class="highlight"><pre><span class="c">#!/usr/bin/python</span>
+<div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/python</span>
 <span class="kn">from</span> <span class="nn">gftools</span> <span class="kn">import</span> <span class="n">volumes</span>
 <span class="n">gfvols</span> <span class="o">=</span> <span class="n">volumes</span><span class="o">.</span><span class="n">GfVolumes</span><span class="p">()</span>
-<span class="n">ok</span><span class="p">,</span> <span class="n">vols</span> <span class="o">=</span> <span class="n">gfvols</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;^gv[0-9]$&#39;</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="s">&#39;down&#39;</span><span class="p">)</span> <span class="c"># Various filters available</span>
+<span class="n">ok</span><span class="p">,</span> <span class="n">vols</span> <span class="o">=</span> <span class="n">gfvols</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;^gv[0-9]$&#39;</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="s1">&#39;down&#39;</span><span class="p">)</span> <span class="c1"># Various filters available</span>
 <span class="k">if</span> <span class="n">ok</span><span class="p">:</span>
-    <span class="c"># Do action</span>
+    <span class="c1"># Do action</span>
 </pre></div>
 <p><strong>Note:</strong> root permission is required to run gluster command, so run gfvolumes as root(<code>sudo gfvolumes</code>)</p>
 <div class="section" id="future-plans">

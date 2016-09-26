@@ -110,12 +110,12 @@
 <img alt="Healthy Notification" src="/images/webmon_healthy.png" />
 <img alt="Faulty Notification" src="/images/webmon_faulty.png" />
 <p>Sending user pin is super easy with Python, I used Python library <a class="reference external" href="https://pypi.python.org/pypi/requests">requests</a></p>
-<div class="highlight"><pre><span class="kn">import</span> <span class="nn">requests</span>
-<span class="n">pin</span> <span class="o">=</span> <span class="p">{</span><span class="o">..</span><span class="p">}</span> <span class="c"># Valid Pin object</span>
-<span class="n">url</span> <span class="o">=</span> <span class="s">&quot;https://timeline-api.getpebble.com/v1/user/pins/</span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">pin</span><span class="p">[</span><span class="s">&quot;id&quot;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="n">pin</span> <span class="o">=</span> <span class="p">{</span><span class="o">..</span><span class="p">}</span> <span class="c1"># Valid Pin object</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://timeline-api.getpebble.com/v1/user/pins/</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">pin</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span>
 <span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">url</span><span class="p">,</span>
-                    <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s">&quot;X-User-Token&quot;</span><span class="p">:</span> <span class="n">user_token</span><span class="p">,</span>
-                             <span class="s">&quot;Content-Type&quot;</span><span class="p">:</span> <span class="s">&quot;application/json&quot;</span><span class="p">},</span>
+                    <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;X-User-Token&quot;</span><span class="p">:</span> <span class="n">user_token</span><span class="p">,</span>
+                             <span class="s2">&quot;Content-Type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/json&quot;</span><span class="p">},</span>
                     <span class="n">data</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">pin</span><span class="p">))</span>
 <span class="k">print</span> <span class="n">resp</span><span class="o">.</span><span class="n">status_code</span>
 </pre></div>

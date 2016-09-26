@@ -88,7 +88,7 @@
     <div class="entry-content">
       <p>Create a seed, which will be a CouchDB view.</p>
 <p>Map function extracts numeric part of every doc of type &quot;photo&quot;.</p>
-<div class="highlight"><pre><span class="c1">// Map function</span>
+<div class="highlight"><pre><span></span><span class="c1">// Map function</span>
 <span class="kd">function</span><span class="p">(</span><span class="nx">doc</span><span class="p">){</span>
     <span class="k">if</span><span class="p">(</span><span class="nx">doc</span><span class="p">.</span><span class="nx">type</span> <span class="o">==</span> <span class="s2">&quot;photo&quot;</span><span class="p">){</span>
         <span class="nx">emit</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">doc</span><span class="p">.</span><span class="nx">_id</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\D/g</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)));</span>
@@ -96,7 +96,7 @@
 <span class="p">}</span>
 </pre></div>
 <p>reduce function finds the max value from those numeric values emitted from map function.</p>
-<div class="highlight"><pre><span class="c1">// Reduce function</span>
+<div class="highlight"><pre><span></span><span class="c1">// Reduce function</span>
 <span class="kd">function</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">values</span><span class="p">){</span>
     <span class="kd">var</span> <span class="nx">max</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
     <span class="k">for</span><span class="p">(</span><span class="nx">i</span> <span class="k">in</span> <span class="nx">values</span><span class="p">){</span>
@@ -109,7 +109,7 @@
 </pre></div>
 <p>This view is saved as _design/helpers/photoid</p>
 <p>Now write a function in PHP to increment the ID as required and to add the document.</p>
-<div class="highlight"><pre><span class="cp">&lt;?php</span>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
 <span class="k">function</span> <span class="nf">addDoc</span><span class="p">(</span><span class="nv">$url</span><span class="p">,</span> <span class="nv">$data</span><span class="p">,</span> <span class="nv">$seed</span><span class="p">,</span> <span class="nv">$idprefix</span><span class="p">,</span> <span class="nv">$incrementBy</span><span class="o">=</span><span class="mi">1</span><span class="p">){</span>
     <span class="c1">// Get the current ID value</span>
     <span class="nv">$ch</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">$url</span><span class="s2">/_design/</span><span class="si">$seed</span><span class="s2">&quot;</span><span class="p">);</span>
@@ -131,7 +131,7 @@
 <span class="p">}</span>
 </pre></div>
 <p>Example usage of above PHP function</p>
-<div class="highlight"><pre><span class="x">addDoc(&quot;http://localhost:5984/photoblog&quot;,</span>
+<div class="highlight"><pre><span></span><span class="x">addDoc(&quot;http://localhost:5984/photoblog&quot;,</span>
 <span class="x">       Array(&quot;type&quot;=&gt;&quot;photo&quot;, &quot;published&quot;=&gt;0, &quot;place&quot;=&gt;&quot;Karnataka, India&quot;),</span>
 <span class="x">       &quot;helpers/_view/photoid&quot;,</span>
 <span class="x">       &quot;p&quot;);</span>

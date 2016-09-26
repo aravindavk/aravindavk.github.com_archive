@@ -98,21 +98,21 @@
 </div>
 <div class="section" id="using-python">
 <h2>Using Python</h2>
-<div class="highlight"><pre><span class="c"># file: validateKannadaWords.py</span>
-<span class="c"># -*- coding: utf-8 -*-</span>
+<div class="highlight"><pre><span></span><span class="c1"># file: validateKannadaWords.py</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
 <span class="kn">import</span> <span class="nn">re</span>
 
-<span class="c"># function checks the input word is Kannada word or not</span>
-<span class="c"># @params word - Input word to validate</span>
-<span class="c"># @returns True - If success, False - If failure</span>
-<span class="c"># @author Aravinda VK</span>
-<span class="c"># @date - 09-Nov-2008</span>
+<span class="c1"># function checks the input word is Kannada word or not</span>
+<span class="c1"># @params word - Input word to validate</span>
+<span class="c1"># @returns True - If success, False - If failure</span>
+<span class="c1"># @author Aravinda VK</span>
+<span class="c1"># @date - 09-Nov-2008</span>
 
 <span class="k">def</span> <span class="nf">isKannadaWord</span><span class="p">(</span><span class="n">word</span><span class="p">):</span>
-    <span class="n">rangeStart</span> <span class="o">=</span> <span class="s">ur&quot;\u0C80&quot;</span>
-    <span class="n">rangeEnd</span> <span class="o">=</span> <span class="s">ur&quot;\u0CFF&quot;</span>
-    <span class="n">pattern</span> <span class="o">=</span> <span class="n">rangeStart</span> <span class="o">+</span> <span class="s">&#39;-&#39;</span> <span class="o">+</span> <span class="n">rangeEnd</span>
-    <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s">&#39;^[&#39;</span> <span class="o">+</span> <span class="n">pattern</span> <span class="o">+</span> <span class="s">&#39;]+$&#39;</span><span class="p">,</span><span class="n">word</span><span class="p">)</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">:</span>
+    <span class="n">rangeStart</span> <span class="o">=</span> <span class="s2">ur&quot;\u0C80&quot;</span>
+    <span class="n">rangeEnd</span> <span class="o">=</span> <span class="s2">ur&quot;\u0CFF&quot;</span>
+    <span class="n">pattern</span> <span class="o">=</span> <span class="n">rangeStart</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="n">rangeEnd</span>
+    <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s1">&#39;^[&#39;</span> <span class="o">+</span> <span class="n">pattern</span> <span class="o">+</span> <span class="s1">&#39;]+$&#39;</span><span class="p">,</span><span class="n">word</span><span class="p">)</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">True</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">False</span>
@@ -120,19 +120,19 @@
 <p>&quot;ur&quot; in above code refers to raw unicode.</p>
 <div class="section" id="how-to-use">
 <h3>How to use</h3>
-<div class="highlight"><pre><span class="n">myString</span> <span class="o">=</span> <span class="s">u&#39;ಅರವಿಂದ ಒಲವು ಅವಳು ಮತ್ತು ನಾಳೆ abcd ಹೆಹೆ &#39;</span>
+<div class="highlight"><pre><span></span><span class="n">myString</span> <span class="o">=</span> <span class="s1">u&#39;ಅರವಿಂದ ಒಲವು ಅವಳು ಮತ್ತು ನಾಳೆ abcd ಹೆಹೆ &#39;</span>
 <span class="n">wordsList</span> <span class="o">=</span> <span class="n">myString</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">eachWord</span> <span class="ow">in</span> <span class="n">wordsList</span><span class="p">:</span>
     <span class="k">if</span> <span class="n">isKannadaWord</span><span class="p">(</span><span class="n">eachWord</span><span class="p">)</span> <span class="p">:</span>
-        <span class="k">print</span> <span class="n">eachWord</span> <span class="o">+</span> <span class="s">&#39; is a Kannada word&#39;</span>
+        <span class="k">print</span> <span class="n">eachWord</span> <span class="o">+</span> <span class="s1">&#39; is a Kannada word&#39;</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">print</span> <span class="n">eachWord</span> <span class="o">+</span> <span class="s">&#39; is not a Kannada word&#39;</span>
+        <span class="k">print</span> <span class="n">eachWord</span> <span class="o">+</span> <span class="s1">&#39; is not a Kannada word&#39;</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="using-javascript">
 <h2>Using Javascript</h2>
-<div class="highlight"><pre><span class="c1">// function checks the input word is Kannada word or not</span>
+<div class="highlight"><pre><span></span><span class="c1">// function checks the input word is Kannada word or not</span>
 <span class="c1">// @params word - Input word to validate</span>
 <span class="c1">// @returns True - If success, False - If failure</span>
 <span class="c1">// @author Aravinda VK</span>
@@ -150,7 +150,7 @@
 </pre></div>
 <div class="section" id="id1">
 <h3>How to use</h3>
-<div class="highlight"><pre><span class="kd">var</span> <span class="nx">inputwords</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">(</span><span class="s2">&quot;ಅರವಿಂದ&quot;</span><span class="p">,</span> <span class="s2">&quot;ಒಲವು&quot;</span><span class="p">,</span> <span class="s2">&quot;ಅವಳು&quot;</span><span class="p">,</span> <span class="s2">&quot;ಮತ್ತು&quot;</span><span class="p">,</span> <span class="s2">&quot;ನಾಳೆ&quot;</span><span class="p">,</span> <span class="s2">&quot;abcd&quot;</span><span class="p">,</span> <span class="s2">&quot;ಹೆಹೆ&quot;</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">inputwords</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">(</span><span class="s2">&quot;ಅರವಿಂದ&quot;</span><span class="p">,</span> <span class="s2">&quot;ಒಲವು&quot;</span><span class="p">,</span> <span class="s2">&quot;ಅವಳು&quot;</span><span class="p">,</span> <span class="s2">&quot;ಮತ್ತು&quot;</span><span class="p">,</span> <span class="s2">&quot;ನಾಳೆ&quot;</span><span class="p">,</span> <span class="s2">&quot;abcd&quot;</span><span class="p">,</span> <span class="s2">&quot;ಹೆಹೆ&quot;</span><span class="p">);</span>
 <span class="k">for</span><span class="p">(</span><span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="mi">2</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">isKannadaWord</span><span class="p">(</span><span class="nx">inputwords</span><span class="p">[</span><span class="nx">i</span><span class="p">]))</span> <span class="p">{</span>
         <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s2">&quot;&lt;b&gt;&quot;</span> <span class="o">+</span> <span class="nx">inputwords</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;&lt;/b&gt; is a valid Kannada Word&lt;br/&gt;&quot;</span><span class="p">);</span>

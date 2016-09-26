@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Aravinda VK</title><link href="http://aravindavk.in/" rel="alternate"></link><link href="http://aravindavk.in/feeds/tag-markdown.atom.xml" rel="self"></link><id>http://aravindavk.in/</id><updated>2009-09-28T00:00:00+05:30</updated><entry><title>Using Markdown and SHJS with PHP</title><link href="http://aravindavk.in/blog/using-markdown-and-shjs-with-php/" rel="alternate"></link><updated>2009-09-28T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2009-09-28:blog/using-markdown-and-shjs-with-php/</id><summary type="html">&lt;p&gt;In this article we will discuss&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Aravinda VK</title><link href="http://aravindavk.in/" rel="alternate"></link><link href="http://aravindavk.in/feeds/tag-markdown.atom.xml" rel="self"></link><id>http://aravindavk.in/</id><updated>2009-09-28T00:00:00+05:30</updated><entry><title>Using Markdown and SHJS with PHP</title><link href="http://aravindavk.in/blog/using-markdown-and-shjs-with-php/" rel="alternate"></link><published>2009-09-28T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2009-09-28:blog/using-markdown-and-shjs-with-php/</id><summary type="html">&lt;p&gt;In this article we will discuss&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
 &lt;li&gt;Markdown&lt;/li&gt;
 &lt;li&gt;Markdown PHP&lt;/li&gt;
@@ -13,7 +13,7 @@
 &lt;blockquote&gt;
 Markdown is a text-to-HTML conversion tool for web writers. Markdown allows you to write using an easy-to-read, easy-to-write plain text format, then convert it to structurally valid XHTML (or HTML).&lt;/blockquote&gt;
 &lt;p&gt;For example&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;# Heading 1
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# Heading 1
 ## Heading 2
 
 ** Bold **
@@ -30,26 +30,26 @@ Adding inline image
 [Link](http://localhost)
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;will be converted to&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nt"&gt;&amp;lt;h1&amp;gt;&lt;/span&gt;Heading 1&lt;span class="nt"&gt;&amp;lt;/h1&amp;gt;&lt;/span&gt;
-&lt;span class="nt"&gt;&amp;lt;h2&amp;gt;&lt;/span&gt;Heading 2&lt;span class="nt"&gt;&amp;lt;/h2&amp;gt;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;h1&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Heading 1&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;h1&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;h2&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Heading 2&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;h2&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
 
-&lt;span class="nt"&gt;&amp;lt;p&amp;gt;&amp;lt;strong&amp;gt;&lt;/span&gt; Bold &lt;span class="nt"&gt;&amp;lt;/strong&amp;gt;&lt;/span&gt;
-&lt;span class="nt"&gt;&amp;lt;em&amp;gt;&lt;/span&gt; Italic &lt;span class="nt"&gt;&amp;lt;/em&amp;gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
-&lt;span class="nt"&gt;&amp;lt;blockquote&amp;gt;&lt;/span&gt;
-&lt;span class="nt"&gt;&amp;lt;p&amp;gt;&lt;/span&gt;blockquote&lt;span class="nt"&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
-&lt;span class="nt"&gt;&amp;lt;/blockquote&amp;gt;&lt;/span&gt;
-&lt;span class="nt"&gt;&amp;lt;p&amp;gt;&amp;lt;code&amp;gt;&lt;/span&gt;single line code&lt;span class="nt"&gt;&amp;lt;/code&amp;gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;strong&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt; Bold &lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;strong&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;em&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt; Italic &lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;em&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;blockquote&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;blockquote&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;blockquote&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;code&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;single line code&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;code&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
 
-&lt;span class="nt"&gt;&amp;lt;p&amp;gt;&lt;/span&gt;Adding inline image&lt;span class="nt"&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
-&lt;span class="nt"&gt;&amp;lt;p&amp;gt;&amp;lt;img&lt;/span&gt; &lt;span class="na"&gt;alt=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Alt Text&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;src=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;a.jpg&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
-&lt;span class="nt"&gt;&amp;lt;p&amp;gt;&amp;lt;a&lt;/span&gt; &lt;span class="na"&gt;href=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;http://localhost&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;Link&lt;span class="nt"&gt;&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Adding inline image&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;img&lt;/span&gt; &lt;span class="na"&gt;alt&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Alt Text&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;src&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;a.jpg&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;/&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;a&lt;/span&gt; &lt;span class="na"&gt;href&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;http://localhost&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Link&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;a&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Click &lt;a class="reference external" href="http://daringfireball.net/projects/markdown/"&gt;here&lt;/a&gt; for more details about markdown.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="markdown-php"&gt;
 &lt;h2&gt;Markdown PHP&lt;/h2&gt;
 &lt;p&gt;PHP implementation of markdown is available &lt;a class="reference external" href="http://michelf.com/projects/php-markdown/"&gt;here&lt;/a&gt;. We can store the content in database in the markdown format itself, While displaying to user we can convert to HTML using the Markdown PHP library.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
 &lt;span class="k"&gt;require_once&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;markdown.php&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="nv"&gt;$text&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;
 &lt;span class="s1"&gt;# Heading 1&lt;/span&gt;
@@ -66,14 +66,14 @@ Adding inline image
 &lt;h2&gt;SHJS - Syntax highlighter using JS&lt;/h2&gt;
 &lt;p&gt;It will be good if we able to highlight the code inside pre element, I found a Javascript utility SHJS(Syntax Highlighter with JavaScript), which has very good features and multiple themes support. Read the documentation about SHJS &lt;a class="reference external" href="http://shjs.sourceforge.net/"&gt;here&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;SHJS library requires class to be defined in pre tag like &lt;code&gt;&amp;lt;pre class=&amp;quot;sh_php&amp;quot;&amp;gt;&lt;/code&gt; for PHP code, but it is not possible to add class in markdown syntax, so we will write an PHP function to add the class to each pre element. We need to add &lt;code&gt;#!sh_php&lt;/code&gt; (php is used as example, that will change depending on the language) in the markdown text whereever highlighting is required.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="x"&gt;#!sh_php&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;#!sh_php&lt;/span&gt;
 &lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
 &lt;span class="c1"&gt;# This is an example text file to show how to add language&lt;/span&gt;
 &lt;span class="c1"&gt;# header for syntax highlight&lt;/span&gt;
 &lt;span class="k"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Hello World&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;PHP function to replace &lt;code&gt;#!sh_php&lt;/code&gt; to &lt;code&gt;&amp;lt;pre class=&amp;quot;sh_php&amp;quot;&amp;gt;&lt;/code&gt; is&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
 &lt;span class="k"&gt;function&lt;/span&gt; &lt;span class="nf"&gt;addClassToPre&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$text&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
     &lt;span class="c1"&gt;// Add respective class to pre tag&lt;/span&gt;
     &lt;span class="nv"&gt;$op&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;preg_replace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/&amp;lt;pre&amp;gt;&amp;lt;code&amp;gt;#!([^\\n]+)/&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
@@ -83,7 +83,7 @@ Adding inline image
 &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;If we load all the syntax highlight JavaScript files then it affects loading time, so we will add only required JavaScript files for syntax highlight based on the languages used in the content.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
 &lt;span class="k"&gt;function&lt;/span&gt; &lt;span class="nf"&gt;addRespectiveJsFiles&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$text&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
     &lt;span class="nb"&gt;preg_match_all&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/&amp;lt;pre&amp;gt;&amp;lt;code&amp;gt;#!([^\\n]+)/&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nx"&gt;Markdown&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$text&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="nv"&gt;$result&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
     &lt;span class="nv"&gt;$jsFiles&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;array_unique&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$result&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;
@@ -99,7 +99,7 @@ Adding inline image
 &lt;/div&gt;
 &lt;div class="section" id="how-to-use"&gt;
 &lt;h2&gt;How To Use?&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="x"&gt;&amp;lt;script type=&amp;quot;text/javascript&amp;quot; src=&amp;quot;sh_main.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;&amp;lt;script type=&amp;quot;text/javascript&amp;quot; src=&amp;quot;sh_main.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
 &lt;span class="x"&gt;&amp;lt;link type=&amp;quot;text/css&amp;quot; rel=&amp;quot;stylesheet&amp;quot; href=&amp;quot;style.css&amp;quot;&amp;gt;&lt;/span&gt;
 &lt;span class="x"&gt;&amp;lt;link type=&amp;quot;text/css&amp;quot; rel=&amp;quot;stylesheet&amp;quot; href=&amp;quot;css/sh_emacs.css&amp;quot;&amp;gt;&lt;/span&gt;
 

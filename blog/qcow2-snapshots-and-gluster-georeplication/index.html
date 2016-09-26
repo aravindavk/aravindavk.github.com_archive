@@ -111,13 +111,13 @@ the Gluster Volumes.</p>
 <p>Before starting Geo-replication every day, take qcow2 snapshot of all
 the disks in Master Volume. Geo-rep will sync the data including the
 created snapshots.</p>
-<div class="highlight"><pre>virsh snapshot-create-as --domain &lt;DOMAIN&gt; &lt;SNAP_NAME&gt;
+<div class="highlight"><pre><span></span>virsh snapshot-create-as --domain &lt;DOMAIN&gt; &lt;SNAP_NAME&gt;
 </pre></div>
 <p>For example,</p>
-<div class="highlight"><pre>virsh snapshot-create-as --domain fedora22 sn1
+<div class="highlight"><pre><span></span>virsh snapshot-create-as --domain fedora22 sn1
 </pre></div>
 <p>But while taking internal snapshot, guest is <strong>paused</strong> :(</p>
-<div class="highlight"><pre># virsh list
+<div class="highlight"><pre><span></span># virsh list
  Id    Name                           State
 ----------------------------------------------------
  3     fedora22                       paused
@@ -131,7 +131,7 @@ checkpoint is reached.(This utility will be available with
 <p>Run <tt class="docutils literal">/usr/share/glusterfs/scripts/schedule_georep.py <span class="pre">--help</span></tt> for more
 details about the script.(<tt class="docutils literal">/usr/local/share/</tt> in case of source install)</p>
 <p>Psudeo code:</p>
-<div class="highlight"><pre>pool_dir=&lt;PATH_OF_MASTER_VOL_MOUNT&gt;
+<div class="highlight"><pre><span></span>pool_dir=&lt;PATH_OF_MASTER_VOL_MOUNT&gt;
 images=$(ls ${pool_dir})
 For each images, take qcow2 snapshot
 Run schedule_georep script
@@ -139,10 +139,10 @@ Run schedule_georep script
 <p>Once the scheduler script completes, check the <tt class="docutils literal"><span class="pre">qemu-img</span> info</tt> in Slave
 and confirm that Geo-rep synced everything from master Volume
 including Snapshots created.</p>
-<div class="highlight"><pre>qemu-img info /mnt/gv2/f22.qcow2
+<div class="highlight"><pre><span></span>qemu-img info /mnt/gv2/f22.qcow2
 </pre></div>
 <p>Example Output:</p>
-<div class="highlight"><pre>image: /mnt/gv2/f22.qcow2
+<div class="highlight"><pre><span></span>image: /mnt/gv2/f22.qcow2
 file format: qcow2
 virtual size: 20G (21474836480 bytes)
 disk size: 2.8G
@@ -172,21 +172,21 @@ when external snapshot is used. Once Geo-rep Scheduler script is
 complete, blockcommit the image in Master side to prevent growing
 backing chain.</p>
 <p>Delete the external snapshot once the blockcommit returns success.</p>
-<div class="highlight"><pre><span class="nv">pool_dir</span><span class="o">=</span>&lt;PATH_OF_MASTER_VOL_MOUNT&gt;
+<div class="highlight"><pre><span></span><span class="nv">pool_dir</span><span class="o">=</span>&lt;PATH_OF_MASTER_VOL_MOUNT&gt;
 
-<span class="c"># Take External snapshot</span>
+<span class="c1"># Take External snapshot</span>
 virsh snapshot-create-as --domain &lt;DOMAIN&gt; &lt;SNAPNAME&gt;  <span class="se">\</span>
     --diskspec vda,file<span class="o">=</span><span class="si">${</span><span class="nv">pool_dir</span><span class="si">}</span>/snaps/&lt;SNAPNAME&gt;.qcow2 <span class="se">\</span>
     --disk-only --atomic --no-metadata
 
-<span class="c"># Run Geo-replication</span>
+<span class="c1"># Run Geo-replication</span>
 /usr/share/glusterfs/scripts/schedule_georep.py <span class="se">\</span>
     &lt;MASTERVOL&gt; &lt;SLAVE&gt; &lt;SLAVEVOL&gt;
 
-<span class="c"># Blockcommit</span>
+<span class="c1"># Blockcommit</span>
 virsh blockcommit &lt;DOMAIN&gt; vda --active --verbose --pivot
 
-<span class="c"># Remove the external Snapshot file</span>
+<span class="c1"># Remove the external Snapshot file</span>
 rm <span class="si">${</span><span class="nv">pool_dir</span><span class="si">}</span>/snaps/&lt;SNAPNAME&gt;.qcow2
 </pre></div>
 <p>With this method, Slave will always have consitent base image.</p>

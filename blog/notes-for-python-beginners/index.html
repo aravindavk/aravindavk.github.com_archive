@@ -88,49 +88,49 @@
     <div class="entry-content">
       <div class="section" id="using-python-documentation-similar-to-unix-man-pages">
 <h2>Using Python documentation similar to unix man pages</h2>
-<div class="highlight"><pre>pydoc sys
+<div class="highlight"><pre><span></span>pydoc sys
 </pre></div>
 <p>or</p>
-<div class="highlight"><pre>python -m pydoc sys
+<div class="highlight"><pre><span></span>python -m pydoc sys
 </pre></div>
 </div>
 <div class="section" id="for-html-documentation">
 <h2>For html documentation</h2>
-<div class="highlight"><pre>pydoc -p 9000
+<div class="highlight"><pre><span></span>pydoc -p 9000
 </pre></div>
 <p>Now server will start running in port 9000. we can access the documentation in <a class="reference external" href="http://localhost:9000">http://localhost:9000</a></p>
 </div>
 <div class="section" id="to-get-help-while-working-inside-interpreter-type-help">
 <h2>To get help while working inside interpreter, type help()</h2>
-<div class="highlight"><pre>&gt;&gt;help<span class="o">()</span>
+<div class="highlight"><pre><span></span>&gt;&gt;help<span class="o">()</span>
 </pre></div>
 <p>Help prompt will come, now we can type module name to get details about that module.</p>
-<div class="highlight"><pre>sys
+<div class="highlight"><pre><span></span>sys
 </pre></div>
 </div>
 <div class="section" id="to-list-functions-attributes-inside-a-module">
 <h2>To list functions/attributes inside a module</h2>
-<div class="highlight"><pre><span class="kn">import</span> <span class="nn">sys</span>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
 <span class="nb">dir</span><span class="p">(</span><span class="n">sys</span><span class="p">)</span>
 </pre></div>
 <p>To get it in readable format</p>
-<div class="highlight"><pre><span class="kn">import</span> <span class="nn">sys</span>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">sys</span><span class="p">):</span>
     <span class="k">print</span> <span class="n">i</span>
 </pre></div>
 </div>
 <div class="section" id="to-list-builtin-functions">
 <h2>To list builtin functions,</h2>
-<div class="highlight"><pre><span class="kn">import</span> <span class="nn">__builtin__</span>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">__builtin__</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">__builtin__</span><span class="p">):</span>
     <span class="k">print</span> <span class="n">i</span>
 </pre></div>
 </div>
 <div class="section" id="to-see-which-are-all-the-modules-loaded-in-our-program">
 <h2>To see which are all the modules loaded in our program</h2>
-<div class="highlight"><pre><span class="kn">import</span> <span class="nn">sys</span>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">:</span>
-    <span class="k">print</span> <span class="n">i</span><span class="p">,</span> <span class="s">&quot;: &quot;</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="k">print</span> <span class="n">i</span><span class="p">,</span> <span class="s2">&quot;: &quot;</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
 </pre></div>
 </div>
 <div class="section" id="books-documentation">

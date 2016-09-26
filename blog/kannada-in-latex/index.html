@@ -91,7 +91,7 @@
 XeTeX (English pronunciation &quot;zee-TeX&quot; i.e. /ˈziːtɛx/ or often /ˈziːtɛk/) is a TeX typesetting engine using Unicode and supporting modern font technologies such as OpenType or Apple Advanced Typography (AAT).</blockquote>
 <div class="section" id="hello-world-in-kannada">
 <h2>Hello World in Kannada</h2>
-<div class="highlight"><pre><span class="c">% File: helloworld.tex</span>
+<div class="highlight"><pre><span></span><span class="c">% File: helloworld.tex</span>
 <span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span>
 <span class="k">\usepackage</span><span class="nb">{</span>fontspec<span class="nb">}</span>
 <span class="k">\usepackage</span><span class="nb">{</span>polyglossia<span class="nb">}</span>
@@ -122,10 +122,10 @@ XeTeX (English pronunciation &quot;zee-TeX&quot; i.e. /ˈziːtɛx/ or often /ˈz
 <li>Kannada strings for all document strings (like “chapter”, “ﬁgure”, “bibliography”).</li>
 </ol>
 <p>Since Debian Squeeze has TeXLive 2009, I downloaded TeXLive 2010 from <a class="reference external" href="http://www.tug.org/texlive/acquire-iso.html">here</a>. Uninstalled all the components of TeXLive 2009 in my Debian system using</p>
-<div class="highlight"><pre>apt-get remove texlive*
+<div class="highlight"><pre><span></span>apt-get remove texlive*
 </pre></div>
 <p>Mount the iso image downloaded and install TexLive 2010 as follows.</p>
-<div class="highlight"><pre>mkdir /tmp/texlive
+<div class="highlight"><pre><span></span>mkdir /tmp/texlive
 mount -o loop texlive-2010.iso /tmp/texlive
 <span class="nb">cd</span> /tmp/texlive
 ./install-tl
@@ -133,23 +133,23 @@ mount -o loop texlive-2010.iso /tmp/texlive
 <p>This will ask for prompt, type &quot;I&quot; to install in your system. TeXLive will be installed in <code>/usr/local/texlive/2010</code> directory. We need to set the environment variable PATH for future use of XeTeX. If we set in .bashrc in home directory, then these will be only available to that user. Since we need system wide configuration we will add in <code>/etc/bash.bashrc</code> or <code>/etc/profile</code></p>
 <p>If you are adding in <code>/etc/profile</code> then we have to logout and login to affect the changes. Make sure you add before the <code>export PATH</code> statement in <code>/etc/profile</code></p>
 <p>If you are planning to add in <code>/etc/bash.bashrc</code> then add it in the end.</p>
-<div class="highlight"><pre><span class="nv">PATH</span><span class="o">=</span>/usr/local/texlive/2010/bin/i386-linux:<span class="nv">$PATH</span><span class="p">;</span> <span class="nb">export </span>PATH
-<span class="nv">MANPATH</span><span class="o">=</span>/usr/local/texlive/2010/texmf/doc/man:<span class="nv">$MANPATH</span><span class="p">;</span> <span class="nb">export </span>MANPATH
-<span class="nv">INFOPATH</span><span class="o">=</span>/usr/local/texlive/2010/texmf/doc/info:<span class="nv">$INFOPATH</span><span class="p">;</span> <span class="nb">export </span>INFOPATH
+<div class="highlight"><pre><span></span><span class="nv">PATH</span><span class="o">=</span>/usr/local/texlive/2010/bin/i386-linux:<span class="nv">$PATH</span><span class="p">;</span> <span class="nb">export</span> PATH
+<span class="nv">MANPATH</span><span class="o">=</span>/usr/local/texlive/2010/texmf/doc/man:<span class="nv">$MANPATH</span><span class="p">;</span> <span class="nb">export</span> MANPATH
+<span class="nv">INFOPATH</span><span class="o">=</span>/usr/local/texlive/2010/texmf/doc/info:<span class="nv">$INFOPATH</span><span class="p">;</span> <span class="nb">export</span> INFOPATH
 </pre></div>
 <p>Add the following in <code>/etc/manpath.config</code></p>
-<div class="highlight"><pre>MANPATH_MAP /usr/local/texlive/2010/bin/i386-linux /usr/local/texlive/2010/texmf/doc/man
+<div class="highlight"><pre><span></span>MANPATH_MAP /usr/local/texlive/2010/bin/i386-linux /usr/local/texlive/2010/texmf/doc/man
 </pre></div>
 <p>Once the PATH is configured, I copied the gloss-kannada.ldf file to the polyglossia directory.</p>
-<div class="highlight"><pre>cp gloss-kannada.ldf /usr/local/texlive/2010/texmf-dist/tex/xelatex/polyglossia/
+<div class="highlight"><pre><span></span>cp gloss-kannada.ldf /usr/local/texlive/2010/texmf-dist/tex/xelatex/polyglossia/
 </pre></div>
 <p>Then run the following to update the TeX directory structure and language specific files.</p>
-<div class="highlight"><pre>texhash
+<div class="highlight"><pre><span></span>texhash
 fmtutil --byfmt xelatex
 </pre></div>
 <p>Make sure <code>hyph-kn.tex</code> and <code>loadhyph-kn.tex</code> files exists in <code>/usr/local/texlive/2010/texmf-dist/tex/generic/hyph-utf8/patterns/tex/</code> and <code>/usr/local/texlive/2010/texmf-dist/tex/generic/hyph-utf8/loadhyph/</code> respectively.</p>
 <p>Now we are ready with the installation of TeXLive. Let us create a TeX file to test hyphenation works or not! Added <code>\setdefaultlanguage</code> additionally.</p>
-<div class="highlight"><pre><span class="c">% File: bigtext.tex</span>
+<div class="highlight"><pre><span></span><span class="c">% File: bigtext.tex</span>
 <span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span>
 <span class="k">\usepackage</span><span class="nb">{</span>fontspec<span class="nb">}</span>
 <span class="k">\usepackage</span><span class="nb">{</span>polyglossia<span class="nb">}</span>

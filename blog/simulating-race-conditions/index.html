@@ -91,7 +91,7 @@
 <p>Let us consider simple case of Rebalance, A file &quot;f1&quot; is created in Brick1 and after some time it becomes hot and Rebalance moved it to Brick2.</p>
 <img alt="Rebalance explained" src="/images/rebalance.png" />
 <p>In Changelog we don't capture the Rebalance Traffic, so in respective brick changelogs will contain,</p>
-<div class="highlight"><pre># Brick1 Changelog
+<div class="highlight"><pre><span></span># Brick1 Changelog
 CREATE 0945daec-6f8c-438e-9bbf-b2ebf07543ef f1
 DATA 0945daec-6f8c-438e-9bbf-b2ebf07543ef
 
@@ -99,7 +99,7 @@ DATA 0945daec-6f8c-438e-9bbf-b2ebf07543ef
 DATA 0945daec-6f8c-438e-9bbf-b2ebf07543ef
 </pre></div>
 <p>If Brick1 worker processes fast, then Entry is created in Slave and Data Operation succeeds. Since Both the workers can independently, sequence of execution may be like</p>
-<div class="highlight"><pre># Possible Sequence 1
+<div class="highlight"><pre><span></span># Possible Sequence 1
 [Brick1] CREATE 0945daec-6f8c-438e-9bbf-b2ebf07543ef f1
 [Brick1] DATA 0945daec-6f8c-438e-9bbf-b2ebf07543ef
 [Brick2] DATA 0945daec-6f8c-438e-9bbf-b2ebf07543ef
@@ -116,7 +116,7 @@ DATA 0945daec-6f8c-438e-9bbf-b2ebf07543ef
 </pre></div>
 <p>We don't have any problems with first and last sequence, But in second sequence Rsync will try to sync data before Entry Creation and Fails.</p>
 <p>To solve this issue, we thought if we record CREATE from Rebalance traffic then it will solve this problem. So now brick Changelogs looks like,</p>
-<div class="highlight"><pre># Brick1 Changelog
+<div class="highlight"><pre><span></span># Brick1 Changelog
 CREATE 0945daec-6f8c-438e-9bbf-b2ebf07543ef f1
 DATA 0945daec-6f8c-438e-9bbf-b2ebf07543ef
 
@@ -125,7 +125,7 @@ CREATE 0945daec-6f8c-438e-9bbf-b2ebf07543ef f1
 DATA 0945daec-6f8c-438e-9bbf-b2ebf07543ef
 </pre></div>
 <p>and possible sequences,</p>
-<div class="highlight"><pre># Possible Sequence 1
+<div class="highlight"><pre><span></span># Possible Sequence 1
 [Brick1] CREATE 0945daec-6f8c-438e-9bbf-b2ebf07543ef f1
 [Brick1] DATA 0945daec-6f8c-438e-9bbf-b2ebf07543ef
 [Brick2] CREATE 0945daec-6f8c-438e-9bbf-b2ebf07543ef f1
@@ -142,18 +142,18 @@ DATA 0945daec-6f8c-438e-9bbf-b2ebf07543ef
 <p>We do not have that problem, second CREATE will fail with EEXIST, we ignore it since it is safe error. But will this approach solves all the problems with Rebalance? When more FOPs added, it is very difficult to visualize or guess the problem.</p>
 <p>To mock the concurrent workload, Collect sequence from each bricks Changelog and mix both the sequences. We should make sure that order in each brick remains same after the mix.</p>
 <p>For example,</p>
-<div class="highlight"><pre>b1 = [&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;, &quot;E&quot;]
+<div class="highlight"><pre><span></span>b1 = [&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;, &quot;E&quot;]
 b2 = [&quot;F&quot;, &quot;G&quot;]
 </pre></div>
 <p>While mixing b2 in b1, for first element in b2 we can randomly choose a position in b1. Let us say random position we got is 2(Index is 2), and insert &quot;F&quot; in index 2 of b1</p>
-<div class="highlight"><pre># before
+<div class="highlight"><pre><span></span># before
 [&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;, &quot;E&quot;]
 # after
 [&quot;A&quot;, &quot;B&quot;, &quot;F&quot;, &quot;C&quot;, &quot;D&quot;, &quot;E&quot;]
 </pre></div>
 <p>Now, to insert &quot;G&quot;, we should randomly choose anywhere after &quot;F&quot;. Once we get the sequence, mock the FOPs and compare with expected values.</p>
 <p>I added a <a class="reference external" href="https://gist.github.com/aravindavk/193eda60b6049ad025f4">gist</a> for testing following workload, it generates multiple sequences for testing.</p>
-<div class="highlight"><pre># f1 created in Brick1, Rebalanced to Brick2 and then Unlinked
+<div class="highlight"><pre><span></span># f1 created in Brick1, Rebalanced to Brick2 and then Unlinked
 # Brick1 Changelog
 CREATE 0945daec-6f8c-438e-9bbf-b2ebf07543ef f1
 DATA 0945daec-6f8c-438e-9bbf-b2ebf07543ef

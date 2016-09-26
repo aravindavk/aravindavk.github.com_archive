@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Aravinda VK</title><link href="http://aravindavk.in/" rel="alternate"></link><link href="http://aravindavk.in/feeds/tag-tex.atom.xml" rel="self"></link><id>http://aravindavk.in/</id><updated>2011-04-14T00:00:00+05:30</updated><entry><title>Kannada in LaTeX</title><link href="http://aravindavk.in/blog/kannada-in-latex/" rel="alternate"></link><updated>2011-04-14T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2011-04-14:blog/kannada-in-latex/</id><summary type="html">&lt;p&gt;From &lt;a class="reference external" href="http://en.wikipedia.org/wiki/XeTeX"&gt;Wikipedia&lt;/a&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Aravinda VK</title><link href="http://aravindavk.in/" rel="alternate"></link><link href="http://aravindavk.in/feeds/tag-tex.atom.xml" rel="self"></link><id>http://aravindavk.in/</id><updated>2011-04-14T00:00:00+05:30</updated><entry><title>Kannada in LaTeX</title><link href="http://aravindavk.in/blog/kannada-in-latex/" rel="alternate"></link><published>2011-04-14T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2011-04-14:blog/kannada-in-latex/</id><summary type="html">&lt;p&gt;From &lt;a class="reference external" href="http://en.wikipedia.org/wiki/XeTeX"&gt;Wikipedia&lt;/a&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 XeTeX (English pronunciation &amp;quot;zee-TeX&amp;quot; i.e. /ˈziːtɛx/ or often /ˈziːtɛk/) is a TeX typesetting engine using Unicode and supporting modern font technologies such as OpenType or Apple Advanced Typography (AAT).&lt;/blockquote&gt;
 &lt;div class="section" id="hello-world-in-kannada"&gt;
 &lt;h2&gt;Hello World in Kannada&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;% File: helloworld.tex&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c"&gt;% File: helloworld.tex&lt;/span&gt;
 &lt;span class="k"&gt;\documentclass&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;article&lt;span class="nb"&gt;}&lt;/span&gt;
 &lt;span class="k"&gt;\usepackage&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;fontspec&lt;span class="nb"&gt;}&lt;/span&gt;
 &lt;span class="k"&gt;\usepackage&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;polyglossia&lt;span class="nb"&gt;}&lt;/span&gt;
@@ -35,10 +35,10 @@ XeTeX (English pronunciation &amp;quot;zee-TeX&amp;quot; i.e. /ˈziːtɛx/ or of
 &lt;li&gt;Kannada strings for all document strings (like “chapter”, “ﬁgure”, “bibliography”).&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;Since Debian Squeeze has TeXLive 2009, I downloaded TeXLive 2010 from &lt;a class="reference external" href="http://www.tug.org/texlive/acquire-iso.html"&gt;here&lt;/a&gt;. Uninstalled all the components of TeXLive 2009 in my Debian system using&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;apt-get remove texlive*
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;apt-get remove texlive*
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Mount the iso image downloaded and install TexLive 2010 as follows.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;mkdir /tmp/texlive
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;mkdir /tmp/texlive
 mount -o loop texlive-2010.iso /tmp/texlive
 &lt;span class="nb"&gt;cd&lt;/span&gt; /tmp/texlive
 ./install-tl
@@ -46,23 +46,23 @@ mount -o loop texlive-2010.iso /tmp/texlive
 &lt;p&gt;This will ask for prompt, type &amp;quot;I&amp;quot; to install in your system. TeXLive will be installed in &lt;code&gt;/usr/local/texlive/2010&lt;/code&gt; directory. We need to set the environment variable PATH for future use of XeTeX. If we set in .bashrc in home directory, then these will be only available to that user. Since we need system wide configuration we will add in &lt;code&gt;/etc/bash.bashrc&lt;/code&gt; or &lt;code&gt;/etc/profile&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;If you are adding in &lt;code&gt;/etc/profile&lt;/code&gt; then we have to logout and login to affect the changes. Make sure you add before the &lt;code&gt;export PATH&lt;/code&gt; statement in &lt;code&gt;/etc/profile&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;If you are planning to add in &lt;code&gt;/etc/bash.bashrc&lt;/code&gt; then add it in the end.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/usr/local/texlive/2010/bin/i386-linux:&lt;span class="nv"&gt;$PATH&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nb"&gt;export &lt;/span&gt;PATH
-&lt;span class="nv"&gt;MANPATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/usr/local/texlive/2010/texmf/doc/man:&lt;span class="nv"&gt;$MANPATH&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nb"&gt;export &lt;/span&gt;MANPATH
-&lt;span class="nv"&gt;INFOPATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/usr/local/texlive/2010/texmf/doc/info:&lt;span class="nv"&gt;$INFOPATH&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nb"&gt;export &lt;/span&gt;INFOPATH
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nv"&gt;PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/usr/local/texlive/2010/bin/i386-linux:&lt;span class="nv"&gt;$PATH&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nb"&gt;export&lt;/span&gt; PATH
+&lt;span class="nv"&gt;MANPATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/usr/local/texlive/2010/texmf/doc/man:&lt;span class="nv"&gt;$MANPATH&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nb"&gt;export&lt;/span&gt; MANPATH
+&lt;span class="nv"&gt;INFOPATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/usr/local/texlive/2010/texmf/doc/info:&lt;span class="nv"&gt;$INFOPATH&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nb"&gt;export&lt;/span&gt; INFOPATH
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Add the following in &lt;code&gt;/etc/manpath.config&lt;/code&gt;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;MANPATH_MAP /usr/local/texlive/2010/bin/i386-linux /usr/local/texlive/2010/texmf/doc/man
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;MANPATH_MAP /usr/local/texlive/2010/bin/i386-linux /usr/local/texlive/2010/texmf/doc/man
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Once the PATH is configured, I copied the gloss-kannada.ldf file to the polyglossia directory.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;cp gloss-kannada.ldf /usr/local/texlive/2010/texmf-dist/tex/xelatex/polyglossia/
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cp gloss-kannada.ldf /usr/local/texlive/2010/texmf-dist/tex/xelatex/polyglossia/
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Then run the following to update the TeX directory structure and language specific files.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;texhash
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;texhash
 fmtutil --byfmt xelatex
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Make sure &lt;code&gt;hyph-kn.tex&lt;/code&gt; and &lt;code&gt;loadhyph-kn.tex&lt;/code&gt; files exists in &lt;code&gt;/usr/local/texlive/2010/texmf-dist/tex/generic/hyph-utf8/patterns/tex/&lt;/code&gt; and &lt;code&gt;/usr/local/texlive/2010/texmf-dist/tex/generic/hyph-utf8/loadhyph/&lt;/code&gt; respectively.&lt;/p&gt;
 &lt;p&gt;Now we are ready with the installation of TeXLive. Let us create a TeX file to test hyphenation works or not! Added &lt;code&gt;\setdefaultlanguage&lt;/code&gt; additionally.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;% File: bigtext.tex&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c"&gt;% File: bigtext.tex&lt;/span&gt;
 &lt;span class="k"&gt;\documentclass&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;article&lt;span class="nb"&gt;}&lt;/span&gt;
 &lt;span class="k"&gt;\usepackage&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;fontspec&lt;span class="nb"&gt;}&lt;/span&gt;
 &lt;span class="k"&gt;\usepackage&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;polyglossia&lt;span class="nb"&gt;}&lt;/span&gt;

@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Aravinda VK</title><link href="http://aravindavk.in/" rel="alternate"></link><link href="http://aravindavk.in/feeds/tag-scribus.atom.xml" rel="self"></link><id>http://aravindavk.in/</id><updated>2011-04-11T00:00:00+05:30</updated><entry><title>Installing Scribus svn in Debian Squeeze</title><link href="http://aravindavk.in/blog/installing-scribus-svn-in-debian-squeeze/" rel="alternate"></link><updated>2011-04-11T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2011-04-11:blog/installing-scribus-svn-in-debian-squeeze/</id><summary type="html">&lt;p&gt;I heard that Unicode rending issues of complex scripts are fixed in svn version of Scribus(1.5). So I wanted to test it for Kannada.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Aravinda VK</title><link href="http://aravindavk.in/" rel="alternate"></link><link href="http://aravindavk.in/feeds/tag-scribus.atom.xml" rel="self"></link><id>http://aravindavk.in/</id><updated>2011-04-11T00:00:00+05:30</updated><entry><title>Installing Scribus svn in Debian Squeeze</title><link href="http://aravindavk.in/blog/installing-scribus-svn-in-debian-squeeze/" rel="alternate"></link><published>2011-04-11T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2011-04-11:blog/installing-scribus-svn-in-debian-squeeze/</id><summary type="html">&lt;p&gt;I heard that Unicode rending issues of complex scripts are fixed in svn version of Scribus(1.5). So I wanted to test it for Kannada.&lt;/p&gt;
 &lt;p&gt;Downloaded svn source using following command to my Debian Squeeze machine.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;svn co svn://scribus.net/trunk/Scribus myscribus
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;svn co svn://scribus.net/trunk/Scribus myscribus
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;First installed cmake, which is required to compile Scribus.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;apt-get install cmake
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;apt-get install cmake
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;When I ran &lt;code&gt;cmake .&lt;/code&gt; as root user, it started listing dependency issues. Installed development libraries as and when cmake throws error. Finally ended up installing following dev libraries.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;apt-get install libtiff4-dev python-dev libfreetype6-dev
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;apt-get install libtiff4-dev python-dev libfreetype6-dev
                 libcups2-dev libxml2-dev liblcms1-dev
                 libpixman-1-dev libaspel-dev libfontconfig1-dev
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Now run&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;myscribus
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; myscribus
 cmake .
 make &lt;span class="p"&gt;&amp;amp;&lt;/span&gt; make install
 &lt;/pre&gt;&lt;/div&gt;

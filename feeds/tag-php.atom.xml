@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Aravinda VK</title><link href="http://aravindavk.in/" rel="alternate"></link><link href="http://aravindavk.in/feeds/tag-php.atom.xml" rel="self"></link><id>http://aravindavk.in/</id><updated>2012-04-23T00:00:00+05:30</updated><entry><title>PHP Short open tag and Alternate syntax</title><link href="http://aravindavk.in/blog/php-short-open-tag/" rel="alternate"></link><updated>2012-04-23T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2012-04-23:blog/php-short-open-tag/</id><summary type="html">&lt;p&gt;Many PHP programmers use short open tag &lt;code&gt;&amp;lt;?&lt;/code&gt; instead of &lt;code&gt;&amp;lt;?php&lt;/code&gt;. It saves time(really?) in coding especially while using PHP code in between HTML. But the use of short open tag is discouraged because it conflicts with XML and other languages. In the following example PHP interpreter fail to decide which is PHP and which is not, it tries to execute/interpret XML as PHP script and gives error.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?&lt;/span&gt;&lt;span class="nx"&gt;xml&lt;/span&gt; &lt;span class="nx"&gt;version&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;1.0&amp;quot;&lt;/span&gt;&lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Aravinda VK</title><link href="http://aravindavk.in/" rel="alternate"></link><link href="http://aravindavk.in/feeds/tag-php.atom.xml" rel="self"></link><id>http://aravindavk.in/</id><updated>2012-04-23T00:00:00+05:30</updated><entry><title>PHP Short open tag and Alternate syntax</title><link href="http://aravindavk.in/blog/php-short-open-tag/" rel="alternate"></link><published>2012-04-23T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2012-04-23:blog/php-short-open-tag/</id><summary type="html">&lt;p&gt;Many PHP programmers use short open tag &lt;code&gt;&amp;lt;?&lt;/code&gt; instead of &lt;code&gt;&amp;lt;?php&lt;/code&gt;. It saves time(really?) in coding especially while using PHP code in between HTML. But the use of short open tag is discouraged because it conflicts with XML and other languages. In the following example PHP interpreter fail to decide which is PHP and which is not, it tries to execute/interpret XML as PHP script and gives error.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?&lt;/span&gt;&lt;span class="nx"&gt;xml&lt;/span&gt; &lt;span class="nx"&gt;version&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;1.0&amp;quot;&lt;/span&gt;&lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
 &lt;span class="cp"&gt;&amp;lt;?&lt;/span&gt; &lt;span class="nv"&gt;$fav_languages&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;Array&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;PHP&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Python&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
 &lt;span class="x"&gt;&amp;lt;scripting&amp;gt;&lt;/span&gt;
 &lt;span class="x"&gt;    &lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?&lt;/span&gt; &lt;span class="k"&gt;foreach&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$fav_languages&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nv"&gt;$fav&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
@@ -10,7 +10,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: foreach loop in above example uses PHP's alternate syntax for foreach loop. You can read more about alternate syntax &lt;a class="reference external" href="http://php.net/manual/en/control-structures.alternative-syntax.php"&gt;here&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;If short_open_tag is disabled in ini file, then modify the above script by adding &lt;code&gt;&amp;lt;?php&lt;/code&gt; instead of &lt;code&gt;&amp;lt;?&lt;/code&gt; and &lt;code&gt;&amp;lt;?php echo ` instead of :code:`&amp;lt;?=&lt;/code&gt;, then it will run successfully without any issues.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?&lt;/span&gt;&lt;span class="nx"&gt;xml&lt;/span&gt; &lt;span class="nx"&gt;version&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;1.0&amp;quot;&lt;/span&gt;&lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?&lt;/span&gt;&lt;span class="nx"&gt;xml&lt;/span&gt; &lt;span class="nx"&gt;version&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;1.0&amp;quot;&lt;/span&gt;&lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
 &lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt; &lt;span class="nv"&gt;$fav_languages&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;Array&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;PHP&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Python&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
 &lt;span class="x"&gt;&amp;lt;scripting&amp;gt;&lt;/span&gt;
 &lt;span class="x"&gt;    &lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt; &lt;span class="k"&gt;foreach&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$fav_languages&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nv"&gt;$fav&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
@@ -19,7 +19,7 @@
 &lt;span class="x"&gt;&amp;lt;/scripting&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;short_open_tag setting is disabled by default in PHP 5.3 onwards, so if we enable this flag then we should be careful while dealing with XML data. Following example helps to write XML even if short_open_tag is enabled.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;&amp;lt;?xml version=&amp;quot;1.0&amp;quot;?&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;&amp;lt;?xml version=&amp;quot;1.0&amp;quot;?&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
 &lt;span class="cp"&gt;&amp;lt;?&lt;/span&gt; &lt;span class="nv"&gt;$fav_languages&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;Array&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;PHP&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Python&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
 &lt;span class="x"&gt;&amp;lt;scripting&amp;gt;&lt;/span&gt;
 &lt;span class="x"&gt;    &lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?&lt;/span&gt; &lt;span class="k"&gt;foreach&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$fav_languages&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nv"&gt;$fav&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
@@ -29,7 +29,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;The shortcut &lt;code&gt;&amp;lt;?=&lt;/code&gt; is very useful and no conflicts between other markups. Good news is that from PHP 5.4 onwards &lt;code&gt;&amp;lt;?=&lt;/code&gt; is always available irrespective of the short_open_tag settings.&lt;/p&gt;
 &lt;p&gt;Following example shows the use of this shortcut and PHP alternate syntax for control statements. Be careful and check your server configuration before deploying PHP code, your PHP code will be displayed as is without interpreting if this flag is not enabled.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt; &lt;span class="nv"&gt;$menus&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;Array&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Home&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;/&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Blog&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;/blog&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;About&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;/about&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt; &lt;span class="nv"&gt;$menus&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;Array&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Home&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;/&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Blog&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;/blog&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;About&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;/about&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
 &lt;span class="x"&gt;&amp;lt;ul id=&amp;quot;menu&amp;quot;&amp;gt;&lt;/span&gt;
 &lt;span class="x"&gt;    &lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt; &lt;span class="k"&gt;foreach&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$menus&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nv"&gt;$menu&lt;/span&gt;&lt;span class="o"&gt;=&amp;gt;&lt;/span&gt;&lt;span class="nv"&gt;$url&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
 &lt;span class="x"&gt;        &amp;lt;li&amp;gt;&amp;lt;a href=&amp;quot;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nv"&gt;$url&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;&lt;span class="x"&gt;&amp;quot;&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nv"&gt;$menu&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;&lt;span class="x"&gt;&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
@@ -41,9 +41,9 @@
 &lt;li&gt;&lt;a class="reference external" href="http://www.php.net/manual/en/ini.core.php#ini.short-open-tag"&gt;PHP short_open_tag&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class="reference external" href="http://php.net/manual/en/control-structures.alternative-syntax.php"&gt;Alternative syntax for control structures&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
-</summary><category term="php"></category><category term="shortcut"></category></entry><entry><title>CouchDB: Auto increment IDs with PHP</title><link href="http://aravindavk.in/blog/couchdb-auto-increment-ids-with-php/" rel="alternate"></link><updated>2010-09-24T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2010-09-24:blog/couchdb-auto-increment-ids-with-php/</id><summary type="html">&lt;p&gt;Create a seed, which will be a CouchDB view.&lt;/p&gt;
+</summary><category term="php"></category><category term="shortcut"></category></entry><entry><title>CouchDB: Auto increment IDs with PHP</title><link href="http://aravindavk.in/blog/couchdb-auto-increment-ids-with-php/" rel="alternate"></link><published>2010-09-24T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2010-09-24:blog/couchdb-auto-increment-ids-with-php/</id><summary type="html">&lt;p&gt;Create a seed, which will be a CouchDB view.&lt;/p&gt;
 &lt;p&gt;Map function extracts numeric part of every doc of type &amp;quot;photo&amp;quot;.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c1"&gt;// Map function&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;// Map function&lt;/span&gt;
 &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;doc&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
     &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;doc&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;type&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;photo&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
         &lt;span class="nx"&gt;emit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kc"&gt;null&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;parseInt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;doc&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;_id&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;replace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sr"&gt;/\D/g&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)));&lt;/span&gt;
@@ -51,7 +51,7 @@
 &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;reduce function finds the max value from those numeric values emitted from map function.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c1"&gt;// Reduce function&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;// Reduce function&lt;/span&gt;
 &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;key&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;values&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
     &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;max&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
     &lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt; &lt;span class="nx"&gt;values&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
@@ -64,7 +64,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;This view is saved as _design/helpers/photoid&lt;/p&gt;
 &lt;p&gt;Now write a function in PHP to increment the ID as required and to add the document.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
 &lt;span class="k"&gt;function&lt;/span&gt; &lt;span class="nf"&gt;addDoc&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$url&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;$data&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;$seed&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;$idprefix&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;$incrementBy&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
     &lt;span class="c1"&gt;// Get the current ID value&lt;/span&gt;
     &lt;span class="nv"&gt;$ch&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;curl_init&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;$url&lt;/span&gt;&lt;span class="s2"&gt;/_design/&lt;/span&gt;&lt;span class="si"&gt;$seed&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
@@ -86,13 +86,13 @@
 &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Example usage of above PHP function&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="x"&gt;addDoc(&amp;quot;http://localhost:5984/photoblog&amp;quot;,&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;addDoc(&amp;quot;http://localhost:5984/photoblog&amp;quot;,&lt;/span&gt;
 &lt;span class="x"&gt;       Array(&amp;quot;type&amp;quot;=&amp;gt;&amp;quot;photo&amp;quot;, &amp;quot;published&amp;quot;=&amp;gt;0, &amp;quot;place&amp;quot;=&amp;gt;&amp;quot;Karnataka, India&amp;quot;),&lt;/span&gt;
 &lt;span class="x"&gt;       &amp;quot;helpers/_view/photoid&amp;quot;,&lt;/span&gt;
 &lt;span class="x"&gt;       &amp;quot;p&amp;quot;);&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;As of now, PHP function involves two http calls for adding single document. Let me know if you find any ways to reduce it to one http call.&lt;/p&gt;
-</summary><category term="couchdb"></category><category term="php"></category></entry><entry><title>Using Markdown and SHJS with PHP</title><link href="http://aravindavk.in/blog/using-markdown-and-shjs-with-php/" rel="alternate"></link><updated>2009-09-28T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2009-09-28:blog/using-markdown-and-shjs-with-php/</id><summary type="html">&lt;p&gt;In this article we will discuss&lt;/p&gt;
+</summary><category term="couchdb"></category><category term="php"></category></entry><entry><title>Using Markdown and SHJS with PHP</title><link href="http://aravindavk.in/blog/using-markdown-and-shjs-with-php/" rel="alternate"></link><published>2009-09-28T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2009-09-28:blog/using-markdown-and-shjs-with-php/</id><summary type="html">&lt;p&gt;In this article we will discuss&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
 &lt;li&gt;Markdown&lt;/li&gt;
 &lt;li&gt;Markdown PHP&lt;/li&gt;
@@ -106,7 +106,7 @@
 &lt;blockquote&gt;
 Markdown is a text-to-HTML conversion tool for web writers. Markdown allows you to write using an easy-to-read, easy-to-write plain text format, then convert it to structurally valid XHTML (or HTML).&lt;/blockquote&gt;
 &lt;p&gt;For example&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;# Heading 1
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# Heading 1
 ## Heading 2
 
 ** Bold **
@@ -123,26 +123,26 @@ Adding inline image
 [Link](http://localhost)
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;will be converted to&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nt"&gt;&amp;lt;h1&amp;gt;&lt;/span&gt;Heading 1&lt;span class="nt"&gt;&amp;lt;/h1&amp;gt;&lt;/span&gt;
-&lt;span class="nt"&gt;&amp;lt;h2&amp;gt;&lt;/span&gt;Heading 2&lt;span class="nt"&gt;&amp;lt;/h2&amp;gt;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;h1&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Heading 1&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;h1&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;h2&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Heading 2&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;h2&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
 
-&lt;span class="nt"&gt;&amp;lt;p&amp;gt;&amp;lt;strong&amp;gt;&lt;/span&gt; Bold &lt;span class="nt"&gt;&amp;lt;/strong&amp;gt;&lt;/span&gt;
-&lt;span class="nt"&gt;&amp;lt;em&amp;gt;&lt;/span&gt; Italic &lt;span class="nt"&gt;&amp;lt;/em&amp;gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
-&lt;span class="nt"&gt;&amp;lt;blockquote&amp;gt;&lt;/span&gt;
-&lt;span class="nt"&gt;&amp;lt;p&amp;gt;&lt;/span&gt;blockquote&lt;span class="nt"&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
-&lt;span class="nt"&gt;&amp;lt;/blockquote&amp;gt;&lt;/span&gt;
-&lt;span class="nt"&gt;&amp;lt;p&amp;gt;&amp;lt;code&amp;gt;&lt;/span&gt;single line code&lt;span class="nt"&gt;&amp;lt;/code&amp;gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;strong&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt; Bold &lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;strong&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;em&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt; Italic &lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;em&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;blockquote&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;blockquote&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;blockquote&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;code&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;single line code&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;code&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
 
-&lt;span class="nt"&gt;&amp;lt;p&amp;gt;&lt;/span&gt;Adding inline image&lt;span class="nt"&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
-&lt;span class="nt"&gt;&amp;lt;p&amp;gt;&amp;lt;img&lt;/span&gt; &lt;span class="na"&gt;alt=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Alt Text&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;src=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;a.jpg&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
-&lt;span class="nt"&gt;&amp;lt;p&amp;gt;&amp;lt;a&lt;/span&gt; &lt;span class="na"&gt;href=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;http://localhost&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;Link&lt;span class="nt"&gt;&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Adding inline image&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;img&lt;/span&gt; &lt;span class="na"&gt;alt&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Alt Text&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;src&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;a.jpg&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;/&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;a&lt;/span&gt; &lt;span class="na"&gt;href&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;http://localhost&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Link&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;a&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Click &lt;a class="reference external" href="http://daringfireball.net/projects/markdown/"&gt;here&lt;/a&gt; for more details about markdown.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="markdown-php"&gt;
 &lt;h2&gt;Markdown PHP&lt;/h2&gt;
 &lt;p&gt;PHP implementation of markdown is available &lt;a class="reference external" href="http://michelf.com/projects/php-markdown/"&gt;here&lt;/a&gt;. We can store the content in database in the markdown format itself, While displaying to user we can convert to HTML using the Markdown PHP library.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
 &lt;span class="k"&gt;require_once&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;markdown.php&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="nv"&gt;$text&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;
 &lt;span class="s1"&gt;# Heading 1&lt;/span&gt;
@@ -159,14 +159,14 @@ Adding inline image
 &lt;h2&gt;SHJS - Syntax highlighter using JS&lt;/h2&gt;
 &lt;p&gt;It will be good if we able to highlight the code inside pre element, I found a Javascript utility SHJS(Syntax Highlighter with JavaScript), which has very good features and multiple themes support. Read the documentation about SHJS &lt;a class="reference external" href="http://shjs.sourceforge.net/"&gt;here&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;SHJS library requires class to be defined in pre tag like &lt;code&gt;&amp;lt;pre class=&amp;quot;sh_php&amp;quot;&amp;gt;&lt;/code&gt; for PHP code, but it is not possible to add class in markdown syntax, so we will write an PHP function to add the class to each pre element. We need to add &lt;code&gt;#!sh_php&lt;/code&gt; (php is used as example, that will change depending on the language) in the markdown text whereever highlighting is required.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="x"&gt;#!sh_php&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;#!sh_php&lt;/span&gt;
 &lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
 &lt;span class="c1"&gt;# This is an example text file to show how to add language&lt;/span&gt;
 &lt;span class="c1"&gt;# header for syntax highlight&lt;/span&gt;
 &lt;span class="k"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Hello World&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;PHP function to replace &lt;code&gt;#!sh_php&lt;/code&gt; to &lt;code&gt;&amp;lt;pre class=&amp;quot;sh_php&amp;quot;&amp;gt;&lt;/code&gt; is&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
 &lt;span class="k"&gt;function&lt;/span&gt; &lt;span class="nf"&gt;addClassToPre&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$text&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
     &lt;span class="c1"&gt;// Add respective class to pre tag&lt;/span&gt;
     &lt;span class="nv"&gt;$op&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;preg_replace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/&amp;lt;pre&amp;gt;&amp;lt;code&amp;gt;#!([^\\n]+)/&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
@@ -176,7 +176,7 @@ Adding inline image
 &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;If we load all the syntax highlight JavaScript files then it affects loading time, so we will add only required JavaScript files for syntax highlight based on the languages used in the content.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
 &lt;span class="k"&gt;function&lt;/span&gt; &lt;span class="nf"&gt;addRespectiveJsFiles&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$text&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
     &lt;span class="nb"&gt;preg_match_all&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/&amp;lt;pre&amp;gt;&amp;lt;code&amp;gt;#!([^\\n]+)/&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nx"&gt;Markdown&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$text&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="nv"&gt;$result&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
     &lt;span class="nv"&gt;$jsFiles&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;array_unique&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$result&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;
@@ -192,7 +192,7 @@ Adding inline image
 &lt;/div&gt;
 &lt;div class="section" id="how-to-use"&gt;
 &lt;h2&gt;How To Use?&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="x"&gt;&amp;lt;script type=&amp;quot;text/javascript&amp;quot; src=&amp;quot;sh_main.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;&amp;lt;script type=&amp;quot;text/javascript&amp;quot; src=&amp;quot;sh_main.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
 &lt;span class="x"&gt;&amp;lt;link type=&amp;quot;text/css&amp;quot; rel=&amp;quot;stylesheet&amp;quot; href=&amp;quot;style.css&amp;quot;&amp;gt;&lt;/span&gt;
 &lt;span class="x"&gt;&amp;lt;link type=&amp;quot;text/css&amp;quot; rel=&amp;quot;stylesheet&amp;quot; href=&amp;quot;css/sh_emacs.css&amp;quot;&amp;gt;&lt;/span&gt;
 
@@ -215,7 +215,7 @@ Adding inline image
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Btw, I use SHJS emacs theme for syntax highlight in my website :)&lt;/p&gt;
 &lt;/div&gt;
-</summary><category term="php"></category><category term="markdown"></category><category term="javascript"></category></entry><entry><title>Chelvi - PHP micro framework</title><link href="http://aravindavk.in/blog/chelvi/" rel="alternate"></link><updated>2009-05-29T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2009-05-29:blog/chelvi/</id><summary type="html">&lt;p&gt;Chelvi is object oriented cute PHP5 micro framework for creating web applications. The objective is to help developers to create web applications without restricting their ideas.&lt;/p&gt;
+</summary><category term="php"></category><category term="markdown"></category><category term="javascript"></category></entry><entry><title>Chelvi - PHP micro framework</title><link href="http://aravindavk.in/blog/chelvi/" rel="alternate"></link><published>2009-05-29T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2009-05-29:blog/chelvi/</id><summary type="html">&lt;p&gt;Chelvi is object oriented cute PHP5 micro framework for creating web applications. The objective is to help developers to create web applications without restricting their ideas.&lt;/p&gt;
 &lt;p&gt;Chelvi is a Kannada word(South Indian Language) which means Beautiful girl.&lt;/p&gt;
 &lt;p&gt;Read more about Chelvi &lt;a class="reference external" href="http://chelvi.sf.net"&gt;here&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;This project is dedicated to Chelvi at home :)&lt;/p&gt;

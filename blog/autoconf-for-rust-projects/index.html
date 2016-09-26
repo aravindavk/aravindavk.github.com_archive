@@ -97,10 +97,10 @@ along with Cargo.</p>
 <div class="section" id="example-simple-web-server-and-a-systemd-service-file">
 <h2>Example: Simple Web server and a systemd service file</h2>
 <p>Create a new project called <tt class="docutils literal">myservice</tt> using,</p>
-<div class="highlight"><pre>cargo new myservice --bin
+<div class="highlight"><pre><span></span>cargo new myservice --bin
 </pre></div>
 <p>Update <tt class="docutils literal">Cargo.toml</tt> with required Rust dependencies and other details.</p>
-<div class="highlight"><pre><span class="k">[package]</span>
+<div class="highlight"><pre><span></span><span class="k">[package]</span>
 <span class="na">name</span> <span class="o">=</span> <span class="s">&quot;myservice&quot;</span>
 <span class="na">version</span> <span class="o">=</span> <span class="s">&quot;0.1.0&quot;</span>
 <span class="na">authors</span> <span class="o">=</span> <span class="s">[&quot;NAME &lt;EMAIL&gt;&quot;]</span>
@@ -109,7 +109,7 @@ along with Cargo.</p>
 <span class="na">iron</span> <span class="o">=</span> <span class="s">&quot;*&quot;</span>
 </pre></div>
 <p>and add the following example code in <tt class="docutils literal">src/main.rs</tt> (Copied from <a class="reference external" href="http://ironframework.io">http://ironframework.io</a>)</p>
-<div class="highlight"><pre><span class="k">extern</span><span class="w"> </span><span class="n">crate</span><span class="w"> </span><span class="n">iron</span><span class="p">;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="k">crate</span><span class="w"> </span><span class="n">iron</span><span class="p">;</span><span class="w"></span>
 
 <span class="kn">use</span><span class="w"> </span><span class="n">iron</span><span class="o">::</span><span class="n">prelude</span><span class="o">::*</span><span class="p">;</span><span class="w"></span>
 <span class="kn">use</span><span class="w"> </span><span class="n">iron</span><span class="o">::</span><span class="n">status</span><span class="p">;</span><span class="w"></span>
@@ -120,14 +120,14 @@ along with Cargo.</p>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 
 <span class="w">    </span><span class="n">Iron</span><span class="o">::</span><span class="n">new</span><span class="p">(</span><span class="n">hello_world</span><span class="p">).</span><span class="n">http</span><span class="p">(</span><span class="s">&quot;localhost:3000&quot;</span><span class="p">).</span><span class="n">unwrap</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="nb">println</span><span class="o">!</span><span class="p">(</span><span class="s">&quot;On 3000&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&quot;On 3000&quot;</span><span class="p">);</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 <p>Create a systemd unit file with the following content, we need Path of
 bin to add it to service file. We will take help of Autoconf to
 dynamically generate systemd unit file. Create a systemd unit file as
 <tt class="docutils literal">myserviced.service.in</tt> (Note the &#64;SBINDIR&#64; autoconf variable)</p>
-<div class="highlight"><pre><span class="k">[Unit]</span>
+<div class="highlight"><pre><span></span><span class="k">[Unit]</span>
 <span class="na">Description</span><span class="o">=</span><span class="s">MyService</span>
 <span class="na">After</span><span class="o">=</span><span class="s">syslog.target network.target</span>
 
@@ -143,24 +143,24 @@ dynamically generate systemd unit file. Create a systemd unit file as
 a new variable <tt class="docutils literal">SBINDIR</tt> in <tt class="docutils literal">configure.ac</tt> which will expand
 completely with default path.</p>
 <p>Now we will create <tt class="docutils literal">configure.ac</tt> file</p>
-<div class="highlight"><pre>AC_INIT<span class="o">([</span>myservice<span class="o">]</span>, m4_esyscmd<span class="o">([</span>grep version Cargo.toml <span class="p">|</span> awk <span class="s1">&#39;{print $3}&#39;</span> <span class="p">|</span> tr -d <span class="s1">&#39;&quot;&#39;</span> <span class="p">|</span> tr -d <span class="s2">&quot;\n&quot;</span><span class="o">])</span>, <span class="o">[</span>YOUR_EMAIL<span class="o">])</span>
+<div class="highlight"><pre><span></span>AC_INIT<span class="o">([</span>myservice<span class="o">]</span>, m4_esyscmd<span class="o">([</span>grep version Cargo.toml <span class="p">|</span> awk <span class="s1">&#39;{print $3}&#39;</span> <span class="p">|</span> tr -d <span class="s1">&#39;&quot;&#39;</span> <span class="p">|</span> tr -d <span class="s2">&quot;\n&quot;</span><span class="o">])</span>, <span class="o">[</span>YOUR_EMAIL<span class="o">])</span>
 
 <span class="nv">VERSION</span><span class="o">=</span><span class="k">$(</span>grep version Cargo.toml <span class="p">|</span> awk <span class="s1">&#39;{print $3}&#39;</span> <span class="p">|</span> tr -d <span class="s1">&#39;&quot;&#39;</span> <span class="p">|</span> tr -d <span class="s2">&quot;\n&quot;</span><span class="k">)</span>
 
-<span class="c"># Default value for sbindir</span>
+<span class="c1"># Default value for sbindir</span>
 <span class="nv">prefix_temp</span><span class="o">=</span><span class="nv">$prefix</span>
 <span class="nv">exec_prefix_temp</span><span class="o">=</span><span class="nv">$exec_prefix</span>
 
 <span class="nb">test</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">prefix</span><span class="si">}</span><span class="s2">&quot;</span> <span class="o">=</span> <span class="s2">&quot;NONE&quot;</span> <span class="o">&amp;&amp;</span> <span class="nv">prefix</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">ac_default_prefix</span><span class="si">}</span><span class="s2">&quot;</span>
 <span class="nb">test</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">exec_prefix</span><span class="si">}</span><span class="s2">&quot;</span> <span class="o">=</span> <span class="s2">&quot;NONE&quot;</span> <span class="o">&amp;&amp;</span> <span class="nv">exec_prefix</span><span class="o">=</span><span class="s1">&#39;${prefix}&#39;</span>
 
-<span class="c"># Initial Value is $exec_prefix/sbin</span>
+<span class="c1"># Initial Value is $exec_prefix/sbin</span>
 <span class="nv">sbintemp</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">sbindir</span><span class="si">}</span><span class="s2">&quot;</span>
 
-<span class="c"># Expands to $prefix/sbin</span>
-<span class="nb">eval </span><span class="nv">sbintemp</span><span class="o">=</span><span class="se">\&quot;</span><span class="si">${</span><span class="nv">sbintemp</span><span class="si">}</span><span class="se">\&quot;</span>
-<span class="c"># Expands to /usr/local/sbin or /usr/sbin if --prefix is passed</span>
-<span class="nb">eval </span><span class="nv">sbintemp</span><span class="o">=</span><span class="se">\&quot;</span><span class="si">${</span><span class="nv">sbintemp</span><span class="si">}</span><span class="se">\&quot;</span>
+<span class="c1"># Expands to $prefix/sbin</span>
+<span class="nb">eval</span> <span class="nv">sbintemp</span><span class="o">=</span><span class="se">\&quot;</span><span class="si">${</span><span class="nv">sbintemp</span><span class="si">}</span><span class="se">\&quot;</span>
+<span class="c1"># Expands to /usr/local/sbin or /usr/sbin if --prefix is passed</span>
+<span class="nb">eval</span> <span class="nv">sbintemp</span><span class="o">=</span><span class="se">\&quot;</span><span class="si">${</span><span class="nv">sbintemp</span><span class="si">}</span><span class="se">\&quot;</span>
 <span class="nv">SBINDIR</span><span class="o">=</span><span class="si">${</span><span class="nv">sbintemp</span><span class="si">}</span>
 
 AC_SUBST<span class="o">(</span>SBINDIR<span class="o">)</span>
@@ -173,7 +173,7 @@ AC_CONFIG_FILES<span class="o">([</span>Makefile
 AC_OUTPUT
 </pre></div>
 <p>and <tt class="docutils literal">Makefile.in</tt> file</p>
-<div class="highlight"><pre>CWD :<span class="o">=</span> <span class="k">$(</span>shell <span class="nb">pwd</span><span class="k">)</span>
+<div class="highlight"><pre><span></span>CWD :<span class="o">=</span> <span class="k">$(</span>shell <span class="nb">pwd</span><span class="k">)</span>
 TARDIR :<span class="o">=</span> myservice-@VERSION@
 RPMBUILD :<span class="o">=</span> <span class="k">$(</span>HOME<span class="k">)</span>/rpmbuild
 
@@ -203,7 +203,7 @@ rpm: dist
     rpmbuild -ba myservice.spec
 </pre></div>
 <p>Now project will looks like,</p>
-<div class="highlight"><pre>$myservice/
+<div class="highlight"><pre><span></span>$myservice/
         - Cargo.toml
             - src/
                 - main.rs
@@ -213,12 +213,12 @@ rpm: dist
 </pre></div>
 <p>Run <tt class="docutils literal">autoconf</tt> to generate <tt class="docutils literal">configure</tt> file from <tt class="docutils literal">configure.ac</tt>
 file. Then run <tt class="docutils literal">./configure</tt>, it will generate following files</p>
-<div class="highlight"><pre>Makefile.in =&gt; Makefile
+<div class="highlight"><pre><span></span>Makefile.in =&gt; Makefile
 myserviced.service.in =&gt; myserviced.service
 myservice.spec.in =&gt; myservice.spec
 </pre></div>
 <p>Steps to install <tt class="docutils literal">myservice</tt> (Source installation),</p>
-<div class="highlight"><pre>autoconf
+<div class="highlight"><pre><span></span>autoconf
 ./configure
 sudo make install
 </pre></div>
@@ -229,27 +229,27 @@ binary to /usr/local/sbin and systemd service file to
 <tt class="docutils literal"><span class="pre">--sbindir=/usr/sbin</span></tt> to configure(For example,
 <tt class="docutils literal">./configure <span class="pre">--prefix=/usr</span></tt> )</p>
 <p><tt class="docutils literal">myservice</tt> can now be enabled using,</p>
-<div class="highlight"><pre>sudo systemctl <span class="nb">enable </span>myserviced
+<div class="highlight"><pre><span></span>sudo systemctl <span class="nb">enable</span> myserviced
 sudo systemctl start myserviced
 </pre></div>
 </div>
 <div class="section" id="bonus-generate-rpm-for-your-package">
 <h2>Bonus: Generate RPM for your package</h2>
 <p>Sample RPM spec file is available in the <a class="reference external" href="https://github.com/aravinda/rust_autoconf/myservice.spec.in">repo</a></p>
-<div class="highlight"><pre>autoconf
+<div class="highlight"><pre><span></span>autoconf
 ./configure
 make rpm
 </pre></div>
 <p>Generated RPM will be available in <tt class="docutils literal">$HOME/rpmbuild/RPMS/x86_64/</tt></p>
-<div class="highlight"><pre>rpm -qlp <span class="nv">$HOME</span>/rpmbuild/RPMS/x86_64/myservice-0.1.0-1.fc23.x86_64.rpm
+<div class="highlight"><pre><span></span>rpm -qlp <span class="nv">$HOME</span>/rpmbuild/RPMS/x86_64/myservice-0.1.0-1.fc23.x86_64.rpm
 </pre></div>
-<div class="highlight"><pre>/usr/lib/systemd/system/myserviced.service
+<div class="highlight"><pre><span></span>/usr/lib/systemd/system/myserviced.service
 /usr/sbin/myserviced
 </pre></div>
 </div>
 <div class="section" id="rust-cargo-and-autoconf-version">
 <h2>Rust, Cargo and Autoconf Version</h2>
-<div class="highlight"><pre>rustc 1.8.0 (db2939409 2016-04-11)
+<div class="highlight"><pre><span></span>rustc 1.8.0 (db2939409 2016-04-11)
 cargo 0.9.0-nightly (8fc3fd8 2016-02-29)
 autoconf (GNU Autoconf) 2.69
 </pre></div>

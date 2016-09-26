@@ -102,33 +102,33 @@ Cluster. Gluster nodes should be able to access this Webhook server on
 the configured port. We will discuss about adding/testing webhook
 later.</p>
 <p>Example Webhook written in python,</p>
-<div class="highlight"><pre><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">request</span>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">request</span>
 
 <span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
 
-<span class="nd">@app.route</span><span class="p">(</span><span class="s">&quot;/listen&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">&quot;POST&quot;</span><span class="p">])</span>
+<span class="nd">@app.route</span><span class="p">(</span><span class="s2">&quot;/listen&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;POST&quot;</span><span class="p">])</span>
 <span class="k">def</span> <span class="nf">events_listener</span><span class="p">():</span>
     <span class="n">gluster_event</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">json</span>
     <span class="k">if</span> <span class="n">gluster_event</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-        <span class="c"># No event to process, may be test call</span>
-        <span class="k">return</span> <span class="s">&quot;OK&quot;</span>
+        <span class="c1"># No event to process, may be test call</span>
+        <span class="k">return</span> <span class="s2">&quot;OK&quot;</span>
 
-    <span class="c"># Process gluster_event</span>
-    <span class="c"># {</span>
-    <span class="c">#  &quot;nodeid&quot;: NODEID,</span>
-    <span class="c">#  &quot;ts&quot;: EVENT_TIMESTAMP,</span>
-    <span class="c">#  &quot;event&quot;: EVENT_TYPE,</span>
-    <span class="c">#  &quot;message&quot;: EVENT_DATA</span>
-    <span class="c"># }</span>
-    <span class="k">return</span> <span class="s">&quot;OK&quot;</span>
+    <span class="c1"># Process gluster_event</span>
+    <span class="c1"># {</span>
+    <span class="c1">#  &quot;nodeid&quot;: NODEID,</span>
+    <span class="c1">#  &quot;ts&quot;: EVENT_TIMESTAMP,</span>
+    <span class="c1">#  &quot;event&quot;: EVENT_TYPE,</span>
+    <span class="c1">#  &quot;message&quot;: EVENT_DATA</span>
+    <span class="c1"># }</span>
+    <span class="k">return</span> <span class="s2">&quot;OK&quot;</span>
 
-<span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">&quot;0.0.0.0&quot;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">9000</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s2">&quot;0.0.0.0&quot;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">9000</span><span class="p">)</span>
 </pre></div>
 <p>Eventing feature is not yet available in any of the releases, patch is
 under review in upstream master(<a class="reference external" href="http://review.gluster.org/14248">http://review.gluster.org/14248</a>). If anybody interested in trying it
 out can cherrypick the patch from review.gluster.org</p>
-<div class="highlight"><pre>git clone http://review.gluster.org/glusterfs
-<span class="nb">cd </span>glusterfs
+<div class="highlight"><pre><span></span>git clone http://review.gluster.org/glusterfs
+<span class="nb">cd</span> glusterfs
 git fetch http://review.gluster.org/glusterfs refs/changes/48/14248/5
 git checkout FETCH_HEAD
 git checkout -b &lt;YOUR_BRANCH_NAME&gt;
@@ -138,27 +138,27 @@ make
 make install
 </pre></div>
 <p>Start the Eventing using,</p>
-<div class="highlight"><pre>gluster-eventing start
+<div class="highlight"><pre><span></span>gluster-eventing start
 </pre></div>
 <p>Other commands available are stop, restart, reload and
 status. <tt class="docutils literal"><span class="pre">gluster-eventing</span> <span class="pre">--help</span></tt> for more details.</p>
 <p>Now Gluster can send out notifications via Webhooks. Setup a web
 server listening to a POST request and register that URL to Gluster
 Eventing. Thats all.</p>
-<div class="highlight"><pre>gluster-eventing webhook-add &lt;MY_WEB_SERVER_URL&gt;
+<div class="highlight"><pre><span></span>gluster-eventing webhook-add &lt;MY_WEB_SERVER_URL&gt;
 </pre></div>
 <p>For example, if my webserver is running at <tt class="docutils literal"><span class="pre">http://192.168.122.188:9000/listen</span></tt>
 then register using,</p>
-<div class="highlight"><pre>gluster-eventing webhook-add <span class="sb">``</span>http://192.168.122.188:9000/listen<span class="sb">``</span>
+<div class="highlight"><pre><span></span>gluster-eventing webhook-add <span class="sb">``</span>http://192.168.122.188:9000/listen<span class="sb">``</span>
 </pre></div>
 <p>We can also test if web server is accessible from all Gluster nodes
 using <tt class="docutils literal"><span class="pre">webhook-test</span></tt> subcommand.</p>
-<div class="highlight"><pre>gluster-eventing webhook-test http://192.168.122.188:9000/listen
+<div class="highlight"><pre><span></span>gluster-eventing webhook-test http://192.168.122.188:9000/listen
 </pre></div>
 <p>With the initial patch only basic events are covered, I will add more
 events once this patch gets merged. Following events are available
 now.</p>
-<div class="highlight"><pre>Volume Create
+<div class="highlight"><pre><span></span>Volume Create
 Volume Delete
 Volume Start
 Volume Stop
@@ -167,17 +167,17 @@ Peer Detach
 </pre></div>
 <p>Created a small demo to show this eventing feature, it uses Web server
 which is included with the patch for Testing.(laptop hostname is <tt class="docutils literal">sonne</tt>)</p>
-<div class="highlight"><pre>/usr/share/glusterfs/scripts/eventsdash.py --port 8080
+<div class="highlight"><pre><span></span>/usr/share/glusterfs/scripts/eventsdash.py --port 8080
 </pre></div>
 <p>Login to Gluster node and start the eventing,</p>
-<div class="highlight"><pre>gluster-eventing start
+<div class="highlight"><pre><span></span>gluster-eventing start
 gluster-eventing webhook-add http://sonne:8080/listen
 </pre></div>
 <p>And then login to VM and run Gluster commands to probe/detach peer,
 volume create, start etc and Observe the realtime notifications for
 the same where eventsdash is running.</p>
 <p>Example,</p>
-<div class="highlight"><pre>ssh root@fvm1
+<div class="highlight"><pre><span></span>ssh root@fvm1
 gluster peer attach fvm2
 gluster volume create gv1 fvm1:/bricks/b1 fvm2:/bricks/b2 force
 gluster volume start gv1

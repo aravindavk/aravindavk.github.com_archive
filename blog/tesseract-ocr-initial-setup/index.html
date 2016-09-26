@@ -92,7 +92,7 @@
 The <a class="reference external" href="http://code.google.com/p/tesseract-ocr/">Tesseract OCR</a> engine was one of the top 3 engines in the 1995 UNLV Accuracy test. Between 1995 and 2006 it had little work done on it, but it is probably one of the most accurate open source OCR engines available. The source code will read a binary, grey or color image and output text. A tiff reader is built in that will read uncompressed TIFF images, or libtiff can be added to read compressed images.</blockquote>
 <p>Tesseract OCR needs to be trained for Kannada and other Indic languages.</p>
 <p>Downloaded latest version of Tesseract OCR from svn repository and installed in my system.</p>
-<div class="highlight"><pre>svn checkout http://tesseract-ocr.googlecode.com/svn/trunk/ tesseract-ocr
+<div class="highlight"><pre><span></span>svn checkout http://tesseract-ocr.googlecode.com/svn/trunk/ tesseract-ocr
 ./configure
 make
 make install
@@ -106,24 +106,24 @@ make install
 <li>Generate trained data</li>
 </ol>
 <p>I use Gimp to create tif images required for training. If you have jpg or png image convert to tif using</p>
-<div class="highlight"><pre>convert -depth <span class="m">4</span> sample.jpg sample.tif
+<div class="highlight"><pre><span></span>convert -depth <span class="m">4</span> sample.jpg sample.tif
 </pre></div>
 <p>I have <code>apps</code> directory in my home directory, which is added to PATH using</p>
-<div class="highlight"><pre><span class="nv">PATH</span><span class="o">=</span>/home/aravinda/apps:PATH<span class="p">;</span> <span class="nb">export </span>PATH
+<div class="highlight"><pre><span></span><span class="nv">PATH</span><span class="o">=</span>/home/aravinda/apps:PATH<span class="p">;</span> <span class="nb">export</span> PATH
 </pre></div>
 <p>I use this directory to save all my personal scripts and applications.</p>
 <p>Created a script called tessGenBox in apps directory, which accepts lang name as parameter.</p>
-<div class="highlight"><pre><span class="c">#!/bin/sh</span>
+<div class="highlight"><pre><span></span><span class="ch">#!/bin/sh</span>
 tesseract <span class="nv">$1</span>.tif <span class="nv">$1</span> batch.nochop makebox
 </pre></div>
 <p>Since only one font is used for exploring Tesseract traning options, not worried much on naming conventions. (Actual file name format is [lang].[fontname].[exp][num])</p>
 <p>I downloaded <a class="reference external" href="https://github.com/zdenop/qt-box-editor/">QT based box editor</a> as mentioned in the Tesseract wiki. After the installation copied <code>qt-box-editor-1.04dev</code> file to apps directory and created shell script called tessBoxEdit in apps directory.</p>
-<div class="highlight"><pre><span class="c">#!/bin/sh</span>
+<div class="highlight"><pre><span></span><span class="ch">#!/bin/sh</span>
 /home/aravinda/apps/qt-box-editor-1.04dev <span class="nv">$1</span>
 </pre></div>
 <p>Tif filename as parameter.</p>
 <p>I created one more script tessGenData, which I will use to generate trained data based on previously generated box file.(Accepts language name as parameter)</p>
-<div class="highlight"><pre><span class="c">#!/bin/sh</span>
+<div class="highlight"><pre><span></span><span class="ch">#!/bin/sh</span>
 tesseract <span class="nv">$1</span>.tif <span class="nv">$1</span> nobatch box.train
 unicharset_extractor <span class="nv">$1</span>.box
 <span class="nb">echo</span> <span class="nv">$1</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> &gt; font_properties
@@ -136,13 +136,13 @@ mv pffmtable <span class="nv">$1</span>.pffmtable
 mv mfunicharset <span class="nv">$1</span>.mfunicharset
 mv inttemp <span class="nv">$1</span>.inttemp
 combine_tessdata <span class="nv">$1</span>.
-<span class="c"># Used su since I use Debian, use sudo if you are using Ubuntu</span>
+<span class="c1"># Used su since I use Debian, use sudo if you are using Ubuntu</span>
 su -c <span class="s2">&quot;cp </span><span class="nv">$1</span><span class="s2">.traineddata /usr/local/share/tessdata/&quot;</span>
 </pre></div>
 <p>It will ask password at the end to copy trained data file to <code>/usr/local/share/tessdata</code></p>
 <p>I created two additional scripts to clean the space in between if required.</p>
 <p>tessCleanAfterBox - cleans the directory by removing all generated files except .box file</p>
-<div class="highlight"><pre><span class="c">#!/bin/sh</span>
+<div class="highlight"><pre><span></span><span class="ch">#!/bin/sh</span>
 rm font_properties*
 rm <span class="nv">$1</span>.txt
 rm <span class="nv">$1</span>.normproto
@@ -157,7 +157,7 @@ rm unicharset
 rm *.bak
 </pre></div>
 <p>tessCleanAll - Cleans all data including box file except images.</p>
-<div class="highlight"><pre><span class="c">#!/bin/sh</span>
+<div class="highlight"><pre><span></span><span class="ch">#!/bin/sh</span>
 rm font_properties*
 rm <span class="nv">$1</span>.txt
 rm <span class="nv">$1</span>.box
@@ -173,7 +173,7 @@ rm unicharset
 rm *.bak
 </pre></div>
 <p>Once these scripts are created, we need to make these files as executable.</p>
-<div class="highlight"><pre>chmod +x /home/aravinda/apps/tess*
+<div class="highlight"><pre><span></span>chmod +x /home/aravinda/apps/tess*
 </pre></div>
 </div>
 <div class="section" id="usage">

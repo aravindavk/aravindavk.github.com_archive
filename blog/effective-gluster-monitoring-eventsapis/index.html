@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="google-site-verification" content="PwqxyVtbmKeb1wsrF8XJ5GQIPxlDxUupYnTEWPI3KLk" />
+    <meta http-equiv="cache-control" content="max-age=0" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <link href="/theme/img/fav.png" rel="icon" type="image/x-icon" />
+    <meta property="og:site_name" content="Aravinda VK"/>
+    <link rel="apple-touch-icon" href="/theme/img/fav.png" />
+    <title>Effective Gluster Monitoring using Events APIs</title>
+    <meta property="og:title" content="Effective Gluster Monitoring using Events APIs"/>
+    <meta property="twitter:title" content="Effective Gluster Monitoring using Events APIs"/>
+    <meta name="description" content="Without Events APIs, one way to get status of Cluster is by calling Gluster status command/api in periodic intervals."/>
+    <meta property="og:description" content="Without Events APIs, one way to get status of Cluster is by calling Gluster status command/api in periodic intervals."/>
+    <meta property="twitter:description" content="Without Events APIs, one way to get status of Cluster is by calling Gluster status command/api in periodic intervals."/>
+    <meta property="og:url" content="http://aravindavk.in/blog/effective-gluster-monitoring-eventsapis/" />
+    <meta property="twitter:url" content="http://aravindavk.in/blog/effective-gluster-monitoring-eventsapis/" />
+    <meta property="og:image" content="http://aravindavk.in" />
+    <link href="http://aravindavk.in/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Aravinda VK Atom Feed" />
+    <link rel="stylesheet" href="/theme/css/pure-min.css" />
+    <link rel="stylesheet" href="/theme/css/side-menu.css" />
+    <link rel="stylesheet" href="/theme/css/main.css" />
+    <link rel="stylesheet" href="/theme/css/pygment-emacs-highlight.css" />
+  </head>
+  <body>
+    <div id="layout">
+      <!-- Menu toggle -->
+      <a href="#menu" id="menuLink" class="menu-link">
+        <!-- Hamburger icon -->
+        <span></span>
+      </a>
+      <div id="menu" class="pure-hidden-desktop pure-hidden-tablet">
+        <div class="pure-menu pure-menu-open">
+          <a class="pure-menu-heading logo" href="/"><img src="/theme/img/logo.png" alt="aravindavk"/></a>
+          <div class="social-icons">
+            <a href="http://aravindavk.in/feeds/all.atom.xml" target="_blank" title="News">
+              <img src="/theme/img/feed.png" class="link-icon" alt="News"/>
+            </a>
+            <a href="http://twitter.com/aravindavk" target="_blank" title="Twitter">
+              <img src="/theme/img/twitter.png" class="link-icon" alt="Twitter"/>
+            </a>
+            <a href="https://plus.google.com/+aravindavk" target="_blank" title="Google Plus">
+              <img src="/theme/img/gplus.png" class="link-icon" alt="Google Plus"/>
+            </a>
+            <a href="https://github.com/aravindavk" target="_blank" title="Github">
+              <img src="/theme/img/github.png" class="link-icon" alt="Github"/>
+            </a>
+            <a href="http://www.flickr.com/photos/aravindavk" target="_blank" title="Flickr">
+              <img src="/theme/img/flickr.png" class="link-icon" alt="Flickr"/>
+            </a>
+            <a href="http://in.linkedin.com/in/aravindavk" target="_blank" title="LinkedIn">
+              <img src="/theme/img/linkedin.png" class="link-icon" alt="LinkedIn"/>
+            </a>
+          </div>
+          <ul>
+            <li class=""><a href="/">Home</a></li>
+            <li class=""><a href="/me">About</a></li>
+            <li class=""><a href="/projects">Projects</a></li>
+            <li class=""><a href="/blogs">Blogs</a></li>
+            <li class=""><a href="/talks">Talks & Articles</a></li>
+          </ul>
+        </div>
+        <div class="sep"></div>
+        <div class="copyright">&copy; 2008-2014 Aravinda VK, <br/>All rights reserved</div>
+      </div>
+
+      <div class="pure-g-r">
+        <div class="pure-u-4-5 content-left">
+          <div class="left article">
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        Effective Gluster Monitoring using Events APIs</h1>
+    </header>
+    <div class="pure-hidden-phone pure-hidden-tablet">
+<footer class="post-info">
+  <p class="author-and-date-info">
+    Posted on Mon 26 September 2016 by <a class="url fn" href="http://aravindavk.in">Aravinda VK</a>.
+  </p>
+</footer><!-- /.post-info -->
+<div class="sep"></div>    </div>
+    <div class="entry-content">
+      <p>Last week I got opportunity to present about Gluster Events APIs in
+<a class="reference external" href="http://www.meetup.com/glusterfs-India/events/233515975">Gluster meetup Bangalore</a>.</p>
+<p>Events APIs will be available with <tt class="docutils literal">Gluster 3.9</tt> release.(<a class="reference external" href="http://www.gluster.org/pipermail/maintainers/2016-September/001442.html">Release
+Candidate</a>
+is available if anybody interested in testing)</p>
+<p>Without Events APIs, one way to get status of Cluster is by
+calling Gluster status command/api in periodic intervals.</p>
+<p>Below illustration shows calling <tt class="docutils literal">status</tt> once every 10 seconds.</p>
+<img alt="Get Cluster status without Events APIs" src="/images/gluster_monitor_without_events.jpg" />
+<p>With Events APIs, setup a listener Webhook and register with Gluster
+using <tt class="docutils literal"><span class="pre">gluster-eventsapi</span> <span class="pre">webhook-add</span> &lt;URL&gt;</tt>. Call Gluster status
+command whenever webhook receives an Event.(Check <a class="reference external" href="http://aravindavk.in/blog/10-mins-intro-to-gluster-eventing/">this</a> blog
+to know Webhooks and Events APIs in detail)</p>
+<img alt="Get Cluster status with Events APIs" src="/images/gluster_monitor_with_events.jpg" />
+<p>As part of presentation, created some visualizations to show how these
+real time notifications can be used to refresh the UI automatically
+when Gluster cluster state changes.</p>
+<p>Following gif shows the UI change immediately after creating a Gluster
+Volume.</p>
+<img alt="Gluster Volume Create and Start" src="/images/create_start_volume.gif" />
+<p>When a brick process is killed,</p>
+<img alt="Brick Process Killed" src="/images/brick_down.gif" />
+<p>Volume Stop,</p>
+<img alt="Volume Stop" src="/images/volume_stop.gif" />
+<div class="section" id="references">
+<h2>References:</h2>
+<ul class="simple">
+<li>Documentation for the Events APIs feature is available
+<a class="reference external" href="http://gluster.readthedocs.io/en/latest/Administrator%20Guide/Events%20APIs/">here</a>.</li>
+<li>Gif images created using <tt class="docutils literal">byzanz</tt> tool.(Example: <tt class="docutils literal">sleep 2;
+<span class="pre">byzanz-record</span> <span class="pre">--duration=5</span> <span class="pre">--x=500</span> <span class="pre">--y=0</span> <span class="pre">--width=1024</span> <span class="pre">--height=800</span>
+volume_stop.gif</tt></li>
+<li>Illustrations are created using <a class="reference external" href="http://mypaint.org/">mypaint</a> software and Wacom Tablet.</li>
+<li>Dashboard prototype was created using <a class="reference external" href="http://python.org/">Python</a> <a class="reference external" href="http://flask.pocoo.org/">Flask</a> + <a class="reference external" href="http://elm-lang.org/">Elm</a> + Websockets</li>
+</ul>
+</div>
+
+    </div><!-- /.entry-content -->
+    <div class="pure-hidden-desktop">
+<footer class="post-info">
+  <p class="author-and-date-info">
+    Posted on Mon 26 September 2016 by <a class="url fn" href="http://aravindavk.in">Aravinda VK</a>.
+  </p>
+</footer><!-- /.post-info -->
+<div class="sep"></div>    </div>
+    <div class="permalink-div">
+      Permalink: <a href="http://aravindavk.in/blog/effective-gluster-monitoring-eventsapis/" rel="bookmark" title="Permalink to Effective Gluster Monitoring using Events APIs">http://aravindavk.in/blog/effective-gluster-monitoring-eventsapis/</a>
+    </div>
+<div class="comments">
+  <h2>Comments !</h2>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_identifier = "blog/effective-gluster-monitoring-eventsapis/";
+    var disqus_url = "http://aravindavk.in/blog/effective-gluster-monitoring-eventsapis/";
+    (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = 'http://vkaravinda.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+</div>
+  </article>
+</section>
+            <div class="copyright pure-hidden-desktop pure-hidden-tablet">&copy; 2008-2014 Aravinda VK, <br/>All rights reserved</div>
+          </div>
+        </div>
+        <div class="pure-u-1-5 pure-hidden-phone">
+          <div class="right">
+            <img class="me" src="/theme/img/me.jpg"/>
+            <div class="sep"></div>
+            <div class="pure-menu pure-menu-open">
+              <a class="pure-menu-heading logo" href="/"><img src="/theme/img/logo.png" alt="aravindavk"/></a>
+              <div class="social-icons">
+                <a href="http://aravindavk.in/feeds/all.atom.xml" target="_blank" title="News">
+                  <img src="/theme/img/feed.png" class="link-icon" alt="News"/>
+                </a>
+                <a href="http://twitter.com/aravindavk" target="_blank" title="Twitter">
+                  <img src="/theme/img/twitter.png" class="link-icon" alt="Twitter"/>
+                </a>
+                <a href="https://plus.google.com/+aravindavk" target="_blank" title="Google Plus">
+                  <img src="/theme/img/gplus.png" class="link-icon" alt="Google Plus"/>
+                </a>
+                <a href="https://github.com/aravindavk" target="_blank" title="Github">
+                  <img src="/theme/img/github.png" class="link-icon" alt="Github"/>
+                </a>
+                <a href="http://www.flickr.com/photos/aravindavk" target="_blank" title="Flickr">
+                  <img src="/theme/img/flickr.png" class="link-icon" alt="Flickr"/>
+                </a>
+                <a href="http://in.linkedin.com/in/aravindavk" target="_blank" title="LinkedIn">
+                  <img src="/theme/img/linkedin.png" class="link-icon" alt="LinkedIn"/>
+                </a>
+              </div>
+              <ul>
+                <li class=""><a href="/">Home</a></li>
+                <li class=""><a href="/me">About</a></li>
+                <li class=""><a href="/projects">Projects</a></li>
+                <li class=""><a href="/blogs">Blogs</a></li>
+                <li class=""><a href="/talks">Talks & Articles</a></li>
+              </ul>
+            </div>
+            <div class="sep"></div>
+            <div class="copyright">&copy; 2008-2014 Aravinda VK, <br/>All rights reserved</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <script src="/theme/js/ui.js"></script>
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-11830111-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+  </body>
+</html>

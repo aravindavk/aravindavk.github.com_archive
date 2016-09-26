@@ -102,20 +102,20 @@
 <p>An example to understand how this reverse lookup works. Kannada text <cite>ಮಂಕುತಿಮ್ಮ</cite>, Unicode splitup and glyph names for the same is</p>
 <img alt="ಮಂಕುತಿಮ್ಮ - Unicode" src="/images/mankutimma-unicode.png" />
 <p>Glyph names stored inside pdf are as follows(ignores all the suffix and joins together using underscore)</p>
-<div class="highlight"><pre>0CAE_0C82_0C95_0CC1_0CA4_0CBF_0CAE_0CCD_0CAE
+<div class="highlight"><pre><span></span>0CAE_0C82_0C95_0CC1_0CA4_0CBF_0CAE_0CCD_0CAE
 </pre></div>
 <p>Following psudo code shows how to convert unicode string to glyphs list without any help of rendering engine.</p>
-<div class="highlight"><pre><span class="k">def</span> <span class="nf">get_glyphs_list</span><span class="p">(</span><span class="n">unicode_str</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_glyphs_list</span><span class="p">(</span><span class="n">unicode_str</span><span class="p">):</span>
     <span class="n">glyph_seq</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">unicode_str</span><span class="p">:</span>
-        <span class="n">n</span> <span class="o">=</span> <span class="p">(</span><span class="nb">hex</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">letter</span><span class="p">))</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&quot;0x&quot;</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="p">(</span><span class="nb">hex</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">letter</span><span class="p">))</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;0x&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
         <span class="n">glyph_seq</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-    <span class="k">return</span> <span class="s">&quot;_&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">glyph_seq</span><span class="p">)</span>
+    <span class="k">return</span> <span class="s2">&quot;_&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">glyph_seq</span><span class="p">)</span>
 
-<span class="c"># Example:</span>
-<span class="k">print</span> <span class="n">get_glyphs_list</span><span class="p">(</span><span class="s">u&quot;ಮಂಕುತಿಮ್ಮ&quot;</span><span class="p">)</span>
-<span class="c"># Output:</span>
-<span class="c"># 0CAE_0C82_0C95_0CC1_0CA4_0CBF_0CAE_0CCD_0CAE</span>
+<span class="c1"># Example:</span>
+<span class="k">print</span> <span class="n">get_glyphs_list</span><span class="p">(</span><span class="s2">u&quot;ಮಂಕುತಿಮ್ಮ&quot;</span><span class="p">)</span>
+<span class="c1"># Output:</span>
+<span class="c1"># 0CAE_0C82_0C95_0CC1_0CA4_0CBF_0CAE_0CCD_0CAE</span>
 </pre></div>
 <p>When we fetch glyph list for text <code>ಕಿ</code> above function returns <cite>0C95_0CBF</cite>, which is easy to search from the available glyph list.</p>
 </div>
@@ -127,10 +127,10 @@
 <h2>Glyph names validator:</h2>
 <p>I created a tool using python to validate the glyph names, which accepts two parameters a font file and a text file with possible letters/words. It uses <code>hb-shape</code> to get the glyphs list from the input text file, and generates required glyphs list and compares between them.</p>
 <p>Download the python script from <a class="reference external" href="https://raw.github.com/aravindavk/fontscripts/master/validate_glyphnames.py">here</a></p>
-<div class="highlight"><pre>python validate_glyphnames.py Gubbi.ttf kannada_tests.txt
+<div class="highlight"><pre><span></span>python validate_glyphnames.py Gubbi.ttf kannada_tests.txt
 </pre></div>
 <p>Sample test file</p>
-<div class="highlight"><pre>ಅ
+<div class="highlight"><pre><span></span>ಅ
 ಆ
 ಇ
 ಈ

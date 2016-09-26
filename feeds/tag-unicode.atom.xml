@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Aravinda VK</title><link href="http://aravindavk.in/" rel="alternate"></link><link href="http://aravindavk.in/feeds/tag-unicode.atom.xml" rel="self"></link><id>http://aravindavk.in/</id><updated>2012-05-03T00:00:00+05:30</updated><entry><title>ಕನ್ನಡಕ್ಕೆ ASCII to Unicode Converter</title><link href="http://aravindavk.in/blog/ascii2unicode-converter-kannada/" rel="alternate"></link><updated>2012-05-03T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2012-05-03:blog/ascii2unicode-converter-kannada/</id><summary type="html">&lt;p&gt;ASCII/ANSI ಕನ್ನಡದಲ್ಲಿ ಬರೆದದ್ದನ್ನು ಯುನಿಕೋಡ್ ಗೆ ಹೇಗೆ ಬದಲಾಯಿಸೋದು ಎಂದು ಬಹಳ ಗೆಳೆಯರ ಪ್ರಶ್ನೆಯಾಗಿತ್ತು, ಅಂದಕ್ಕೆಂದೇ ASCII2Unicode ಕನ್ವರ್ಟರ್ ತಂತ್ರಾಂಶ ಬರೆದಿದ್ದೆ, ಎರಡನೇ ಆವೃತ್ತಿ ಇವತ್ತು ಬಿಡುಗಡೆಗೊಂಡಿದೆ, ಬಹಳಷ್ಟು ತೊಂದರೆಗಳನ್ನು ಸರಿಪಡಿಸಿದ್ದೇನೆ. Source code ಅನ್ನು ಓದಲು/ಅರ್ಥಮಾಡಿಕೊಳ್ಳಲು ಸುಲಭವಾಗುವಂತೆ ಬದಲಾಯಿಸಿದ್ದೇನೆ, ಕೋಡ್ ಕಮೆಂಟ್ ಗಳನ್ನು ಸೇರಿಸಿದ್ದೇನೆ.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Aravinda VK</title><link href="http://aravindavk.in/" rel="alternate"></link><link href="http://aravindavk.in/feeds/tag-unicode.atom.xml" rel="self"></link><id>http://aravindavk.in/</id><updated>2012-05-03T00:00:00+05:30</updated><entry><title>ಕನ್ನಡಕ್ಕೆ ASCII to Unicode Converter</title><link href="http://aravindavk.in/blog/ascii2unicode-converter-kannada/" rel="alternate"></link><published>2012-05-03T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2012-05-03:blog/ascii2unicode-converter-kannada/</id><summary type="html">&lt;p&gt;ASCII/ANSI ಕನ್ನಡದಲ್ಲಿ ಬರೆದದ್ದನ್ನು ಯುನಿಕೋಡ್ ಗೆ ಹೇಗೆ ಬದಲಾಯಿಸೋದು ಎಂದು ಬಹಳ ಗೆಳೆಯರ ಪ್ರಶ್ನೆಯಾಗಿತ್ತು, ಅಂದಕ್ಕೆಂದೇ ASCII2Unicode ಕನ್ವರ್ಟರ್ ತಂತ್ರಾಂಶ ಬರೆದಿದ್ದೆ, ಎರಡನೇ ಆವೃತ್ತಿ ಇವತ್ತು ಬಿಡುಗಡೆಗೊಂಡಿದೆ, ಬಹಳಷ್ಟು ತೊಂದರೆಗಳನ್ನು ಸರಿಪಡಿಸಿದ್ದೇನೆ. Source code ಅನ್ನು ಓದಲು/ಅರ್ಥಮಾಡಿಕೊಳ್ಳಲು ಸುಲಭವಾಗುವಂತೆ ಬದಲಾಯಿಸಿದ್ದೇನೆ, ಕೋಡ್ ಕಮೆಂಟ್ ಗಳನ್ನು ಸೇರಿಸಿದ್ದೇನೆ.&lt;/p&gt;
 &lt;p&gt;ಉಪಯೋಗಿಸಿ ಹಾಗೂ ಗೆಳೆಯರೊಡನೆ ಹಂಚಿಕೊಳ್ಳಿ. Online ಆವೃತ್ತಿ &lt;a class="reference external" href="http://aravindavk.github.com/ascii2unicode/"&gt;ಇಲ್ಲಿದೆ&lt;/a&gt;.&lt;/p&gt;
 &lt;a class="reference external image-reference" href="http://aravindavk.github.com/ascii2unicode/"&gt;&lt;img alt="ASCII2Unicode" src="/images/ascii2unicode.png" /&gt;&lt;/a&gt;
 &lt;div class="section" id="id1"&gt;
@@ -35,11 +35,11 @@
 &lt;h2&gt;Command line tool&lt;/h2&gt;
 &lt;p&gt;ಲಿನಕ್ಸ್ ಬಳಸುವವರಿಗೊಂದು ಸಿಹಿಸುದ್ದಿ :) ಈಗ ಈ ಕನ್ವರ್ಟರ್ command line application ಆಗಿಯೂ ಲಭ್ಯ. ಇಲ್ಲಿರುವ &amp;quot;&lt;a class="reference external" href="https://github.com/aravindavk/ascii2unicode/blob/master/knconverter"&gt;knconverter&lt;/a&gt;&amp;quot; download ಮಾಡಿಕೊಂಡು &lt;code&gt;/usr/local/bin&lt;/code&gt; ಗೆ ಕಾಪಿ ಮಾಡಿಕೊಳ್ಳಿ.(&lt;code&gt;sudo cp ~/Downloads/knconverter /usr/local/bin/&lt;/code&gt;). ಇದನ್ನು ರನ್ ಮಾಡಲು Python 3 ಬೇಕಾಗುತ್ತದೆ.&lt;/p&gt;
 &lt;p&gt;ವಿವಿಧ ರೀತಿಯಲ್ಲಿ ಇದನ್ನು ಬಳಸಬಹುದು.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;cat my_ascii_file.txt &lt;span class="p"&gt;|&lt;/span&gt; knconverter &amp;gt; output.txt
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cat my_ascii_file.txt &lt;span class="p"&gt;|&lt;/span&gt; knconverter &amp;gt; output.txt
 &lt;/pre&gt;&lt;/div&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;knconverter my_ascii_file.txt
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;knconverter my_ascii_file.txt
 &lt;/pre&gt;&lt;/div&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;knconverter my_ascii_file.txt -o output.txt
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;knconverter my_ascii_file.txt -o output.txt
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;ಇದನ್ನು ಬರೆದಿರುವುದು Python programming language(Python 3) ನಲ್ಲಿ. Python install ಆಗಿದ್ದರೆ Windows ನಲ್ಲೂ ಬಳಸಬಹುದು, ಆದರೆ ವಿಂಡೋಸ್ ನಲ್ಲಿ command line applications ನ ಎಷ್ಟು ಜನ ಉಪಯೋಗಿಸುತ್ತಾರೆ ಗೊತ್ತಿಲ್ಲ.&lt;/p&gt;
 &lt;/div&gt;
@@ -54,7 +54,7 @@
 &lt;p&gt;ನಾನು ಬರೆದ converter GPL v3 ಲೈಸೆನ್ಸ್ ನಲ್ಲಿ ಇರೋದ್ರಿಂದ ನೀವೂ ಕೂಡ ಈ ತಂತ್ರಾಂಶವನ್ನ ಬದಲಾಯಿಸಬಹುದು, Source code ಹಾಗೂ License ವಿವರಗಳು &lt;a class="reference external" href="https://github.com/aravindavk/ascii2unicode"&gt;ಇಲ್ಲಿವೆ&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;ಏನಾದರೂ ತೊಂದರೆ ಕಂಡುಬಂದರೆ ಖಂಡಿತ ತಿಳಿಸಿ.&lt;/p&gt;
 &lt;/div&gt;
-</summary><category term="kannada"></category><category term="ascii2unicode"></category><category term="ascii"></category><category term="unicode"></category><category term="kannadablog"></category></entry><entry><title>ಗುಬ್ಬಿ ಮತ್ತು ನವಿಲು</title><link href="http://aravindavk.in/blog/gubbi-mattu-navilu/" rel="alternate"></link><updated>2011-12-14T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2011-12-14:blog/gubbi-mattu-navilu/</id><summary type="html">&lt;p&gt;ಗುಬ್ಬಿ ಮತ್ತು ನವಿಲನ್ನು ಹುಡುಕಲು ಹೋಗಬೇಡಿ ನಾನೀಗ ಬರೆದಿರುವುದು ಕನ್ನಡದ ಎರಡು ಹೊಸ ಫಾಂಟ್‍ಗಳ ಬಗ್ಗೆ :)&lt;/p&gt;
+</summary><category term="kannada"></category><category term="ascii2unicode"></category><category term="ascii"></category><category term="unicode"></category><category term="kannadablog"></category></entry><entry><title>ಗುಬ್ಬಿ ಮತ್ತು ನವಿಲು</title><link href="http://aravindavk.in/blog/gubbi-mattu-navilu/" rel="alternate"></link><published>2011-12-14T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2011-12-14:blog/gubbi-mattu-navilu/</id><summary type="html">&lt;p&gt;ಗುಬ್ಬಿ ಮತ್ತು ನವಿಲನ್ನು ಹುಡುಕಲು ಹೋಗಬೇಡಿ ನಾನೀಗ ಬರೆದಿರುವುದು ಕನ್ನಡದ ಎರಡು ಹೊಸ ಫಾಂಟ್‍ಗಳ ಬಗ್ಗೆ :)&lt;/p&gt;
 &lt;p&gt;ಕನ್ನಡಕ್ಕೆ ಸರಿಯಾದ ಯುನಿಕೋಡ್ ಫಾಂಟ್‍ಗಳು ಇಲ್ಲ ಎಂಬ ಕೊರಗು ಇದ್ದೇ ಇತ್ತು. ಕೆಲವು ಫಾಂಟ್‍ಗಳು ಮುಕ್ತ ಲೈಸೆನ್ಸ್‍ನಲ್ಲಿ ಲಭ್ಯವಿದ್ದರೂ ಅದನ್ನು ಸರಿಪಡಿಸುವವರು ಇರಲಿಲ್ಲ. ಬಹಳ ದಿನಗಳಿಂದ ಸರಿಪಡಿಸಲು ಪ್ರಯತ್ನ ಪಡುತ್ತಿದ್ದರೂ ಅದರ ಬಗ್ಗೆ ಮಾಹಿತಿಗಳು ಸರಿಯಾಗಿ ಸಿಗುತ್ತಿರಲಿಲ್ಲ. ಕೆಲವೊಂದಷ್ಟು ಯುನಿಕೋಡ್ ರೂಲ್ಸ್ ಬಗ್ಗೆಯೇ ಸಂದೇಹಗಳು, ಇನ್ನು ಕೆಲವೊಂದಷ್ಟು ಫಾಂಟ್‍ನ ಜವಾಬ್ದಾರಿಯೋ ಅಥವಾ ರೆಂಡರಿಂಗ್ ಇಂಜಿನ್‍ನ ಜವಾಬ್ದಾರಿಯೋ ತಿಳಿಯುತ್ತಿರಲಿಲ್ಲ.&lt;/p&gt;
 &lt;p&gt;ಹೀಗೇ ಈಗಿರುವ ಫಾಂಟ್‍ಗಳಲ್ಲಿನ ತೊಂದರೆಗಳನ್ನು ಪಟ್ಟಿ ಮಾಡಿಕೊಂಡು, ಗ್ಲಿಫ್(ಅಕ್ಷರದ ಚಿತ್ರ) ಮಾಡಲು ಇರುವ ಸಾಧ್ಯತೆಗಳು ಹಾಗೂ ಅದಕ್ಕೆ ಬೇಕಾದ ತಂತ್ರಾಂಶಗಳ ಅಧ್ಯಯನದಲ್ಲಿ ತೊಡಗಿಕೊಂಡೆ. ಮೊನ್ನೆ &lt;a class="reference external" href="https://twitter.com/#!/vasudevkamath"&gt;ವಾಸುದೇವ್&lt;/a&gt; ಡೆಬಿಯನ್ ಪ್ಯಾಕೇಜ್ ಮಾಡುವಾಗ ಕೇಳಿದ, ಕೇದಗೆ ಫಾಂಟ್‍ಗೆ ಬಹಳ ಹಿಂದೆ ರಿಪೋರ್ಟ್ ಆದ ದೋಷವರದಿ ಹಾಗೇ ಇದೆ, ಅದನ್ನು ಸರಿಪಡಿಸಿ ಆ ಫಾಂಟ್ ಅನ್ನು ನೋಡಿಕೊಳ್ಳಬಹುದಾ ಅಂತ. ನಾನು ಇನ್ನೊಂದು ಫಾಂಟ್ ಕೆಲಸ ಅರ್ಧ ಮಾಡುತ್ತಿದುದರಿಂದ ನೋಡೋಣ ಎಂದಿದ್ದೆ. ಕೊನೆಗೆ ನೋಡೋಣ ನೋಡೋಣ ಎಂದು ಹಾಗೇ ಬಿಟ್ಟರೆ ಆಗದ ಕತೆ ಎಂದು ಆ ಫಾಂಟ್‍ನಲ್ಲಿದ್ದ ಬಗ್ ಫಿಕ್ಸ್ ಮಾಡಿದೆ, ಆ ದೋಷವರದಿಯಲ್ಲಿಲ್ಲದಿದ್ದರೂ ನನ್ನ ಪಟ್ಟಿಯಲ್ಲಿದ್ದ ಕೆಲವು ಬಗ್ ಫಿಕ್ಸ್ ಮಾಡಿದೆ. ಎಲ್ಲಾ ಮುಗಿದ ಮೇಲೆ, ಆ ಬದಲಾಯಿಸಿದ ಫಾಂಟ್‍ಗಳಿಗೆ ಅದೇ ಹೆಸರಿಡಬಹುದಾ ಮತ್ತು ನಾನೇ ನೋಡಿಕೊಳ್ಳುತ್ತೇನೆ ಎಂದು ಹೇಳಲು ಸಾಧ್ಯವಾ ಅಂತ ದ್ವಂದ್ವ ಆಯ್ತು.. ಆಗ ಸಹಾಯಕ್ಕೆ ಬಂದಿದ್ದು ಮೈಸೂರಿನ &lt;a class="reference external" href="https://twitter.com/#!/twistedlogix"&gt;ರವಿಶೇಖರ್&lt;/a&gt;. ಅವರ ಸಲಹೆಯಂತೆ ಹೊಸ ಹೆಸರು ಯೋಚಿಸುವಾಗ &amp;quot;ಗುಬ್ಬಿ&amp;quot; ಎಂದು ಹೇಳಿದೆ, ಅದು ಅವರಿಗೂ ಬಹಳ ಇಷ್ಟ ಆಯಿತು, ಇನ್ನೊಂದು ಹೆಸರನ್ನು ಹುಡುಕುವಾಗ ಅದೇ ಥೀಮ್ ಅಲ್ಲಿ ಹುಡುಕು ಅಂದರು, ಕೊನೆಗೆ &amp;quot;ನವಿಲು&amp;quot; ಆರಿಸಿದ್ದಾಯ್ತು. ಆ ಹೆಸರು ಓದಿಕೊಂಡರೇ ಒಂತರಾ ಆನಂದವಾಗ್ತಿತ್ತು :) ಎಲ್ಲಾ ಬದಲಾವಣೆಗಳು ಆದ ನಂತರ github ನಲ್ಲಿ ಅದನ್ನು ಹಾಕಿದ್ದಾಯ್ತು.&lt;/p&gt;
 &lt;div class="figure"&gt;
@@ -98,12 +98,12 @@
 &lt;p&gt;ಗುಬ್ಬಿ ಫಾಂಟ್ ಅನ್ನು &lt;a class="reference external" href="https://github.com/downloads/aravindavk/Gubbi/Gubbi.ttf"&gt;ಇಲ್ಲಿ&lt;/a&gt; ಹಾಗೂ ನವಿಲು ಫಾಂಟ್ ಅನ್ನು &lt;a class="reference external" href="https://github.com/downloads/aravindavk/Navilu/Navilu.ttf"&gt;ಇಲ್ಲಿ&lt;/a&gt; download ಮಾಡಿಕೊಳ್ಳಬಹುದು. ಲಿನಕ್ಸ್ ಉಪಯೋಗಿಸುತ್ತಿದ್ದರೆ, download ಮಾಡಿದ ಫಾಂಟ್‍ಗಳನ್ನು ನಿಮ್ಮ ಹೋಮ್ ಡೈರೆಕ್ಟರಿಯಲ್ಲಿ .fonts ಎಂಬ ಡೈರೆಕ್ಟರಿ ಒಳಗೆ ಕಾಪಿ ಮಾಡಿ, ಆಮೇಲೆ ಟರ್ಮಿನಲ್ ಓಪನ್ ಮಾಡಿ &lt;code&gt;fc-cache&lt;/code&gt; ಎಂದು ರನ್ ಮಾಡಿ. ವಿಂಡೋಸ್ ಬಳಸುತ್ತಿದ್ದರೆ ರೈಟ್ ಕ್ಲಿಕ್ ಮಾಡಿ ಇನ್‍ಸ್ಟಾಲ್ ಮಾಡಬಹುದು ಅನ್ನಿಸುತ್ತೆ, ಅಥವಾ C:WindowsFonts ಡೈರೆಕ್ಟರಿಗೆ ಕಾಪಿ ಮಾಡಿ. (ನಾನು ವಿಂಡೋಸ್‍ನಲ್ಲಿ ಬಳಸಿ ನೋಡಿಲ್ಲ).&lt;/p&gt;
 &lt;p&gt;ಗುಬ್ಬಿ ಮತ್ತು ನವಿಲು ಫಾಂಟ್‍ಗಳನ್ನು ಬದಲಾಯಿಸುವ ಹಾಗೂ ಪ್ರಯೋಗ ಮಾಡುವ ಯೋಚನೆಯೇನಾದರೂ ಇದ್ದರೆ &lt;a class="reference external" href="https://github.com/aravindavk/Gubbi"&gt;ಇಲ್ಲಿ&lt;/a&gt; ಮತ್ತು &lt;a class="reference external" href="https://github.com/aravindavk/Navilu"&gt;ಇಲ್ಲಿ&lt;/a&gt; source download ಮಾಡಿಕೊಳ್ಳಬಹುದು. :)&lt;/p&gt;
 &lt;/div&gt;
-</summary><category term="kannada"></category><category term="fonts"></category><category term="unicode"></category><category term="gubbi"></category><category term="navilu"></category><category term="kannadablog"></category></entry><entry><title>Kannada in LaTeX</title><link href="http://aravindavk.in/blog/kannada-in-latex/" rel="alternate"></link><updated>2011-04-14T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2011-04-14:blog/kannada-in-latex/</id><summary type="html">&lt;p&gt;From &lt;a class="reference external" href="http://en.wikipedia.org/wiki/XeTeX"&gt;Wikipedia&lt;/a&gt;&lt;/p&gt;
+</summary><category term="kannada"></category><category term="fonts"></category><category term="unicode"></category><category term="gubbi"></category><category term="navilu"></category><category term="kannadablog"></category></entry><entry><title>Kannada in LaTeX</title><link href="http://aravindavk.in/blog/kannada-in-latex/" rel="alternate"></link><published>2011-04-14T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2011-04-14:blog/kannada-in-latex/</id><summary type="html">&lt;p&gt;From &lt;a class="reference external" href="http://en.wikipedia.org/wiki/XeTeX"&gt;Wikipedia&lt;/a&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 XeTeX (English pronunciation &amp;quot;zee-TeX&amp;quot; i.e. /ˈziːtɛx/ or often /ˈziːtɛk/) is a TeX typesetting engine using Unicode and supporting modern font technologies such as OpenType or Apple Advanced Typography (AAT).&lt;/blockquote&gt;
 &lt;div class="section" id="hello-world-in-kannada"&gt;
 &lt;h2&gt;Hello World in Kannada&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;% File: helloworld.tex&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c"&gt;% File: helloworld.tex&lt;/span&gt;
 &lt;span class="k"&gt;\documentclass&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;article&lt;span class="nb"&gt;}&lt;/span&gt;
 &lt;span class="k"&gt;\usepackage&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;fontspec&lt;span class="nb"&gt;}&lt;/span&gt;
 &lt;span class="k"&gt;\usepackage&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;polyglossia&lt;span class="nb"&gt;}&lt;/span&gt;
@@ -134,10 +134,10 @@ XeTeX (English pronunciation &amp;quot;zee-TeX&amp;quot; i.e. /ˈziːtɛx/ or of
 &lt;li&gt;Kannada strings for all document strings (like “chapter”, “ﬁgure”, “bibliography”).&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;Since Debian Squeeze has TeXLive 2009, I downloaded TeXLive 2010 from &lt;a class="reference external" href="http://www.tug.org/texlive/acquire-iso.html"&gt;here&lt;/a&gt;. Uninstalled all the components of TeXLive 2009 in my Debian system using&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;apt-get remove texlive*
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;apt-get remove texlive*
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Mount the iso image downloaded and install TexLive 2010 as follows.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;mkdir /tmp/texlive
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;mkdir /tmp/texlive
 mount -o loop texlive-2010.iso /tmp/texlive
 &lt;span class="nb"&gt;cd&lt;/span&gt; /tmp/texlive
 ./install-tl
@@ -145,23 +145,23 @@ mount -o loop texlive-2010.iso /tmp/texlive
 &lt;p&gt;This will ask for prompt, type &amp;quot;I&amp;quot; to install in your system. TeXLive will be installed in &lt;code&gt;/usr/local/texlive/2010&lt;/code&gt; directory. We need to set the environment variable PATH for future use of XeTeX. If we set in .bashrc in home directory, then these will be only available to that user. Since we need system wide configuration we will add in &lt;code&gt;/etc/bash.bashrc&lt;/code&gt; or &lt;code&gt;/etc/profile&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;If you are adding in &lt;code&gt;/etc/profile&lt;/code&gt; then we have to logout and login to affect the changes. Make sure you add before the &lt;code&gt;export PATH&lt;/code&gt; statement in &lt;code&gt;/etc/profile&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;If you are planning to add in &lt;code&gt;/etc/bash.bashrc&lt;/code&gt; then add it in the end.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/usr/local/texlive/2010/bin/i386-linux:&lt;span class="nv"&gt;$PATH&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nb"&gt;export &lt;/span&gt;PATH
-&lt;span class="nv"&gt;MANPATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/usr/local/texlive/2010/texmf/doc/man:&lt;span class="nv"&gt;$MANPATH&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nb"&gt;export &lt;/span&gt;MANPATH
-&lt;span class="nv"&gt;INFOPATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/usr/local/texlive/2010/texmf/doc/info:&lt;span class="nv"&gt;$INFOPATH&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nb"&gt;export &lt;/span&gt;INFOPATH
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nv"&gt;PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/usr/local/texlive/2010/bin/i386-linux:&lt;span class="nv"&gt;$PATH&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nb"&gt;export&lt;/span&gt; PATH
+&lt;span class="nv"&gt;MANPATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/usr/local/texlive/2010/texmf/doc/man:&lt;span class="nv"&gt;$MANPATH&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nb"&gt;export&lt;/span&gt; MANPATH
+&lt;span class="nv"&gt;INFOPATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/usr/local/texlive/2010/texmf/doc/info:&lt;span class="nv"&gt;$INFOPATH&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nb"&gt;export&lt;/span&gt; INFOPATH
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Add the following in &lt;code&gt;/etc/manpath.config&lt;/code&gt;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;MANPATH_MAP /usr/local/texlive/2010/bin/i386-linux /usr/local/texlive/2010/texmf/doc/man
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;MANPATH_MAP /usr/local/texlive/2010/bin/i386-linux /usr/local/texlive/2010/texmf/doc/man
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Once the PATH is configured, I copied the gloss-kannada.ldf file to the polyglossia directory.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;cp gloss-kannada.ldf /usr/local/texlive/2010/texmf-dist/tex/xelatex/polyglossia/
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cp gloss-kannada.ldf /usr/local/texlive/2010/texmf-dist/tex/xelatex/polyglossia/
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Then run the following to update the TeX directory structure and language specific files.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;texhash
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;texhash
 fmtutil --byfmt xelatex
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Make sure &lt;code&gt;hyph-kn.tex&lt;/code&gt; and &lt;code&gt;loadhyph-kn.tex&lt;/code&gt; files exists in &lt;code&gt;/usr/local/texlive/2010/texmf-dist/tex/generic/hyph-utf8/patterns/tex/&lt;/code&gt; and &lt;code&gt;/usr/local/texlive/2010/texmf-dist/tex/generic/hyph-utf8/loadhyph/&lt;/code&gt; respectively.&lt;/p&gt;
 &lt;p&gt;Now we are ready with the installation of TeXLive. Let us create a TeX file to test hyphenation works or not! Added &lt;code&gt;\setdefaultlanguage&lt;/code&gt; additionally.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;% File: bigtext.tex&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c"&gt;% File: bigtext.tex&lt;/span&gt;
 &lt;span class="k"&gt;\documentclass&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;article&lt;span class="nb"&gt;}&lt;/span&gt;
 &lt;span class="k"&gt;\usepackage&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;fontspec&lt;span class="nb"&gt;}&lt;/span&gt;
 &lt;span class="k"&gt;\usepackage&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;polyglossia&lt;span class="nb"&gt;}&lt;/span&gt;
@@ -206,20 +206,20 @@ fmtutil --byfmt xelatex
 &lt;li&gt;Kedage didn't have hyphenation glyph in the font. Hyphen in Lohit Kannada looks bigger.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
-</summary><category term="TeX"></category><category term="XeTeX"></category><category term="LaTeX"></category><category term="unicode"></category><category term="kannada"></category></entry><entry><title>Installing Scribus svn in Debian Squeeze</title><link href="http://aravindavk.in/blog/installing-scribus-svn-in-debian-squeeze/" rel="alternate"></link><updated>2011-04-11T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2011-04-11:blog/installing-scribus-svn-in-debian-squeeze/</id><summary type="html">&lt;p&gt;I heard that Unicode rending issues of complex scripts are fixed in svn version of Scribus(1.5). So I wanted to test it for Kannada.&lt;/p&gt;
+</summary><category term="TeX"></category><category term="XeTeX"></category><category term="LaTeX"></category><category term="unicode"></category><category term="kannada"></category></entry><entry><title>Installing Scribus svn in Debian Squeeze</title><link href="http://aravindavk.in/blog/installing-scribus-svn-in-debian-squeeze/" rel="alternate"></link><published>2011-04-11T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2011-04-11:blog/installing-scribus-svn-in-debian-squeeze/</id><summary type="html">&lt;p&gt;I heard that Unicode rending issues of complex scripts are fixed in svn version of Scribus(1.5). So I wanted to test it for Kannada.&lt;/p&gt;
 &lt;p&gt;Downloaded svn source using following command to my Debian Squeeze machine.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;svn co svn://scribus.net/trunk/Scribus myscribus
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;svn co svn://scribus.net/trunk/Scribus myscribus
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;First installed cmake, which is required to compile Scribus.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;apt-get install cmake
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;apt-get install cmake
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;When I ran &lt;code&gt;cmake .&lt;/code&gt; as root user, it started listing dependency issues. Installed development libraries as and when cmake throws error. Finally ended up installing following dev libraries.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;apt-get install libtiff4-dev python-dev libfreetype6-dev
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;apt-get install libtiff4-dev python-dev libfreetype6-dev
                 libcups2-dev libxml2-dev liblcms1-dev
                 libpixman-1-dev libaspel-dev libfontconfig1-dev
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Now run&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;myscribus
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; myscribus
 cmake .
 make &lt;span class="p"&gt;&amp;amp;&lt;/span&gt; make install
 &lt;/pre&gt;&lt;/div&gt;
