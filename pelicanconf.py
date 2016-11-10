@@ -55,7 +55,8 @@ STATIC_PATHS = ['extras/CNAME',
                 'lucia-preorder',
                 'demo',
                 'madve',
-                'talkies']
+                'talkies',
+                'sanka']
 
 EXTRA_PATH_METADATA = {
     'extras/CNAME': {'path': 'CNAME'},
