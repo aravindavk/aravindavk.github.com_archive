@@ -1,0 +1,84 @@
+/*!
+normalize.css v^3.0 | MIT License | git.io/normalize
+Copyright (c) Nicolas Gallagher and Jonathan Neal
+*/
+/*! normalize.css v3.0.2 | MIT License | git.io/normalize */html {
+	font-family:sans-serif;
+	-ms-text-size-adjust:100%;
+	-webkit-text-size-adjust:100%
+}
+body{
+    margin:0;
+    padding:0;
+    
+}
+.clear{
+    clear: both;
+    height: 1px;
+    width: 100%;
+}
+body{
+    background-color: #333;
+    font-size: 14px;
+    line-height: 1.5;
+}
+.top-bar{
+    width: 98%;
+    margin: auto;    
+}
+#app{
+    background-color: #eee;
+    padding-top: 10px;
+}
+.container{
+    width: 98%;
+    margin: auto;
+}
+.left{
+    width: 50%;
+    float: left;
+    
+}
+.right{
+    width: 50%;
+    float: left;
+    text-align: right;
+}
+.left textarea, .right textarea{
+    width: 94%;
+    min-height: 900px;
+    border: 1px solid #bbb;
+    padding: 2%;
+}
+.controls{
+    margin-bottom: 10px;
+    padding: 10px;
+}
+.convert-type, .english-numbers{
+    display: inline-block;
+    margin-right: 30px;
+}
+.convert-type input, .english-numbers input{
+    margin-right: 5px;
+}
+.convert-type label{
+    margin-right: 20px;
+}
+.project-summary-bar{
+    background-color: #ffdead;
+}
+.project-summary{
+    width: 98%;
+    margin: auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.num-words {
+    display: inline-block;
+    float: right;
+    margin-right: 2%;
+    background-color: #333;
+    padding: 5px 5px;
+    color: #fff;
+    margin-top: -10px;
+}
