@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="google-site-verification" content="PwqxyVtbmKeb1wsrF8XJ5GQIPxlDxUupYnTEWPI3KLk" />
+    <meta http-equiv="cache-control" content="max-age=0" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <link href="/theme/img/fav.png" rel="icon" type="image/x-icon" />
+    <meta property="og:site_name" content="Aravinda VK"/>
+    <link rel="apple-touch-icon" href="/theme/img/fav.png" />
+    <title>ಆಸ್ಕಿ(ASCII) ಮತ್ತು ಯುನಿಕೋಡಿಗೆ ಕನ್ನಡದ ಸಂಕ</title>
+    <meta property="og:title" content="ಆಸ್ಕಿ(ASCII) ಮತ್ತು ಯುನಿಕೋಡಿಗೆ ಕನ್ನಡದ ಸಂಕ"/>
+    <meta property="twitter:title" content="ಆಸ್ಕಿ(ASCII) ಮತ್ತು ಯುನಿಕೋಡಿಗೆ ಕನ್ನಡದ ಸಂಕ"/>
+    <meta name="description" content="ಈ ತಂತ್ರಾಂಶದ ಸಹಾಯದಿಂದ ಆಸ್ಕಿ(ASCII) ಇಂದ ಯುನಿಕೋಡ್(Unicode) ಗೆ ಹಾಗೂ ಯುನಿಕೋಡ್ ನಿಂದ ಆಸ್ಕಿ ಗೆ ಬದಲಾಯಿಸಿಕೊಳ್ಳಬಹುದು."/>
+    <meta property="og:description" content="ಈ ತಂತ್ರಾಂಶದ ಸಹಾಯದಿಂದ ಆಸ್ಕಿ(ASCII) ಇಂದ ಯುನಿಕೋಡ್(Unicode) ಗೆ ಹಾಗೂ ಯುನಿಕೋಡ್ ನಿಂದ ಆಸ್ಕಿ ಗೆ ಬದಲಾಯಿಸಿಕೊಳ್ಳಬಹುದು."/>
+    <meta property="twitter:description" content="ಈ ತಂತ್ರಾಂಶದ ಸಹಾಯದಿಂದ ಆಸ್ಕಿ(ASCII) ಇಂದ ಯುನಿಕೋಡ್(Unicode) ಗೆ ಹಾಗೂ ಯುನಿಕೋಡ್ ನಿಂದ ಆಸ್ಕಿ ಗೆ ಬದಲಾಯಿಸಿಕೊಳ್ಳಬಹುದು."/>
+    <meta property="og:url" content="http://aravindavk.in/blog/sanka-kannada-converter/" />
+    <meta property="twitter:url" content="http://aravindavk.in/blog/sanka-kannada-converter/" />
+    <meta property="og:image" content="http://aravindavk.in" />
+    <link href="http://aravindavk.in/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Aravinda VK Atom Feed" />
+    <link rel="stylesheet" href="/theme/css/pure-min.css" />
+    <link rel="stylesheet" href="/theme/css/side-menu.css" />
+    <link rel="stylesheet" href="/theme/css/main.css" />
+    <link rel="stylesheet" href="/theme/css/pygment-emacs-highlight.css" />
+  </head>
+  <body>
+    <div id="layout">
+      <!-- Menu toggle -->
+      <a href="#menu" id="menuLink" class="menu-link">
+        <!-- Hamburger icon -->
+        <span></span>
+      </a>
+      <div id="menu" class="pure-hidden-desktop pure-hidden-tablet">
+        <div class="pure-menu pure-menu-open">
+          <a class="pure-menu-heading logo" href="/"><img src="/theme/img/logo.png" alt="aravindavk"/></a>
+          <div class="social-icons">
+            <a href="http://aravindavk.in/feeds/all.atom.xml" target="_blank" title="News">
+              <img src="/theme/img/feed.png" class="link-icon" alt="News"/>
+            </a>
+            <a href="http://twitter.com/aravindavk" target="_blank" title="Twitter">
+              <img src="/theme/img/twitter.png" class="link-icon" alt="Twitter"/>
+            </a>
+            <a href="https://plus.google.com/+aravindavk" target="_blank" title="Google Plus">
+              <img src="/theme/img/gplus.png" class="link-icon" alt="Google Plus"/>
+            </a>
+            <a href="https://github.com/aravindavk" target="_blank" title="Github">
+              <img src="/theme/img/github.png" class="link-icon" alt="Github"/>
+            </a>
+            <a href="http://www.flickr.com/photos/aravindavk" target="_blank" title="Flickr">
+              <img src="/theme/img/flickr.png" class="link-icon" alt="Flickr"/>
+            </a>
+            <a href="http://in.linkedin.com/in/aravindavk" target="_blank" title="LinkedIn">
+              <img src="/theme/img/linkedin.png" class="link-icon" alt="LinkedIn"/>
+            </a>
+          </div>
+          <ul>
+            <li class=""><a href="/">Home</a></li>
+            <li class=""><a href="/me">About</a></li>
+            <li class=""><a href="/projects">Projects</a></li>
+            <li class=""><a href="/blogs">Blogs</a></li>
+            <li class=""><a href="/talks">Talks & Articles</a></li>
+          </ul>
+        </div>
+        <div class="sep"></div>
+        <div class="copyright">&copy; 2008-2014 Aravinda VK, <br/>All rights reserved</div>
+      </div>
+
+      <div class="pure-g-r">
+        <div class="pure-u-4-5 content-left">
+          <div class="left article">
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        ಆಸ್ಕಿ(ASCII) ಮತ್ತು ಯುನಿಕೋಡಿಗೆ ಕನ್ನಡದ ಸಂಕ</h1>
+    </header>
+    <div class="pure-hidden-phone pure-hidden-tablet">
+<footer class="post-info">
+  <p class="author-and-date-info">
+    Posted on Fri 11 November 2016 by <a class="url fn" href="http://aravindavk.in">Aravinda VK</a>.
+  </p>
+</footer><!-- /.post-info -->
+<div class="sep"></div>    </div>
+    <div class="entry-content">
+      <p>ಕಳೆದ ವರ್ಷ ಎಲ್ಲರಿಗೂ ಪ್ರಶ್ನೆಗಳನ್ನು ಕೇಳಿದ್ದೆ, ಈಗಾಗಲೇ ASCII ಇಂದ ಯುನಿಕೋಡ್ ಗೆ ಬದಲಾಯಿಸಲು ತಂತ್ರಾಂಶ ಇದೆ(<a class="reference external" href="http://aravindavk.in/ascii2unicode/">aravindavk.in/ascii2unicode</a>), ಆದರೆ ಯುನಿಕೋಡ್ ನಿಂದ ASCII ಗೆ ಮಾಡಲು ಬೇಕೇ ಎಂದು(<a class="reference external" href="https://docs.google.com/forms/d/e/1FAIpQLSczywM8DsjflHfbb3pErdM8HmaqKPsZ9OFwgiqgFFUD9CMH0A/viewform?usp=send_form">ಲಿಂಕ್ ಇಲ್ಲಿದೆ</a>). 37 ಜನ ಅದಕ್ಕೆ ಪ್ರತಿಕ್ರಿಯಿಸಿ ಬೇಕು ಅಂದಿದ್ದರು, ಆದರೆ ಬಹಳ ಸಮಯ ನನಗೆ ಅದರ ಕೆಲಸ ಪ್ರಾರಂಬಿಸಲು ಸಾಧ್ಯವಾಗಿರಲಿಲ್ಲ. ಈಗ ಪುನಃ ಈ ತಂತ್ರಾಂಶದ ಕೆಲಸ ಕೈಗೆತ್ತಿಕೊಂಡಿದ್ದೇನೆ.</p>
+<p>ಬಹಳಷ್ಟು <a class="reference external" href="http://aravindavk.in/sanka/tests.html">Testಗಳನ್ನು</a> ಸೇರಿಸಿದ್ದೇನೆ, ಆದರೆ ಇನ್ನೂ ಬಹಳಷ್ಟು Tests ಬೇಕು ಈ ತಂತ್ರಾಂಶ ಉಪಯೋಗಿಸಲು ಯೋಗ್ಯವಾಗಲು. ಹೊಸದಾಗಿ ಬರೆದಿರುವುದರಿಂದ ಕೆಲವು ತೊಂದರೆಗಳು ಇನ್ನೂ ಉಳಿದಿರಬಹುದು, ಮುಂಬರುವ ದಿನಗಳಲ್ಲಿ ಅವುಗಳನ್ನು ಸರಿಪಡಿಸುತ್ತೇನೆ. ನಿಮಗೇನಾದರೂ ತೊಂದರೆ ಎನಿಸಿದರೆ ನನಗೆ ತಿಳಿಸಿ.</p>
+<a class="reference external image-reference" href="http://aravindavk.in/sanka"><img alt="ಸಂಕ" src="/images/sanka.png" /></a>
+<p>ಸಂಕದ ಲಿಂಕು ಇಲ್ಲಿದೆ <a class="reference external" href="http://aravindavk.in/sanka">aravindavk.in/sanka</a>. ಈ ತಂತ್ರಾಂಶದ ಸಹಾಯದಿಂದ ಆಸ್ಕಿ(ASCII) ಇಂದ ಯುನಿಕೋಡ್(Unicode) ಗೆ ಹಾಗೂ ಯುನಿಕೋಡ್ ನಿಂದ ಆಸ್ಕಿ ಗೆ ಬದಲಾಯಿಸಿಕೊಳ್ಳಬಹುದು.</p>
+<p>ಏನು ಹೆಸರಿಡೋದು ಅಂತ ಯೋಚಿಸುತ್ತ ಇದ್ದಾಗ &quot;ಸಂಕ&quot; ಹೆಸರು ಇದಕ್ಕೆ ಸೂಕ್ತ ಅನ್ನಿಸಿತು. ಹೆಸರು ಹೇಗಿದೆ ತಿಳಿಸಿ :)</p>
+<p>ಕನ್ವರ್ಟರ್ ಬಗ್ಗೆ ಬಹಳಷ್ಟು ಬರೆಯೋದಿದೆ, ಮುಂದಿನ ಬ್ಲಾಗ್ ಗಳಲ್ಲಿ ಕನ್ವರ್ಟ್ ಮಾಡುವುದರ ಬಗ್ಗೆ, ಅದಕ್ಕೆ ಬಳಸಿದ ತಂತ್ರಜ್ಞಾನದ ಬಗ್ಗೆ ಬರೆಯುತ್ತೇನೆ. ಈಗ ಸದ್ಯಕ್ಕೆ ಬಳಸಿ ನೋಡಿ ಹಾಗೂ ನಿಮ್ಮ ಗೆಳೆಯರೊಂದಿಗೆ ಹಂಚಿಕೊಳ್ಳಿ.</p>
+
+    </div><!-- /.entry-content -->
+    <div class="pure-hidden-desktop">
+<footer class="post-info">
+  <p class="author-and-date-info">
+    Posted on Fri 11 November 2016 by <a class="url fn" href="http://aravindavk.in">Aravinda VK</a>.
+  </p>
+</footer><!-- /.post-info -->
+<div class="sep"></div>    </div>
+    <div class="permalink-div">
+      Permalink: <a href="http://aravindavk.in/blog/sanka-kannada-converter/" rel="bookmark" title="Permalink to ಆಸ್ಕಿ(ASCII) ಮತ್ತು ಯುನಿಕೋಡಿಗೆ ಕನ್ನಡದ ಸಂಕ">http://aravindavk.in/blog/sanka-kannada-converter/</a>
+    </div>
+<div class="comments">
+  <h2>Comments !</h2>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_identifier = "blog/sanka-kannada-converter/";
+    var disqus_url = "http://aravindavk.in/blog/sanka-kannada-converter/";
+    (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = 'http://vkaravinda.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+</div>
+  </article>
+</section>
+            <div class="copyright pure-hidden-desktop pure-hidden-tablet">&copy; 2008-2014 Aravinda VK, <br/>All rights reserved</div>
+          </div>
+        </div>
+        <div class="pure-u-1-5 pure-hidden-phone">
+          <div class="right">
+            <img class="me" src="/theme/img/me.jpg"/>
+            <div class="sep"></div>
+            <div class="pure-menu pure-menu-open">
+              <a class="pure-menu-heading logo" href="/"><img src="/theme/img/logo.png" alt="aravindavk"/></a>
+              <div class="social-icons">
+                <a href="http://aravindavk.in/feeds/all.atom.xml" target="_blank" title="News">
+                  <img src="/theme/img/feed.png" class="link-icon" alt="News"/>
+                </a>
+                <a href="http://twitter.com/aravindavk" target="_blank" title="Twitter">
+                  <img src="/theme/img/twitter.png" class="link-icon" alt="Twitter"/>
+                </a>
+                <a href="https://plus.google.com/+aravindavk" target="_blank" title="Google Plus">
+                  <img src="/theme/img/gplus.png" class="link-icon" alt="Google Plus"/>
+                </a>
+                <a href="https://github.com/aravindavk" target="_blank" title="Github">
+                  <img src="/theme/img/github.png" class="link-icon" alt="Github"/>
+                </a>
+                <a href="http://www.flickr.com/photos/aravindavk" target="_blank" title="Flickr">
+                  <img src="/theme/img/flickr.png" class="link-icon" alt="Flickr"/>
+                </a>
+                <a href="http://in.linkedin.com/in/aravindavk" target="_blank" title="LinkedIn">
+                  <img src="/theme/img/linkedin.png" class="link-icon" alt="LinkedIn"/>
+                </a>
+              </div>
+              <ul>
+                <li class=""><a href="/">Home</a></li>
+                <li class=""><a href="/me">About</a></li>
+                <li class=""><a href="/projects">Projects</a></li>
+                <li class=""><a href="/blogs">Blogs</a></li>
+                <li class=""><a href="/talks">Talks & Articles</a></li>
+              </ul>
+            </div>
+            <div class="sep"></div>
+            <div class="copyright">&copy; 2008-2014 Aravinda VK, <br/>All rights reserved</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <script src="/theme/js/ui.js"></script>
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-11830111-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+  </body>
+</html>
