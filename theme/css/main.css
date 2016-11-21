@@ -133,6 +133,9 @@ iframe{
     background-color: #F7F9FA;
     border-top: 1px dashed #8CACBB;
     border-bottom: 1px dashed #8CACBB;
+    word-wrap: normal;
+    overflow: auto;
+    white-space: pre;
 }
 
 .article p code{
