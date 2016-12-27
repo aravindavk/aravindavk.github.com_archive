@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aravinda VK</title><link>http://aravindavk.in/</link><description></description><atom:link href="http://aravindavk.in/feeds/aravinda-vk.rss.xml" rel="self"></atom:link><lastBuildDate>Mon, 21 Nov 2016 00:00:00 +0530</lastBuildDate><item><title>Gluster Geo-replication Tools</title><link>http://aravindavk.in/blog/gluster-georep-tools/</link><description>&lt;p&gt;A must have tools collection for &lt;a class="reference external" href="http://gluster.readthedocs.io/en/latest/AdministratorGuide/GeoReplication"&gt;Gluster Geo-replication&lt;/a&gt; users!&lt;/p&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aravinda VK</title><link>http://aravindavk.in/</link><description></description><atom:link rel="self" href="http://aravindavk.in/feeds/aravinda-vk.rss.xml"></atom:link><lastBuildDate>Tue, 27 Dec 2016 00:00:00 +0530</lastBuildDate><item><title>ಪಪಪ</title><link>http://aravindavk.in/blog/papapa/</link><description>&lt;p&gt;ಹೇಳಿ ಕೊಟ್ಟಿದ್ದೆಲ್ಲಾ ಹೇಳಲು ಪ್ರಯತ್ನ ಮಾಡುವ ಮಗಳ ಹತ್ತಿರ ಅವಳ ಹೆಸರು &lt;strong&gt;ಇಂಪನ&lt;/strong&gt; ಎಂದು ಹೇಳಿಸಲು ಸೋತಿದ್ದೆವು. ಇತ್ತೀಚೆಗೆ ಅವಳ ಹೆಸರನ್ನ &lt;strong&gt;ಪಪಪ&lt;/strong&gt; ಅಂತ ಹೇಳ್ಕೊಳ್ತಿದ್ಳು, ಅದೆಲ್ಲಿಂದ ಕಲಿತಿದ್ದೋ ಏನೋಪ್ಪಾ..&lt;/p&gt;
+&lt;p&gt;&amp;quot;ಇಂ.. ಪ.. ನ.. ಇಂಪನ&amp;quot; ಅಂತ ಹೇಳಿಕೊಟ್ರೆ...&lt;/p&gt;
+&lt;p&gt;&amp;quot;ಇಂ.. ಪ.. ನ.. ಪಪಪ&amp;quot; ಅಂತ ಹೇಳ್ತಾಳೆ :)&lt;/p&gt;
+&lt;p&gt;ಇಂಪನಂಗೂ ಪಪಪಂಗೂ ಏನು ಲಿಂಕ್ ಅಂತ ಯಾರಿಗಾದ್ರೂ ಗೊತ್ತಿದ್ರೆ ಹೇಳ್ತೀರಾ?&lt;/p&gt;
+&lt;div class="figure"&gt;
+&lt;img alt="Papapa" src="/images/papapa.jpg" /&gt;
+&lt;p class="caption"&gt;ಬ್ಲಾಗ್ ಹಾಕೋಕೂ ಮುಂಚೆ proofread ಮಾಡ್ತಿರೋದು...&lt;/p&gt;
+&lt;/div&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Aravinda VK</dc:creator><pubDate>Tue, 27 Dec 2016 00:00:00 +0530</pubDate><guid>tag:aravindavk.in,2016-12-27:blog/papapa/</guid><category>ಕನ್ನಡ</category><category>ಇಂಪನ</category><category>ಮಗಳು</category></item><item><title>Gluster Geo-replication Tools</title><link>http://aravindavk.in/blog/gluster-georep-tools/</link><description>&lt;p&gt;A must have tools collection for &lt;a class="reference external" href="http://gluster.readthedocs.io/en/latest/AdministratorGuide/GeoReplication"&gt;Gluster Geo-replication&lt;/a&gt; users!&lt;/p&gt;
 &lt;p&gt;Currently this repository contains &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;gluster-georep-setup&lt;/span&gt;&lt;/tt&gt; and
 &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;gluster-georep-status&lt;/span&gt;&lt;/tt&gt; tools. More tools will be added in future. Let
 me know if you need any specific tool to manage Gluster
