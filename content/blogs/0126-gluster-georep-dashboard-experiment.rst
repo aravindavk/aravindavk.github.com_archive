@@ -23,6 +23,11 @@ Install
 -------
 Install the app in any one node of Cluster.
 
+.. code-block:: bash
+
+	git clone https://github.com/aravindavk/gluster-georepdash.git
+    cd gluster-georepdash/
+
 Install the following Python dependencies using,
 
 .. code-block:: bash
