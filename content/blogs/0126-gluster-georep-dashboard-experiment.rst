@@ -25,8 +25,8 @@ Install the app in any one node of Cluster.
 
 .. code-block:: bash
 
-	git clone https://github.com/aravindavk/gluster-georepdash.git
-    cd gluster-georepdash/
+   git clone https://github.com/aravindavk/gluster-georepdash.git
+   cd gluster-georepdash/
 
 Install the following Python dependencies using,
 
@@ -46,14 +46,15 @@ fix later)
 
 .. code-block:: bash
 
-    elm-package install
-    elm-make App.elm --output static/app.js
+   cd gluster-georepdash/
+   elm-package install
+   elm-make App.elm --output static/app.js
 
 Install ``purecss`` for style using,
 
 .. code-block:: bash
 
-    cd static
+    cd gluster-georepdash/static
     bower install
 
 Usage
