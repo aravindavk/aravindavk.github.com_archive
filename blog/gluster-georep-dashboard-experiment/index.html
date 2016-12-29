@@ -98,7 +98,7 @@ as static display, manual page reload is required to check current status).</p>
 <div class="section" id="install">
 <h2>Install</h2>
 <p>Install the app in any one node of Cluster.</p>
-<div class="highlight"><pre><span></span>    git clone https://github.com/aravindavk/gluster-georepdash.git
+<div class="highlight"><pre><span></span>git clone https://github.com/aravindavk/gluster-georepdash.git
 <span class="nb">cd</span> gluster-georepdash/
 </pre></div>
 <p>Install the following Python dependencies using,</p>
@@ -110,11 +110,12 @@ as static display, manual page reload is required to check current status).</p>
 <p>Update the <tt class="docutils literal">serverName</tt> in <tt class="docutils literal">App.elm</tt> and then generate <tt class="docutils literal">static/app.js</tt>
 using,(editing serverName should be automatic, this is code bug! will
 fix later)</p>
-<div class="highlight"><pre><span></span>elm-package install
+<div class="highlight"><pre><span></span><span class="nb">cd</span> gluster-georepdash/
+elm-package install
 elm-make App.elm --output static/app.js
 </pre></div>
 <p>Install <tt class="docutils literal">purecss</tt> for style using,</p>
-<div class="highlight"><pre><span></span><span class="nb">cd</span> static
+<div class="highlight"><pre><span></span><span class="nb">cd</span> gluster-georepdash/static
 bower install
 </pre></div>
 </div>

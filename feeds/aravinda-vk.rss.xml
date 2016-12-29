@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aravinda VK</title><link>http://aravindavk.in/</link><description></description><atom:link href="http://aravindavk.in/feeds/aravinda-vk.rss.xml" rel="self"></atom:link><lastBuildDate>Thu, 29 Dec 2016 00:00:00 +0530</lastBuildDate><item><title>Gluster Geo-replication Dashboard Experiment</title><link>http://aravindavk.in/blog/gluster-georep-dashboard-experiment/</link><description>&lt;p&gt;Gluster Events APIs are available with Gluster 3.9 release. This
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aravinda VK</title><link>http://aravindavk.in/</link><description></description><atom:link rel="self" href="http://aravindavk.in/feeds/aravinda-vk.rss.xml"></atom:link><lastBuildDate>Thu, 29 Dec 2016 00:00:00 +0530</lastBuildDate><item><title>Gluster Geo-replication Dashboard Experiment</title><link>http://aravindavk.in/blog/gluster-georep-dashboard-experiment/</link><description>&lt;p&gt;Gluster Events APIs are available with Gluster 3.9 release. This
 project is created as an experiment to showcase the capabilities of
 Gluster &lt;a class="reference external" href="http://gluster.readthedocs.io/en/latest/Administrator%20Guide/Events%20APIs/"&gt;Events APIs&lt;/a&gt;, Dashboard shows realtime
 &lt;a class="reference external" href="http://gluster.readthedocs.io/en/latest/Administrator%20Guide/Geo%20Replication/"&gt;Geo-replication&lt;/a&gt;
@@ -11,7 +11,7 @@ as static display, manual page reload is required to check current status).&lt;/
 &lt;div class="section" id="install"&gt;
 &lt;h2&gt;Install&lt;/h2&gt;
 &lt;p&gt;Install the app in any one node of Cluster.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    git clone https://github.com/aravindavk/gluster-georepdash.git
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;git clone https://github.com/aravindavk/gluster-georepdash.git
 &lt;span class="nb"&gt;cd&lt;/span&gt; gluster-georepdash/
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Install the following Python dependencies using,&lt;/p&gt;
@@ -23,11 +23,12 @@ as static display, manual page reload is required to check current status).&lt;/
 &lt;p&gt;Update the &lt;tt class="docutils literal"&gt;serverName&lt;/tt&gt; in &lt;tt class="docutils literal"&gt;App.elm&lt;/tt&gt; and then generate &lt;tt class="docutils literal"&gt;static/app.js&lt;/tt&gt;
 using,(editing serverName should be automatic, this is code bug! will
 fix later)&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;elm-package install
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; gluster-georepdash/
+elm-package install
 elm-make App.elm --output static/app.js
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Install &lt;tt class="docutils literal"&gt;purecss&lt;/tt&gt; for style using,&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; static
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; gluster-georepdash/static
 bower install
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
