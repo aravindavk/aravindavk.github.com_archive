@@ -12,7 +12,15 @@
     <link href="/theme/img/fav.png" rel="icon" type="image/x-icon" />
     <meta property="og:site_name" content="Aravinda VK"/>
     <link rel="apple-touch-icon" href="/theme/img/fav.png" />
-    <title>Aravinda VK - gluster</title>
+    <title>Gluster Geo-replication Dashboard Experiment</title>
+    <meta property="og:title" content="Gluster Geo-replication Dashboard Experiment"/>
+    <meta property="twitter:title" content="Gluster Geo-replication Dashboard Experiment"/>
+    <meta name="description" content="A demo app created to showcase Gluster Events APIs"/>
+    <meta property="og:description" content="A demo app created to showcase Gluster Events APIs"/>
+    <meta property="twitter:description" content="A demo app created to showcase Gluster Events APIs"/>
+    <meta property="og:url" content="http://aravindavk.in/blog/gluster-georep-dashboard-experiment/" />
+    <meta property="twitter:url" content="http://aravindavk.in/blog/gluster-georep-dashboard-experiment/" />
+    <meta property="og:image" content="http://aravindavk.in" />
     <link href="http://aravindavk.in/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Aravinda VK Atom Feed" />
     <link rel="stylesheet" href="/theme/css/pure-min.css" />
     <link rel="stylesheet" href="/theme/css/side-menu.css" />
@@ -53,7 +61,7 @@
             <li class=""><a href="/">Home</a></li>
             <li class=""><a href="/me">About</a></li>
             <li class=""><a href="/projects">Projects</a></li>
-            <li class="pure-menu-selected"><a href="/blogs">Blogs</a></li>
+            <li class=""><a href="/blogs">Blogs</a></li>
             <li class=""><a href="/talks">Talks & Articles</a></li>
           </ul>
         </div>
@@ -65,56 +73,109 @@
         <div class="pure-u-4-5 content-left">
           <div class="left article">
 <section id="content" class="body">
-<h1>Blogs</h1>
+  <article>
+    <header>
+      <h1 class="entry-title">
+        Gluster Geo-replication Dashboard Experiment</h1>
+    </header>
+    <div class="pure-hidden-phone pure-hidden-tablet">
+<footer class="post-info">
+  <p class="author-and-date-info">
+    Posted on Thu 29 December 2016 by <a class="url fn" href="http://aravindavk.in">Aravinda VK</a>.
+  </p>
+</footer><!-- /.post-info -->
+<div class="sep"></div>    </div>
+    <div class="entry-content">
+      <p>Gluster Events APIs are available with Gluster 3.9 release. This
+project is created as an experiment to showcase the capabilities of
+Gluster <a class="reference external" href="http://gluster.readthedocs.io/en/latest/Administrator%20Guide/Events%20APIs/">Events APIs</a>, Dashboard shows realtime
+<a class="reference external" href="http://gluster.readthedocs.io/en/latest/Administrator%20Guide/Geo%20Replication/">Geo-replication</a>
+status without refreshing the page.</p>
+<p><strong>Note: This is not ready for production use Yet!</strong></p>
+<p>Real-time notifications/UI change only works with Gluster 3.9 or
+above, but dashboard can work with older versions of gluster(But
+as static display, manual page reload is required to check current status).</p>
+<div class="section" id="install">
+<h2>Install</h2>
+<p>Install the app in any one node of Cluster.</p>
+<p>Install the following Python dependencies using,</p>
+<div class="highlight"><pre><span></span>sudo pip install flask flask_sockets glustercli
+</pre></div>
+<p>Install <tt class="docutils literal">elm</tt> and <tt class="docutils literal">bower</tt> using,</p>
+<div class="highlight"><pre><span></span>sudo npm install -g bower elm
+</pre></div>
+<p>Update the <tt class="docutils literal">serverName</tt> in <tt class="docutils literal">App.elm</tt> and then generate <tt class="docutils literal">static/app.js</tt>
+using,(editing serverName should be automatic, this is code bug! will
+fix later)</p>
+<div class="highlight"><pre><span></span>elm-package install
+elm-make App.elm --output static/app.js
+</pre></div>
+<p>Install <tt class="docutils literal">purecss</tt> for style using,</p>
+<div class="highlight"><pre><span></span><span class="nb">cd</span> static
+bower install
+</pre></div>
+</div>
+<div class="section" id="usage">
+<h2>Usage</h2>
+<p>Run <tt class="docutils literal">main.py</tt>, to start the app server. Dashboard can be
+accessed using <cite>http://nodename:5000</cite></p>
+<p>Test and register this node as Events API subscriber by calling <tt class="docutils literal"><span class="pre">webhook-add</span></tt>
+command. Read more about starting Events service <a class="reference external" href="http://gluster.readthedocs.io/en/latest/Administrator%20Guide/Events%20APIs/">here</a></p>
+<div class="highlight"><pre><span></span>gluster-eventsapi webhook-test http://nodename:5000/listen
+</pre></div>
+<p>If Webhook status is OK from all nodes, then add webhook using,</p>
+<div class="highlight"><pre><span></span>gluster-eventsapi webhook-add http://nodename:5000/listen
+</pre></div>
+<p>Thats all! If everything is okay, dashboard will show realtime
+Geo-replication status.</p>
+</div>
+<div class="section" id="screenshots">
+<h2>Screenshots</h2>
+<div class="figure">
+<img alt="When Geo-replication is stopped" src="/images/georep_stop.gif" />
+<p class="caption">UI Changes when a Geo-rep session is stopped from anywhere in Cluster</p>
+</div>
+<div class="figure">
+<img alt="When Geo-replication is stopped" src="/images/georep_faulty.gif" />
+<p class="caption">UI Changes when a Geo-rep session goes to Faulty</p>
+</div>
+</div>
+<div class="section" id="ui-dashboard-notes">
+<h2>UI/Dashboard Notes</h2>
+<ul class="simple">
+<li>UI is very raw since it is created for demo purpose</li>
+<li>Frontend developed using <a class="reference external" href="http://elm-lang.org/">Elm</a></li>
+<li>No event available for change in &quot;Last Synced&quot; column, So that
+column value will not match with realtime output from status
+command. Refresh the page to see the latest status.</li>
+</ul>
+</div>
 
-<div class="article-title-row">
-  <div class="article-date pure-hidden-phone">29 Dec, 2016</div>
-  <a href="/blog/gluster-georep-dashboard-experiment/">Gluster Geo-replication Dashboard Experiment </a>
-  <div class="mobile-posted-on pure-hidden-desktop pure-hidden-tablet">posted on 29 Dec, 2016</div>
+    </div><!-- /.entry-content -->
+    <div class="pure-hidden-desktop">
+<footer class="post-info">
+  <p class="author-and-date-info">
+    Posted on Thu 29 December 2016 by <a class="url fn" href="http://aravindavk.in">Aravinda VK</a>.
+  </p>
+</footer><!-- /.post-info -->
+<div class="sep"></div>    </div>
+    <div class="permalink-div">
+      Permalink: <a href="http://aravindavk.in/blog/gluster-georep-dashboard-experiment/" rel="bookmark" title="Permalink to Gluster Geo-replication Dashboard Experiment">http://aravindavk.in/blog/gluster-georep-dashboard-experiment/</a>
+    </div>
+<div class="comments">
+  <h2>Comments !</h2>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_identifier = "blog/gluster-georep-dashboard-experiment/";
+    var disqus_url = "http://aravindavk.in/blog/gluster-georep-dashboard-experiment/";
+    (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = 'http://vkaravinda.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
 </div>
-<p class="summary pure-hidden-phone">A demo app created to showcase Gluster Events APIs <a href="/blog/gluster-georep-dashboard-experiment/">...</a></p>
-<div class="article-title-row">
-  <div class="article-date pure-hidden-phone">21 Nov, 2016</div>
-  <a href="/blog/gluster-georep-tools/">Gluster Geo-replication Tools </a>
-  <div class="mobile-posted-on pure-hidden-desktop pure-hidden-tablet">posted on 21 Nov, 2016</div>
-</div>
-<p class="summary pure-hidden-phone">A must have tools collection for Gluster Geo-replication users! <a href="/blog/gluster-georep-tools/">...</a></p>
-<div class="article-title-row">
-  <div class="article-date pure-hidden-phone">26 Sep, 2016</div>
-  <a href="/blog/effective-gluster-monitoring-eventsapis/">Effective Gluster Monitoring using Events APIs </a>
-  <div class="mobile-posted-on pure-hidden-desktop pure-hidden-tablet">posted on 26 Sep, 2016</div>
-</div>
-<p class="summary pure-hidden-phone">Without Events APIs, one way to get status of Cluster is by calling Gluster status command/api in periodic intervals. <a href="/blog/effective-gluster-monitoring-eventsapis/">...</a></p>
-<div class="article-title-row">
-  <div class="article-date pure-hidden-phone">11 May, 2016</div>
-  <a href="/blog/10-mins-intro-to-gluster-eventing/">10 minutes introduction to Gluster Eventing Feature </a>
-  <div class="mobile-posted-on pure-hidden-desktop pure-hidden-tablet">posted on 11 May, 2016</div>
-</div>
-<p class="summary pure-hidden-phone">It provides close to realtime notification and alerts for the Gluster cluster state changes. <a href="/blog/10-mins-intro-to-gluster-eventing/">...</a></p>
-<div class="article-title-row">
-  <div class="article-date pure-hidden-phone">14 Mar, 2016</div>
-  <a href="/blog/qcow2-snapshots-and-gluster-georeplication/">Qcow2 snapshots and Gluster Geo-replication </a>
-  <div class="mobile-posted-on pure-hidden-desktop pure-hidden-tablet">posted on 14 Mar, 2016</div>
-</div>
-<p class="summary pure-hidden-phone">Geo-replication is aware of Gluster Sharding feature and taking the advantage of syncing small sharded files instead of big qcow2 image files <a href="/blog/qcow2-snapshots-and-gluster-georeplication/">...</a></p>
-<div class="article-title-row">
-  <div class="article-date pure-hidden-phone">09 Feb, 2016</div>
-  <a href="/blog/interfaces-for-gluster-management/">Interfaces for Gluster Management </a>
-  <div class="mobile-posted-on pure-hidden-desktop pure-hidden-tablet">posted on 09 Feb, 2016</div>
-</div>
-<p class="summary pure-hidden-phone">But Gluster CLIs are not enough for managing from remote place or to integrate with third party Management/Monitoring tools <a href="/blog/interfaces-for-gluster-management/">...</a></p>
-<div class="article-title-row">
-  <div class="article-date pure-hidden-phone">11 Sep, 2015</div>
-  <a href="/blog/simulating-race-conditions/">Simulating Race Conditions </a>
-  <div class="mobile-posted-on pure-hidden-desktop pure-hidden-tablet">posted on 11 Sep, 2015</div>
-</div>
-<p class="summary pure-hidden-phone">To uncover the bugs we need to setup workload and run multiple times since issues may not happen always. But it is tedious to run multiple times with actual data. How about simulating/mocking it? <a href="/blog/simulating-race-conditions/">...</a></p>
-<div class="article-title-row">
-  <div class="article-date pure-hidden-phone">02 Sep, 2015</div>
-  <a href="/blog/introducing-georepsetup/">Introducing georepsetup - Gluster Geo-replication Setup Tool </a>
-  <div class="mobile-posted-on pure-hidden-desktop pure-hidden-tablet">posted on 02 Sep, 2015</div>
-</div>
-<p class="summary pure-hidden-phone">Now setting up Geo-replication is as easy as running one command. Yay! <a href="/blog/introducing-georepsetup/">...</a></p>
+  </article>
 </section>
             <div class="copyright pure-hidden-desktop pure-hidden-tablet">&copy; 2008-2014 Aravinda VK, <br/>All rights reserved</div>
           </div>
@@ -149,7 +210,7 @@
                 <li class=""><a href="/">Home</a></li>
                 <li class=""><a href="/me">About</a></li>
                 <li class=""><a href="/projects">Projects</a></li>
-                <li class="pure-menu-selected"><a href="/blogs">Blogs</a></li>
+                <li class=""><a href="/blogs">Blogs</a></li>
                 <li class=""><a href="/talks">Talks & Articles</a></li>
               </ul>
             </div>

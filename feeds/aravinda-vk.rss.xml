@@ -1,5 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aravinda VK</title><link>http://aravindavk.in/</link><description></description><atom:link rel="self" href="http://aravindavk.in/feeds/aravinda-vk.rss.xml"></atom:link><lastBuildDate>Tue, 27 Dec 2016 00:00:00 +0530</lastBuildDate><item><title>ಪಪಪ</title><link>http://aravindavk.in/blog/papapa/</link><description>&lt;p&gt;ಹೇಳಿ ಕೊಟ್ಟಿದ್ದೆಲ್ಲಾ ಹೇಳಲು ಪ್ರಯತ್ನ ಮಾಡುವ ಮಗಳ ಹತ್ತಿರ ಅವಳ ಹೆಸರು &lt;strong&gt;ಇಂಪನ&lt;/strong&gt; ಎಂದು ಹೇಳಿಸಲು ಸೋತಿದ್ದೆವು. ಇತ್ತೀಚೆಗೆ ಅವಳ ಹೆಸರನ್ನ &lt;strong&gt;ಪಪಪ&lt;/strong&gt; ಅಂತ ಹೇಳ್ಕೊಳ್ತಿದ್ಳು, ಅದೆಲ್ಲಿಂದ ಕಲಿತಿದ್ದೋ ಏನೋಪ್ಪಾ..&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Aravinda VK</title><link>http://aravindavk.in/</link><description></description><atom:link rel="self" href="http://aravindavk.in/feeds/aravinda-vk.rss.xml"></atom:link><lastBuildDate>Thu, 29 Dec 2016 00:00:00 +0530</lastBuildDate><item><title>Gluster Geo-replication Dashboard Experiment</title><link>http://aravindavk.in/blog/gluster-georep-dashboard-experiment/</link><description>&lt;p&gt;Gluster Events APIs are available with Gluster 3.9 release. This
+project is created as an experiment to showcase the capabilities of
+Gluster &lt;a class="reference external" href="http://gluster.readthedocs.io/en/latest/Administrator%20Guide/Events%20APIs/"&gt;Events APIs&lt;/a&gt;, Dashboard shows realtime
+&lt;a class="reference external" href="http://gluster.readthedocs.io/en/latest/Administrator%20Guide/Geo%20Replication/"&gt;Geo-replication&lt;/a&gt;
+status without refreshing the page.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Note: This is not ready for production use Yet!&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Real-time notifications/UI change only works with Gluster 3.9 or
+above, but dashboard can work with older versions of gluster(But
+as static display, manual page reload is required to check current status).&lt;/p&gt;
+&lt;div class="section" id="install"&gt;
+&lt;h2&gt;Install&lt;/h2&gt;
+&lt;p&gt;Install the app in any one node of Cluster.&lt;/p&gt;
+&lt;p&gt;Install the following Python dependencies using,&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo pip install flask flask_sockets glustercli
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Install &lt;tt class="docutils literal"&gt;elm&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;bower&lt;/tt&gt; using,&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo npm install -g bower elm
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Update the &lt;tt class="docutils literal"&gt;serverName&lt;/tt&gt; in &lt;tt class="docutils literal"&gt;App.elm&lt;/tt&gt; and then generate &lt;tt class="docutils literal"&gt;static/app.js&lt;/tt&gt;
+using,(editing serverName should be automatic, this is code bug! will
+fix later)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;elm-package install
+elm-make App.elm --output static/app.js
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Install &lt;tt class="docutils literal"&gt;purecss&lt;/tt&gt; for style using,&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; static
+bower install
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="usage"&gt;
+&lt;h2&gt;Usage&lt;/h2&gt;
+&lt;p&gt;Run &lt;tt class="docutils literal"&gt;main.py&lt;/tt&gt;, to start the app server. Dashboard can be
+accessed using &lt;cite&gt;http://nodename:5000&lt;/cite&gt;&lt;/p&gt;
+&lt;p&gt;Test and register this node as Events API subscriber by calling &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;webhook-add&lt;/span&gt;&lt;/tt&gt;
+command. Read more about starting Events service &lt;a class="reference external" href="http://gluster.readthedocs.io/en/latest/Administrator%20Guide/Events%20APIs/"&gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;gluster-eventsapi webhook-test http://nodename:5000/listen
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;If Webhook status is OK from all nodes, then add webhook using,&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;gluster-eventsapi webhook-add http://nodename:5000/listen
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Thats all! If everything is okay, dashboard will show realtime
+Geo-replication status.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="screenshots"&gt;
+&lt;h2&gt;Screenshots&lt;/h2&gt;
+&lt;div class="figure"&gt;
+&lt;img alt="When Geo-replication is stopped" src="/images/georep_stop.gif" /&gt;
+&lt;p class="caption"&gt;UI Changes when a Geo-rep session is stopped from anywhere in Cluster&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="figure"&gt;
+&lt;img alt="When Geo-replication is stopped" src="/images/georep_faulty.gif" /&gt;
+&lt;p class="caption"&gt;UI Changes when a Geo-rep session goes to Faulty&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="ui-dashboard-notes"&gt;
+&lt;h2&gt;UI/Dashboard Notes&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;UI is very raw since it is created for demo purpose&lt;/li&gt;
+&lt;li&gt;Frontend developed using &lt;a class="reference external" href="http://elm-lang.org/"&gt;Elm&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;No event available for change in &amp;quot;Last Synced&amp;quot; column, So that
+column value will not match with realtime output from status
+command. Refresh the page to see the latest status.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Aravinda VK</dc:creator><pubDate>Thu, 29 Dec 2016 00:00:00 +0530</pubDate><guid>tag:aravindavk.in,2016-12-29:blog/gluster-georep-dashboard-experiment/</guid><category>gluster</category><category>glusterfsblog</category></item><item><title>ಪಪಪ</title><link>http://aravindavk.in/blog/papapa/</link><description>&lt;p&gt;ಹೇಳಿ ಕೊಟ್ಟಿದ್ದೆಲ್ಲಾ ಹೇಳಲು ಪ್ರಯತ್ನ ಮಾಡುವ ಮಗಳ ಹತ್ತಿರ ಅವಳ ಹೆಸರು &lt;strong&gt;ಇಂಪನ&lt;/strong&gt; ಎಂದು ಹೇಳಿಸಲು ಸೋತಿದ್ದೆವು. ಇತ್ತೀಚೆಗೆ ಅವಳ ಹೆಸರನ್ನ &lt;strong&gt;ಪಪಪ&lt;/strong&gt; ಅಂತ ಹೇಳ್ಕೊಳ್ತಿದ್ಳು, ಅದೆಲ್ಲಿಂದ ಕಲಿತಿದ್ದೋ ಏನೋಪ್ಪಾ..&lt;/p&gt;
 &lt;p&gt;&amp;quot;ಇಂ.. ಪ.. ನ.. ಇಂಪನ&amp;quot; ಅಂತ ಹೇಳಿಕೊಟ್ರೆ...&lt;/p&gt;
 &lt;p&gt;&amp;quot;ಇಂ.. ಪ.. ನ.. ಪಪಪ&amp;quot; ಅಂತ ಹೇಳ್ತಾಳೆ :)&lt;/p&gt;
 &lt;p&gt;ಇಂಪನಂಗೂ ಪಪಪಂಗೂ ಏನು ಲಿಂಕ್ ಅಂತ ಯಾರಿಗಾದ್ರೂ ಗೊತ್ತಿದ್ರೆ ಹೇಳ್ತೀರಾ?&lt;/p&gt;
