@@ -1,5 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aravinda VK</title><link>http://aravindavk.in/</link><description></description><atom:link rel="self" href="http://aravindavk.in/feeds/aravinda-vk.rss.xml"></atom:link><lastBuildDate>Thu, 29 Dec 2016 00:00:00 +0530</lastBuildDate><item><title>Gluster Geo-replication Dashboard Experiment</title><link>http://aravindavk.in/blog/gluster-georep-dashboard-experiment/</link><description>&lt;p&gt;Gluster Events APIs are available with Gluster 3.9 release. This
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aravinda VK</title><link>http://aravindavk.in/</link><description></description><atom:link href="http://aravindavk.in/feeds/aravinda-vk.rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 01 Jan 2017 00:00:00 +0530</lastBuildDate><item><title>Gluster, Me and 2016</title><link>http://aravindavk.in/blog/gluster-and-me/</link><description>&lt;p&gt;I started working with the Gluster community since 2013.&lt;/p&gt;
+&lt;p&gt;2016 with Gluster was great, gave me the opportunity to work on many areas of Gluster mainly Geo-replication, Glusterfind and Events APIs. Expecting more and more challenges in this new year. &lt;strong&gt;Happy New Year to all&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Main highlights&lt;/strong&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Became &lt;a class="reference external" href="http://www.gluster.org/pipermail/gluster-devel/2016-March/048620.html"&gt;Maintainer&lt;/a&gt; of Gluster Geo-replication component&lt;/li&gt;
+&lt;li&gt;Designed and implemented Events APIs for Gluster&lt;/li&gt;
+&lt;li&gt;Attended Gluster developer summit in Berlin&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Number of patches per year&lt;/strong&gt;&lt;/p&gt;
+&lt;img alt="Number of Patches per Year" src="/images/gluster-contribution-by-year.png" /&gt;
+&lt;!-- 2013     5
+2014    27
+2015    60
+2016    65
+library(ggplot2)
+png("gluster-contribution-by-year.png", width=400, height=300)
+dd &lt;- data.frame(year=c(2013, 2014, 2015, 2016), num=c(5, 27, 60, 65))
+ggplot(dd, aes(x=year)) + geom_bar(stat="identity", aes(y=num), fill="#483d8b") + geom_text(aes(label=num, y=num), vjust=2, color="white") + labs(x="Year", y="Number of Patches")
+dev.off() --&gt;
+&lt;p&gt;&lt;strong&gt;Number of patches per component&lt;/strong&gt;&lt;/p&gt;
+&lt;img alt="Number of Patches per Component" src="/images/gluster-contribution-by-component.png" /&gt;
+&lt;!-- glusterfind             22
+eventsapi               20
+geo-replication        102
+others                  13
+library(ggplot2)
+png("gluster-contribution-by-component.png", width=400, height=300)
+dd &lt;- data.frame(component=c("geo-replication", "glusterfind", "eventsapi", "others"), num=c(102, 22, 20, 13))
+ggplot(dd, aes(x=component)) + geom_bar(stat="identity", aes(y=num), fill="#483d8b") + geom_text(aes(label=num, y=num), vjust=2, color="white") + labs(x="Component", y="Number of Patches")
+dev.off() --&gt;
+&lt;div class="section" id="blogs-about-gluster"&gt;
+&lt;h2&gt;Blogs about Gluster&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;2013&lt;/strong&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://aravindavk.in/blog/glusterfs-tools"&gt;GlusterFS Tools&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://aravindavk.in/blog/glusterdf-df-for-gluster-volumes"&gt;glusterdf - df for gluster volumes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://aravindavk.in/blog/effective-glusterfs-monitoring-using-hooks"&gt;Effective GlusterFs monitoring using hooks&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;2014&lt;/strong&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://aravindavk.in/blog/gvolinfojson"&gt;gvolinfojson - A utility to convert xml output of gluster volume info to json&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://aravindavk.in/blog/introducing-gdash"&gt;Introducing gdash - GlusterFS Dashboard&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;2015&lt;/strong&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://aravindavk.in/blog/glusterfs-georeplication-tutorials-1"&gt;GlusterFS Geo-replication Tutorials - Understanding Session Creation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://aravindavk.in/blog/introducing-georepsetup"&gt;Introducing georepsetup - Gluster Geo-replication Setup Tool&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://aravindavk.in/blog/simulating-race-conditions"&gt;Simulating Race Conditions&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;2016&lt;/strong&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://aravindavk.in/blog/interfaces-for-gluster-management"&gt;Interfaces for Gluster Management&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://aravindavk.in/blog/qcow2-snapshots-and-gluster-georeplication"&gt;Qcow2 snapshots and Gluster Geo-replication&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://aravindavk.in/blog/10-mins-intro-to-gluster-eventing"&gt;10 minutes introduction to Gluster Eventing Feature&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://aravindavk.in/blog/effective-gluster-monitoring-eventsapis"&gt;Effective Gluster Monitoring using Events APIs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://aravindavk.in/blog/gluster-georep-tools"&gt;Gluster Geo-replication Tools&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://aravindavk.in/blog/gluster-georep-dashboard-experiment"&gt;Gluster Geo-replication Dashboard Experiment&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;img alt="Gluster Blogs" src="/images/gluster-blogs-till-2016.png" /&gt;
+&lt;!-- R code to generate Blogs graph
+library(ggplot2)
+dd &lt;- data.frame(year=c(2013, 2014, 2015, 2016), num=c(3, 2, 3, 6))
+png("gluster-blogs-till-2016.png", width=400, height=300)
+ggplot(dd, aes(x=year)) + geom_bar(stat="identity", aes(y=num), fill="#483d8b") + geom_text(aes(label=num, y=num), vjust=2, color="white") + labs(x="Years", y="Number of Blogs")
+dev.off() --&gt;
+&lt;/div&gt;
+&lt;div class="section" id="gluster-github-projects"&gt;
+&lt;h2&gt;Gluster github projects&lt;/h2&gt;
+&lt;p&gt;Many projects are still in young stage. Comments and Suggestions are welcome.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Projects started in 2013&lt;/strong&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;python&lt;/tt&gt; &lt;a class="reference external" href="https://github.com/aravindavk/glusterfs-tools"&gt;Tool to show Volume information in tabular format and df like command for Gluster Volumes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;python&lt;/tt&gt; &lt;a class="reference external" href="https://github.com/aravindavk/glusterfs-web"&gt;Gluster Monitoring experiment using Gluster hooks&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Projects started in 2014&lt;/strong&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;golang&lt;/tt&gt; &lt;a class="reference external" href="https://github.com/aravindavk/gvolinfojson"&gt;Tool to convert XML output of gluster volume info --xml to json&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;python&lt;/tt&gt; &lt;tt class="docutils literal"&gt;emberjs&lt;/tt&gt; &lt;a class="reference external" href="https://github.com/aravindavk/gdash"&gt;Light weight Web dashboard to view Cluster information in Web&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;rust&lt;/tt&gt; &lt;a class="reference external" href="https://github.com/aravindavk/glusterchangelog"&gt;Gluster Changelog parser library and utility&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Projects started in 2015&lt;/strong&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;golang&lt;/tt&gt; &lt;a class="reference external" href="https://github.com/aravindavk/crawler"&gt;Experimental GlusterFS brick crawler&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;python&lt;/tt&gt; &lt;a class="reference external" href="https://github.com/aravindavk/gfid_to_path"&gt;GFID to Path using Historical Changelogs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;python&lt;/tt&gt; &lt;a class="reference external" href="https://github.com/aravindavk/gluster_georep_scripts"&gt;Collection of Geo-replication troubleshooting scripts(Changelog parser, xtime, stime and gfid utilities)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;python&lt;/tt&gt; &lt;a class="reference external" href="https://github.com/aravindavk/georepsetup"&gt;Alternate setup tool for Gluster Geo-replication&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Projects started in 2016&lt;/strong&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;go&lt;/tt&gt;     &lt;a class="reference external" href="https://github.com/aravindavk/glustercli"&gt;Go language bindings for Gluster CLI commands&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;python&lt;/tt&gt; &lt;a class="reference external" href="https://github.com/aravindavk/gchangelogapi"&gt;Changelog based utility to search modified/not modified files in Gluster Volume&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;python&lt;/tt&gt; &lt;a class="reference external" href="https://github.com/aravindavk/gluster_changelog_to_workload"&gt;Tool to generate workload by reading existing changelogs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;python&lt;/tt&gt; &lt;a class="reference external" href="https://github.com/aravindavk/gluster-file-history"&gt;Utility to find life cycle of a file or directory using Gluster Changelogs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;python&lt;/tt&gt; &lt;a class="reference external" href="https://github.com/gluster/glustercli-python"&gt;Python bindings for Gluster CLI commands&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;rust&lt;/tt&gt;   &lt;a class="reference external" href="https://github.com/aravindavk/glusterxattr"&gt;Library to manage Gluster Xattrs(Not all xattrs covered Yet)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;rust&lt;/tt&gt;   &lt;a class="reference external" href="https://github.com/aravindavk/gluster-dir-health-check"&gt;A tool to find issues with directories in Gluster Volume&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;python&lt;/tt&gt; &lt;a class="reference external" href="https://github.com/aravindavk/gluster-georep-tools"&gt;Better Geo-replication status and setup tool&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;python&lt;/tt&gt; &lt;a class="reference external" href="https://github.com/gluster/restapi"&gt;(Incomplete) REST APIs for Gluster Management(wrappers around CLI commands)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;python&lt;/tt&gt; &lt;a class="reference external" href="https://github.com/gluster/glustertool"&gt;Collection of Gluster debugging tools(gfid, dirgfid2path, changelogparser, stime, xtime, volmark)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;python&lt;/tt&gt; &lt;tt class="docutils literal"&gt;elm&lt;/tt&gt; &lt;a class="reference external" href="https://github.com/aravindavk/gluster-georepdash"&gt;Geo-replication Dashboard experiment using Events APIs&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;img alt="Gluster Projects" src="/images/gluster-github-projects-till-2016.png" /&gt;
+&lt;!-- R code to generate Blogs graph
+library(ggplot2)
+dd &lt;- data.frame(year=c(2013, 2014, 2015, 2016), num=c(2, 3, 4, 11))
+png("gluster-github-projects-till-2016.png", width=400, height=300)
+ggplot(dd, aes(x=year)) + geom_bar(stat="identity", aes(y=num), fill="#483d8b") + geom_text(aes(label=num, y=num), vjust=2, color="white") + labs(x="Years", y="Number of Projects")
+dev.off() --&gt;
+&lt;p&gt;Charts are created using &lt;tt class="docutils literal"&gt;ggplot2&lt;/tt&gt; of &lt;a class="reference external" href="https://www.r-project.org/"&gt;R&lt;/a&gt; programming, For code look in HTML comments of this page :)&lt;/p&gt;
+&lt;/div&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Aravinda VK</dc:creator><pubDate>Sun, 01 Jan 2017 00:00:00 +0530</pubDate><guid>tag:aravindavk.in,2017-01-01:blog/gluster-and-me/</guid><category>gluster</category><category>glusterfsblog</category></item><item><title>Gluster Geo-replication Dashboard Experiment</title><link>http://aravindavk.in/blog/gluster-georep-dashboard-experiment/</link><description>&lt;p&gt;Gluster Events APIs are available with Gluster 3.9 release. This
 project is created as an experiment to showcase the capabilities of
 Gluster &lt;a class="reference external" href="http://gluster.readthedocs.io/en/latest/Administrator%20Guide/Events%20APIs/"&gt;Events APIs&lt;/a&gt;, Dashboard shows realtime
 &lt;a class="reference external" href="http://gluster.readthedocs.io/en/latest/Administrator%20Guide/Geo%20Replication/"&gt;Geo-replication&lt;/a&gt;

@@ -1,5 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Aravinda VK</title><link rel="alternate" href="http://aravindavk.in/"></link><link rel="self" href="http://aravindavk.in/feeds/tag-glusterfsblog.atom.xml"></link><id>http://aravindavk.in/</id><updated>2016-12-29T00:00:00+05:30</updated><entry><title>Gluster Geo-replication Dashboard Experiment</title><link rel="alternate" href="http://aravindavk.in/blog/gluster-georep-dashboard-experiment/"></link><published>2016-12-29T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2016-12-29:blog/gluster-georep-dashboard-experiment/</id><summary type="html">&lt;p&gt;Gluster Events APIs are available with Gluster 3.9 release. This
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Aravinda VK</title><link href="http://aravindavk.in/" rel="alternate"></link><link href="http://aravindavk.in/feeds/tag-glusterfsblog.atom.xml" rel="self"></link><id>http://aravindavk.in/</id><updated>2017-01-01T00:00:00+05:30</updated><entry><title>Gluster, Me and 2016</title><link href="http://aravindavk.in/blog/gluster-and-me/" rel="alternate"></link><published>2017-01-01T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2017-01-01:blog/gluster-and-me/</id><summary type="html">&lt;p&gt;I started working with the Gluster community since 2013.&lt;/p&gt;
+&lt;p&gt;2016 with Gluster was great, gave me the opportunity to work on many areas of Gluster mainly Geo-replication, Glusterfind and Events APIs. Expecting more and more challenges in this new year. &lt;strong&gt;Happy New Year to all&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Main highlights&lt;/strong&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Became &lt;a class="reference external" href="http://www.gluster.org/pipermail/gluster-devel/2016-March/048620.html"&gt;Maintainer&lt;/a&gt; of Gluster Geo-replication component&lt;/li&gt;
+&lt;li&gt;Designed and implemented Events APIs for Gluster&lt;/li&gt;
+&lt;li&gt;Attended Gluster developer summit in Berlin&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Number of patches per year&lt;/strong&gt;&lt;/p&gt;
+&lt;img alt="Number of Patches per Year" src="/images/gluster-contribution-by-year.png" /&gt;
+&lt;!-- 2013     5
+2014    27
+2015    60
+2016    65
+library(ggplot2)
+png("gluster-contribution-by-year.png", width=400, height=300)
+dd &lt;- data.frame(year=c(2013, 2014, 2015, 2016), num=c(5, 27, 60, 65))
+ggplot(dd, aes(x=year)) + geom_bar(stat="identity", aes(y=num), fill="#483d8b") + geom_text(aes(label=num, y=num), vjust=2, color="white") + labs(x="Year", y="Number of Patches")
+dev.off() --&gt;
+&lt;p&gt;&lt;strong&gt;Number of patches per component&lt;/strong&gt;&lt;/p&gt;
+&lt;img alt="Number of Patches per Component" src="/images/gluster-contribution-by-component.png" /&gt;
+&lt;!-- glusterfind             22
+eventsapi               20
+geo-replication        102
+others                  13
+library(ggplot2)
+png("gluster-contribution-by-component.png", width=400, height=300)
+dd &lt;- data.frame(component=c("geo-replication", "glusterfind", "eventsapi", "others"), num=c(102, 22, 20, 13))
+ggplot(dd, aes(x=component)) + geom_bar(stat="identity", aes(y=num), fill="#483d8b") + geom_text(aes(label=num, y=num), vjust=2, color="white") + labs(x="Component", y="Number of Patches")
+dev.off() --&gt;
+&lt;div class="section" id="blogs-about-gluster"&gt;
+&lt;h2&gt;Blogs about Gluster&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;2013&lt;/strong&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://aravindavk.in/blog/glusterfs-tools"&gt;GlusterFS Tools&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://aravindavk.in/blog/glusterdf-df-for-gluster-volumes"&gt;glusterdf - df for gluster volumes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://aravindavk.in/blog/effective-glusterfs-monitoring-using-hooks"&gt;Effective GlusterFs monitoring using hooks&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;2014&lt;/strong&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://aravindavk.in/blog/gvolinfojson"&gt;gvolinfojson - A utility to convert xml output of gluster volume info to json&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://aravindavk.in/blog/introducing-gdash"&gt;Introducing gdash - GlusterFS Dashboard&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;2015&lt;/strong&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://aravindavk.in/blog/glusterfs-georeplication-tutorials-1"&gt;GlusterFS Geo-replication Tutorials - Understanding Session Creation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://aravindavk.in/blog/introducing-georepsetup"&gt;Introducing georepsetup - Gluster Geo-replication Setup Tool&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://aravindavk.in/blog/simulating-race-conditions"&gt;Simulating Race Conditions&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;2016&lt;/strong&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://aravindavk.in/blog/interfaces-for-gluster-management"&gt;Interfaces for Gluster Management&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://aravindavk.in/blog/qcow2-snapshots-and-gluster-georeplication"&gt;Qcow2 snapshots and Gluster Geo-replication&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://aravindavk.in/blog/10-mins-intro-to-gluster-eventing"&gt;10 minutes introduction to Gluster Eventing Feature&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://aravindavk.in/blog/effective-gluster-monitoring-eventsapis"&gt;Effective Gluster Monitoring using Events APIs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://aravindavk.in/blog/gluster-georep-tools"&gt;Gluster Geo-replication Tools&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://aravindavk.in/blog/gluster-georep-dashboard-experiment"&gt;Gluster Geo-replication Dashboard Experiment&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;img alt="Gluster Blogs" src="/images/gluster-blogs-till-2016.png" /&gt;
+&lt;!-- R code to generate Blogs graph
+library(ggplot2)
+dd &lt;- data.frame(year=c(2013, 2014, 2015, 2016), num=c(3, 2, 3, 6))
+png("gluster-blogs-till-2016.png", width=400, height=300)
+ggplot(dd, aes(x=year)) + geom_bar(stat="identity", aes(y=num), fill="#483d8b") + geom_text(aes(label=num, y=num), vjust=2, color="white") + labs(x="Years", y="Number of Blogs")
+dev.off() --&gt;
+&lt;/div&gt;
+&lt;div class="section" id="gluster-github-projects"&gt;
+&lt;h2&gt;Gluster github projects&lt;/h2&gt;
+&lt;p&gt;Many projects are still in young stage. Comments and Suggestions are welcome.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Projects started in 2013&lt;/strong&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;python&lt;/tt&gt; &lt;a class="reference external" href="https://github.com/aravindavk/glusterfs-tools"&gt;Tool to show Volume information in tabular format and df like command for Gluster Volumes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;python&lt;/tt&gt; &lt;a class="reference external" href="https://github.com/aravindavk/glusterfs-web"&gt;Gluster Monitoring experiment using Gluster hooks&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Projects started in 2014&lt;/strong&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;golang&lt;/tt&gt; &lt;a class="reference external" href="https://github.com/aravindavk/gvolinfojson"&gt;Tool to convert XML output of gluster volume info --xml to json&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;python&lt;/tt&gt; &lt;tt class="docutils literal"&gt;emberjs&lt;/tt&gt; &lt;a class="reference external" href="https://github.com/aravindavk/gdash"&gt;Light weight Web dashboard to view Cluster information in Web&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;rust&lt;/tt&gt; &lt;a class="reference external" href="https://github.com/aravindavk/glusterchangelog"&gt;Gluster Changelog parser library and utility&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Projects started in 2015&lt;/strong&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;golang&lt;/tt&gt; &lt;a class="reference external" href="https://github.com/aravindavk/crawler"&gt;Experimental GlusterFS brick crawler&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;python&lt;/tt&gt; &lt;a class="reference external" href="https://github.com/aravindavk/gfid_to_path"&gt;GFID to Path using Historical Changelogs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;python&lt;/tt&gt; &lt;a class="reference external" href="https://github.com/aravindavk/gluster_georep_scripts"&gt;Collection of Geo-replication troubleshooting scripts(Changelog parser, xtime, stime and gfid utilities)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;python&lt;/tt&gt; &lt;a class="reference external" href="https://github.com/aravindavk/georepsetup"&gt;Alternate setup tool for Gluster Geo-replication&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Projects started in 2016&lt;/strong&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;go&lt;/tt&gt;     &lt;a class="reference external" href="https://github.com/aravindavk/glustercli"&gt;Go language bindings for Gluster CLI commands&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;python&lt;/tt&gt; &lt;a class="reference external" href="https://github.com/aravindavk/gchangelogapi"&gt;Changelog based utility to search modified/not modified files in Gluster Volume&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;python&lt;/tt&gt; &lt;a class="reference external" href="https://github.com/aravindavk/gluster_changelog_to_workload"&gt;Tool to generate workload by reading existing changelogs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;python&lt;/tt&gt; &lt;a class="reference external" href="https://github.com/aravindavk/gluster-file-history"&gt;Utility to find life cycle of a file or directory using Gluster Changelogs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;python&lt;/tt&gt; &lt;a class="reference external" href="https://github.com/gluster/glustercli-python"&gt;Python bindings for Gluster CLI commands&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;rust&lt;/tt&gt;   &lt;a class="reference external" href="https://github.com/aravindavk/glusterxattr"&gt;Library to manage Gluster Xattrs(Not all xattrs covered Yet)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;rust&lt;/tt&gt;   &lt;a class="reference external" href="https://github.com/aravindavk/gluster-dir-health-check"&gt;A tool to find issues with directories in Gluster Volume&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;python&lt;/tt&gt; &lt;a class="reference external" href="https://github.com/aravindavk/gluster-georep-tools"&gt;Better Geo-replication status and setup tool&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;python&lt;/tt&gt; &lt;a class="reference external" href="https://github.com/gluster/restapi"&gt;(Incomplete) REST APIs for Gluster Management(wrappers around CLI commands)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;python&lt;/tt&gt; &lt;a class="reference external" href="https://github.com/gluster/glustertool"&gt;Collection of Gluster debugging tools(gfid, dirgfid2path, changelogparser, stime, xtime, volmark)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;python&lt;/tt&gt; &lt;tt class="docutils literal"&gt;elm&lt;/tt&gt; &lt;a class="reference external" href="https://github.com/aravindavk/gluster-georepdash"&gt;Geo-replication Dashboard experiment using Events APIs&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;img alt="Gluster Projects" src="/images/gluster-github-projects-till-2016.png" /&gt;
+&lt;!-- R code to generate Blogs graph
+library(ggplot2)
+dd &lt;- data.frame(year=c(2013, 2014, 2015, 2016), num=c(2, 3, 4, 11))
+png("gluster-github-projects-till-2016.png", width=400, height=300)
+ggplot(dd, aes(x=year)) + geom_bar(stat="identity", aes(y=num), fill="#483d8b") + geom_text(aes(label=num, y=num), vjust=2, color="white") + labs(x="Years", y="Number of Projects")
+dev.off() --&gt;
+&lt;p&gt;Charts are created using &lt;tt class="docutils literal"&gt;ggplot2&lt;/tt&gt; of &lt;a class="reference external" href="https://www.r-project.org/"&gt;R&lt;/a&gt; programming, For code look in HTML comments of this page :)&lt;/p&gt;
+&lt;/div&gt;
+</summary><category term="gluster"></category><category term="glusterfsblog"></category></entry><entry><title>Gluster Geo-replication Dashboard Experiment</title><link href="http://aravindavk.in/blog/gluster-georep-dashboard-experiment/" rel="alternate"></link><published>2016-12-29T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2016-12-29:blog/gluster-georep-dashboard-experiment/</id><summary type="html">&lt;p&gt;Gluster Events APIs are available with Gluster 3.9 release. This
 project is created as an experiment to showcase the capabilities of
 Gluster &lt;a class="reference external" href="http://gluster.readthedocs.io/en/latest/Administrator%20Guide/Events%20APIs/"&gt;Events APIs&lt;/a&gt;, Dashboard shows realtime
 &lt;a class="reference external" href="http://gluster.readthedocs.io/en/latest/Administrator%20Guide/Geo%20Replication/"&gt;Geo-replication&lt;/a&gt;
@@ -67,7 +177,7 @@ column value will not match with realtime output from status
 command. Refresh the page to see the latest status.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
-</summary><category term="gluster"></category><category term="glusterfsblog"></category></entry><entry><title>Gluster Geo-replication Tools</title><link rel="alternate" href="http://aravindavk.in/blog/gluster-georep-tools/"></link><published>2016-11-21T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2016-11-21:blog/gluster-georep-tools/</id><summary type="html">&lt;p&gt;A must have tools collection for &lt;a class="reference external" href="http://gluster.readthedocs.io/en/latest/AdministratorGuide/GeoReplication"&gt;Gluster Geo-replication&lt;/a&gt; users!&lt;/p&gt;
+</summary><category term="gluster"></category><category term="glusterfsblog"></category></entry><entry><title>Gluster Geo-replication Tools</title><link href="http://aravindavk.in/blog/gluster-georep-tools/" rel="alternate"></link><published>2016-11-21T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2016-11-21:blog/gluster-georep-tools/</id><summary type="html">&lt;p&gt;A must have tools collection for &lt;a class="reference external" href="http://gluster.readthedocs.io/en/latest/AdministratorGuide/GeoReplication"&gt;Gluster Geo-replication&lt;/a&gt; users!&lt;/p&gt;
 &lt;p&gt;Currently this repository contains &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;gluster-georep-setup&lt;/span&gt;&lt;/tt&gt; and
 &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;gluster-georep-status&lt;/span&gt;&lt;/tt&gt; tools. More tools will be added in future. Let
 me know if you need any specific tool to manage Gluster
@@ -121,7 +231,7 @@ Geo-replication is as easy as running one command. Yay!&lt;/p&gt;
 &lt;p&gt;Usage instructions of all the tools are available &lt;a class="reference external" href="https://github.com/aravindavk/gluster-georep-tools"&gt;here&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Let me know if these tools are useful.&lt;/p&gt;
 &lt;/div&gt;
-</summary><category term="gluster"></category><category term="glusterfsblog"></category></entry><entry><title>Effective Gluster Monitoring using Events APIs</title><link rel="alternate" href="http://aravindavk.in/blog/effective-gluster-monitoring-eventsapis/"></link><published>2016-09-26T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2016-09-26:blog/effective-gluster-monitoring-eventsapis/</id><summary type="html">&lt;p&gt;Last week I got opportunity to present about Gluster Events APIs in
+</summary><category term="gluster"></category><category term="glusterfsblog"></category></entry><entry><title>Effective Gluster Monitoring using Events APIs</title><link href="http://aravindavk.in/blog/effective-gluster-monitoring-eventsapis/" rel="alternate"></link><published>2016-09-26T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2016-09-26:blog/effective-gluster-monitoring-eventsapis/</id><summary type="html">&lt;p&gt;Last week I got opportunity to present about Gluster Events APIs in
 &lt;a class="reference external" href="http://www.meetup.com/glusterfs-India/events/233515975"&gt;Gluster meetup Bangalore&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Events APIs will be available with &lt;tt class="docutils literal"&gt;Gluster 3.9&lt;/tt&gt; release.(&lt;a class="reference external" href="http://www.gluster.org/pipermail/maintainers/2016-September/001442.html"&gt;Release
 Candidate&lt;/a&gt;
@@ -157,7 +267,7 @@ volume_stop.gif&lt;/tt&gt;&lt;/li&gt;
 &lt;li&gt;Dashboard prototype was created using &lt;a class="reference external" href="http://python.org/"&gt;Python&lt;/a&gt; &lt;a class="reference external" href="http://flask.pocoo.org/"&gt;Flask&lt;/a&gt; + &lt;a class="reference external" href="http://elm-lang.org/"&gt;Elm&lt;/a&gt; + Websockets&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
-</summary><category term="gluster"></category><category term="glusterfsblog"></category></entry><entry><title>10 minutes introduction to Gluster Eventing Feature</title><link rel="alternate" href="http://aravindavk.in/blog/10-mins-intro-to-gluster-eventing/"></link><published>2016-05-11T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2016-05-11:blog/10-mins-intro-to-gluster-eventing/</id><summary type="html">&lt;div class="notice-update"&gt;
+</summary><category term="gluster"></category><category term="glusterfsblog"></category></entry><entry><title>10 minutes introduction to Gluster Eventing Feature</title><link href="http://aravindavk.in/blog/10-mins-intro-to-gluster-eventing/" rel="alternate"></link><published>2016-05-11T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2016-05-11:blog/10-mins-intro-to-gluster-eventing/</id><summary type="html">&lt;div class="notice-update"&gt;
 Demo video is included in the end, or you can directly watch it on &lt;a href="https://www.youtube.com/watch?v=urzong5sKqc"&gt;Youtube&lt;/a&gt;
 &lt;/div&gt;&lt;p&gt;Gluster Eventing is the new feature as part of Gluster.Next
 initiatives, it provides close to realtime notification and alerts for
@@ -289,7 +399,7 @@ message of the patch(&lt;a class="reference external" href="http://review.gluste
 &lt;/ul&gt;
 &lt;p&gt;Comments and Suggestions Welcome.&lt;/p&gt;
 &lt;/div&gt;
-</summary><category term="gluster"></category><category term="glusterfsblog"></category></entry><entry><title>Qcow2 snapshots and Gluster Geo-replication</title><link rel="alternate" href="http://aravindavk.in/blog/qcow2-snapshots-and-gluster-georeplication/"></link><published>2016-03-14T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2016-03-14:blog/qcow2-snapshots-and-gluster-georeplication/</id><summary type="html">&lt;p&gt;Gluster introduced sharding feature to store large files(which can
+</summary><category term="gluster"></category><category term="glusterfsblog"></category></entry><entry><title>Qcow2 snapshots and Gluster Geo-replication</title><link href="http://aravindavk.in/blog/qcow2-snapshots-and-gluster-georeplication/" rel="alternate"></link><published>2016-03-14T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2016-03-14:blog/qcow2-snapshots-and-gluster-georeplication/</id><summary type="html">&lt;p&gt;Gluster introduced sharding feature to store large files(which can
 grow beyond a single brick) or to support running Virtual machines in
 Gluster Volumes. Read more about sharding &lt;a class="reference external" href="http://blog.gluster.org/2015/12/introducing-shard-translator/"&gt;here&lt;/a&gt; and
 &lt;a class="reference external" href="http://blog.gluster.org/2015/12/sharding-what-next-2/"&gt;here&lt;/a&gt;.&lt;/p&gt;
@@ -401,7 +511,7 @@ rm &lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;pool_dir&lt;/spa
 required. External snapshot file will be deleted once blockcommit is
 done in Master side.&lt;/p&gt;
 &lt;/div&gt;
-</summary><category term="gluster"></category><category term="glusterfsblog"></category></entry><entry><title>Interfaces for Gluster Management</title><link rel="alternate" href="http://aravindavk.in/blog/interfaces-for-gluster-management/"></link><published>2016-02-09T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2016-02-09:blog/interfaces-for-gluster-management/</id><summary type="html">&lt;p&gt;Gluster provides CLIs to manage the Cluster, which can be
+</summary><category term="gluster"></category><category term="glusterfsblog"></category></entry><entry><title>Interfaces for Gluster Management</title><link href="http://aravindavk.in/blog/interfaces-for-gluster-management/" rel="alternate"></link><published>2016-02-09T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2016-02-09:blog/interfaces-for-gluster-management/</id><summary type="html">&lt;p&gt;Gluster provides CLIs to manage the Cluster, which can be
 programmatly consumed by passing &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;--xml&lt;/span&gt;&lt;/tt&gt; option. For example,&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;gluster volume info --xml
 &lt;/pre&gt;&lt;/div&gt;
@@ -451,7 +561,7 @@ Volume&lt;/p&gt;
 &lt;p&gt;Are you using any interface for managing Gluster? Please share your
 experiences.&lt;/p&gt;
 &lt;/div&gt;
-</summary><category term="gluster"></category><category term="glusterfsblog"></category></entry><entry><title>Simulating Race Conditions</title><link rel="alternate" href="http://aravindavk.in/blog/simulating-race-conditions/"></link><published>2015-09-11T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2015-09-11:blog/simulating-race-conditions/</id><summary type="html">&lt;p&gt;&lt;a class="reference external" href="http://gluster.readthedocs.org/en/release-3.7.0/Features/tier/"&gt;Tiering&lt;/a&gt; feature is introduced in &lt;a class="reference external" href="http://www.gluster.org/"&gt;Gluster 3.7&lt;/a&gt; release. Geo-replication may not perform well with Tiering feature yet. Races can happen since Rebalance moves files from one brick to another brick(hot to cold and cold to hot), but the Changelog/Journal remails in old brick itself. We know there will be problems since each Geo-replication worker(per brick) processes Changelogs belonging to respective brick and sync the data independently. Sync happens as two step operation, Create entry in Slave with the GFID recorded in Changelog, then use Rsync to sync data(using GFID access)&lt;/p&gt;
+</summary><category term="gluster"></category><category term="glusterfsblog"></category></entry><entry><title>Simulating Race Conditions</title><link href="http://aravindavk.in/blog/simulating-race-conditions/" rel="alternate"></link><published>2015-09-11T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2015-09-11:blog/simulating-race-conditions/</id><summary type="html">&lt;p&gt;&lt;a class="reference external" href="http://gluster.readthedocs.org/en/release-3.7.0/Features/tier/"&gt;Tiering&lt;/a&gt; feature is introduced in &lt;a class="reference external" href="http://www.gluster.org/"&gt;Gluster 3.7&lt;/a&gt; release. Geo-replication may not perform well with Tiering feature yet. Races can happen since Rebalance moves files from one brick to another brick(hot to cold and cold to hot), but the Changelog/Journal remails in old brick itself. We know there will be problems since each Geo-replication worker(per brick) processes Changelogs belonging to respective brick and sync the data independently. Sync happens as two step operation, Create entry in Slave with the GFID recorded in Changelog, then use Rsync to sync data(using GFID access)&lt;/p&gt;
 &lt;p&gt;To uncover the bugs we need to setup workload and run multiple times since issues may not happen always. But it is tedious to run multiple times with actual data. How about simulating/mocking it?&lt;/p&gt;
 &lt;p&gt;Let us consider simple case of Rebalance, A file &amp;quot;f1&amp;quot; is created in Brick1 and after some time it becomes hot and Rebalance moved it to Brick2.&lt;/p&gt;
 &lt;img alt="Rebalance explained" src="/images/rebalance.png" /&gt;
@@ -536,7 +646,7 @@ UNLINK 0945daec-6f8c-438e-9bbf-b2ebf07543ef f1
 &lt;p&gt;I just started simulating with Tiering + Geo-replication workload, I may encounter more problems with Renames(Simple, multiple and cyclic). Will update the results soon.&lt;/p&gt;
 &lt;p&gt;I am sharing the script since it can be easily modified to work with different workloads and to test other projects/components.&lt;/p&gt;
 &lt;p&gt;Let me know if this is useful. Comments and Suggestions Welcome.&lt;/p&gt;
-</summary><category term="gluster"></category><category term="glusterfsblog"></category></entry><entry><title>Introducing georepsetup - Gluster Geo-replication Setup Tool</title><link rel="alternate" href="http://aravindavk.in/blog/introducing-georepsetup/"></link><published>2015-09-02T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2015-09-02:blog/introducing-georepsetup/</id><summary type="html">&lt;p&gt;How many of you succeeded to set up Gluster Geo-replication for the first time? SSH keys need to be deployed to all Slave nodes from all Master nodes as part of the Geo-replication setup. So number of steps involved in setting up Geo-rep is not very easy to manage. We get more queries in &lt;a class="reference external" href="http://www.gluster.org/mailman/listinfo/gluster-devel"&gt;gluster-devel&lt;/a&gt; and &lt;a class="reference external" href="http://www.gluster.org/mailman/listinfo/gluster-users"&gt;gluster-users&lt;/a&gt; lists related to Geo-rep Setup than actually using Geo-replication, many users stopped trying Geo-replication after they faced issues during setup.&lt;/p&gt;
+</summary><category term="gluster"></category><category term="glusterfsblog"></category></entry><entry><title>Introducing georepsetup - Gluster Geo-replication Setup Tool</title><link href="http://aravindavk.in/blog/introducing-georepsetup/" rel="alternate"></link><published>2015-09-02T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2015-09-02:blog/introducing-georepsetup/</id><summary type="html">&lt;p&gt;How many of you succeeded to set up Gluster Geo-replication for the first time? SSH keys need to be deployed to all Slave nodes from all Master nodes as part of the Geo-replication setup. So number of steps involved in setting up Geo-rep is not very easy to manage. We get more queries in &lt;a class="reference external" href="http://www.gluster.org/mailman/listinfo/gluster-devel"&gt;gluster-devel&lt;/a&gt; and &lt;a class="reference external" href="http://www.gluster.org/mailman/listinfo/gluster-users"&gt;gluster-users&lt;/a&gt; lists related to Geo-rep Setup than actually using Geo-replication, many users stopped trying Geo-replication after they faced issues during setup.&lt;/p&gt;
 &lt;p&gt;With the release of Gluster 3.7, the Geo-replication got lots of improvements. Will write blog about new features and improvements in my next blog. Yesterday I wrote a CLI tool using Python to simplify the steps involved in Geo-replication setup. Now setting up Geo-replication is as easy as running one command. Yay!&lt;/p&gt;
 &lt;p&gt;For example,&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo georepsetup &amp;lt;MASTERVOL&amp;gt; &amp;lt;SLAVEHOST&amp;gt; &amp;lt;SLAVEVOL&amp;gt;
@@ -556,12 +666,12 @@ sudo python setup.py install
 &lt;p&gt;Documentation is available &lt;a class="reference external" href="https://github.com/aravindavk/georepsetup/blob/master/README.md"&gt;here&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Comments &amp;amp; Suggestions Welcome.&lt;/p&gt;
 &lt;/div&gt;
-</summary><category term="geo-replication"></category><category term="gluster"></category><category term="glusterfsblog"></category></entry><entry><title>GlusterFS Geo-replication Tutorials - Understanding Session Creation</title><link rel="alternate" href="http://aravindavk.in/blog/glusterfs-georeplication-tutorials-1/"></link><published>2015-04-02T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2015-04-02:blog/glusterfs-georeplication-tutorials-1/</id><summary type="html">&lt;p&gt;Geo-replication is one of the awesome feature of &lt;a class="reference external" href="http://gluster.org/"&gt;GlusterFS&lt;/a&gt;. With this feature we can replicate data from one Gluster Volume to another geographically located Gluster Volume.&lt;/p&gt;
+</summary><category term="geo-replication"></category><category term="gluster"></category><category term="glusterfsblog"></category></entry><entry><title>GlusterFS Geo-replication Tutorials - Understanding Session Creation</title><link href="http://aravindavk.in/blog/glusterfs-georeplication-tutorials-1/" rel="alternate"></link><published>2015-04-02T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2015-04-02:blog/glusterfs-georeplication-tutorials-1/</id><summary type="html">&lt;p&gt;Geo-replication is one of the awesome feature of &lt;a class="reference external" href="http://gluster.org/"&gt;GlusterFS&lt;/a&gt;. With this feature we can replicate data from one Gluster Volume to another geographically located Gluster Volume.&lt;/p&gt;
 &lt;p&gt;This blog is first in a series of Understanding GlusterFS Geo-replication, Comments and Suggestions welcome.&lt;/p&gt;
 &lt;script async class="speakerdeck-embed" data-id="f509ae7c9216494fa690f8dfee0e91c1" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"&gt;
 &lt;/script&gt;&lt;p&gt;Link: &lt;a class="reference external" href="https://speakerdeck.com/aravindavk/understanding-glusterfs-geo-replication-session-creation"&gt;https://speakerdeck.com/aravindavk/understanding-glusterfs-geo-replication-session-creation&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;I created these visualizations using my Wacom tablet(Wacom Bamboo Pen &amp;amp; Touch CTH-460) and &lt;a class="reference external" href="http://mypaint.intilinux.com/"&gt;MyPaint&lt;/a&gt; software in Linux.&lt;/p&gt;
-</summary><category term="geo-replication"></category><category term="glusterfs"></category><category term="visualizations"></category><category term="glusterfsblog"></category></entry><entry><title>Introducing gdash - GlusterFS Dashboard</title><link rel="alternate" href="http://aravindavk.in/blog/introducing-gdash/"></link><published>2014-12-04T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2014-12-04:blog/introducing-gdash/</id><summary type="html">&lt;p&gt;&lt;strong&gt;UPDATE:&lt;/strong&gt; Added &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;--gluster&lt;/span&gt;&lt;/tt&gt; option to specify the path to gluster. By default it looks for &lt;tt class="docutils literal"&gt;/usr/sbin/gluster&lt;/tt&gt;, If you installed GlusterFS using source install then use &lt;code&gt;sudo gdash --gluster /usr/local/sbin/gluster&lt;/code&gt;. (Those who already installed gdash, can run &lt;code&gt;sudo pip install -U gdash&lt;/code&gt; to upgrade.)&lt;/p&gt;
+</summary><category term="geo-replication"></category><category term="glusterfs"></category><category term="visualizations"></category><category term="glusterfsblog"></category></entry><entry><title>Introducing gdash - GlusterFS Dashboard</title><link href="http://aravindavk.in/blog/introducing-gdash/" rel="alternate"></link><published>2014-12-04T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2014-12-04:blog/introducing-gdash/</id><summary type="html">&lt;p&gt;&lt;strong&gt;UPDATE:&lt;/strong&gt; Added &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;--gluster&lt;/span&gt;&lt;/tt&gt; option to specify the path to gluster. By default it looks for &lt;tt class="docutils literal"&gt;/usr/sbin/gluster&lt;/tt&gt;, If you installed GlusterFS using source install then use &lt;code&gt;sudo gdash --gluster /usr/local/sbin/gluster&lt;/code&gt;. (Those who already installed gdash, can run &lt;code&gt;sudo pip install -U gdash&lt;/code&gt; to upgrade.)&lt;/p&gt;
 &lt;p&gt;gdash is a super-young project, which shows GlusterFS volume information about local, remote clusters. This app is based on GlusterFS's capability of executing &lt;code&gt;gluster volume info&lt;/code&gt; and &lt;code&gt;gluster volume status&lt;/code&gt; commands for a remote server using &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;--remote-host&lt;/span&gt;&lt;/tt&gt; option.&lt;/p&gt;
 &lt;p&gt;If you can run &lt;code&gt;gluster volume info --remote-host=&amp;lt;HOST_NAME&amp;gt;&lt;/code&gt;, then you can monitor that cluster using gdash. Make sure you allow to access glusterd port(24007) for the machine where you will run gdash.&lt;/p&gt;
 &lt;p&gt;To install,&lt;/p&gt;
@@ -635,7 +745,7 @@ optional arguments:
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Code is hosted in &lt;a class="reference external" href="https://github.com/aravindavk/gdash"&gt;github/aravindavk&lt;/a&gt;, licensed under &lt;a class="reference external" href="https://github.com/aravindavk/gdash/blob/master/LICENSE.txt"&gt;MIT&lt;/a&gt;.&lt;/p&gt;
 &lt;/div&gt;
-</summary><category term="glusterfs"></category><category term="tools"></category><category term="glusterfsblog"></category></entry><entry><title>gvolinfojson - A utility to convert xml output of gluster volume info to json</title><link rel="alternate" href="http://aravindavk.in/blog/gvolinfojson/"></link><published>2014-05-13T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2014-05-13:blog/gvolinfojson/</id><summary type="html">&lt;p&gt;Today I wrote a small utility using &lt;a class="reference external" href="http://golang.org/"&gt;golang&lt;/a&gt; to convert xml output of command &lt;code&gt;gluster volume info&lt;/code&gt; to json.&lt;/p&gt;
+</summary><category term="glusterfs"></category><category term="tools"></category><category term="glusterfsblog"></category></entry><entry><title>gvolinfojson - A utility to convert xml output of gluster volume info to json</title><link href="http://aravindavk.in/blog/gvolinfojson/" rel="alternate"></link><published>2014-05-13T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2014-05-13:blog/gvolinfojson/</id><summary type="html">&lt;p&gt;Today I wrote a small utility using &lt;a class="reference external" href="http://golang.org/"&gt;golang&lt;/a&gt; to convert xml output of command &lt;code&gt;gluster volume info&lt;/code&gt; to json.&lt;/p&gt;
 &lt;p&gt;Download the binary from &lt;a class="reference external" href="https://github.com/aravindavk/gvolinfojson/releases/download/1.0/gvolinfojson"&gt;here&lt;/a&gt; and copy to /usr/local/bin directory(or any other directory, which is available in PATH).&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;wget https://github.com/aravindavk/gvolinfojson/releases/download/1.0/gvolinfojson
 sudo cp gvolinfojson /usr/local/bin/
@@ -653,7 +763,7 @@ sudo chmod +x /usr/local/bin/gvolinfojson
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Source code is available &lt;a class="reference external" href="https://github.com/aravindavk/gvolinfojson"&gt;here&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;C &amp;amp; S Welcome.&lt;/p&gt;
-</summary><category term="glusterfs"></category><category term="tools"></category><category term="glusterfsblog"></category></entry><entry><title>Effective GlusterFs monitoring using hooks</title><link rel="alternate" href="http://aravindavk.in/blog/effective-glusterfs-monitoring-using-hooks/"></link><published>2013-11-28T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2013-11-28:blog/effective-glusterfs-monitoring-using-hooks/</id><summary type="html">&lt;p&gt;Let us imagine we have a GlusterFs monitoring system which displays list of volumes and its state, to show the realtime status, monitoring app need to query the GlusterFs in regular interval to check volume status, new volumes etc. Assume if the polling interval is 5 seconds then monitoring app has to run &lt;code&gt;gluster volume info&lt;/code&gt; command ~17000 times a day!&lt;/p&gt;
+</summary><category term="glusterfs"></category><category term="tools"></category><category term="glusterfsblog"></category></entry><entry><title>Effective GlusterFs monitoring using hooks</title><link href="http://aravindavk.in/blog/effective-glusterfs-monitoring-using-hooks/" rel="alternate"></link><published>2013-11-28T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2013-11-28:blog/effective-glusterfs-monitoring-using-hooks/</id><summary type="html">&lt;p&gt;Let us imagine we have a GlusterFs monitoring system which displays list of volumes and its state, to show the realtime status, monitoring app need to query the GlusterFs in regular interval to check volume status, new volumes etc. Assume if the polling interval is 5 seconds then monitoring app has to run &lt;code&gt;gluster volume info&lt;/code&gt; command ~17000 times a day!&lt;/p&gt;
 &lt;p&gt;How about maintaining a state file in each node? which gets updated after every new GlusterFs event(create, delete, start, stop etc).&lt;/p&gt;
 &lt;p&gt;In this blog post I am trying to explain the possibility of creating state file and using it.&lt;/p&gt;
 &lt;p&gt;As of today GlusterFs provides following hooks, which we can use to update our state file.&lt;/p&gt;
@@ -743,7 +853,7 @@ brick-down
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Let me know your thoughts! Thanks.&lt;/p&gt;
 &lt;/div&gt;
-</summary><category term="glusterfs"></category><category term="glusterfsblog"></category></entry><entry><title>glusterdf - df for gluster volumes</title><link rel="alternate" href="http://aravindavk.in/blog/glusterdf-df-for-gluster-volumes/"></link><published>2013-09-24T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2013-09-24:blog/glusterdf-df-for-gluster-volumes/</id><summary type="html">&lt;p&gt;A CLI utility to check the disk usage of &lt;a class="reference external" href="http://gluster.org/"&gt;glusterfs&lt;/a&gt; volumes. Using &lt;code&gt;df&lt;/code&gt; command we can view the disk usage of only mounted glusterfs volumes. This utility takes care of mounting gluster volumes available in the machine where this command is executed. glusterdf uses &lt;a class="reference external" href="https://github.com/gluster/glusterfs/tree/master/api"&gt;libgfapi&lt;/a&gt; provided by glusterfs to fetch the statvfs information.&lt;/p&gt;
+</summary><category term="glusterfs"></category><category term="glusterfsblog"></category></entry><entry><title>glusterdf - df for gluster volumes</title><link href="http://aravindavk.in/blog/glusterdf-df-for-gluster-volumes/" rel="alternate"></link><published>2013-09-24T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2013-09-24:blog/glusterdf-df-for-gluster-volumes/</id><summary type="html">&lt;p&gt;A CLI utility to check the disk usage of &lt;a class="reference external" href="http://gluster.org/"&gt;glusterfs&lt;/a&gt; volumes. Using &lt;code&gt;df&lt;/code&gt; command we can view the disk usage of only mounted glusterfs volumes. This utility takes care of mounting gluster volumes available in the machine where this command is executed. glusterdf uses &lt;a class="reference external" href="https://github.com/gluster/glusterfs/tree/master/api"&gt;libgfapi&lt;/a&gt; provided by glusterfs to fetch the statvfs information.&lt;/p&gt;
 &lt;p&gt;Installation is very simple,&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;git clone https://github.com/aravindavk/glusterfs-tools.git
 &lt;span class="nb"&gt;cd&lt;/span&gt; glusterfs-tools
@@ -816,7 +926,7 @@ sudo python setup.py install
 &lt;span class="n"&gt;filters&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;gv[12]&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
 &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;volumes&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;search&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;filters&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-</summary><category term="glusterfs"></category><category term="tools"></category><category term="glusterfsblog"></category></entry><entry><title>GlusterFS Tools</title><link rel="alternate" href="http://aravindavk.in/blog/glusterfs-tools/"></link><published>2013-06-18T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2013-06-18:blog/glusterfs-tools/</id><summary type="html">&lt;div class="notice-update"&gt;
+</summary><category term="glusterfs"></category><category term="tools"></category><category term="glusterfsblog"></category></entry><entry><title>GlusterFS Tools</title><link href="http://aravindavk.in/blog/glusterfs-tools/" rel="alternate"></link><published>2013-06-18T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2013-06-18:blog/glusterfs-tools/</id><summary type="html">&lt;div class="notice-update"&gt;
 UPDATE: &lt;br/&gt;Installation and usage is simplified with the new release of glusterfs-tools, refer &lt;a href="http://aravindavk.in/blog/glusterdf-df-for-gluster-volumes/"&gt;this blog&lt;/a&gt; for more details.
 &lt;/div&gt;&lt;p&gt;From &lt;a class="reference external" href="http://gluster.org"&gt;GlusterFS website&lt;/a&gt;&lt;/p&gt;
 &lt;blockquote&gt;
