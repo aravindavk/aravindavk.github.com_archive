@@ -86,7 +86,9 @@
 </footer><!-- /.post-info -->
 <div class="sep"></div>    </div>
     <div class="entry-content">
-      <p>How many of you succeeded to set up Gluster Geo-replication for the first time? SSH keys need to be deployed to all Slave nodes from all Master nodes as part of the Geo-replication setup. So number of steps involved in setting up Geo-rep is not very easy to manage. We get more queries in <a class="reference external" href="http://www.gluster.org/mailman/listinfo/gluster-devel">gluster-devel</a> and <a class="reference external" href="http://www.gluster.org/mailman/listinfo/gluster-users">gluster-users</a> lists related to Geo-rep Setup than actually using Geo-replication, many users stopped trying Geo-replication after they faced issues during setup.</p>
+      <div class="notice-update">
+<b>UPDATE:</b> This tool is merged with <em>gluster-georep-tools</em>. Check this <a href="/blog/gluster-georep-tools/">blog</a> for more details.
+</div><p>How many of you succeeded to set up Gluster Geo-replication for the first time? SSH keys need to be deployed to all Slave nodes from all Master nodes as part of the Geo-replication setup. So number of steps involved in setting up Geo-rep is not very easy to manage. We get more queries in <a class="reference external" href="http://www.gluster.org/mailman/listinfo/gluster-devel">gluster-devel</a> and <a class="reference external" href="http://www.gluster.org/mailman/listinfo/gluster-users">gluster-users</a> lists related to Geo-rep Setup than actually using Geo-replication, many users stopped trying Geo-replication after they faced issues during setup.</p>
 <p>With the release of Gluster 3.7, the Geo-replication got lots of improvements. Will write blog about new features and improvements in my next blog. Yesterday I wrote a CLI tool using Python to simplify the steps involved in Geo-replication setup. Now setting up Geo-replication is as easy as running one command. Yay!</p>
 <p>For example,</p>
 <div class="highlight"><pre><span></span>sudo georepsetup &lt;MASTERVOL&gt; &lt;SLAVEHOST&gt; &lt;SLAVEVOL&gt;
