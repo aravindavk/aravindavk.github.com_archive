@@ -104,7 +104,7 @@ later.</p>
 <p>Example Webhook written in python,</p>
 <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">request</span>
 
-<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
 <span class="nd">@app.route</span><span class="p">(</span><span class="s2">&quot;/listen&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;POST&quot;</span><span class="p">])</span>
 <span class="k">def</span> <span class="nf">events_listener</span><span class="p">():</span>
@@ -167,7 +167,7 @@ Peer Detach
 </pre></div>
 <p>Created a small demo to show this eventing feature, it uses Web server
 which is included with the patch for Testing.(laptop hostname is <tt class="docutils literal">sonne</tt>)</p>
-<div class="highlight"><pre><span></span>/usr/share/glusterfs/scripts/eventsdash.py --port 8080
+<div class="highlight"><pre><span></span>/usr/share/glusterfs/scripts/eventsdash.py --port <span class="m">8080</span>
 </pre></div>
 <p>Login to Gluster node and start the eventing,</p>
 <div class="highlight"><pre><span></span>gluster-eventing start

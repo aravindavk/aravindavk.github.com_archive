@@ -109,8 +109,8 @@
 <span class="c1"># @date - 09-Nov-2008</span>
 
 <span class="k">def</span> <span class="nf">isKannadaWord</span><span class="p">(</span><span class="n">word</span><span class="p">):</span>
-    <span class="n">rangeStart</span> <span class="o">=</span> <span class="s2">ur&quot;\u0C80&quot;</span>
-    <span class="n">rangeEnd</span> <span class="o">=</span> <span class="s2">ur&quot;\u0CFF&quot;</span>
+    <span class="n">rangeStart</span> <span class="o">=</span> <span class="sa">ur</span><span class="s2">&quot;\u0C80&quot;</span>
+    <span class="n">rangeEnd</span> <span class="o">=</span> <span class="sa">ur</span><span class="s2">&quot;\u0CFF&quot;</span>
     <span class="n">pattern</span> <span class="o">=</span> <span class="n">rangeStart</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="n">rangeEnd</span>
     <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s1">&#39;^[&#39;</span> <span class="o">+</span> <span class="n">pattern</span> <span class="o">+</span> <span class="s1">&#39;]+$&#39;</span><span class="p">,</span><span class="n">word</span><span class="p">)</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">True</span>
@@ -120,7 +120,7 @@
 <p>&quot;ur&quot; in above code refers to raw unicode.</p>
 <div class="section" id="how-to-use">
 <h3>How to use</h3>
-<div class="highlight"><pre><span></span><span class="n">myString</span> <span class="o">=</span> <span class="s1">u&#39;ಅರವಿಂದ ಒಲವು ಅವಳು ಮತ್ತು ನಾಳೆ abcd ಹೆಹೆ &#39;</span>
+<div class="highlight"><pre><span></span><span class="n">myString</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;ಅರವಿಂದ ಒಲವು ಅವಳು ಮತ್ತು ನಾಳೆ abcd ಹೆಹೆ &#39;</span>
 <span class="n">wordsList</span> <span class="o">=</span> <span class="n">myString</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">eachWord</span> <span class="ow">in</span> <span class="n">wordsList</span><span class="p">:</span>
     <span class="k">if</span> <span class="n">isKannadaWord</span><span class="p">(</span><span class="n">eachWord</span><span class="p">)</span> <span class="p">:</span>

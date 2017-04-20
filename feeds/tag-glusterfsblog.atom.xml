@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Aravinda VK</title><link href="http://aravindavk.in/" rel="alternate"></link><link href="http://aravindavk.in/feeds/tag-glusterfsblog.atom.xml" rel="self"></link><id>http://aravindavk.in/</id><updated>2017-01-01T00:00:00+05:30</updated><entry><title>Gluster, Me and 2016</title><link rel="alternate" href="http://aravindavk.in/blog/gluster-and-me/"></link><published>2017-01-01T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2017-01-01:blog/gluster-and-me/</id><summary type="html">&lt;p&gt;I started working with the Gluster community since 2013.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Aravinda VK</title><link rel="alternate" href="http://aravindavk.in/"></link><link rel="self" href="http://aravindavk.in/feeds/tag-glusterfsblog.atom.xml"></link><id>http://aravindavk.in/</id><updated>2017-01-01T00:00:00+05:30</updated><entry><title>Gluster, Me and 2016</title><link rel="alternate" href="http://aravindavk.in/blog/gluster-and-me/"></link><published>2017-01-01T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2017-01-01:blog/gluster-and-me/</id><summary type="html">&lt;p&gt;I started working with the Gluster community since 2013.&lt;/p&gt;
 &lt;p&gt;2016 with Gluster was great, gave me the opportunity to work on many areas of Gluster mainly Geo-replication, Glusterfind and Events APIs. Expecting more and more challenges in this new year. &lt;strong&gt;Happy New Year to all&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Main highlights&lt;/strong&gt;&lt;/p&gt;
 &lt;ul class="simple"&gt;
@@ -285,7 +285,7 @@ later.&lt;/p&gt;
 &lt;p&gt;Example Webhook written in python,&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;flask&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Flask&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;request&lt;/span&gt;
 
-&lt;span class="n"&gt;app&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Flask&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;__name__&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;app&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Flask&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="vm"&gt;__name__&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
 &lt;span class="nd"&gt;@app.route&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;/listen&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;methods&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;POST&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;events_listener&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
@@ -348,7 +348,7 @@ Peer Detach
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Created a small demo to show this eventing feature, it uses Web server
 which is included with the patch for Testing.(laptop hostname is &lt;tt class="docutils literal"&gt;sonne&lt;/tt&gt;)&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;/usr/share/glusterfs/scripts/eventsdash.py --port 8080
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;/usr/share/glusterfs/scripts/eventsdash.py --port &lt;span class="m"&gt;8080&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Login to Gluster node and start the eventing,&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;gluster-eventing start
@@ -821,7 +821,7 @@ sudo python setup.py install
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo glusterweb
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Web application starts running in &lt;code&gt;http://localhost:8080&lt;/code&gt; you can change the port using &lt;code&gt;--port&lt;/code&gt; or &lt;code&gt;-p&lt;/code&gt; option.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo glusterweb -p 9000
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo glusterweb -p &lt;span class="m"&gt;9000&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="figure"&gt;
 &lt;img alt="GlusterWeb" src="/images/glusterweb-v0.1.png" /&gt;
