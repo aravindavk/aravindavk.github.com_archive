@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aravinda VK</title><link>http://aravindavk.in/</link><description></description><atom:link rel="self" href="http://aravindavk.in/feeds/aravinda-vk.rss.xml"></atom:link><lastBuildDate>Sun, 01 Jan 2017 00:00:00 +0530</lastBuildDate><item><title>Gluster, Me and 2016</title><link>http://aravindavk.in/blog/gluster-and-me/</link><description>&lt;p&gt;I started working with the Gluster community since 2013.&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Aravinda VK</title><link>http://aravindavk.in/</link><description></description><atom:link rel="self" href="http://aravindavk.in/feeds/aravinda-vk.rss.xml"></atom:link><lastBuildDate>Sun, 01 Jan 2017 00:00:00 +0530</lastBuildDate><item><title>Gluster, Me and 2016</title><link>http://aravindavk.in/blog/gluster-and-me/</link><description>&lt;p&gt;I started working with the Gluster community since 2013.&lt;/p&gt;
 &lt;p&gt;2016 with Gluster was great, gave me the opportunity to work on many areas of Gluster mainly Geo-replication, Glusterfind and Events APIs. Expecting more and more challenges in this new year. &lt;strong&gt;Happy New Year to all&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Main highlights&lt;/strong&gt;&lt;/p&gt;
 &lt;ul class="simple"&gt;
