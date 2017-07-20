@@ -1,29 +1,3 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Aravinda VK</title><link rel="alternate" href="http://aravindavk.in/"></link><link rel="self" href="http://aravindavk.in/feeds/tag-maatukte.atom.xml"></link><id>http://aravindavk.in/</id><updated>2012-03-27T00:00:00+05:30</updated><entry><title>ಅನಿರೀಕ್ಷಿತ</title><link rel="alternate" href="http://aravindavk.in/blog/anirikshita/"></link><published>2012-03-27T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2012-03-27:blog/anirikshita/</id><summary type="html">&lt;p&gt;&amp;quot;ಯಾವ ಕಡೆ ಹೊರಟಿದೀರಾ?&amp;quot;&lt;/p&gt;
-&lt;p&gt;ಅವಳೊನ್ನಮ್ಮೆ ಹಾಗೇ ನೋಡಿ, &amp;quot;ಗೊತ್ತಿಲ್ಲ&amp;quot;&lt;/p&gt;
-&lt;p&gt;&amp;quot;ಈ ಬಸ್ ಮಂಗಳೂರಿಗೆ ಹೋಗ್ತಿದೆ&amp;quot;&lt;/p&gt;
-&lt;p&gt;&amp;quot;ಗೊತ್ತು&amp;quot;&lt;/p&gt;
-&lt;p&gt;&amp;quot;ನೀವು ಟಿಕೆಟ್ ಎಲ್ಲಿಗೆ ಮಾಡಿಸಿದ್ರಿ?&amp;quot;&lt;/p&gt;
-&lt;p&gt;&amp;quot;ಮಂಗಳೂರಿಗೆ&amp;quot;&lt;/p&gt;
-&lt;p&gt;&amp;quot;ಹಾಗಿದ್ರೆ ನೀವು ಮಂಗಳೂರಿಗೆ ಹೊಗ್ತ್ತೀರಲ್ವ?&amp;quot;&lt;/p&gt;
-&lt;p&gt;&amp;quot;ಗೊತ್ತಿಲ್ಲ&amp;quot;&lt;/p&gt;
-&lt;p&gt;&amp;quot;ಹಾಗಂದ್ರೆ?&amp;quot;&lt;/p&gt;
-&lt;p&gt;&amp;quot;ಇವತ್ತು ನಂಗೆ ಬಹಳಷ್ಟು ಸಮಯ ಇದೆ ಅದಕ್ಕೆ, ಇನ್ನೂ ಯೋಚಿಸ್ತಿದೀನಿ&amp;quot;&lt;/p&gt;
-&lt;p&gt;&amp;quot;ಸರಿ&amp;quot;&lt;/p&gt;
-&lt;p&gt;&amp;quot;ನೀವು ಯಾವ ಕಡೆ ಹೊರಟಿದೀರ?&amp;quot;&lt;/p&gt;
-&lt;p&gt;&amp;quot;ಸೂರತ್ಕಲ್&amp;quot;&lt;/p&gt;
-&lt;p&gt;&amp;quot;ಬೀಚ್ ಗಾ?&amp;quot;&lt;/p&gt;
-&lt;p&gt;&amp;quot;ಇಲ್ಲ ಅಲ್ಲೆ ನಮ್ಮ ಮನೆ&amp;quot;&lt;/p&gt;
-&lt;p&gt;&amp;quot;ಓಹ್... ಹೌದಾ&amp;quot; ಅಂದೆ ನಗುತ್ತಾ...&lt;/p&gt;
-&lt;p&gt;&amp;quot;ಎಂತಕೆ ನಕ್ಕಿದ್ದು?&amp;quot;&lt;/p&gt;
-&lt;p&gt;&amp;quot;ಕ್ಷಮಿಸಿ ನಿಮ್ಮ ಬಗ್ಗೆ ನಕ್ಕಿದ್ದಲ್ಲ, ಪ್ರವಾಸಿ ತಾಣದಲ್ಲೂ ಜನ ವಾಸ ಮಾಡ್ತಾರೆ ಅಂತ ತಕ್ಷಣಕ್ಕೆ ಹೊಳೆಯಲ್ಲ... &amp;quot;&lt;/p&gt;
-&lt;p&gt;&amp;quot;ಸರಿಹೋಯ್ತ್...&amp;quot; ಅಂದಳು ನಗುತ್ತಾ...&lt;/p&gt;
-&lt;p&gt;&amp;quot;ಹಾಗಿದ್ರೆ ದಿನಾ ಸಮುದ್ರ ನೋಡ್ಬೋದು ಚೆನಾಗಿರುತ್ತೆ ಅಲ್ವಾ?&amp;quot;&lt;/p&gt;
-&lt;p&gt;&amp;quot;ದಿನಾ ಅದನ್ನೇ ನೋಡಿ ನೋಡಿ ಬೇಜಾರಾಗಿದೆ&amp;quot;&lt;/p&gt;
-&lt;p&gt;&amp;quot;!&amp;quot;&lt;/p&gt;
-&lt;p&gt;&amp;quot;ಸರಿ, ಸೂರತ್ಕಲ್ ಬಂತು ನಾನು ಇಳೀತೀನಿ&amp;quot;&lt;/p&gt;
-&lt;p&gt;&amp;quot;ನಾನೂ ಬರ್ತೀನಿ&amp;quot;&lt;/p&gt;
-&lt;p&gt;&amp;quot;!!&amp;quot;&lt;/p&gt;
-&lt;p&gt;&amp;quot;ಬೀಚ್ ನೋಡಿಕೊಂಡು ಮತ್ತೆ ಮಂಗಳೂರಿಗೆ ಹೋಗ್ತೀನಿ&amp;quot;&lt;/p&gt;
-&lt;p&gt;&amp;quot;ಸರಿ&amp;quot;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Aravinda VK - ಮಾತುಕತೆ</title><link rel="alternate" href="http://aravindavk.in/"></link><link rel="self" href="http://aravindavk.in/feeds/tag-maatukte.atom.xml"></link><id>http://aravindavk.in/</id><updated>2012-03-27T00:00:00+05:30</updated><entry><title>ಅನಿರೀಕ್ಷಿತ</title><link href="http://aravindavk.in/blog/anirikshita/" rel="alternate"></link><published>2012-03-27T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2012-03-27:/blog/anirikshita//</id><summary type="html">&lt;p class="first last"&gt;ಯಾವ ಕಡೆ ಹೊರಟಿದೀರಾ?&lt;/p&gt;
 </summary><category term="ಸುಮ್ಮನೆ"></category><category term="ಮಾತುಕತೆ"></category><category term="kannadablog"></category></entry></feed>

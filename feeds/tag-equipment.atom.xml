@@ -1,19 +1,3 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Aravinda VK</title><link rel="alternate" href="http://aravindavk.in/"></link><link rel="self" href="http://aravindavk.in/feeds/tag-equipment.atom.xml"></link><id>http://aravindavk.in/</id><updated>2011-01-24T00:00:00+05:30</updated><entry><title>ನನ್ನ ಕ್ಯಾಮೆರಾ(ಗಳು)!</title><link rel="alternate" href="http://aravindavk.in/blog/mycamera/"></link><published>2011-01-24T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2011-01-24:blog/mycamera/</id><summary type="html">&lt;p&gt;ನನ್ನ ಮುದ್ದಿನ ಮೊದಲ ಕ್ಯಾಮೆರಾ Canon A410, ಸಣ್ಣ ಕ್ಯಾಮೆರಾ ಆರಾಮಾಗಿ ಜೇಬಿನಲ್ಲಿಟ್ಟುಕೊಂಡು ಹೋಗುತ್ತಿದ್ದೆ. ಅದರಲ್ಲಿದ್ದ options ಗಳನ್ನೆಲ್ಲಾ ಪ್ರಯೋಗ ಮಾಡಿ ಅದರಲ್ಲಿರುವುದು ಸಾಕಾಗೋದಿಲ್ಲವೆನಿಸಿತು.&lt;/p&gt;
-&lt;div class="figure"&gt;
-&lt;img alt="Canon A410" src="/images/cam_a410/m.jpg" /&gt;
-&lt;p class="caption"&gt;Canon Powershot A410(Photo from &lt;a class="reference external" href="http://upload.wikimedia.org/wikipedia/commons/1/14/Canon_PowerShot_A410.jpg"&gt;http://upload.wikimedia.org/wikipedia/commons/1/14/Canon_PowerShot_A410.jpg&lt;/a&gt;)&lt;/p&gt;
-&lt;/div&gt;
-&lt;p&gt;ಇನ್ನು ಹೆಚ್ಚಿನ controls ಬೇಕೆನಿಸಿತ್ತು, ಹಾಗೇ SLR ಕ್ಯಾಮೆರಾ ತಗೋಳೋದೂ ಕಷ್ಟ ಅನ್ನಿಸಿತ್ತು. ಕೊನೆಗೂ ಬಹಳ ಯೋಚಿಸಿ ಅಮೇರಿಕ ಇಂದ ಬರುವವಳಿದ್ದ ಗೆಳತಿಯೊಬ್ಬಳಿಂದ Canon SX10IS ಕ್ಯಾಮೆರಾ ತರಿಸಿಕೊಂಡೆ. ಅದು SLR ಕ್ಯಾಮೆರಾ ಅಲ್ಲದಿದ್ದರೂ ಸೂಪರ್ ಜೂಮ್ ಕ್ಯಾಮೆರಾ! 20x ಜೂಮ್ ಇತ್ತು ಅದರಲ್ಲಿ :)&lt;/p&gt;
-&lt;div class="figure"&gt;
-&lt;img alt="Canon SX10IS" src="/images/cam_sx10is/m.jpg" /&gt;
-&lt;p class="caption"&gt;Canon SX10IS&lt;/p&gt;
-&lt;/div&gt;
-&lt;p&gt;ಹೊಸ ಕ್ಯಾಮೆರಾದಲ್ಲಿ ಲೆಖ್ಖವಿಲ್ಲದಷ್ಟು ಫೋಟೋಗಳನ್ನು ತೆಗೆದಿದ್ದಾಯ್ತು. ಆದರೆ ದಿನದಿಂದ ದಿನಕ್ಕೆ ಫೋಟೋಗ್ರಫಿಯ ಹುಚ್ಚು ಬೆಳೆಯುತ್ತಾ ಹೋಯಿತು. ಕೊನೆಗೂ SLR ಕ್ಯಾಮೆರಾ ತಗೊಂಡೆ. :)&lt;/p&gt;
-&lt;div class="figure"&gt;
-&lt;img alt="Nikon D90" src="/images/cam_d90/m.jpg" /&gt;
-&lt;p class="caption"&gt;Nikon D90&lt;/p&gt;
-&lt;/div&gt;
-&lt;p&gt;ಕ್ಯಾಮೆರಾಗಳೂ... ಫೋಟೋಗಳೂ...&lt;/p&gt;
-&lt;p&gt;ಕಲಿಯುವುದು ಬಹಳಷ್ಟಿದೆ!&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Aravinda VK - equipment</title><link rel="alternate" href="http://aravindavk.in/"></link><link rel="self" href="http://aravindavk.in/feeds/tag-equipment.atom.xml"></link><id>http://aravindavk.in/</id><updated>2011-01-24T00:00:00+05:30</updated><entry><title>ನನ್ನ ಕ್ಯಾಮೆರಾ(ಗಳು)!</title><link href="http://aravindavk.in/blog/mycamera/" rel="alternate"></link><published>2011-01-24T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2011-01-24:/blog/mycamera//</id><summary type="html">&lt;p class="first last"&gt;ನನ್ನ ಮುದ್ದಿನ ಮೊದಲ ಕ್ಯಾಮೆರಾ Canon A410, ಸಣ್ಣ ಕ್ಯಾಮೆರಾ ಆರಾಮಾಗಿ ಜೇಬಿನಲ್ಲಿಟ್ಟುಕೊಂಡು ಹೋಗುತ್ತಿದ್ದೆ. ಅದರಲ್ಲಿದ್ದ options ಗಳನ್ನೆಲ್ಲಾ ಪ್ರಯೋಗ ಮಾಡಿ ಅದರಲ್ಲಿರುವುದು ಸಾಕಾಗೋದಿಲ್ಲವೆನಿಸಿತು.&lt;/p&gt;
 </summary><category term="camera"></category><category term="equipment"></category></entry></feed>

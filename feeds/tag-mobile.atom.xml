@@ -1,34 +1,3 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Aravinda VK</title><link rel="alternate" href="http://aravindavk.in/"></link><link rel="self" href="http://aravindavk.in/feeds/tag-mobile.atom.xml"></link><id>http://aravindavk.in/</id><updated>2013-01-25T00:00:00+05:30</updated><entry><title>Firefox OS</title><link rel="alternate" href="http://aravindavk.in/blog/firefox-os/"></link><published>2013-01-25T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2013-01-25:blog/firefox-os/</id><summary type="html">&lt;p&gt;I was impressed by the demo videos and blog posts about Firefox OS and decided to try it on my phone Nexus S. Searched for Nexus S ROM and found one &lt;a class="reference external" href="http://forum.xda-developers.com/showthread.php?t=1924367"&gt;here&lt;/a&gt;. (&lt;cite&gt;TODO: Try building latest version of Firefox OS&lt;/cite&gt;)&lt;/p&gt;
-&lt;p&gt;Installation went smooth, followed the documentation from &lt;a class="reference external" href="http://forum.xda-developers.com/showthread.php?t=1924367"&gt;here&lt;/a&gt;.&lt;/p&gt;
-&lt;blockquote class="twitter-tweet"&gt;&lt;p&gt;Installing Firefox OS on my Nexus S. Fingers crossed :)&lt;/p&gt;&amp;mdash; Aravinda (@aravindavk) &lt;a href="https://twitter.com/aravindavk/status/270116962045153280" data-datetime="2012-11-18T10:51:16+00:00"&gt;November 18, 2012&lt;/a&gt;&lt;/blockquote&gt;&lt;p&gt;Booting is superfast and Unicode rendering is awesome, adding new fonts also easy. I just used adb (Android Debugger) to push the font from my system.&lt;/p&gt;
-&lt;blockquote class="twitter-tweet"&gt;&lt;p&gt;Installing fonts is so easy in &lt;a href="https://twitter.com/search/%23FirefoxOS"&gt;#FirefoxOS&lt;/a&gt;, &lt;a href="https://twitter.com/search/%23kannada"&gt;#kannada&lt;/a&gt; works like a charm :) &lt;a href="https://twitter.com/search/%23mozilla"&gt;#mozilla&lt;/a&gt; &lt;a href="https://twitter.com/search/%23nexusS"&gt;#nexusS&lt;/a&gt;&lt;/p&gt;&amp;mdash; Aravinda (@aravindavk) &lt;a href="https://twitter.com/aravindavk/status/270149288326221824" data-datetime="2012-11-18T12:59:44+00:00"&gt;November 18, 2012&lt;/a&gt;&lt;/blockquote&gt;&lt;p&gt;I took screenshots using ADB and ffmpeg.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;./adb pull /dev/graphics/fb0
-ffmpeg -vframes &lt;span class="m"&gt;1&lt;/span&gt; -f rawvideo -pix_fmt rgb32 -s 480x800 -i fb0 ~/firefoxos_screenshots/s1.png
-&lt;/pre&gt;&lt;/div&gt;
-&lt;img alt="Lock screen" src="/images/firefoxos/s1.png" /&gt;
-&lt;img alt="Twitter app" src="/images/firefoxos/s2.png" /&gt;
-&lt;p&gt;&lt;em&gt;Lock screen and Twitter app&lt;/em&gt;&lt;/p&gt;
-&lt;img alt="Kannada in browser" src="/images/firefoxos/s3.png" /&gt;
-&lt;img alt="Camera" src="/images/firefoxos/s4.png" /&gt;
-&lt;p&gt;&lt;em&gt;Kannada in browser and Camera in action&lt;/em&gt;&lt;/p&gt;
-&lt;img alt="Kannada in Twitter app" src="/images/firefoxos/s5.png" /&gt;
-&lt;img alt="Keyboard" src="/images/firefoxos/s12.png" /&gt;
-&lt;p&gt;&lt;em&gt;Kannada in Twitter app(Special case text using Zero Width Joiner) and Keyboard&lt;/em&gt;&lt;/p&gt;
-&lt;img alt="Apps" src="/images/firefoxos/s7.png" /&gt;
-&lt;img alt="Marketplace" src="/images/firefoxos/s8.png" /&gt;
-&lt;p&gt;&lt;em&gt;Apps and Marketplace&lt;/em&gt;&lt;/p&gt;
-&lt;img alt="Dailer" src="/images/firefoxos/s9.png" /&gt;
-&lt;img alt="Outgoing call" src="/images/firefoxos/s10.png" /&gt;
-&lt;p&gt;&lt;em&gt;Dailer and Outgoing call screen&lt;/em&gt;&lt;/p&gt;
-&lt;img alt="Alt Tab" src="/images/firefoxos/s11.png" /&gt;
-&lt;img alt="Alt Tab" src="/images/firefoxos/s6.png" /&gt;
-&lt;p&gt;&lt;em&gt;When home button is long pressed&lt;/em&gt;&lt;/p&gt;
-&lt;img alt="Settings" src="/images/firefoxos/s13.png" /&gt;
-&lt;img alt="Notification slider" src="/images/firefoxos/s14.png" /&gt;
-&lt;p&gt;&lt;em&gt;Settings and notification slider&lt;/em&gt;&lt;/p&gt;
-&lt;img alt="Power Button" src="/images/firefoxos/s15.png" /&gt;
-&lt;p&gt;&lt;em&gt;When power button long pressed&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;Used it for a day and changed it back to Cynogenmod since it was not yet ready for day to day use.&lt;/p&gt;
-&lt;p&gt;Hoping to learn more about Firefox OS in &lt;a class="reference external" href="https://wiki.mozilla.org/Engagement/Developer_Engagement/FirefoxAppDays"&gt;Firefox OS App Days&lt;/a&gt;.&lt;/p&gt;
-&lt;script async src="//platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;</summary><category term="firefoxos"></category><category term="mobile"></category></entry></feed>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Aravinda VK - mobile</title><link rel="alternate" href="http://aravindavk.in/"></link><link rel="self" href="http://aravindavk.in/feeds/tag-mobile.atom.xml"></link><id>http://aravindavk.in/</id><updated>2013-01-25T00:00:00+05:30</updated><entry><title>Firefox OS</title><link href="http://aravindavk.in/blog/firefox-os/" rel="alternate"></link><published>2013-01-25T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2013-01-25:/blog/firefox-os//</id><summary type="html">&lt;p class="first last"&gt;I was impressed by the demo videos and blog posts about Firefox OS and decided to try it on my phone Nexus S&lt;/p&gt;
+</summary><category term="firefoxos"></category><category term="mobile"></category></entry></feed>
