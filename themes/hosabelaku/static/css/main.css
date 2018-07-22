@@ -282,3 +282,7 @@ img + p > em, p.caption{
 .literal{
     background-color: #eee;
 }
+
+pre {
+    color: #000;
+}
