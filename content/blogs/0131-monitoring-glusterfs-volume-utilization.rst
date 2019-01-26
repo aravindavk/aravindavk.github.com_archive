@@ -101,11 +101,11 @@ utilization along with raw utilization.
 
 .. code-block:: text
 
-   brick_utilization = df(brick_path).used
+   subvol_utilization = df(brick_path).used
    if (disperse_volume)
-       effective_brick_utilization = brick_utilization * number_of_data_bricks
+       effective_subvol_utilization = brick_utilization * number_of_data_bricks
    else
-       effective_brick_utilization = brick_utilization
+       effective_subvol_utilization = brick_utilization
 
 With the above two exported values, both Volume and brick utilization
 can be monitored without mounting the Gluster volume.
@@ -114,21 +114,22 @@ Example: Exported values for Volume gv1(Replica 3 volume)
 
 .. code-block:: text
 
-   gluster_brick_utilization{instance="node1.example.com:8080",job="gluster",path="/exports/bricks/gv1/s1/brick1/brick",subvol="s1",volname="gv1"} 790425600
-   gluster_brick_utilization{instance="node2.example.com:8080",job="gluster",path="/exports/bricks/gv1/s1/brick2/brick",subvol="s1",volname="gv1"} 788611072
-   gluster_brick_utilization{instance="node3.example.com:8080",job="gluster",path="/exports/bricks/gv1/s1/brick3/brick",subvol="s1",volname="gv1"} 790175744
+   gluster_subvol_capacity_used_bytes{instance="node1.example.com:8080",job="gluster",path="/exports/bricks/gv1/s1/brick1/brick",subvolume="s1",volume="gv1"} 790425600
+   gluster_subvol_capacity_used_bytes{instance="node2.example.com:8080",job="gluster",path="/exports/bricks/gv1/s1/brick2/brick",subvolume="s1",volume="gv1"} 788611072
+   gluster_subvol_capacity_used_bytes{instance="node3.example.com:8080",job="gluster",path="/exports/bricks/gv1/s1/brick3/brick",subvolume="s1",volume="gv1"} 790175744
 
 Add the following rule in the Prometheus configuration file to record the
 Volume utilization.
 
 .. code-block:: yml
 
-    groups:
+    ---
     - name: gluster_volume_utilization
       rules:
-      - record: gluster:gluster_volume_utilization_total:sum
-        expr: sum(max(gluster_brick_utilization) by (volname, subvol)) by (volname)
-
+      - record: gluster:volume_capacity_used_bytes_total:sum
+        expr: >
+          sum(max(gluster_subvol_capacity_used_bytes)
+          by (volume, subvolume)) by (volume)
 
 If one or more bricks of a sub volume goes down, it still exports
 correct Volume utilization if at least one brick is available.  If all
