@@ -151,26 +151,28 @@ brick's utilization with number of data bricks.</p>
 </pre></div>
 <p>To accommodate this, exporter needs to be modified to export effective
 utilization along with raw utilization.</p>
-<div class="highlight"><pre><span></span>brick_utilization = df(brick_path).used
+<div class="highlight"><pre><span></span>subvol_utilization = df(brick_path).used
 if (disperse_volume)
-    effective_brick_utilization = brick_utilization * number_of_data_bricks
+    effective_subvol_utilization = brick_utilization * number_of_data_bricks
 else
-    effective_brick_utilization = brick_utilization
+    effective_subvol_utilization = brick_utilization
 </pre></div>
 <p>With the above two exported values, both Volume and brick utilization
 can be monitored without mounting the Gluster volume.</p>
 <p>Example: Exported values for Volume gv1(Replica 3 volume)</p>
-<div class="highlight"><pre><span></span>gluster_brick_utilization{instance=&quot;node1.example.com:8080&quot;,job=&quot;gluster&quot;,path=&quot;/exports/bricks/gv1/s1/brick1/brick&quot;,subvol=&quot;s1&quot;,volname=&quot;gv1&quot;} 790425600
-gluster_brick_utilization{instance=&quot;node2.example.com:8080&quot;,job=&quot;gluster&quot;,path=&quot;/exports/bricks/gv1/s1/brick2/brick&quot;,subvol=&quot;s1&quot;,volname=&quot;gv1&quot;} 788611072
-gluster_brick_utilization{instance=&quot;node3.example.com:8080&quot;,job=&quot;gluster&quot;,path=&quot;/exports/bricks/gv1/s1/brick3/brick&quot;,subvol=&quot;s1&quot;,volname=&quot;gv1&quot;} 790175744
+<div class="highlight"><pre><span></span>gluster_subvol_capacity_used_bytes{instance=&quot;node1.example.com:8080&quot;,job=&quot;gluster&quot;,path=&quot;/exports/bricks/gv1/s1/brick1/brick&quot;,subvolume=&quot;s1&quot;,volume=&quot;gv1&quot;} 790425600
+gluster_subvol_capacity_used_bytes{instance=&quot;node2.example.com:8080&quot;,job=&quot;gluster&quot;,path=&quot;/exports/bricks/gv1/s1/brick2/brick&quot;,subvolume=&quot;s1&quot;,volume=&quot;gv1&quot;} 788611072
+gluster_subvol_capacity_used_bytes{instance=&quot;node3.example.com:8080&quot;,job=&quot;gluster&quot;,path=&quot;/exports/bricks/gv1/s1/brick3/brick&quot;,subvolume=&quot;s1&quot;,volume=&quot;gv1&quot;} 790175744
 </pre></div>
 <p>Add the following rule in the Prometheus configuration file to record the
 Volume utilization.</p>
-<div class="highlight"><pre><span></span>groups:
+<div class="highlight"><pre><span></span>---
 - name: gluster_volume_utilization
   rules:
-  - record: gluster:gluster_volume_utilization_total:sum
-    expr: sum(max(gluster_brick_utilization) by (volname, subvol)) by (volname)
+  - record: gluster:volume_capacity_used_bytes_total:sum
+    expr: &gt;
+      sum(max(gluster_subvol_capacity_used_bytes)
+      by (volume, subvolume)) by (volume)
 </pre></div>
 <p>If one or more bricks of a sub volume goes down, it still exports
 correct Volume utilization if at least one brick is available.  If all
