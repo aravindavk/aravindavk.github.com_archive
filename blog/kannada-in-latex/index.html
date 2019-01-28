@@ -156,9 +156,9 @@ fmtutil --byfmt xelatex
 <span class="k">\setdefaultlanguage</span><span class="na">[numerals=Kannada]</span><span class="nb">{</span>kannada<span class="nb">}</span>
 <span class="c">%% If english numerals required \setdefaultlanguage[numerals=Western]{kannada}</span>
 <span class="k">\setmainfont</span><span class="na">[Script=Kannada]</span><span class="nb">{</span>Lohit Kannada<span class="nb">}</span>
-<span class="k">\newfontfamily\english</span><span class="nb">{</span>&quot;FreeSerif&quot;<span class="nb">}</span>
+<span class="k">\newfontfamily\english</span><span class="nb">{</span>FreeSerif<span class="nb">}</span>
 <span class="c">%% New command to switch to English in between</span>
-<span class="k">\newcommand\en</span><span class="na">[1]</span><span class="k">\{</span> <span class="nb">{</span>english #1<span class="nb">}</span> <span class="nb">}</span>
+<span class="k">\newcommand</span><span class="nb">{</span><span class="k">\en</span><span class="nb">}</span>[1]<span class="nb">{{</span><span class="k">\english</span> #1<span class="nb">}}</span>
 <span class="k">\setlength</span><span class="nb">{</span><span class="k">\parindent</span><span class="nb">}{</span>0pt<span class="nb">}</span> <span class="c">% No indentation for paragraphs</span>
 <span class="k">\title</span><span class="nb">{</span>ಮದುವೆಯ ನೆನಪು ಉಳಿಯಿತು<span class="nb">}</span>
 <span class="k">\date</span><span class="nb">{}</span>
