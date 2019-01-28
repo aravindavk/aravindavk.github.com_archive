@@ -115,9 +115,9 @@ Now we are ready with the installation of TeXLive. Let us create a TeX file to t
     \setdefaultlanguage[numerals=Kannada]{kannada}
     %% If english numerals required \setdefaultlanguage[numerals=Western]{kannada}
     \setmainfont[Script=Kannada]{Lohit Kannada}
-    \newfontfamily\english{"FreeSerif"}
+    \newfontfamily\english{FreeSerif}
     %% New command to switch to English in between
-    \newcommand\en[1]\{ {english #1} }
+    \newcommand{\en}[1]{{\english #1}}
     \setlength{\parindent}{0pt} % No indentation for paragraphs
     \title{ಮದುವೆಯ ನೆನಪು ಉಳಿಯಿತು}
     \date{}
