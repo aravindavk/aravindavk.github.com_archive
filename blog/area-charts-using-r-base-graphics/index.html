@@ -106,33 +106,33 @@ per year.</p>
 2019, 1
 </pre></div>
 <p>Now lets draw the line graph as below.</p>
-<div class="highlight"><pre><span></span><span class="n">dat</span> <span class="o">&lt;-</span> <span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;blogs_data.csv&quot;</span><span class="p">)</span>
-<span class="n">numYears</span> <span class="o">&lt;-</span> <span class="nf">length</span><span class="p">(</span><span class="n">dat</span><span class="o">$</span><span class="n">Blog</span><span class="p">)</span>
+<div class="highlight"><pre><span></span>dat <span class="o">&lt;-</span> read.csv<span class="p">(</span><span class="s">&quot;blogs_data.csv&quot;</span><span class="p">)</span>
+numYears <span class="o">&lt;-</span> <span class="kp">length</span><span class="p">(</span>dat<span class="o">$</span>Blog<span class="p">)</span>
 
-<span class="nf">plot</span><span class="p">(</span>
-    <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="n">numYears</span><span class="p">),</span>     <span class="c1"># x axis</span>
-    <span class="n">dat</span><span class="o">$</span><span class="n">Blog</span><span class="p">,</span>          <span class="c1"># y axis</span>
-    <span class="n">type</span><span class="o">=</span><span class="s">&quot;l&quot;</span><span class="p">,</span>          <span class="c1"># Line graph</span>
-    <span class="n">col</span><span class="o">=</span><span class="s">&quot;#409ddf&quot;</span><span class="p">,</span>     <span class="c1"># Line Color</span>
-    <span class="n">lwd</span><span class="o">=</span><span class="m">3</span><span class="p">,</span>             <span class="c1"># Line Width</span>
-    <span class="n">xlab</span><span class="o">=</span><span class="s">&quot;Years&quot;</span><span class="p">,</span>      <span class="c1"># X axis label</span>
-    <span class="n">ylab</span><span class="o">=</span><span class="s">&quot;Blog posts&quot;</span><span class="p">,</span> <span class="c1"># Y axis label</span>
-    <span class="n">xaxt</span><span class="o">=</span><span class="s">&quot;n&quot;</span><span class="p">,</span>          <span class="c1"># Show X axis</span>
-    <span class="n">yaxt</span><span class="o">=</span><span class="s">&quot;n&quot;</span><span class="p">,</span>          <span class="c1"># Show Y axis</span>
-    <span class="n">main</span><span class="o">=</span><span class="s">&quot;Blog posts&quot;</span><span class="p">,</span> <span class="c1"># Graph main title</span>
+plot<span class="p">(</span>
+    <span class="kt">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span>numYears<span class="p">),</span>     <span class="c1"># x axis</span>
+    dat<span class="o">$</span>Blog<span class="p">,</span>          <span class="c1"># y axis</span>
+    type<span class="o">=</span><span class="s">&quot;l&quot;</span><span class="p">,</span>          <span class="c1"># Line graph</span>
+    col<span class="o">=</span><span class="s">&quot;#409ddf&quot;</span><span class="p">,</span>     <span class="c1"># Line Color</span>
+    lwd<span class="o">=</span><span class="m">3</span><span class="p">,</span>             <span class="c1"># Line Width</span>
+    xlab<span class="o">=</span><span class="s">&quot;Years&quot;</span><span class="p">,</span>      <span class="c1"># X axis label</span>
+    ylab<span class="o">=</span><span class="s">&quot;Blog posts&quot;</span><span class="p">,</span> <span class="c1"># Y axis label</span>
+    xaxt<span class="o">=</span><span class="s">&quot;n&quot;</span><span class="p">,</span>          <span class="c1"># Show X axis</span>
+    yaxt<span class="o">=</span><span class="s">&quot;n&quot;</span><span class="p">,</span>          <span class="c1"># Show Y axis</span>
+    main<span class="o">=</span><span class="s">&quot;Blog posts&quot;</span><span class="p">,</span> <span class="c1"># Graph main title</span>
     <span class="p">)</span>
 
-<span class="nf">axis</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="n">at</span><span class="o">=</span><span class="m">1</span><span class="o">:</span><span class="n">numYears</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="nf">sprintf</span><span class="p">(</span><span class="s">&quot;%s&quot;</span><span class="p">,</span> <span class="n">dat</span><span class="o">$</span><span class="n">Year</span><span class="p">))</span>
-<span class="nf">axis</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="n">tck</span><span class="o">=</span><span class="m">1</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s">&quot;#dddddd&quot;</span><span class="p">)</span>
+axis<span class="p">(</span><span class="m">1</span><span class="p">,</span> at<span class="o">=</span><span class="m">1</span><span class="o">:</span>numYears<span class="p">,</span> labels<span class="o">=</span><span class="kp">sprintf</span><span class="p">(</span><span class="s">&quot;%s&quot;</span><span class="p">,</span> dat<span class="o">$</span>Year<span class="p">))</span>
+axis<span class="p">(</span><span class="m">2</span><span class="p">,</span> tck<span class="o">=</span><span class="m">1</span><span class="p">,</span> col<span class="o">=</span><span class="s">&quot;#dddddd&quot;</span><span class="p">)</span>
 </pre></div>
 <img alt="Line Chart" src="/images/area-chart-only-line.jpg" />
 <p>Identify the points required to draw a polygon as below,</p>
 <img alt="Polygon" src="/images/area-chart-polygon.jpg" />
-<div class="highlight"><pre><span></span><span class="n">yy</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="n">dat</span><span class="o">$</span><span class="n">Blog</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">)</span>          <span class="c1"># P14, P1:P12, P13, P14</span>
-<span class="n">xx</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="o">:</span><span class="n">numYears</span><span class="p">,</span> <span class="n">numYears</span><span class="p">,</span> <span class="m">1</span><span class="p">)</span> <span class="c1"># P14, P1:P12, P13, P14</span>
+<div class="highlight"><pre><span></span>yy <span class="o">&lt;-</span> <span class="kt">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> dat<span class="o">$</span>Blog<span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">)</span>          <span class="c1"># P14, P1:P12, P13, P14</span>
+xx <span class="o">&lt;-</span> <span class="kt">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="o">:</span>numYears<span class="p">,</span> numYears<span class="p">,</span> <span class="m">1</span><span class="p">)</span> <span class="c1"># P14, P1:P12, P13, P14</span>
 </pre></div>
 <p>And draw polygon using,</p>
-<div class="highlight"><pre><span></span><span class="nf">polygon</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s">&quot;#c3e1f57d&quot;</span><span class="p">,</span> <span class="n">border</span><span class="o">=</span><span class="kc">NA</span><span class="p">)</span>
+<div class="highlight"><pre><span></span>polygon<span class="p">(</span>xx<span class="p">,</span> yy<span class="p">,</span> col<span class="o">=</span><span class="s">&quot;#c3e1f57d&quot;</span><span class="p">,</span> border<span class="o">=</span><span class="kc">NA</span><span class="p">)</span>
 </pre></div>
 <p>And the final Area chart,</p>
 <img alt="Final Area Chart" src="/images/area-chart-final.jpg" />

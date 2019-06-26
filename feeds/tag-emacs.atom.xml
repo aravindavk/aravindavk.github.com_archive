@@ -1,19 +1,3 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Aravinda VK - emacs</title><link href="http://aravindavk.in/" rel="alternate"></link><link href="http://aravindavk.in/feeds/tag-emacs.atom.xml" rel="self"></link><id>http://aravindavk.in/</id><updated>2009-06-16T00:00:00+05:30</updated><entry><title>SlackBuild Emacs CVS</title><link href="http://aravindavk.in/blog/slackbuild-emacs-cvs/" rel="alternate"></link><published>2009-06-16T00:00:00+05:30</published><updated>2009-06-16T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2009-06-16:/blog/slackbuild-emacs-cvs/</id><summary type="html">&lt;p class="first last"&gt;To install a package in Slackware we can use installpkg, and for upgrade we can use upgradepkg. While installing a package it will not check for dependencies.&lt;/p&gt;
-</summary><content type="html">&lt;p&gt;To install a package in Slackware we can use installpkg, and for upgrade we can use upgradepkg. While installing a package it will not check for dependencies.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;installpkg &amp;lt;packagename&amp;gt;
-upgradepkg &amp;lt;packagename&amp;gt;
-removepkg &amp;lt;packagename&amp;gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;But if a Slackware package is not available in official and third party repositories then we have following options to install a package.&lt;/p&gt;
-&lt;ol class="arabic simple"&gt;
-&lt;li&gt;&lt;code&gt;./configure; make; make install&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Create and install Slackware package using SlackBuild script&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Slackbuild is a shell script to build Slackware package by compiling respective source.&lt;/p&gt;
-&lt;p&gt;In both the case source will be compiled, but only difference is the way of doing it. Slackbuild script will create Slackware package at the end instead of installing. All the Slackware package specific actions can be applied to the package(like installpkg, upgradepkg, removepkg etc) if it is created using Slackbuild script. The generated Slackware package can be shared with others, so that they can install that package without compiling it again.&lt;/p&gt;
-&lt;p&gt;Upgrade/Removal will be difficult if the first option is used.&lt;/p&gt;
-&lt;p&gt;My Slackware system didn't had the latest(CVS) version of Emacs(Not available in repository also). I used the Emacs CVS Slackbuild script from &lt;a class="reference external" href="http://www.unc.edu/~adamsonj/software/emacs-cvs/"&gt;Joel J. Adamson's&lt;/a&gt; website, this script will download the source from Emacs CVS repository and creates Slackware package after compilation.&lt;/p&gt;
-&lt;p&gt;Script took 35 minutes in my system to create Slackware package for Emacs-cvs  :)&lt;/p&gt;
-&lt;p&gt;More details about Slackbuild script is &lt;a class="reference external" href="http://www.slackwiki.org/Writing_A_SlackBuild_Script"&gt;here&lt;/a&gt;.&lt;/p&gt;
-</content><category term="emacs"></category><category term="gnu-linux"></category><category term="slackware"></category></entry></feed>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Aravinda VK - emacs</title><link href="http://aravindavk.in/" rel="alternate"></link><link href="http://aravindavk.in/feeds/tag-emacs.atom.xml" rel="self"></link><id>http://aravindavk.in/</id><updated>2009-06-16T00:00:00+05:30</updated><entry><title>SlackBuild Emacs CVS</title><link href="http://aravindavk.in/blog/slackbuild-emacs-cvs/" rel="alternate"></link><published>2009-06-16T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2009-06-16:/blog/slackbuild-emacs-cvs//</id><summary type="html">&lt;p class="first last"&gt;To install a package in Slackware we can use installpkg, and for upgrade we can use upgradepkg. While installing a package it will not check for dependencies.&lt;/p&gt;
+</summary><category term="emacs"></category><category term="gnu-linux"></category><category term="slackware"></category></entry></feed>

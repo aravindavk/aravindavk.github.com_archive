@@ -1,36 +1,3 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Aravinda VK - rss</title><link href="http://aravindavk.in/" rel="alternate"></link><link href="http://aravindavk.in/feeds/tag-rss.atom.xml" rel="self"></link><id>http://aravindavk.in/</id><updated>2009-02-28T00:00:00+05:30</updated><entry><title>RSS(Really Simple Syndication) ಫೀಡ್ಸ್ ಏನಿದು? ಹೇಗೆ ಬಳಸುವುದು?</title><link href="http://aravindavk.in/blog/rss-feeds/" rel="alternate"></link><published>2009-02-28T00:00:00+05:30</published><updated>2009-02-28T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2009-02-28:/blog/rss-feeds/</id><summary type="html">&lt;p class="first last"&gt;RSS ಎನ್ನುವುದು ಒಂದು ಸ್ಟಾಂಡರ್ಡ್, RSS ಫೀಡ್ ಎಂದರೆ  ನಿಗದಿ   ಪಡಿಸಿದ ರೀತಿಯಲ್ಲಿ ಬರೆದ ಒಂದು xml ಫೈಲು. ಯಾವುದಾದರೂ ವೆಬ್ ಸೈಟ್ ನವರು RSS ಫೀಡ್ ಕೊಡಬೇಕೆಂದರೆ  ಈ ಸ್ಟಾಂಡರ್ಡ್ ನಲ್ಲೇ ಫೈಲ್ ಅನ್ನು  ಜನರೇಟ್ ಮಾಡಿ ಕೊಡಬೇಕು.&lt;/p&gt;
-</summary><content type="html">&lt;p&gt;RSS ಎನ್ನುವುದು ಒಂದು ಸ್ಟಾಂಡರ್ಡ್, RSS ಫೀಡ್ ಎಂದರೆ  ನಿಗದಿ   ಪಡಿಸಿದ ರೀತಿಯಲ್ಲಿ ಬರೆದ ಒಂದು xml ಫೈಲು. ಯಾವುದಾದರೂ ವೆಬ್ ಸೈಟ್ ನವರು RSS ಫೀಡ್ ಕೊಡಬೇಕೆಂದರೆ  ಈ ಸ್ಟಾಂಡರ್ಡ್ ನಲ್ಲೇ ಫೈಲ್ ಅನ್ನು  ಜನರೇಟ್ ಮಾಡಿ ಕೊಡಬೇಕು.&lt;/p&gt;
-&lt;p&gt;ಈ ಸ್ಟಾಂಡರ್ಡ್ ಯಾಕೆ ಬೇಕು ಅಂತ ನಿಮಗೆ ಅನ್ನಿಸ್ತಿರಬಹುದು, ಈಗ  ೧೦ ವೆಬ್ ಸೈಟ್ ನವರು  ಬೇರೆ ಬೇರೆ ರೀತಿಯಲ್ಲಿ ಬರೆದರೆ  ಅದನ್ನು  ಓದಲು ೧೦ ತರಹದ ಪ್ರೋಗ್ರಾಮ್ ಗಳು ಬೇಕಾಗುತ್ತವೆ. ಹಾಗಾಗಿ ಅದರಿಂದ ಅನಾನುಕೂಲವೇ ಹೆಚ್ಚು, ಆದೇ ಒಂದೇ ಸ್ಟಾಂಡರ್ಡ್ ನಲ್ಲಿದ್ದರೆ ಒಂದೇ ಪ್ರೋಗ್ರಾಮ್ ಬಳಸಿ  ಎಲ್ಲಾದನ್ನೂ ಓದಬಹುದು. ಈ RSS ಫೀಡ್ ಗಳು XML ಫಾರ್ಮ್ಯಾಟ್ ನಲ್ಲಿರೋದ್ರಿಂದ ನಮಗೆ ಡೈರೆಕ್ಟ್ ಆಗಿ ಓದಲು ಕಷ್ಟ, ಆದ್ದರಿಂದ ಕೆಲವು ಪ್ರೋಗ್ರಾಮ್ ಗಳನ್ನು ಬಳಸುತ್ತೇವೆ  ಅವನ್ನು  RSS ರೀಡರ್ ಎಂದು ಕರೆಯುತ್ತಾರೆ.&lt;/p&gt;
-&lt;div class="section" id="xml-rss"&gt;
-&lt;h2&gt;ಆ xml ಫೈಲ್  ಅಥವಾ RSS ಫೀಡ್ ನಲ್ಲಿ ಏನಿರುತ್ತೆ?&lt;/h2&gt;
-&lt;p&gt;ತಮ್ಮ ವೆಬ್ ಸೈಟ್ ನಲ್ಲಿ  ಹೊಸ ವಿಷಯಗಳು ಯಾವುದಿವೆ ಎಂಬುದರ ಬಗ್ಗೆ ವಿವರಗಳಿರುತ್ತವೆ. ಒಂದೊಂದು ವಿಷಯದ ಹೆಸರು, ಸಣ್ಣ ವಿವರಣೆ, ದಿನಾಂಕ, ಲಿಂಕ್ ಇತ್ಯಾದಿ ವಿವರಗಳಿರುತ್ತವೆ. RSS ರೀಡರ್ ನಲ್ಲಿ  ಈ ಎಲ್ಲಾ ವಿವರಣೆಗಳನ್ನೂ ತೋರಿಸುತ್ತೆ, ಸಣ್ಣ ವಿವರಣೆ ನೋಡಿ ಅದು ಪೂರ್ತಿ ಓದಬೇಕು ಎನ್ನಿಸಿದರೆ ಅಲ್ಲೆ ಲಿಂಕ್ ಇರುತ್ತದೆ. ಅದನ್ನ ಕ್ಲಿಕ್ ಮಾಡಿದ್ರಾಯ್ತು.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="rss"&gt;
-&lt;h2&gt;RSS ಫೀಡ್ ನ ಉಪಯೋಗಗಳೇನು?&lt;/h2&gt;
-&lt;p&gt;ನಮಗೆ ಇಷ್ಟವಾದ ೧೦ ವೆಬ್ ಸೈಟ್ ಗಳಿದ್ದಾವೆಂದುಕೊಳ್ಳಿ, ಆ ಹತ್ತು ವೆಬ್ ಸೈಟ್ ಗಳಲ್ಲಿ ಎಲ್ಲಾ ದಿನವೂ ಹೊಸ ವಿಷಯಗಳು ಬರುವುದಿಲ್ಲ. ಆದರೆ ನಮಗೆ ಅದು ಗೊತ್ತಿರುವುದಿಲ್ಲ, ನಾವು ಆ ವೆಬ್ ಸೈಟ್ ಗಳನ್ನ ಬುಕ್ ಮಾರ್ಕ್/ಫೇವೋರೈಟ್ ಮಾಡಿಕೊಂಡಿರುತ್ತೀವಿ, ಆ ೧೦ ವೆಬ್ ಸೈಟ್ ಗಳನ್ನ ಓಪನ್ ಮಾಡಿ ನೋಡುತ್ತೀವಿ. ಅಕಸ್ಮಾತ್ ಒಂದು ದಿನ ೧೦ ರಲ್ಲಿ ಒಂದೇ ಸೈಟ್ ನಲ್ಲಿ ಹೊಸ ವಿಷಯ ಬಂದಿದೆ ಅನ್ನಿ, ನಾವು ತಿಳೀದೇ ಉಳಿದ ಒಂಬತ್ತು ಸೈಟ್ ಗಳನ್ನೂ ಓಪನ್ ಮಾಡಿ ನೋಡಿರ್ತೀವಿ. ನಿಮ್ಮಲ್ಲಿ  ಇಂಟರ್ ನೆಟ್ ಗೆ ಲಿಮಿಟೆಡ್ ಡೌನ್ಲೋಡ್ ಸ್ಕೀಮ್ ಇದ್ದರೆ, ಸುಮ್ಮನೆ ಎಲ್ಲಾ ಪುಟಗಳನ್ನು ಓಪನ್ ಮಾಡಿದಾಗ  ನಿಮಗೆ ಬೇಸರವಾಗುತ್ತೆ (ಒಂದು ಪುಟ ಲೋಡ್ ಆಗುವಾಗ  ಅದರಲ್ಲಿರುವ ಚಿತ್ರಗಳು, ವೀಡಿಯೋಗಳು ಎಲ್ಲವೂ  ಡೌನ್ಲೋಡ್ ಅಂತನೇ ). ಅದೂ ಅಲ್ಲದೆ, ನಿಮಗೆ ಇಷ್ಟವಾದ ವೆಬ್ ಸೈಟ್ ನೋಡಲು ಮರೆತರೆ ಕೆಲವೊಂದು ವಿಷಯ ಬಿಟ್ಟೇ  ಹೋಗುತ್ತವೆ.&lt;/p&gt;
-&lt;p&gt;RSS ರೀಡರ್ ಏನು ಮಾಡುತ್ತೆ? ನೀವು  subscribe ಆದ ಎಲ್ಲಾ ವೆಬ್ ಸೈಟ್ ಗಳಿಂದ ಒಂದೊಂದು xml ಫೈಲ್ ಡೌನ್ಲೋಡ್ ಮಾಡುತ್ತೆ, ಇದು ಓದಿ ಆಯ್ತು, ಇದು ಆಗಿಲ್ಲ ಅಂತನೂ ಮಾರ್ಕ್ ಮಾಡಬಹುದು. ಅಲ್ಲದೇ, ಸಣ್ಣ ವಿವರಣೆ ನೋಡಿಯೇ ಈ ಲೇಖನ ಓದಬೇಕೋ ಬೇಡವೋ ಅಂತ ಡಿಸೈಡ್ ಮಾಡಬಹುದು.&lt;/p&gt;
-&lt;p&gt;ಮತ್ತೊಂದು ಉಪಯೋಗ  ಎಲ್ಲಾ ನ್ಯೂಸ್/ಹೊಸತನ್ನ ಒಂದೇ ಕಡೆ ನೋಡಬಹುದು.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="section" id="id1"&gt;
-&lt;h2&gt;ಒಂದು ವೆಬ್ ಸೈಟ್ ನಲ್ಲಿ RSS ಫೀಡ್ ಇದೆ ಎಂದು ಹೇಗೆ ಗುರುತಿಸೋದು?&lt;/h2&gt;
-&lt;p&gt;ನೀವು ಪೈರ್ ಫಾಕ್ಸ್ ಬಳಸುತ್ತಿದ್ದರೆ , ಅಡ್ರೆಸ್ ಬಾರ್ ನಲ್ಲಿ ಈ ಕೆಳಗಿನ ಚಿತ್ರದಲ್ಲಿ ತೋರಿಸಿದಂತೆ  ಕಾಣುತ್ತದೆ, ಅದರ ಮೇಲೆ ಕುಟುಕಿದರೆ(ಕ್ಲಿಕ್ಕಿಸಿದರೆ) ಮತ್ತೊಂದು ಪುಟ ಓಪನ್ ಆಗುತ್ತೆ ಅದರ ಅಡ್ರೆಸ್ಸ್ ಕಾಪಿ ಮಾಡಿ RSS ರೀಡರ್ ಗೆ ಕೊಟ್ಟರೆ ಕೆಲ್ಸ ಮುಗೀತು.&lt;/p&gt;
-&lt;img alt="Identify RSS feed" src="/images/rss1/m.png" /&gt;
-&lt;p&gt;ಇಲ್ಲವಾದರೆ, ಆ ವೆಬ್ ಪೇಜ್ ಗಳಲ್ಲಿ ಈ ತರಹದ ಚಿತ್ರ ಕಾಣಿಸುತ್ತಾ ನೋಡಿ. ಇದ್ದರೆ  ಅದರ ಮೇಲೆ ಕ್ಲಿಕ್ಕಿಸಿದರಾಯ್ತು. ಚಿತ್ರವೂ  ಇಲ್ಲದಿದ್ದರೆ  ಆ ವೆಬ್ ಸೈಟ್ ನಲ್ಲಿ  RSS ಎಂಬ ಪದ ಹುಡುಕಿ.&lt;/p&gt;
-&lt;img alt="rss feed icon" src="/images/feed.png" /&gt;
-&lt;/div&gt;
-&lt;div class="section" id="id2"&gt;
-&lt;h2&gt;ಯಾವ ರೀಡರ್ ಬಳಸಬಹುದು?&lt;/h2&gt;
-&lt;p&gt;ಫೈರ್ ಫಾಕ್ಸ್ ನಲ್ಲೇ ನೇರವಾಗಿ ಈ ಫೀಡ್ ಗಳನ್ನ ಓದಬಹುದು, ಆದರೆ ಜಾಸ್ತಿ  ಫೀಡ್ ಗಳಾದಾಗ ಓದುವುದು/ಮ್ಯಾನೇಜ್ ಮಾಡುವುದು ಕಷ್ಟ. ಫೈರ್ ಫಾಕ್ಸ್  ಪ್ಲಗ್ ಇನ್ ಒಂದಿದೆ ನ್ಯೂಸ್ ಫಾಕ್ಸ್ ಎಂದು, ಅದನ್ನು ಬಳಸಬಹುದು. ಗೂಗಲ್ ನವರದ್ದೂ ಒಂದು ಆನ್ ಲೈನ್ RSS‌ರೀಡರ್ ಇದೆ(ನಾನು ಬಳಸುತ್ತಿರುವುದು ಅದನ್ನೆ). ಇನ್ನು ಕೆಲವು ತಂತ್ರಾಂಶಗಳು ಇನ್ ಸ್ಟಾಲ್ ಮಾಡಿಕೊಂಡು RSS ಓದಲು ಬಳಸಬಹುದು. (ಲೈಫ್ ರಿಯಾ, ಮೋಜಿಲ್ಲಾ ತಂಡರ್ ಬರ್ಡ್, RSS Owl)&lt;/p&gt;
-&lt;p&gt;ಈ  ಕೆಳಗಿನ  ಚಿತ್ರ  ನೋಡಿ, ಇದರ ಮೂಲಕ  RSS ರೀಡರ್ ಗಳ ಕೆಲವು ಫೀಚರ್ ಗಳನ್ನು  ವಿವರಿಸುತ್ತೇನೆ.&lt;/p&gt;
-&lt;ol class="arabic simple"&gt;
-&lt;li&gt;ಓದಿಯಾಗಿದೆಯೋ ಇಲ್ಲವೋ ಅಂತ ಗುರುತಿಸಬಹುದು&lt;/li&gt;
-&lt;li&gt;ಸಣ್ಣ ವಿವರಣೆ ಓದಿ ಚೆನ್ನಾಗಿದ್ದಾಗ/ಪೂರ್ತಿ ಓದಬೇಕೆನಿಸಿದಾಗ  ಅಲ್ಲಿರುವ ಲಿಂಕ್ ಕ್ಲಿಕ್ ಮಾಡಿ ಆಯಾ ವೆಬ್ ಪೇಜ್ ಗಳಿಗೆ ಹೋಗಬಹುದು.&lt;/li&gt;
-&lt;li&gt;ವಿಷಯದ ಮೇಲೆ ಫೀಡ್ ಗಳನ್ನು ಗ್ರೂಪ್ ಮಾಡಿಕೊಳ್ಳಬಹುದು. (ಉದಾ, ನಾನು ಮಾಡಿಕೊಂಡಿರುವ ಹಾಗೆ   ಫ್ರೆಂಡ್ಸ್ , ಕನ್ನಡ ಇತ್ಯಾದಿ)&lt;/li&gt;
-&lt;/ol&gt;
-&lt;img alt="RSS feed Reader" src="/images/rss2/m.png" /&gt;
-&lt;p&gt;ಆದಷ್ಟು ಸರಳವಾಗಿ ವಿವರಿಸಲು ಪ್ರಯತ್ನಿಸಿದ್ದೇನೆ, ನನ್ನ ವೆಬ್ ಸೈಟ್ ನ RSS ಫೀಡ್ ಗಳನ್ನು ಬಳಸಿ ನೋಡಿ.&lt;/p&gt;
-&lt;p&gt;&lt;a class="reference external" href="http://aravindavk.in/rss"&gt;http://aravindavk.in/rss&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;ಹೆಚ್ಚಿನ ಮಾಹಿತಿ ಬೇಕಿದ್ದರೆ ಅಥವಾ ಯಾವುದೇ ಸಂದೇಹವಿದ್ದರೆ ಬರೆಯಿರಿ.&lt;/p&gt;
-&lt;/div&gt;
-</content><category term="rss"></category><category term="feeds"></category><category term="kannadablog"></category></entry></feed>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Aravinda VK - rss</title><link href="http://aravindavk.in/" rel="alternate"></link><link href="http://aravindavk.in/feeds/tag-rss.atom.xml" rel="self"></link><id>http://aravindavk.in/</id><updated>2009-02-28T00:00:00+05:30</updated><entry><title>RSS(Really Simple Syndication) ಫೀಡ್ಸ್ ಏನಿದು? ಹೇಗೆ ಬಳಸುವುದು?</title><link href="http://aravindavk.in/blog/rss-feeds/" rel="alternate"></link><published>2009-02-28T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2009-02-28:/blog/rss-feeds//</id><summary type="html">&lt;p class="first last"&gt;RSS ಎನ್ನುವುದು ಒಂದು ಸ್ಟಾಂಡರ್ಡ್, RSS ಫೀಡ್ ಎಂದರೆ  ನಿಗದಿ   ಪಡಿಸಿದ ರೀತಿಯಲ್ಲಿ ಬರೆದ ಒಂದು xml ಫೈಲು. ಯಾವುದಾದರೂ ವೆಬ್ ಸೈಟ್ ನವರು RSS ಫೀಡ್ ಕೊಡಬೇಕೆಂದರೆ  ಈ ಸ್ಟಾಂಡರ್ಡ್ ನಲ್ಲೇ ಫೈಲ್ ಅನ್ನು  ಜನರೇಟ್ ಮಾಡಿ ಕೊಡಬೇಕು.&lt;/p&gt;
+</summary><category term="rss"></category><category term="feeds"></category><category term="kannadablog"></category></entry></feed>
