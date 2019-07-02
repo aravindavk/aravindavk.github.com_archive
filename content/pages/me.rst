@@ -15,7 +15,7 @@ Who am I
 
 Hi there! I am **Aravinda**.
 
-I work at `Red Hat India Pvt. Ltd.`_, Bangalore as **Senior Software Engineer**.
+I work at `Red Hat India Pvt. Ltd.`_, Bangalore as `Principal Software Engineer <http://in.linkedin.com/in/aravindavk>`__.
 
 I like exploring OpenSource technologies and participating in different Open Source projects and Events. Most of my open Source projects are in `Github`_.
 
