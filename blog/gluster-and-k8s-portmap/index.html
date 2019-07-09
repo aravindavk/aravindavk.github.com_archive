@@ -12,7 +12,15 @@
     <link href="/theme/img/fav.png" rel="icon" type="image/x-icon" />
     <meta property="og:site_name" content="Aravinda VK"/>
     <link rel="apple-touch-icon" href="/theme/img/fav.png" />
-    <title>Aravinda VK - Categories</title>
+    <title>Gluster and Kubernetes - Portmap</title>
+    <meta property="og:title" content="Gluster and Kubernetes - Portmap"/>
+    <meta property="twitter:title" content="Gluster and Kubernetes - Portmap"/>
+    <meta name="description" content="If we remove Glusterd in k8s setup, who will do the role of Glusterd? How will the brick process get the port number?"/>
+    <meta property="og:description" content="If we remove Glusterd in k8s setup, who will do the role of Glusterd? How will the brick process get the port number?"/>
+    <meta property="twitter:description" content="If we remove Glusterd in k8s setup, who will do the role of Glusterd? How will the brick process get the port number?"/>
+    <meta property="og:url" content="http://aravindavk.in/blog/gluster-and-k8s-portmap/" />
+    <meta property="twitter:url" content="http://aravindavk.in/blog/gluster-and-k8s-portmap/" />
+    <meta property="og:image" content="http://aravindavk.in" />
     <link href="http://aravindavk.in/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Aravinda VK Atom Feed" />
     <link rel="stylesheet" href="/theme/css/pure-min.css" />
     <link rel="stylesheet" href="/theme/css/side-menu.css" />
@@ -64,10 +72,67 @@
       <div class="pure-g-r">
         <div class="pure-u-4-5 content-left">
           <div class="left article">
-    <h1>Categories on Aravinda VK</h1>
-    <ul>
-        <li><a href="http://aravindavk.in/category/blogs/">blogs</a> (136)</li>
-    </ul>
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        Gluster and Kubernetes - Portmap</h1>
+    </header>
+    <div class="pure-hidden-phone pure-hidden-tablet">
+<footer class="post-info">
+  <p class="author-and-date-info">
+    Posted on Tue 09 July 2019 by <a class="url fn" href="http://aravindavk.in">Aravinda VK</a>.
+  </p>
+</footer><!-- /.post-info -->
+<div class="sep"></div>    </div>
+    <div class="entry-content">
+      <p>One of the primary roles of Glusterd is to allocate a port for brick
+processes and let the clients know about it when requested.</p>
+<p>Glusterd starts a brick process, and it allocates a free port number
+between 49152-49664. Gluster client(or mount) will connect to Glusterd
+(port:24007) and asks for the brick port, Glusterd provides brick port
+and client then connects to the brick process.</p>
+<p><img alt="Get brick port from Glusterd" src="/images/gluster-glusterd-brick-port.png"></p>
+<p>If we remove Glusterd in k8s setup, who will do the role of Glusterd?
+How will the brick process get the port number?</p>
+<p>Now comes the Magic! All brick processes will run with the port number
+24007!</p>
+<p>Each brick is one container in k8s setup, so no need to search for a new
+port. Just use 24007. Gluster client is intelligent enough to know
+that the connecting process is Glusterd or Brick process. The client
+connects to 24007 to get brick port, and it finds the brick process
+itself.</p>
+<p><img alt="Client directly connects to brick" src="/images/gluster-brick-connect-direct.png"></p>
+<p>Found interesting? Do join our talk about <a href="http://bit.ly/gluster-k8s-devconf">Managing Gluster in
+Kubernetes without using
+Glusterd/Glusterd2</a> at the devconf
+India event.</p>
+    </div><!-- /.entry-content -->
+    <div class="pure-hidden-desktop">
+<footer class="post-info">
+  <p class="author-and-date-info">
+    Posted on Tue 09 July 2019 by <a class="url fn" href="http://aravindavk.in">Aravinda VK</a>.
+  </p>
+</footer><!-- /.post-info -->
+<div class="sep"></div>    </div>
+    <div class="permalink-div">
+      Permalink: <a href="http://aravindavk.in/blog/gluster-and-k8s-portmap/" rel="bookmark" title="Permalink to Gluster and Kubernetes - Portmap">http://aravindavk.in/blog/gluster-and-k8s-portmap/</a>
+    </div>
+<div class="comments">
+  <h2>Comments !</h2>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_identifier = "blog/gluster-and-k8s-portmap/";
+    var disqus_url = "http://aravindavk.in/blog/gluster-and-k8s-portmap/";
+    (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = 'http://vkaravinda.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+</div>
+  </article>
+</section>
             <div class="copyright pure-hidden-desktop pure-hidden-tablet">&copy; 2008-2014 Aravinda VK, <br/>All rights reserved</div>
           </div>
         </div>
