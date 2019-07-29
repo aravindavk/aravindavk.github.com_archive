@@ -14,7 +14,7 @@ Never heard of D Programming?
 > Fast code, fast.
 > [https://dlang.org](https://dlang.org)
 
-Parsing command-line arguments is very easy using the "getopt" module
+Parsing command-line arguments is very easy using the "[getopt](https://dlang.org/phobos/std_getopt.html)" module
 available in the standard library. In this blog, I am sharing my
 experience about how I added subcommand support to my command-line
 applications.
