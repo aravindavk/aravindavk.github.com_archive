@@ -12,7 +12,15 @@
     <link href="/theme/img/fav.png" rel="icon" type="image/x-icon" />
     <meta property="og:site_name" content="Aravinda VK"/>
     <link rel="apple-touch-icon" href="/theme/img/fav.png" />
-    <title>Aravinda VK - Categories</title>
+    <title>Elixir Phoenix Liveview and Gluster dashboard</title>
+    <meta property="og:title" content="Elixir Phoenix Liveview and Gluster dashboard"/>
+    <meta property="twitter:title" content="Elixir Phoenix Liveview and Gluster dashboard"/>
+    <meta name="description" content="I started working on the Gluster dashboard using Phoenix Liveview feature."/>
+    <meta property="og:description" content="I started working on the Gluster dashboard using Phoenix Liveview feature."/>
+    <meta property="twitter:description" content="I started working on the Gluster dashboard using Phoenix Liveview feature."/>
+    <meta property="og:url" content="http://aravindavk.in/blog/elixir-phoenix-liveview-gluster-dashboard/" />
+    <meta property="twitter:url" content="http://aravindavk.in/blog/elixir-phoenix-liveview-gluster-dashboard/" />
+    <meta property="og:image" content="http://aravindavk.in" />
     <link href="http://aravindavk.in/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Aravinda VK Atom Feed" />
     <link rel="stylesheet" href="/theme/css/pure-min.css" />
     <link rel="stylesheet" href="/theme/css/side-menu.css" />
@@ -64,10 +72,98 @@
       <div class="pure-g-r">
         <div class="pure-u-4-5 content-left">
           <div class="left article">
-    <h1>Categories on Aravinda VK</h1>
-    <ul>
-        <li><a href="http://aravindavk.in/category/blogs/">blogs</a> (139)</li>
-    </ul>
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        Elixir Phoenix Liveview and Gluster dashboard</h1>
+    </header>
+    <div class="pure-hidden-phone pure-hidden-tablet">
+<footer class="post-info">
+  <p class="author-and-date-info">
+    Posted on Fri 30 August 2019 by <a class="url fn" href="http://aravindavk.in">Aravinda VK</a>.
+  </p>
+</footer><!-- /.post-info -->
+<div class="sep"></div>    </div>
+    <div class="entry-content">
+      <p>I was introduced to <a href="https://www.erlang.org/">Erlang</a> language by
+<a href="http://manku.thimma.org/about/">Shashi</a> in one of the Mysore Linux
+user group meeting at his office(Feb 2009). That was the time when
+NoSql was trending, and <a href="http://couchdb.apache.org/">CouchDb</a> was one
+of the popular NoSQL databases. I was very much impressed by the
+Erlang programming language and bought the book "Programming Erlang -
+Joe Armstrong"</p>
+<p>Unfortunately, I couldn't spend much time with the language to develop
+any real-time app other than a few Hello World programs.</p>
+<p>Finally, I got a chance to work on a
+<a href="https://elixir-lang.org/">Elixir</a> project! The trigger is the Phoenix
+Live view feature.</p>
+<p>I watched <a href="https://www.youtube.com/watch?v=8xJzHq8ru0M">Phoenix Liveview announcement</a>
+15 days ago and immediately impressed by that.</p>
+<blockquote>
+<p>Phoenix LiveView enables rich, real-time user experiences with
+server-rendered HTML. For more information, <a href="https://dockyard.com/blog/2018/12/12/phoenix-liveview-interactive-real-time-apps-no-need-to-write-javascript">see the initial
+announcement</a>.</p>
+<p>Note: Currently LiveView is under active development and we are
+focused on getting a stable and solid initial version out. For this
+reason, we will be accepting only bug reports in the issues tracker
+for now. We will open the issues tracker for features after the
+current milestone is ironed out.</p>
+</blockquote>
+<p>I started working on the <a href="https://elixir-lang.org/">Gluster</a> dashboard using Phoenix
+Liveview feature. This dashboard exposes a webhook to receive the
+Gluster cluster details. Gluster webhook exporter is written using D
+programming language. It runs the required Gluster commands every 10
+seconds(configurable) and parses the XML output and pushes the JSON
+data to the webhook exposed by the Phoenix application.</p>
+<p><img alt="Gluster dashboard - How it works" src="/images/phoenix-liveview-gluster.jpg"></p>
+<p><strong>Note</strong>: Running exporter in all nodes is optional, can be run in a
+few nodes for better availability. If one node goes down, then
+exporter from another node can send the details to the dashboard app.</p>
+<p>Phoenix app updates the Cluster state to Db and publishes to all
+connected LiveView sockets. All users who opened the dashboard page
+will get the updated dashboard.</p>
+<p>Gluster dashboard is not yet ready, and I am working on the necessary
+features to submit this project for <a href="https://phoenixphrenzy.com/">Phoenix
+Phrenzy</a> contest.</p>
+<blockquote>
+<p>Phoenix Phrenzy is a contest for developers to build with Phoenix
+LiveView, show off their software engineering skills, and help
+demonstrate the capabilities of this great technology to the open
+source community.</p>
+</blockquote>
+<p>I am still working on many fixes to this dashboard project, watch this
+space for an update on this project. Let me know if the below
+screenshots look good. Thanks.</p>
+<p><img alt="Gluster dashboard preview" src="/images/gluster-dashboard.gif"></p>
+<p>Work in progress project source code is available
+<a href="https://github.com/aravindavk/live_view_demo">here</a>.</p>
+    </div><!-- /.entry-content -->
+    <div class="pure-hidden-desktop">
+<footer class="post-info">
+  <p class="author-and-date-info">
+    Posted on Fri 30 August 2019 by <a class="url fn" href="http://aravindavk.in">Aravinda VK</a>.
+  </p>
+</footer><!-- /.post-info -->
+<div class="sep"></div>    </div>
+    <div class="permalink-div">
+      Permalink: <a href="http://aravindavk.in/blog/elixir-phoenix-liveview-gluster-dashboard/" rel="bookmark" title="Permalink to Elixir Phoenix Liveview and Gluster dashboard">http://aravindavk.in/blog/elixir-phoenix-liveview-gluster-dashboard/</a>
+    </div>
+<div class="comments">
+  <h2>Comments !</h2>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_identifier = "blog/elixir-phoenix-liveview-gluster-dashboard/";
+    var disqus_url = "http://aravindavk.in/blog/elixir-phoenix-liveview-gluster-dashboard/";
+    (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = 'https://vkaravinda.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+</div>
+  </article>
+</section>
             <div class="copyright pure-hidden-desktop pure-hidden-tablet">&copy; 2008-2014 Aravinda VK, <br/>All rights reserved</div>
           </div>
         </div>
