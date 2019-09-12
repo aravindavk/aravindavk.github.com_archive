@@ -66,4 +66,4 @@ screenshots look good. Thanks.
 ![Gluster dashboard preview](/images/gluster-dashboard.gif)
 
 Work in progress project source code is available
-[here](https://github.com/aravindavk/live_view_demo).
+[here](https://github.com/aravindavk/gluster-dashboard).
