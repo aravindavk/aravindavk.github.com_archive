@@ -15,8 +15,8 @@ SITEURL = "http://aravindavk.in"
 RELATIVE_URLS = False
 
 FEED_ALL_ATOM = 'feeds/all.atom.xml'
-CATEGORY_FEED_ATOM = 'feeds/category-%s.atom.xml'
-TAG_FEED_ATOM = 'feeds/tag-%s.atom.xml'
+CATEGORY_FEED_ATOM = 'feeds/category-{slug}.atom.xml'
+TAG_FEED_ATOM = 'feeds/tag-{slug}.atom.xml'
 
 # Blogroll
 SOCIAL_LINKS = (
