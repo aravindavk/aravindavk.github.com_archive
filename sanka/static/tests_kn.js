@@ -598,10 +598,10 @@ QUnit.test("u2a ಪಿ => ¦", function(assert){assert.strictEqual(kn.unicode_to
 QUnit.test("a2u ¦ => ಪಿ", function(assert){assert.strictEqual(kn.ascii_to_unicode("¦"), "ಪಿ");});
 QUnit.test("u2a ಪೀ => ¦Ã", function(assert){assert.strictEqual(kn.unicode_to_ascii("ಪೀ"), "¦Ã");});
 QUnit.test("a2u ¦Ã => ಪೀ", function(assert){assert.strictEqual(kn.ascii_to_unicode("¦Ã"), "ಪೀ");});
-QUnit.test("u2a ಪು => ¥ÀÄ", function(assert){assert.strictEqual(kn.unicode_to_ascii("ಪು"), "¥ÀÄ");});
-QUnit.test("a2u ¥ÀÄ => ಪು", function(assert){assert.strictEqual(kn.ascii_to_unicode("¥ÀÄ"), "ಪು");});
-QUnit.test("u2a ಪೂ => ¥ÀÆ", function(assert){assert.strictEqual(kn.unicode_to_ascii("ಪೂ"), "¥ÀÆ");});
-QUnit.test("a2u ¥ÀÆ => ಪೂ", function(assert){assert.strictEqual(kn.ascii_to_unicode("¥ÀÆ"), "ಪೂ");});
+QUnit.test("u2a ಪು => ¥ÀÅ", function(assert){assert.strictEqual(kn.unicode_to_ascii("ಪು"), "¥ÀÅ");});
+QUnit.test("a2u ¥ÀÅ => ಪು", function(assert){assert.strictEqual(kn.ascii_to_unicode("¥ÀÅ"), "ಪು");});
+QUnit.test("u2a ಪೂ => ¥ÀÇ", function(assert){assert.strictEqual(kn.unicode_to_ascii("ಪೂ"), "¥ÀÇ");});
+QUnit.test("a2u ¥ÀÇ => ಪೂ", function(assert){assert.strictEqual(kn.ascii_to_unicode("¥ÀÇ"), "ಪೂ");});
 QUnit.test("u2a ಪೃ => ¥ÀÈ", function(assert){assert.strictEqual(kn.unicode_to_ascii("ಪೃ"), "¥ÀÈ");});
 QUnit.test("a2u ¥ÀÈ => ಪೃ", function(assert){assert.strictEqual(kn.ascii_to_unicode("¥ÀÈ"), "ಪೃ");});
 QUnit.test("u2a ಪೆ => ¥É", function(assert){assert.strictEqual(kn.unicode_to_ascii("ಪೆ"), "¥É");});
@@ -610,10 +610,10 @@ QUnit.test("u2a ಪೇ => ¥ÉÃ", function(assert){assert.strictEqual(kn.unicod
 QUnit.test("a2u ¥ÉÃ => ಪೇ", function(assert){assert.strictEqual(kn.ascii_to_unicode("¥ÉÃ"), "ಪೇ");});
 QUnit.test("u2a ಪೈ => ¥ÉÊ", function(assert){assert.strictEqual(kn.unicode_to_ascii("ಪೈ"), "¥ÉÊ");});
 QUnit.test("a2u ¥ÉÊ => ಪೈ", function(assert){assert.strictEqual(kn.ascii_to_unicode("¥ÉÊ"), "ಪೈ");});
-QUnit.test("u2a ಪೊ => ¥ÉÆ", function(assert){assert.strictEqual(kn.unicode_to_ascii("ಪೊ"), "¥ÉÆ");});
-QUnit.test("a2u ¥ÉÆ => ಪೊ", function(assert){assert.strictEqual(kn.ascii_to_unicode("¥ÉÆ"), "ಪೊ");});
-QUnit.test("u2a ಪೋ => ¥ÉÆÃ", function(assert){assert.strictEqual(kn.unicode_to_ascii("ಪೋ"), "¥ÉÆÃ");});
-QUnit.test("a2u ¥ÉÆÃ => ಪೋ", function(assert){assert.strictEqual(kn.ascii_to_unicode("¥ÉÆÃ"), "ಪೋ");});
+QUnit.test("u2a ಪೊ => ¥ÉÇ", function(assert){assert.strictEqual(kn.unicode_to_ascii("ಪೊ"), "¥ÉÇ");});
+QUnit.test("a2u ¥ÉÇ => ಪೊ", function(assert){assert.strictEqual(kn.ascii_to_unicode("¥ÉÇ"), "ಪೊ");});
+QUnit.test("u2a ಪೋ => ¥ÉÇÃ", function(assert){assert.strictEqual(kn.unicode_to_ascii("ಪೋ"), "¥ÉÇÃ");});
+QUnit.test("a2u ¥ÉÇÃ => ಪೋ", function(assert){assert.strictEqual(kn.ascii_to_unicode("¥ÉÇÃ"), "ಪೋ");});
 QUnit.test("u2a ಪೌ => ¥Ë", function(assert){assert.strictEqual(kn.unicode_to_ascii("ಪೌ"), "¥Ë");});
 QUnit.test("a2u ¥Ë => ಪೌ", function(assert){assert.strictEqual(kn.ascii_to_unicode("¥Ë"), "ಪೌ");});
 QUnit.test("u2a ಫ್ => ¥sï", function(assert){assert.strictEqual(kn.unicode_to_ascii("ಫ್"), "¥sï");});
@@ -626,10 +626,10 @@ QUnit.test("u2a ಫಿ => ¦ü", function(assert){assert.strictEqual(kn.unicode_
 QUnit.test("a2u ¦ü => ಫಿ", function(assert){assert.strictEqual(kn.ascii_to_unicode("¦ü"), "ಫಿ");});
 QUnit.test("u2a ಫೀ => ¦üÃ", function(assert){assert.strictEqual(kn.unicode_to_ascii("ಫೀ"), "¦üÃ");});
 QUnit.test("a2u ¦üÃ => ಫೀ", function(assert){assert.strictEqual(kn.ascii_to_unicode("¦üÃ"), "ಫೀ");});
-QUnit.test("u2a ಫು => ¥sÀÄ", function(assert){assert.strictEqual(kn.unicode_to_ascii("ಫು"), "¥sÀÄ");});
-QUnit.test("a2u ¥sÀÄ => ಫು", function(assert){assert.strictEqual(kn.ascii_to_unicode("¥sÀÄ"), "ಫು");});
-QUnit.test("u2a ಫೂ => ¥sÀÆ", function(assert){assert.strictEqual(kn.unicode_to_ascii("ಫೂ"), "¥sÀÆ");});
-QUnit.test("a2u ¥sÀÆ => ಫೂ", function(assert){assert.strictEqual(kn.ascii_to_unicode("¥sÀÆ"), "ಫೂ");});
+QUnit.test("u2a ಫು => ¥sÀÅ", function(assert){assert.strictEqual(kn.unicode_to_ascii("ಫು"), "¥sÀÅ");});
+QUnit.test("a2u ¥sÀÅ => ಫು", function(assert){assert.strictEqual(kn.ascii_to_unicode("¥sÀÅ"), "ಫು");});
+QUnit.test("u2a ಫೂ => ¥sÀÇ", function(assert){assert.strictEqual(kn.unicode_to_ascii("ಫೂ"), "¥sÀÇ");});
+QUnit.test("a2u ¥sÀÇ => ಫೂ", function(assert){assert.strictEqual(kn.ascii_to_unicode("¥sÀÇ"), "ಫೂ");});
 QUnit.test("u2a ಫೃ => ¥sÀÈ", function(assert){assert.strictEqual(kn.unicode_to_ascii("ಫೃ"), "¥sÀÈ");});
 QUnit.test("a2u ¥sÀÈ => ಫೃ", function(assert){assert.strictEqual(kn.ascii_to_unicode("¥sÀÈ"), "ಫೃ");});
 QUnit.test("u2a ಫೆ => ¥sÉ", function(assert){assert.strictEqual(kn.unicode_to_ascii("ಫೆ"), "¥sÉ");});
@@ -638,10 +638,10 @@ QUnit.test("u2a ಫೇ => ¥sÉÃ", function(assert){assert.strictEqual(kn.unico
 QUnit.test("a2u ¥sÉÃ => ಫೇ", function(assert){assert.strictEqual(kn.ascii_to_unicode("¥sÉÃ"), "ಫೇ");});
 QUnit.test("u2a ಫೈ => ¥sÉÊ", function(assert){assert.strictEqual(kn.unicode_to_ascii("ಫೈ"), "¥sÉÊ");});
 QUnit.test("a2u ¥sÉÊ => ಫೈ", function(assert){assert.strictEqual(kn.ascii_to_unicode("¥sÉÊ"), "ಫೈ");});
-QUnit.test("u2a ಫೊ => ¥sÉÆ", function(assert){assert.strictEqual(kn.unicode_to_ascii("ಫೊ"), "¥sÉÆ");});
-QUnit.test("a2u ¥sÉÆ => ಫೊ", function(assert){assert.strictEqual(kn.ascii_to_unicode("¥sÉÆ"), "ಫೊ");});
-QUnit.test("u2a ಫೋ => ¥sÉÆÃ", function(assert){assert.strictEqual(kn.unicode_to_ascii("ಫೋ"), "¥sÉÆÃ");});
-QUnit.test("a2u ¥sÉÆÃ => ಫೋ", function(assert){assert.strictEqual(kn.ascii_to_unicode("¥sÉÆÃ"), "ಫೋ");});
+QUnit.test("u2a ಫೊ => ¥sÉÇ", function(assert){assert.strictEqual(kn.unicode_to_ascii("ಫೊ"), "¥sÉÇ");});
+QUnit.test("a2u ¥sÉÇ => ಫೊ", function(assert){assert.strictEqual(kn.ascii_to_unicode("¥sÉÇ"), "ಫೊ");});
+QUnit.test("u2a ಫೋ => ¥sÉÇÃ", function(assert){assert.strictEqual(kn.unicode_to_ascii("ಫೋ"), "¥sÉÇÃ");});
+QUnit.test("a2u ¥sÉÇÃ => ಫೋ", function(assert){assert.strictEqual(kn.ascii_to_unicode("¥sÉÇÃ"), "ಫೋ");});
 QUnit.test("u2a ಫೌ => ¥sË", function(assert){assert.strictEqual(kn.unicode_to_ascii("ಫೌ"), "¥sË");});
 QUnit.test("a2u ¥sË => ಫೌ", function(assert){assert.strictEqual(kn.ascii_to_unicode("¥sË"), "ಫೌ");});
 QUnit.test("u2a ಬ್ => ¨ï", function(assert){assert.strictEqual(kn.unicode_to_ascii("ಬ್"), "¨ï");});
@@ -868,34 +868,34 @@ QUnit.test("u2a ಶೋ => ±ÉÆÃ", function(assert){assert.strictEqual(kn.unic
 QUnit.test("a2u ±ÉÆÃ => ಶೋ", function(assert){assert.strictEqual(kn.ascii_to_unicode("±ÉÆÃ"), "ಶೋ");});
 QUnit.test("u2a ಶೌ => ±Ë", function(assert){assert.strictEqual(kn.unicode_to_ascii("ಶೌ"), "±Ë");});
 QUnit.test("a2u ±Ë => ಶೌ", function(assert){assert.strictEqual(kn.ascii_to_unicode("±Ë"), "ಶೌ");});
-QUnit.test("u2a ಷ್ => µï", function(assert){assert.strictEqual(kn.unicode_to_ascii("ಷ್"), "µï");});
-QUnit.test("a2u µï => ಷ್", function(assert){assert.strictEqual(kn.ascii_to_unicode("µï"), "ಷ್");});
-QUnit.test("u2a ಷ => µÀ", function(assert){assert.strictEqual(kn.unicode_to_ascii("ಷ"), "µÀ");});
-QUnit.test("a2u µÀ => ಷ", function(assert){assert.strictEqual(kn.ascii_to_unicode("µÀ"), "ಷ");});
-QUnit.test("u2a ಷಾ => µÁ", function(assert){assert.strictEqual(kn.unicode_to_ascii("ಷಾ"), "µÁ");});
-QUnit.test("a2u µÁ => ಷಾ", function(assert){assert.strictEqual(kn.ascii_to_unicode("µÁ"), "ಷಾ");});
+QUnit.test("u2a ಷ್ => μï", function(assert){assert.strictEqual(kn.unicode_to_ascii("ಷ್"), "μï");});
+QUnit.test("a2u μï => ಷ್", function(assert){assert.strictEqual(kn.ascii_to_unicode("μï"), "ಷ್");});
+QUnit.test("u2a ಷ => μÀ", function(assert){assert.strictEqual(kn.unicode_to_ascii("ಷ"), "μÀ");});
+QUnit.test("a2u μÀ => ಷ", function(assert){assert.strictEqual(kn.ascii_to_unicode("μÀ"), "ಷ");});
+QUnit.test("u2a ಷಾ => μÁ", function(assert){assert.strictEqual(kn.unicode_to_ascii("ಷಾ"), "μÁ");});
+QUnit.test("a2u μÁ => ಷಾ", function(assert){assert.strictEqual(kn.ascii_to_unicode("μÁ"), "ಷಾ");});
 QUnit.test("u2a ಷಿ => ¶", function(assert){assert.strictEqual(kn.unicode_to_ascii("ಷಿ"), "¶");});
 QUnit.test("a2u ¶ => ಷಿ", function(assert){assert.strictEqual(kn.ascii_to_unicode("¶"), "ಷಿ");});
 QUnit.test("u2a ಷೀ => ¶Ã", function(assert){assert.strictEqual(kn.unicode_to_ascii("ಷೀ"), "¶Ã");});
 QUnit.test("a2u ¶Ã => ಷೀ", function(assert){assert.strictEqual(kn.ascii_to_unicode("¶Ã"), "ಷೀ");});
-QUnit.test("u2a ಷು => µÀÄ", function(assert){assert.strictEqual(kn.unicode_to_ascii("ಷು"), "µÀÄ");});
-QUnit.test("a2u µÀÄ => ಷು", function(assert){assert.strictEqual(kn.ascii_to_unicode("µÀÄ"), "ಷು");});
-QUnit.test("u2a ಷೂ => µÀÆ", function(assert){assert.strictEqual(kn.unicode_to_ascii("ಷೂ"), "µÀÆ");});
-QUnit.test("a2u µÀÆ => ಷೂ", function(assert){assert.strictEqual(kn.ascii_to_unicode("µÀÆ"), "ಷೂ");});
-QUnit.test("u2a ಷೃ => µÀÈ", function(assert){assert.strictEqual(kn.unicode_to_ascii("ಷೃ"), "µÀÈ");});
-QUnit.test("a2u µÀÈ => ಷೃ", function(assert){assert.strictEqual(kn.ascii_to_unicode("µÀÈ"), "ಷೃ");});
-QUnit.test("u2a ಷೆ => µÉ", function(assert){assert.strictEqual(kn.unicode_to_ascii("ಷೆ"), "µÉ");});
-QUnit.test("a2u µÉ => ಷೆ", function(assert){assert.strictEqual(kn.ascii_to_unicode("µÉ"), "ಷೆ");});
-QUnit.test("u2a ಷೇ => µÉÃ", function(assert){assert.strictEqual(kn.unicode_to_ascii("ಷೇ"), "µÉÃ");});
-QUnit.test("a2u µÉÃ => ಷೇ", function(assert){assert.strictEqual(kn.ascii_to_unicode("µÉÃ"), "ಷೇ");});
-QUnit.test("u2a ಷೈ => µÉÊ", function(assert){assert.strictEqual(kn.unicode_to_ascii("ಷೈ"), "µÉÊ");});
-QUnit.test("a2u µÉÊ => ಷೈ", function(assert){assert.strictEqual(kn.ascii_to_unicode("µÉÊ"), "ಷೈ");});
-QUnit.test("u2a ಷೊ => µÉÆ", function(assert){assert.strictEqual(kn.unicode_to_ascii("ಷೊ"), "µÉÆ");});
-QUnit.test("a2u µÉÆ => ಷೊ", function(assert){assert.strictEqual(kn.ascii_to_unicode("µÉÆ"), "ಷೊ");});
-QUnit.test("u2a ಷೋ => µÉÆÃ", function(assert){assert.strictEqual(kn.unicode_to_ascii("ಷೋ"), "µÉÆÃ");});
-QUnit.test("a2u µÉÆÃ => ಷೋ", function(assert){assert.strictEqual(kn.ascii_to_unicode("µÉÆÃ"), "ಷೋ");});
-QUnit.test("u2a ಷೌ => µË", function(assert){assert.strictEqual(kn.unicode_to_ascii("ಷೌ"), "µË");});
-QUnit.test("a2u µË => ಷೌ", function(assert){assert.strictEqual(kn.ascii_to_unicode("µË"), "ಷೌ");});
+QUnit.test("u2a ಷು => μÀÄ", function(assert){assert.strictEqual(kn.unicode_to_ascii("ಷು"), "μÀÄ");});
+QUnit.test("a2u μÀÄ => ಷು", function(assert){assert.strictEqual(kn.ascii_to_unicode("μÀÄ"), "ಷು");});
+QUnit.test("u2a ಷೂ => μÀÆ", function(assert){assert.strictEqual(kn.unicode_to_ascii("ಷೂ"), "μÀÆ");});
+QUnit.test("a2u μÀÆ => ಷೂ", function(assert){assert.strictEqual(kn.ascii_to_unicode("μÀÆ"), "ಷೂ");});
+QUnit.test("u2a ಷೃ => μÀÈ", function(assert){assert.strictEqual(kn.unicode_to_ascii("ಷೃ"), "μÀÈ");});
+QUnit.test("a2u μÀÈ => ಷೃ", function(assert){assert.strictEqual(kn.ascii_to_unicode("μÀÈ"), "ಷೃ");});
+QUnit.test("u2a ಷೆ => μÉ", function(assert){assert.strictEqual(kn.unicode_to_ascii("ಷೆ"), "μÉ");});
+QUnit.test("a2u μÉ => ಷೆ", function(assert){assert.strictEqual(kn.ascii_to_unicode("μÉ"), "ಷೆ");});
+QUnit.test("u2a ಷೇ => μÉÃ", function(assert){assert.strictEqual(kn.unicode_to_ascii("ಷೇ"), "μÉÃ");});
+QUnit.test("a2u μÉÃ => ಷೇ", function(assert){assert.strictEqual(kn.ascii_to_unicode("μÉÃ"), "ಷೇ");});
+QUnit.test("u2a ಷೈ => μÉÊ", function(assert){assert.strictEqual(kn.unicode_to_ascii("ಷೈ"), "μÉÊ");});
+QUnit.test("a2u μÉÊ => ಷೈ", function(assert){assert.strictEqual(kn.ascii_to_unicode("μÉÊ"), "ಷೈ");});
+QUnit.test("u2a ಷೊ => μÉÆ", function(assert){assert.strictEqual(kn.unicode_to_ascii("ಷೊ"), "μÉÆ");});
+QUnit.test("a2u μÉÆ => ಷೊ", function(assert){assert.strictEqual(kn.ascii_to_unicode("μÉÆ"), "ಷೊ");});
+QUnit.test("u2a ಷೋ => μÉÆÃ", function(assert){assert.strictEqual(kn.unicode_to_ascii("ಷೋ"), "μÉÆÃ");});
+QUnit.test("a2u μÉÆÃ => ಷೋ", function(assert){assert.strictEqual(kn.ascii_to_unicode("μÉÆÃ"), "ಷೋ");});
+QUnit.test("u2a ಷೌ => μË", function(assert){assert.strictEqual(kn.unicode_to_ascii("ಷೌ"), "μË");});
+QUnit.test("a2u μË => ಷೌ", function(assert){assert.strictEqual(kn.ascii_to_unicode("μË"), "ಷೌ");});
 QUnit.test("u2a ಸ್ => ¸ï", function(assert){assert.strictEqual(kn.unicode_to_ascii("ಸ್"), "¸ï");});
 QUnit.test("a2u ¸ï => ಸ್", function(assert){assert.strictEqual(kn.ascii_to_unicode("¸ï"), "ಸ್");});
 QUnit.test("u2a ಸ => ¸À", function(assert){assert.strictEqual(kn.unicode_to_ascii("ಸ"), "¸À");});
@@ -985,7 +985,7 @@ var data = [
     ["AiÀÄdÕ", "ಯಜ್ಞ"],
     ["PÁåA¥ÉÇÌÃ", "ಕ್ಯಾಂಪ್ಕೋ"],
     ["¥ÉÇæ", "ಪ್ರೊ"],
-    ["D0iÉÄÌ", "ಆಯ್ಕೆ"],
+    ["DAiÉÄÌ", "ಆಯ್ಕೆ"],
     ["®PÀëå", "ಲಕ್ಷ್ಯ"],
     ["J®ègÉÆ¼ÀUÉÆAzÁUÀÄ ªÀÄAPÀÄwªÀÄä", "ಎಲ್ಲರೊಳಗೊಂದಾಗು ಮಂಕುತಿಮ್ಮ"],
     ["PÀ£ÀßqÀ ªÀÄvÀÄÛ ¸ÀA¸ÀÌøw E¯ÁSÉ", "ಕನ್ನಡ ಮತ್ತು ಸಂಸ್ಕೃತಿ ಇಲಾಖೆ"],
@@ -995,16 +995,31 @@ var data = [
     ["¸ÀÆAiÀÄð", "ಸೂರ್ಯ"],
     ["¸ÀÆAiÀiÁð", "ಸೂರ್ಯಾ"],
     ["PÁåPï", "ಕ್ಯಾಕ್"],
-    ["UÉÆæPï", "ಗ್ರೊಕ್"]
+    ["UÉÆæPï", "ಗ್ರೊಕ್"],
+    ["¥ÀæweÉÕ", "ಪ್ರತಿಜ್ಞೆ"],
+    ["¦æÃw", "ಪ್ರೀತಿ"],
+    ["CAiÉÆåÃ", "ಅಯ್ಯೋ"],
+    ["UÁæªÀiÁ¥sÉÇÃ£ÀÄ", "ಗ್ರಾಮಾಫೋನು"],
+    ["¨ÉÃrPÉÆ¼ÀÄîwÛzÉÝÃ£É", "ಬೇಡಿಕೊಳ್ಳುತ್ತಿದ್ದೇನೆ"],
+    ["UÉÆÃ¾õÀÎgÉ", "ಗೋಱ್ಗರೆ"],
+    ["ªÀÄÆgÀÄ ¥ÉÇæmÁ£ïUÀ¼ÀÄ", "ಮೂರು ಪ್ರೊಟಾನ್‌ಗಳು"],
+    ["¨sÁμÉ¬ÄAzÀ", "ಭಾಷೆಯಿಂದ"],
+    ["¥ÉÇÃZÀÄðVÃ¸ï", "ಪೋರ್ಚುಗೀಸ್"],
+    ["ªÀiÁqÀÄvÀÛÉA§ÄzÀgÀ°è", "ಮಾಡುತ್ತೆಂಬುದರಲ್ಲಿ", true],
+    ["ªÀiÁqÀÄvÉÛA§ÄzÀgÀ°è",  "ಮಾಡುತ್ತೆಂಬುದರಲ್ಲಿ"],
+    ["CªÀ¢üAiÀÄ°èAiÉÄÃ", "ಅವಧಿಯಲ್ಲಿಯೇ"],
+    ["CªÀ¢ü0iÀÄ°è0iÉÄÃ", "ಅವಧಿಯಲ್ಲಿಯೇ", true]
 ]
 
 data.forEach(function(item){
-	QUnit.test( "a2u " + item[0] + " => " + item[1], function( assert ) {
-		assert.strictEqual(kn.ascii_to_unicode(item[0]), item[1]);
-	});
+    QUnit.test( "a2u " + item[0] + " => " + item[1], function( assert ) {
+	assert.strictEqual(kn.ascii_to_unicode(item[0]), item[1]);
+    });
+    if (item[2] === undefined) {
 	QUnit.test( "u2a " + item[1] + " => " + item[0], function( assert ) {
-		assert.strictEqual(kn.unicode_to_ascii(item[1]), item[0]);
+	    assert.strictEqual(kn.unicode_to_ascii(item[1]), item[0]);
 	});
+    }
 });
 
 QUnit.test( "u2a ೦ ೧ ೨ ೩ ೪ ೫ ೬ ೭ ೮ ೯ => 0 1 2 3 4 5 6 7 8 9", function( assert ) {

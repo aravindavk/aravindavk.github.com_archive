@@ -58,6 +58,9 @@ body{
     display: inline-block;
     margin-right: 30px;
 }
+.english-numbers label{
+    margin-right: 20px;
+}
 .convert-type input, .english-numbers input{
     margin-right: 5px;
 }
