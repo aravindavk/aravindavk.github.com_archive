@@ -1,5 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Aravinda VK - debian</title><link href="http://aravindavk.in/" rel="alternate"></link><link href="http://aravindavk.in/feeds/tag-debian.atom.xml" rel="self"></link><id>http://aravindavk.in/</id><updated>2011-04-11T00:00:00+05:30</updated><entry><title>Installing Scribus svn in Debian Squeeze</title><link href="http://aravindavk.in/blog/installing-scribus-svn-in-debian-squeeze/" rel="alternate"></link><published>2011-04-11T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2011-04-11:/blog/installing-scribus-svn-in-debian-squeeze//</id><summary type="html">&lt;p class="first last"&gt;I heard that Unicode rending issues of complex scripts are fixed in svn version of Scribus(1.5). So I wanted to test it for Kannada.&lt;/p&gt;
-</summary><category term="scribus"></category><category term="unicode"></category><category term="debian"></category></entry><entry><title>Slackware mania</title><link href="http://aravindavk.in/blog/slackware-mania/" rel="alternate"></link><published>2009-06-13T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2009-06-13:/blog/slackware-mania//</id><summary type="html">&lt;p class="first last"&gt;Yes!...  I decided to install Slackware Gnu/Linux in my Laptop. Currently I have Debian Lenny installed in it. I don't know i will have dual boot with Lenny or complete install. If I have only Slack then I feel I will learn more, since their will be no chance left to switch the OS if any problems occur. :)&lt;/p&gt;
-</summary><category term="slackware"></category><category term="debian"></category><category term="gnu-linux"></category></entry><entry><title>Kannada Reading and Writing support in Debian Lenny</title><link href="http://aravindavk.in/blog/kannada-reading-and-writing-support-in-debian-lenny/" rel="alternate"></link><published>2009-03-04T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2009-03-04:/blog/kannada-reading-and-writing-support-in-debian-lenny//</id><summary type="html">&lt;p class="first last"&gt;Now it is very easy to enable and configure Kannada in Debian. Install the following packages using apt-get or synaptic package manager.&lt;/p&gt;
-</summary><category term="kannada"></category><category term="gnu-linux"></category><category term="debian"></category></entry></feed>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Aravinda VK - debian</title><link href="http://aravindavk.in/" rel="alternate"></link><link href="http://aravindavk.in/feeds/tag-debian.atom.xml" rel="self"></link><id>http://aravindavk.in/</id><updated>2011-04-11T00:00:00+05:30</updated><entry><title>Installing Scribus svn in Debian Squeeze</title><link href="http://aravindavk.in/blog/installing-scribus-svn-in-debian-squeeze/" rel="alternate"></link><published>2011-04-11T00:00:00+05:30</published><updated>2011-04-11T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2011-04-11:/blog/installing-scribus-svn-in-debian-squeeze/</id><summary type="html">&lt;p class="first last"&gt;I heard that Unicode rending issues of complex scripts are fixed in svn version of Scribus(1.5). So I wanted to test it for Kannada.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;I heard that Unicode rending issues of complex scripts are fixed in svn version of Scribus(1.5). So I wanted to test it for Kannada.&lt;/p&gt;
+&lt;p&gt;Downloaded svn source using following command to my Debian Squeeze machine.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;svn co svn://scribus.net/trunk/Scribus myscribus
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;First installed cmake, which is required to compile Scribus.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;apt-get install cmake
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;When I ran &lt;code&gt;cmake .&lt;/code&gt; as root user, it started listing dependency issues. Installed development libraries as and when cmake throws error. Finally ended up installing following dev libraries.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;apt-get install libtiff4-dev python-dev libfreetype6-dev
+                libcups2-dev libxml2-dev liblcms1-dev
+                libpixman-1-dev libaspel-dev libfontconfig1-dev
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now run&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; myscribus
+cmake .
+make &lt;span class="p"&gt;&amp;amp;&lt;/span&gt; make install
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Compilation took almost an hour in my laptop. :)&lt;/p&gt;
+&lt;p&gt;Looks like Scribus still has issues in rendering complex scripts. Will provide more information about rendering issues in my next blog post.&lt;/p&gt;
+</content><category term="scribus"></category><category term="unicode"></category><category term="debian"></category></entry><entry><title>Slackware mania</title><link href="http://aravindavk.in/blog/slackware-mania/" rel="alternate"></link><published>2009-06-13T00:00:00+05:30</published><updated>2009-06-13T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2009-06-13:/blog/slackware-mania/</id><summary type="html">&lt;p class="first last"&gt;Yes!...  I decided to install Slackware Gnu/Linux in my Laptop. Currently I have Debian Lenny installed in it. I don't know i will have dual boot with Lenny or complete install. If I have only Slack then I feel I will learn more, since their will be no chance left to switch the OS if any problems occur. :)&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;Yes!...  I decided to install Slackware Gnu/Linux in my Laptop. Currently I have Debian Lenny installed in it. I don't know i will have dual boot with Lenny or complete install. If I have only Slack then I feel I will learn more, since their will be no chance left to switch the OS if any problems occur. :)&lt;/p&gt;
+&lt;p&gt;Sometimes I think that, I already have fully functional OS and why I have to invest my time in Configuring new OS specific to my needs. In the same time I can create/code/enhance some other utilities.&lt;/p&gt;
+&lt;p&gt;But finally decided to install and use Slackware for long term. We can learn more if we have more challenges and Freedom.&lt;/p&gt;
+&lt;p&gt;Today I spent some time in understanding Slackware repository structure and packages. slackware-current repo is mirrored in my disk(~1.4GB). For mirroring slack repositories I need to write a script which uses rsync, this time I logged into Slackware repo using ftp from Dolphin file manager(I have KDE4.2 in Debian Lenny) and copied all required files to my hard disk.&lt;/p&gt;
+&lt;p&gt;Here is my TODO items for next week&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Backup existing Debian Lenny System(Configs, Files, Fonts etc)&lt;/li&gt;
+&lt;li&gt;Prepare the required packages list&lt;/li&gt;
+&lt;li&gt;Understand more about Slackware, package handling and configurations&lt;/li&gt;
+&lt;li&gt;Read documentation about Basic configurations like Wifi, Kannada Input method, Kannada Fonts.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Hope I will stay with Slackware for long :)&lt;/p&gt;
+</content><category term="slackware"></category><category term="debian"></category><category term="gnu-linux"></category></entry><entry><title>Kannada Reading and Writing support in Debian Lenny</title><link href="http://aravindavk.in/blog/kannada-reading-and-writing-support-in-debian-lenny/" rel="alternate"></link><published>2009-03-04T00:00:00+05:30</published><updated>2009-03-04T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2009-03-04:/blog/kannada-reading-and-writing-support-in-debian-lenny/</id><summary type="html">&lt;p class="first last"&gt;Now it is very easy to enable and configure Kannada in Debian. Install the following packages using apt-get or synaptic package manager.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;Now it is very easy to enable and configure Kannada in Debian. Install the following packages using apt-get or synaptic package manager.&lt;/p&gt;
+&lt;p&gt;If you are a GNOME user then&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;apt-get install ttf-kannada-fonts scim-bridge-client-gtk scim-m17n
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;If You are KDE 4.x user then&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;apt-get install ttf-kannada-fonts scim-bridge-client-qt4 scim-m17n
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Create a folder in your home directory with name &amp;quot;.xinput.d&amp;quot; and create a file &amp;quot;all_ALL&amp;quot; inside the folder created just now.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;mkdir &lt;span class="nv"&gt;$HOME&lt;/span&gt;/.xinput.d
+gedit &lt;span class="nv"&gt;$HOME&lt;/span&gt;/.xinput.d/all_ALL
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Copy below lines in the file all_ALL.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;#file: all_ALL&lt;/span&gt;
+&lt;span class="nv"&gt;XIM&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;SCIM
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; -e /usr/bin/skim &lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;then&lt;/span&gt;
+    &lt;span class="nv"&gt;XIM_PROGRAM&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot; &amp;quot;&lt;/span&gt;
+&lt;span class="k"&gt;else&lt;/span&gt;
+    &lt;span class="nv"&gt;XIM_PROGRAM&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/usr/bin/scim
+&lt;span class="k"&gt;fi&lt;/span&gt;
+&lt;span class="nv"&gt;XIM_ARGS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;-d&amp;quot;&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; -e /usr/lib/gtk-2.0/*/immodules/im-scim-bridge.so &lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;then&lt;/span&gt;
+    &lt;span class="nv"&gt;GTK_IM_MODULE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;scim-bridge
+&lt;span class="k"&gt;else&lt;/span&gt;
+    &lt;span class="nv"&gt;GTK_IM_MODULE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;xim
+&lt;span class="k"&gt;fi&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; -e /usr/lib/qt3/plugins/inputmethods/im-scim-bridge.so -o &lt;span class="se"&gt;\&lt;/span&gt;
+     -e /usr/lib/qt4/plugins/inputmethods/im-scim-bridge.so &lt;span class="o"&gt;]&lt;/span&gt;
+&lt;span class="k"&gt;then&lt;/span&gt;
+    &lt;span class="nv"&gt;QT_IM_MODULE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;scim-bridge
+&lt;span class="k"&gt;else&lt;/span&gt;
+    &lt;span class="nv"&gt;QT_IM_MODULE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;xim
+&lt;span class="k"&gt;fi&lt;/span&gt;
+
+&lt;span class="nv"&gt;DEPENDS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;scim | skim, scim-bridge-agent, scim-bridge-client-gtk | \&lt;/span&gt;
+&lt;span class="s2"&gt;         scim-bridge-client-qt | scim-bridge-client-qt4&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The above xinput script is shared by &lt;a class="reference external" href="http://linmaya.net"&gt;Ravi&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Save the file and logoff. When you login to your system you will see small keyboard icon in the panel, that means all installations and configurations are successful.&lt;/p&gt;
+&lt;div class="section" id="how-to-use-scim"&gt;
+&lt;h2&gt;How to use SCIM&lt;/h2&gt;
+&lt;p&gt;Open gedit or any other text editor, click on the small keyboard icon in panel and select the required keyboard layout. Now we can use Cntrl + Space to toggle Kannada(Previously selected layout) and English. We can even create the folders/files with kannada name  :)&lt;/p&gt;
+&lt;p&gt;Enjoy!&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="kannada"></category><category term="gnu-linux"></category><category term="debian"></category></entry></feed>

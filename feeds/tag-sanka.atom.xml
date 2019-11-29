@@ -1,2 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Aravinda VK - sanka</title><link href="http://aravindavk.in/" rel="alternate"></link><link href="http://aravindavk.in/feeds/tag-sanka.atom.xml" rel="self"></link><id>http://aravindavk.in/</id><updated>2019-11-02T00:00:00+05:30</updated><entry><title>ಸಂಕ - ಹೊಸ ಆವೃತ್ತಿ v2</title><link href="http://aravindavk.in/blog/sanka-v2/" rel="alternate"></link><published>2019-11-02T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2019-11-02:/blog/sanka-v2//</id><summary type="html">&lt;p&gt;"ಹಾಗೆಯೇ ಕೆಲವು ತೊಂದರೆಗಳಿದ್ದುದನ್ನೂ ಈಮೈಲ್ ಬರೆದು ತಿಳಿಸಿದ್ದರು. ಈ ಸಲ ಕನ್ನಡ ರಾಜ್ಯೋತ್ಸವದ ಖುಷಿಯಲ್ಲಿ ಇದನ್ನು ಸರಿಪಡಿಸೋಣವೆನ್ನಿಸಿತು."&lt;/p&gt;</summary><category term="kannada"></category><category term="sanka"></category></entry></feed>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Aravinda VK - sanka</title><link href="http://aravindavk.in/" rel="alternate"></link><link href="http://aravindavk.in/feeds/tag-sanka.atom.xml" rel="self"></link><id>http://aravindavk.in/</id><updated>2019-11-02T00:00:00+05:30</updated><entry><title>ಸಂಕ - ಹೊಸ ಆವೃತ್ತಿ v2</title><link href="http://aravindavk.in/blog/sanka-v2/" rel="alternate"></link><published>2019-11-02T00:00:00+05:30</published><updated>2019-11-02T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2019-11-02:/blog/sanka-v2/</id><summary type="html">&lt;p&gt;"ಹಾಗೆಯೇ ಕೆಲವು ತೊಂದರೆಗಳಿದ್ದುದನ್ನೂ ಈಮೈಲ್ ಬರೆದು ತಿಳಿಸಿದ್ದರು. ಈ ಸಲ ಕನ್ನಡ ರಾಜ್ಯೋತ್ಸವದ ಖುಷಿಯಲ್ಲಿ ಇದನ್ನು ಸರಿಪಡಿಸೋಣವೆನ್ನಿಸಿತು."&lt;/p&gt;</summary><content type="html">&lt;p&gt;ಒಮ್ಮೆ ನನಗೆ ASCII ಯಲ್ಲಿ ಬರೆದ ಲೇಖನ ಯುನಿಕೋಡ್ ಗೆ ಬದಲಾಯಿಸ ಬೇಕಾಗಿದ್ದರಿಂದ Ascii
+to Unicode ತಂತ್ರಾಂಶ ಬರೆದುಕೊಂಡಿದ್ದೆ. ಆನಂತರ ಎಲ್ಲರಿಗೂ ಉಪಯೋಗವಾಗಲಿ ಎಂದು ವೆಬ್
+ಸೈಟ್ ಮಾಡಿದೆ, ಅದರ ಬಗ್ಗೆ
+&lt;a href="https://aravindavk.in/blog/ascii2unicode-converter-kannada/"&gt;ಇಲ್ಲಿ&lt;/a&gt;
+ಬರೆದಿದ್ದೇನೆ ನೋಡಿ.&lt;/p&gt;
+&lt;p&gt;ಆ ನಂತರ ಈ ತಂತ್ರಾಂಶದ ತೊಂದರೆಗಳನ್ನು ಸರಿಪಡಿಸುತ್ತ, ಯುನಿಕೋಡ್ ನಿಂದ Ascii ಗೆ
+ಬದಲಾಯಿಸುವ ತಂತ್ರಾಂಶದ ಅಗತ್ಯವೂ ಎದುರಾಯಿತು. ಆಗ ಮಾಡಿದ ತಂತ್ರಾಂಶದ ಹೆಸರೇ
+&lt;a href="https://aravindavk.in/blog/sanka-kannada-converter/"&gt;"ಸಂಕ"&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://aravindavk.in/sanka"&gt;&lt;img alt="Sanka" src="/images/sanka-v2.png"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;ಇತ್ತೀಚೆಗೆ "ಸಂಕ"ವನ್ನು ಎಷ್ಟು ಜನ ಉಪಯೋಗಿಸುತ್ತಿದ್ದಾರೆ ಎಂದು ಗೂಗಲ್ ಅನಲಿಟಿಕ್ಸ್ ನಲ್ಲಿ
+ನೋಡಿದೆ. ದಿನಕ್ಕೆ 1000 ದಿಂದ 1500 ಪೇಜ್ ವೀವ್ಸ್ ಇದೆ ಎಂದು ತಿಳಿದು ಸಂತಸವಾಯ್ತು. ತಮ್ಮ
+ಖುಷಿಯನ್ನು ಈಮೈಲ್ ಬರೆದು ಹಂಚಿಕೊಂಡವರಿಗೂ ಧನ್ಯವಾದಗಳು.&lt;/p&gt;
+&lt;p&gt;ಹಾಗೆಯೇ ಕೆಲವು ತೊಂದರೆಗಳಿದ್ದುದನ್ನೂ ಈಮೈಲ್ ಬರೆದು ತಿಳಿಸಿದ್ದರು. ಈ ಸಲ ಕನ್ನಡ
+ರಾಜ್ಯೋತ್ಸವದ ಖುಷಿಯಲ್ಲಿ ಇದನ್ನು ಸರಿಪಡಿಸೋಣವೆನ್ನಿಸಿತು.&lt;/p&gt;
+&lt;h3&gt;ಹೊಸ ಆವೃತ್ತಿಯಲ್ಲಿನ ಬದಲಾವಣೆಗಳು:&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;ಜ್ಞ ಅಕ್ಷರದ ತೊಂದರೆಗಳು(ಪ್ರತಿಜ್ಞೆ, ಯಜ್ಞ ಇತ್ಯಾದಿ)&lt;/li&gt;
+&lt;li&gt;ಪು, ಪೂ, ಪೋ, ಫು, ಫೂ, ಫೋ ಅಕ್ಷರಗಳ ಸರಿಯಾದ ಬದಲಾವಣೆ.(ASCII ಗೆ ಬದಲಾದಾಗ)&lt;/li&gt;
+&lt;li&gt;ದೀರ್ಘದ ಜೊತೆ ಬರುವ ಒತ್ತಕ್ಷರಗಳನ್ನು ಸರಿಯಾದ ಜೋಡಣೆ(ಅಯ್ಯೋ, ಕ್ಯಾಂಪ್ಕೋ,
+  ಬೇಡಿಕೊಳ್ಳುತ್ತಿದ್ದೇನೆ ಇತ್ಯಾದಿ)&lt;/li&gt;
+&lt;li&gt;ಯುನಿಕೋಡ್ ಗೆ ಬದಲಾದಾಗ ಒತ್ತಕ್ಷರದ ಜೊತೆ ದೀರ್ಘ ಬಂದಾಗಿನ ತೊಂದರೆಗಳು.&lt;/li&gt;
+&lt;li&gt;ಪದಗಳ ಮದ್ಯ ಅಥವಾ ಅಕ್ಷರಗಳ ಮದ್ಯದಲ್ಲಿ ಹೆಚ್ಚಿನ Space ಬಿಟ್ಟಿದ್ದರೆ ಅದನ್ನು ಈಗ
+  ತೆಗೆಯಬಹುದು.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;ಇನ್ನು ಮುಂದೆ ಹಳೆಯ ASCII to Unicode ವೆಬ್ ಸೈಟ್ ಕೂಡ "ಸಂಕ" ಕ್ಕೆ ಕರೆದುಕೊಂಡು
+ಹೋಗುತ್ತದೆ(redirect).&lt;/p&gt;
+&lt;p&gt;ಈ ತೊಂದರೆಗಳನ್ನು ಸರಿಪಡಿಸಲು ಬೇಕಾದ Sample text ಕಳುಹಿಸಿದವರಿಗೆಲ್ಲರಿಗೂ ಮತ್ತು
+ಸಲಹೆಗಳನ್ನು ಕಳುಹಿಸಿದವರಿಗೆಲ್ಲರಿಗೂ ಧನ್ಯವಾದಗಳು.&lt;/p&gt;
+&lt;p&gt;ಇನ್ನೂ ಕೆಲವು ತೊಂದರೆಗಳು ಉಳಿದಿವೆ. ಬಳಸಿ ನೋಡಿ ಹೇಳಿ, ಈ ನವಂಬರ್ ನಲ್ಲೇ ಸರಿಪಡಿಸಲು
+ಪ್ರಯತ್ನಿಸುತ್ತೇನೆ.&lt;/p&gt;</content><category term="kannada"></category><category term="sanka"></category></entry></feed>

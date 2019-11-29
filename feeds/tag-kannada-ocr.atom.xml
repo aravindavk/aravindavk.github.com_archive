@@ -1,3 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Aravinda VK - Kannada OCR</title><link href="http://aravindavk.in/" rel="alternate"></link><link href="http://aravindavk.in/feeds/tag-kannada-ocr.atom.xml" rel="self"></link><id>http://aravindavk.in/</id><updated>2011-04-28T00:00:00+05:30</updated><entry><title>Tesseract OCR initial setup</title><link href="http://aravindavk.in/blog/tesseract-ocr-initial-setup/" rel="alternate"></link><published>2011-04-28T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2011-04-28:/blog/tesseract-ocr-initial-setup//</id><summary type="html">&lt;p class="first last"&gt;Tesseract OCR needs to be trained for Kannada and other Indic languages.&lt;/p&gt;
-</summary><category term="tesseract"></category><category term="OCR"></category><category term="Kannada OCR"></category></entry></feed>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Aravinda VK - Kannada OCR</title><link href="http://aravindavk.in/" rel="alternate"></link><link href="http://aravindavk.in/feeds/tag-kannada-ocr.atom.xml" rel="self"></link><id>http://aravindavk.in/</id><updated>2011-04-28T00:00:00+05:30</updated><entry><title>Tesseract OCR initial setup</title><link href="http://aravindavk.in/blog/tesseract-ocr-initial-setup/" rel="alternate"></link><published>2011-04-28T00:00:00+05:30</published><updated>2011-04-28T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2011-04-28:/blog/tesseract-ocr-initial-setup/</id><summary type="html">&lt;p class="first last"&gt;Tesseract OCR needs to be trained for Kannada and other Indic languages.&lt;/p&gt;
+</summary><content type="html">&lt;div class="section" id="tesseract-ocr-is"&gt;
+&lt;h2&gt;Tesseract OCR is&lt;/h2&gt;
+&lt;blockquote&gt;
+The &lt;a class="reference external" href="http://code.google.com/p/tesseract-ocr/"&gt;Tesseract OCR&lt;/a&gt; engine was one of the top 3 engines in the 1995 UNLV Accuracy test. Between 1995 and 2006 it had little work done on it, but it is probably one of the most accurate open source OCR engines available. The source code will read a binary, grey or color image and output text. A tiff reader is built in that will read uncompressed TIFF images, or libtiff can be added to read compressed images.&lt;/blockquote&gt;
+&lt;p&gt;Tesseract OCR needs to be trained for Kannada and other Indic languages.&lt;/p&gt;
+&lt;p&gt;Downloaded latest version of Tesseract OCR from svn repository and installed in my system.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;svn checkout http://tesseract-ocr.googlecode.com/svn/trunk/ tesseract-ocr
+./configure
+make
+make install
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Tesseract OCR looks for training data in &lt;code&gt;/usr/local/share/tessdata&lt;/code&gt; directory. If we train anything new then we have to copy .traineddata file to this directory.&lt;/p&gt;
+&lt;p&gt;I divided training process into four steps.&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Image generation&lt;/li&gt;
+&lt;li&gt;Generate box&lt;/li&gt;
+&lt;li&gt;Edit Box file&lt;/li&gt;
+&lt;li&gt;Generate trained data&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;I use Gimp to create tif images required for training. If you have jpg or png image convert to tif using&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;convert -depth &lt;span class="m"&gt;4&lt;/span&gt; sample.jpg sample.tif
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;I have &lt;code&gt;apps&lt;/code&gt; directory in my home directory, which is added to PATH using&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nv"&gt;PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/home/aravinda/apps:PATH&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nb"&gt;export&lt;/span&gt; PATH
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;I use this directory to save all my personal scripts and applications.&lt;/p&gt;
+&lt;p&gt;Created a script called tessGenBox in apps directory, which accepts lang name as parameter.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#!/bin/sh&lt;/span&gt;
+tesseract &lt;span class="nv"&gt;$1&lt;/span&gt;.tif &lt;span class="nv"&gt;$1&lt;/span&gt; batch.nochop makebox
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Since only one font is used for exploring Tesseract traning options, not worried much on naming conventions. (Actual file name format is [lang].[fontname].[exp][num])&lt;/p&gt;
+&lt;p&gt;I downloaded &lt;a class="reference external" href="https://github.com/zdenop/qt-box-editor/"&gt;QT based box editor&lt;/a&gt; as mentioned in the Tesseract wiki. After the installation copied &lt;code&gt;qt-box-editor-1.04dev&lt;/code&gt; file to apps directory and created shell script called tessBoxEdit in apps directory.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#!/bin/sh&lt;/span&gt;
+/home/aravinda/apps/qt-box-editor-1.04dev &lt;span class="nv"&gt;$1&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Tif filename as parameter.&lt;/p&gt;
+&lt;p&gt;I created one more script tessGenData, which I will use to generate trained data based on previously generated box file.(Accepts language name as parameter)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#!/bin/sh&lt;/span&gt;
+tesseract &lt;span class="nv"&gt;$1&lt;/span&gt;.tif &lt;span class="nv"&gt;$1&lt;/span&gt; nobatch box.train
+unicharset_extractor &lt;span class="nv"&gt;$1&lt;/span&gt;.box
+&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$1&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt; &amp;gt; font_properties
+mftraining -F font_properties -U unicharset &lt;span class="nv"&gt;$1&lt;/span&gt;.tr
+mftraining -F font_properties -U unicharset -O &lt;span class="nv"&gt;$1&lt;/span&gt;.unicharset &lt;span class="nv"&gt;$1&lt;/span&gt;.tr
+cntraining &lt;span class="nv"&gt;$1&lt;/span&gt;.tr
+mv Microfeat &lt;span class="nv"&gt;$1&lt;/span&gt;.Microfeat
+mv normproto &lt;span class="nv"&gt;$1&lt;/span&gt;.normproto
+mv pffmtable &lt;span class="nv"&gt;$1&lt;/span&gt;.pffmtable
+mv mfunicharset &lt;span class="nv"&gt;$1&lt;/span&gt;.mfunicharset
+mv inttemp &lt;span class="nv"&gt;$1&lt;/span&gt;.inttemp
+combine_tessdata &lt;span class="nv"&gt;$1&lt;/span&gt;.
+&lt;span class="c1"&gt;# Used su since I use Debian, use sudo if you are using Ubuntu&lt;/span&gt;
+su -c &lt;span class="s2"&gt;&amp;quot;cp &lt;/span&gt;&lt;span class="nv"&gt;$1&lt;/span&gt;&lt;span class="s2"&gt;.traineddata /usr/local/share/tessdata/&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;It will ask password at the end to copy trained data file to &lt;code&gt;/usr/local/share/tessdata&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;I created two additional scripts to clean the space in between if required.&lt;/p&gt;
+&lt;p&gt;tessCleanAfterBox - cleans the directory by removing all generated files except .box file&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#!/bin/sh&lt;/span&gt;
+rm font_properties*
+rm &lt;span class="nv"&gt;$1&lt;/span&gt;.txt
+rm &lt;span class="nv"&gt;$1&lt;/span&gt;.normproto
+rm &lt;span class="nv"&gt;$1&lt;/span&gt;.traineddata
+rm &lt;span class="nv"&gt;$1&lt;/span&gt;.unicharset
+rm &lt;span class="nv"&gt;$1&lt;/span&gt;.mfunicharset
+rm &lt;span class="nv"&gt;$1&lt;/span&gt;.Microfeat
+rm &lt;span class="nv"&gt;$1&lt;/span&gt;.pffmtable
+rm &lt;span class="nv"&gt;$1&lt;/span&gt;.tr
+rm &lt;span class="nv"&gt;$1&lt;/span&gt;.inttemp
+rm unicharset
+rm *.bak
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;tessCleanAll - Cleans all data including box file except images.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#!/bin/sh&lt;/span&gt;
+rm font_properties*
+rm &lt;span class="nv"&gt;$1&lt;/span&gt;.txt
+rm &lt;span class="nv"&gt;$1&lt;/span&gt;.box
+rm &lt;span class="nv"&gt;$1&lt;/span&gt;.normproto
+rm &lt;span class="nv"&gt;$1&lt;/span&gt;.traineddata
+rm &lt;span class="nv"&gt;$1&lt;/span&gt;.unicharset
+rm &lt;span class="nv"&gt;$1&lt;/span&gt;.mfunicharset
+rm &lt;span class="nv"&gt;$1&lt;/span&gt;.Microfeat
+rm &lt;span class="nv"&gt;$1&lt;/span&gt;.pffmtable
+rm &lt;span class="nv"&gt;$1&lt;/span&gt;.tr
+rm &lt;span class="nv"&gt;$1&lt;/span&gt;.inttemp
+rm unicharset
+rm *.bak
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Once these scripts are created, we need to make these files as executable.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;chmod +x /home/aravinda/apps/tess*
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="usage"&gt;
+&lt;h2&gt;Usage&lt;/h2&gt;
+&lt;p&gt;Let us imagine a name for lang(In the final deployment it should be kan for Kannada. For experimentation we can give any name)&lt;/p&gt;
+&lt;p&gt;For this example, let lang as kan1&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Create a image with sample text and save as kan1.tif&lt;/li&gt;
+&lt;li&gt;Create a box file &lt;code&gt;tessGenBox kan1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Edit box file &lt;code&gt;tessBoxEdit kan1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Generate trained data &lt;code&gt;tessGenData kan1&lt;/code&gt; and provide password.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;If you want to edit box file and train again&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Edit box file &lt;code&gt;tessBoxEdit kan1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Clean the directory &lt;code&gt;tessCleanAfterBox kan1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Generate trained data &lt;code&gt;tessGenData kan1&lt;/code&gt; and provide password.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;If image is changed, clean all and regenerate trained data.&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Clean the directory &lt;code&gt;tessCleanAll kan1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Create a box file &lt;code&gt;tessGenBox kan1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Edit box file &lt;code&gt;tessBoxEdit kan1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Generate trained data &lt;code&gt;tessGenData kan1&lt;/code&gt; and provide password.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;If I forget above commands, I will just type tess and press tab twice to get list of all these commands.&lt;/p&gt;
+&lt;p&gt;Now I can concentrate more on the pattern matching and other issues instead of memorizing each steps involved in the training.&lt;/p&gt;
+&lt;p&gt;C &amp;amp; S Welcome.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="tesseract"></category><category term="OCR"></category><category term="Kannada OCR"></category></entry></feed>

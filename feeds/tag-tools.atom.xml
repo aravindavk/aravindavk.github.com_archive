@@ -1,6 +1,232 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Aravinda VK - tools</title><link href="http://aravindavk.in/" rel="alternate"></link><link href="http://aravindavk.in/feeds/tag-tools.atom.xml" rel="self"></link><id>http://aravindavk.in/</id><updated>2014-12-04T00:00:00+05:30</updated><entry><title>Introducing gdash - GlusterFS Dashboard</title><link href="http://aravindavk.in/blog/introducing-gdash/" rel="alternate"></link><published>2014-12-04T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2014-12-04:/blog/introducing-gdash//</id><summary type="html">&lt;p class="first last"&gt;gdash is a super-young project, which shows GlusterFS volume information about local, remote clusters.&lt;/p&gt;
-</summary><category term="glusterfs"></category><category term="tools"></category><category term="glusterfsblog"></category></entry><entry><title>gvolinfojson - A utility to convert xml output of gluster volume info to json</title><link href="http://aravindavk.in/blog/gvolinfojson/" rel="alternate"></link><published>2014-05-13T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2014-05-13:/blog/gvolinfojson//</id><summary type="html">&lt;p class="first last"&gt;A utility to convert xml output of gluster volume info to json.&lt;/p&gt;
-</summary><category term="glusterfs"></category><category term="tools"></category><category term="glusterfsblog"></category></entry><entry><title>glusterdf - df for gluster volumes</title><link href="http://aravindavk.in/blog/glusterdf-df-for-gluster-volumes/" rel="alternate"></link><published>2013-09-24T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2013-09-24:/blog/glusterdf-df-for-gluster-volumes//</id><summary type="html">&lt;p class="first last"&gt;A CLI utility to check the disk usage of glusterfs volumes&lt;/p&gt;
-</summary><category term="glusterfs"></category><category term="tools"></category><category term="glusterfsblog"></category></entry><entry><title>GlusterFS Tools</title><link href="http://aravindavk.in/blog/glusterfs-tools/" rel="alternate"></link><published>2013-06-18T00:00:00+05:30</published><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2013-06-18:/blog/glusterfs-tools//</id><summary type="html">&lt;p class="first last"&gt;A wrapper around GlusterFS CLI tool&lt;/p&gt;
-</summary><category term="glusterfs"></category><category term="tools"></category><category term="glusterfsblog"></category></entry></feed>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Aravinda VK - tools</title><link href="http://aravindavk.in/" rel="alternate"></link><link href="http://aravindavk.in/feeds/tag-tools.atom.xml" rel="self"></link><id>http://aravindavk.in/</id><updated>2014-12-04T00:00:00+05:30</updated><entry><title>Introducing gdash - GlusterFS Dashboard</title><link href="http://aravindavk.in/blog/introducing-gdash/" rel="alternate"></link><published>2014-12-04T00:00:00+05:30</published><updated>2014-12-04T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2014-12-04:/blog/introducing-gdash/</id><summary type="html">&lt;p class="first last"&gt;gdash is a super-young project, which shows GlusterFS volume information about local, remote clusters.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;&lt;strong&gt;UPDATE:&lt;/strong&gt; Added &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;--gluster&lt;/span&gt;&lt;/tt&gt; option to specify the path to gluster. By default it looks for &lt;tt class="docutils literal"&gt;/usr/sbin/gluster&lt;/tt&gt;, If you installed GlusterFS using source install then use &lt;code&gt;sudo gdash --gluster /usr/local/sbin/gluster&lt;/code&gt;. (Those who already installed gdash, can run &lt;code&gt;sudo pip install -U gdash&lt;/code&gt; to upgrade.)&lt;/p&gt;
+&lt;p&gt;gdash is a super-young project, which shows GlusterFS volume information about local, remote clusters. This app is based on GlusterFS's capability of executing &lt;code&gt;gluster volume info&lt;/code&gt; and &lt;code&gt;gluster volume status&lt;/code&gt; commands for a remote server using &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;--remote-host&lt;/span&gt;&lt;/tt&gt; option.&lt;/p&gt;
+&lt;p&gt;If you can run &lt;code&gt;gluster volume info --remote-host=&amp;lt;HOST_NAME&amp;gt;&lt;/code&gt;, then you can monitor that cluster using gdash. Make sure you allow to access glusterd port(24007) for the machine where you will run gdash.&lt;/p&gt;
+&lt;p&gt;To install,&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo pip install gdash
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;or&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo easy_install gdash
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;gdash is created using Python &lt;a class="reference external" href="http://flask.pocoo.org/"&gt;Flask&lt;/a&gt; and &lt;a class="reference external" href="http://emberjs.com/"&gt;ember&lt;/a&gt; (I used &lt;a class="reference external" href="http://ember-cli.com"&gt;ember-cli&lt;/a&gt;).&lt;/p&gt;
+&lt;div class="figure"&gt;
+&lt;img alt="gdash home screen" src="/images/gdash-home.png" /&gt;
+&lt;p class="caption"&gt;gdash home screen&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="figure"&gt;
+&lt;img alt="gdash detail screen" src="/images/gdash-detail.png" /&gt;
+&lt;p class="caption"&gt;gdash Volume details page&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="usage"&gt;
+&lt;h2&gt;Usage&lt;/h2&gt;
+&lt;div class="section" id="use-case-1-local-volumes"&gt;
+&lt;h3&gt;Use case 1 - Local Volumes&lt;/h3&gt;
+&lt;p&gt;Just run &lt;code&gt;sudo gdash&lt;/code&gt;, gdash starts running in port 8080. visit &lt;a class="reference external" href="http://localhost:8080"&gt;http://localhost:8080&lt;/a&gt; to view GlusterFS volumes of local machine.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="use-case-2-remote-volumes"&gt;
+&lt;h3&gt;Use case 2 - Remote Volumes&lt;/h3&gt;
+&lt;p&gt;Run &lt;code&gt;sudo gdash --host 192.168.1.6&lt;/code&gt;, visit &lt;a class="reference external" href="http://localhost:8080"&gt;http://localhost:8080&lt;/a&gt; to view GlusterFS volume information of remote host. Dashboard shows all the volumes which are part of that remote host.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="use-case-3-multiple-clusters"&gt;
+&lt;h3&gt;Use case 3 - Multiple clusters&lt;/h3&gt;
+&lt;p&gt;Create a clusters.conf file as example shown below, specify at least one host from each cluster.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;[clusters]&lt;/span&gt;
+&lt;span class="na"&gt;cluster1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;host1, host2, host3&lt;/span&gt;
+&lt;span class="na"&gt;cluster2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;host4, host5, host6&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Run &lt;code&gt;gdash&lt;/code&gt; using,&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo gdash --clusters ~/clusters.conf
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="use-case-4-multiple-teams"&gt;
+&lt;h3&gt;Use case 4 - Multiple teams&lt;/h3&gt;
+&lt;p&gt;If two teams monitoring two clusters and if you don't want to share the other cluster details then, just run below commands in two terminals and give respective URL to each team. Other solution is create two seperate config files and run it separately for different ports.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# Team 1, who monitors cluster1 http://localhost:8001&lt;/span&gt;
+sudo gdash -p &lt;span class="m"&gt;8001&lt;/span&gt; --clusters ~/clusters.conf --limit-cluster cluster1
+
+&lt;span class="c1"&gt;# Team 2, who monitors cluster2 http://localhost:8002&lt;/span&gt;
+sudo gdash -p &lt;span class="m"&gt;8002&lt;/span&gt; --clusters ~/clusters.conf --limit-cluster cluster2
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="available-options"&gt;
+&lt;h2&gt;Available Options&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;usage: gdash [-h] [--port PORT] [--cache CACHE] [--debug] [--host HOST]
+             [--clusters CLUSTERS] [--limit-cluster LIMIT_CLUSTER]
+
+GlusterFS dashboard
+-------------------
+
+This tool is based on remote execution support provided by
+GlusterFS cli for `volume info` and `volume status` commands
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --port PORT, -p PORT  Port
+  --cache CACHE, -c CACHE
+                        Cache output in seconds
+  --debug               DEBUG
+  --host HOST           Remote host which is part of cluster
+  --clusters CLUSTERS   Clusters CONF file
+  --limit-cluster LIMIT_CLUSTER
+                        Limit dashboard only for specified cluster
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Code is hosted in &lt;a class="reference external" href="https://github.com/aravindavk/gdash"&gt;github/aravindavk&lt;/a&gt;, licensed under &lt;a class="reference external" href="https://github.com/aravindavk/gdash/blob/master/LICENSE.txt"&gt;MIT&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="glusterfs"></category><category term="tools"></category><category term="glusterfsblog"></category></entry><entry><title>gvolinfojson - A utility to convert xml output of gluster volume info to json</title><link href="http://aravindavk.in/blog/gvolinfojson/" rel="alternate"></link><published>2014-05-13T00:00:00+05:30</published><updated>2014-05-13T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2014-05-13:/blog/gvolinfojson/</id><summary type="html">&lt;p class="first last"&gt;A utility to convert xml output of gluster volume info to json.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;Today I wrote a small utility using &lt;a class="reference external" href="http://golang.org/"&gt;golang&lt;/a&gt; to convert xml output of command &lt;code&gt;gluster volume info&lt;/code&gt; to json.&lt;/p&gt;
+&lt;p&gt;Download the binary from &lt;a class="reference external" href="https://github.com/aravindavk/gvolinfojson/releases/download/1.0/gvolinfojson"&gt;here&lt;/a&gt; and copy to /usr/local/bin directory(or any other directory, which is available in PATH).&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;wget https://github.com/aravindavk/gvolinfojson/releases/download/1.0/gvolinfojson
+sudo cp gvolinfojson /usr/local/bin/
+sudo chmod +x /usr/local/bin/gvolinfojson
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Or&lt;/p&gt;
+&lt;p&gt;If you have golang installed(make sure &lt;code&gt;$GOPATH/bin&lt;/code&gt; is available in PATH), then&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;go get github.com/aravindavk/gvolinfojson
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;To use it with gluster volume info command,&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo gluster volume info --xml | gvolinfojson
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Thats it, you will get the json output of volume info command. If you need pretty json output then&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo gluster volume info --xml | gvolinfojson --pretty
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Source code is available &lt;a class="reference external" href="https://github.com/aravindavk/gvolinfojson"&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;C &amp;amp; S Welcome.&lt;/p&gt;
+</content><category term="glusterfs"></category><category term="tools"></category><category term="glusterfsblog"></category></entry><entry><title>glusterdf - df for gluster volumes</title><link href="http://aravindavk.in/blog/glusterdf-df-for-gluster-volumes/" rel="alternate"></link><published>2013-09-24T00:00:00+05:30</published><updated>2013-09-24T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2013-09-24:/blog/glusterdf-df-for-gluster-volumes/</id><summary type="html">&lt;p class="first last"&gt;A CLI utility to check the disk usage of glusterfs volumes&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;A CLI utility to check the disk usage of &lt;a class="reference external" href="http://gluster.org/"&gt;glusterfs&lt;/a&gt; volumes. Using &lt;code&gt;df&lt;/code&gt; command we can view the disk usage of only mounted glusterfs volumes. This utility takes care of mounting gluster volumes available in the machine where this command is executed. glusterdf uses &lt;a class="reference external" href="https://github.com/gluster/glusterfs/tree/master/api"&gt;libgfapi&lt;/a&gt; provided by glusterfs to fetch the statvfs information.&lt;/p&gt;
+&lt;p&gt;Installation is very simple,&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;git clone https://github.com/aravindavk/glusterfs-tools.git
+&lt;span class="nb"&gt;cd&lt;/span&gt; glusterfs-tools
+sudo python setup.py install
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;You can also clone this project from &lt;a class="reference external" href="https://forge.gluster.org/glusterfs-tools"&gt;forge.gluster.org/glusterfs-tools&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Once installed, two tools will be available &lt;code&gt;glustervolumes&lt;/code&gt; and &lt;cite&gt;glusterdf&lt;/cite&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;sudo glusterdf --help&lt;/code&gt; to know more about options available. (same for glustervolumes &lt;cite&gt;sudo glustervolumes --help&lt;/cite&gt;)&lt;/p&gt;
+&lt;p&gt;Usage examples:&lt;/p&gt;
+&lt;div class="figure"&gt;
+&lt;img alt="glusterdf -h" src="/images/glusterfs/glusterdf_h.png" /&gt;
+&lt;p class="caption"&gt;sudo glusterdf -h (Disk usage in human readable format)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="figure"&gt;
+&lt;img alt="glusterdf -i" src="/images/glusterfs/glusterdf_i.png" /&gt;
+&lt;p class="caption"&gt;sudo glusterdf -i (View inodes usage information)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="figure"&gt;
+&lt;img alt="sudo glusterdf --status up --type repl -h" src="/images/glusterfs/glusterdf_status_type_h.png" /&gt;
+&lt;p class="caption"&gt;sudo glusterdf --status up --type repl -h (View all running replicated volumes)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="figure"&gt;
+&lt;img alt="sudo glusterdf -h --volumewithbrick &amp;quot;/b[12]&amp;quot;" src="/images/glusterfs/glusterdf_volumewithbrick.png" /&gt;
+&lt;p class="caption"&gt;sudo glusterdf -h --volumewithbrick &amp;quot;/b[12]&amp;quot;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="figure"&gt;
+&lt;img alt="sudo glusterdf --status up --type repli -h --json | python -m json.tool" src="/images/glusterfs/glusterdf_json.png" /&gt;
+&lt;p class="caption"&gt;sudo glusterdf --status up --type repli -h --json | python -m json.tool&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="figure"&gt;
+&lt;img alt="glusterdf --help" src="/images/glusterfs/glusterdf-help.png" /&gt;
+&lt;p class="caption"&gt;sudo glusterdf --help&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;In my previous blog(&lt;a class="reference external" href="http://aravindavk.in/blog/glusterfs-tools/"&gt;this&lt;/a&gt;) I wrote about gfvolumes(now it is &lt;cite&gt;glustervolumes&lt;/cite&gt;). glusterfs-tools is rewritten as python library which can be used with your Python programs.&lt;/p&gt;
+&lt;p&gt;For example&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;glusterfstools&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;volumes&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;gfapi&lt;/span&gt;
+&lt;span class="c1"&gt;# Get all volumes&lt;/span&gt;
+&lt;span class="n"&gt;vols&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;volumes&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="c1"&gt;# Get a specific volume information&lt;/span&gt;
+&lt;span class="n"&gt;vol&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;volumes&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;gv1&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# Search volumes by status&lt;/span&gt;
+&lt;span class="n"&gt;down_volumes&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;volumes&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;search&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;status&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;down&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;})&lt;/span&gt;
+&lt;span class="c1"&gt;# Search volumes by type&lt;/span&gt;
+&lt;span class="n"&gt;distribute_volumes&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;volumes&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;search&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;type&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;distribute&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;})&lt;/span&gt;
+&lt;span class="c1"&gt;# Statvfs information&lt;/span&gt;
+&lt;span class="n"&gt;vol_statvfs&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;gfapi&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;statvfs&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;gv1&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# To view information about gluster volumes which are down&lt;/span&gt;
+&lt;span class="c1"&gt;# and having bricks like &amp;quot;/gfs&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;vols&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;volumes&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;search&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;status&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;down&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;volumewithbricks&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;/gfs&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;})&lt;/span&gt;
+&lt;span class="c1"&gt;# To view filters available&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;volumes&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;filters&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;volumes.search accepts filters as parameter, extending volume filters is very simple. For example name filter looks like this(&lt;a class="reference external" href="https://github.com/aravindavk/glusterfs-tools/blob/master/src/glusterfstools/volumefilters.py"&gt;src/glusterfstools/volumefilters.py&lt;/a&gt;)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nd"&gt;@filter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;name_filter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;vols&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;is_match&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;vol&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;all&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="ow"&gt;or&lt;/span&gt; \
+            &lt;span class="n"&gt;vol&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;lower&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;lower&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;strip&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="ow"&gt;or&lt;/span&gt; \
+            &lt;span class="n"&gt;re&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;search&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;vol&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]):&lt;/span&gt;
+            &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="bp"&gt;True&lt;/span&gt;
+        &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="bp"&gt;False&lt;/span&gt;
+
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;vols&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;is_match&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The filter can be used as below&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;glusterfstools&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;volumes&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Filters the volumes with name either gv1 or gv2&lt;/span&gt;
+&lt;span class="n"&gt;filters&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;gv[12]&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;volumes&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;search&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;filters&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+</content><category term="glusterfs"></category><category term="tools"></category><category term="glusterfsblog"></category></entry><entry><title>GlusterFS Tools</title><link href="http://aravindavk.in/blog/glusterfs-tools/" rel="alternate"></link><published>2013-06-18T00:00:00+05:30</published><updated>2013-06-18T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2013-06-18:/blog/glusterfs-tools/</id><summary type="html">&lt;p class="first last"&gt;A wrapper around GlusterFS CLI tool&lt;/p&gt;
+</summary><content type="html">&lt;div class="notice-update"&gt;
+UPDATE: &lt;br/&gt;Installation and usage is simplified with the new release of glusterfs-tools, refer &lt;a href="http://aravindavk.in/blog/glusterdf-df-for-gluster-volumes/"&gt;this blog&lt;/a&gt; for more details.
+&lt;/div&gt;&lt;p&gt;From &lt;a class="reference external" href="http://gluster.org"&gt;GlusterFS website&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+GlusterFS is an open source, distributed file system capable of scaling to several petabytes (actually, 72 brontobytes!) and handling thousands of clients. GlusterFS clusters together storage building blocks over Infiniband RDMA or TCP/IP interconnect, aggregating disk and memory resources and managing data in a single global namespace. GlusterFS is based on a stackable user space design and can deliver exceptional performance for diverse workloads.&lt;/blockquote&gt;
+&lt;p&gt;Gluster CLI has limited features to view and filter the volume info. I started a small project to enhance Gluster CLI for personal use. As of now it consists of a tool to list Gluster volumes in tabular format. Other intersesting features includes filtering the output based on name, type, status, bricks etc.&lt;/p&gt;
+&lt;p&gt;Clone the project(I cloned it to &lt;code&gt;/home/aravinda/sandbox/&lt;/code&gt;)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; /home/aravinda/sandbox
+git clone https://github.com/aravindavk/glusterfs-tools.git
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Create a shellscript to call gftools /usr/local/bin/gfvolumes&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#!/bin/bash&lt;/span&gt;
+python /home/aravinda/sandbox/glusterfs-tools/gftools/volumes.py &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$@&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Make gfvolumes executable&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;chmod +x /usr/local/bin/gfvolumes
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now we can run &lt;code&gt;sudo gfvolumes&lt;/code&gt; to see the list of glusterfs volumes. Type &lt;code&gt;gfvolumes --help&lt;/code&gt; for help.&lt;/p&gt;
+&lt;div class="figure"&gt;
+&lt;img alt="All Volumes" src="/images/glusterfs/all_volumes.png" /&gt;
+&lt;p class="caption"&gt;All Volumes&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="figure"&gt;
+&lt;img alt="Name Filter" src="/images/glusterfs/name_filter.png" /&gt;
+&lt;p class="caption"&gt;Name Filter&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="figure"&gt;
+&lt;img alt="Status Filter" src="/images/glusterfs/status_filter.png" /&gt;
+&lt;p class="caption"&gt;Status Filter&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="figure"&gt;
+&lt;img alt="Type Filter" src="/images/glusterfs/type_filter.png" /&gt;
+&lt;p class="caption"&gt;Type Filter&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="figure"&gt;
+&lt;img alt="Name Filter" src="/images/glusterfs/show_bricks.png" /&gt;
+&lt;p class="caption"&gt;Show Bricks&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Additionally it can output filtered details in JSON format.&lt;/p&gt;
+&lt;div class="figure"&gt;
+&lt;img alt="Name Filter" src="/images/glusterfs/json_format.png" /&gt;
+&lt;p class="caption"&gt;JSON Format&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;We can easily import this in our python script.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#!/usr/bin/python&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;gftools&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;volumes&lt;/span&gt;
+&lt;span class="n"&gt;gfvols&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;volumes&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;GfVolumes&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;ok&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;vols&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;gfvols&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;^gv[0-9]$&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;status&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;down&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;# Various filters available&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;ok&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="c1"&gt;# Do action&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; root permission is required to run gluster command, so run gfvolumes as root(&lt;code&gt;sudo gfvolumes&lt;/code&gt;)&lt;/p&gt;
+&lt;div class="section" id="future-plans"&gt;
+&lt;h2&gt;Future plans:&lt;/h2&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Adding more filters&lt;/li&gt;
+&lt;li&gt;Adding more admin tools&lt;/li&gt;
+&lt;li&gt;Creating RPM/DEB packages&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;C &amp;amp; S Welcome.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="glusterfs"></category><category term="tools"></category><category term="glusterfsblog"></category></entry></feed>
