@@ -1,5 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Aravinda VK - blogs</title><link href="https://aravindavk.in/" rel="alternate"></link><link href="https://aravindavk.in/feeds/category-blogs.atom.xml" rel="self"></link><id>https://aravindavk.in/</id><updated>2019-11-29T00:00:00+05:30</updated><entry><title>Last day at Red Hat</title><link href="https://aravindavk.in/blog/last-day-at-redhat/" rel="alternate"></link><published>2019-11-29T00:00:00+05:30</published><updated>2019-11-29T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2019-11-29:/blog/last-day-at-redhat/</id><summary type="html">&lt;p&gt;Last day at Red Hat&lt;/p&gt;</summary><content type="html">&lt;p&gt;Today is my last day at Red Hat(Bengaluru, India). It was a fantastic
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Aravinda VK - blogs</title><link href="https://aravindavk.in/" rel="alternate"></link><link href="https://aravindavk.in/feeds/category-blogs.atom.xml" rel="self"></link><id>https://aravindavk.in/</id><updated>2019-12-03T00:00:00+05:30</updated><entry><title>Monitoring GlusterFS - Yet another try</title><link href="https://aravindavk.in/blog/monitoring-glusterfs-yet-another-try/" rel="alternate"></link><published>2019-12-03T00:00:00+05:30</published><updated>2019-12-03T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2019-12-03:/blog/monitoring-glusterfs-yet-another-try/</id><summary type="html">&lt;p&gt;Introduce Metrics SDK - Collection of libraries that helps to collect metrics without knowing about Gluster internals&lt;/p&gt;</summary><content type="html">&lt;p&gt;Monitoring is one of my favorite topics, and previously I tried
+multiple ways to monitor GlusterFS effectively. Initially, I decided
+to avoid running Gluster CLI commands with too frequent intervals by
+using Gluster hooks(Blog about using Gluster hooks is
+&lt;a href="https://aravindavk.in/blog/effective-glusterfs-monitoring-using-hooks/"&gt;here&lt;/a&gt;). But
+this approach was not practical since hooks are not available for all
+events.&lt;/p&gt;
+&lt;p&gt;Then I started a project called
+"&lt;a href="https://aravindavk.in/blog/introducing-gdash/"&gt;gdash&lt;/a&gt;" to visualize
+the health of the cluster using gluster command-line tools. But this
+was having only limited access to the cluster status and depended
+solely on what gluster CLI provides.&lt;/p&gt;
+&lt;p&gt;Events APIs are introduced in Gluster to fill the gaps of limited
+hooks support. The events listener needs to be started in each node of
+the cluster, and it exports the local events via registered
+webhooks.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://aravindavk.in/blog/10-mins-intro-to-gluster-eventing/"&gt;10 minutes introduction to Gluster Eventing Feature&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://aravindavk.in/blog/effective-gluster-monitoring-eventsapis/"&gt;Effective Gluster Monitoring using Events APIs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://aravindavk.in/blog/gluster-georep-dashboard-experiment/"&gt;Gluster Geo-replication Dashboard Experiment&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Events APIs are great since it helps to reduce polling Gluster
+cluster. But Events APIs are not perfect because of the asynchronous
+nature it can miss events. If a Webhook listener is down, then there
+is no way to get the history of events.&lt;/p&gt;
+&lt;p&gt;Events APIs are useful for creating health/status boards but not so
+helpful while designing monitoring systems that require historical
+data to make decisions and plot graphs. For example, adding an event
+for each file create/delete is not practical, so events APIs are not
+useful for getting Volume utilization details and similar metrics.&lt;/p&gt;
+&lt;p&gt;Many approaches we tried didn't succeed because all are dependent on
+gluster command-line tools. When we depend on Gluster CLIs, then
+collecting metrics from every node doesn't make sense because Gluster
+CLIs returns the same data from all the nodes. So if we start
+collecting from a single node of the cluster, then we need a mechanism
+to choose another node when the previously active node goes down.&lt;/p&gt;
+&lt;p&gt;When we started working on the Prometheus integration, our approach
+was to collect metrics at the lowest level possible and use the
+monitoring system's capability to aggregate the metrics from multiple
+nodes. For example, instead of collecting Volume utilization via mount
+or Gluster volume status command, Prometheus exporter collected
+utilization metrics from the bricks. This approach avoided all the
+complexities related to leader election or duplicate metrics.&lt;/p&gt;
+&lt;p&gt;The gluster-prometheus project solved problems related to some of the
+metrics, but not for all. We are still dependent on Gluster CLI
+commands for some of the metrics like Profile and others.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/gluster/gluster-prometheus"&gt;Gluster Prometheus project&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://aravindavk.in/blog/monitoring-glusterfs-volume-utilization/"&gt;Monitoring GlusterFS - Volume Utilization&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://aravindavk.in/blog/gluster-volume-utilization-multiple-approaches/"&gt;Gluster Volume utilization - Multiple approaches&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://aravindavk.in/blog/elixir-phoenix-liveview-gluster-dashboard/"&gt;Elixir Phoenix Liveview and Gluster dashboard&lt;/a&gt; - Dashboard experiment for Gluster but not using Prometheus.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;What's wrong with using Gluster CLI commands for metrics collection?&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Gluster CLI command fails some times due to locks(When gluster
+  command-line tools used in parallel)&lt;/li&gt;
+&lt;li&gt;Gluster CLIs will not help to collect only local metrics&lt;/li&gt;
+&lt;li&gt;If Gluster CLIs are not available(If collecting client metrics or
+  external projects like &lt;a href="https://kadalu.io"&gt;kadalu.io&lt;/a&gt;, which doesn't use
+  Glusterd!)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;So what next?&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Similar to the previous approach, collect metrics at as lowest level
+  as possible.&lt;/li&gt;
+&lt;li&gt;Do not depend on Gluster CLIs, but design an external tool to
+  populate the peer, cluster, and volume info files. For example,
+  while collecting a brick's utilization, how to find to which node,
+  volume, or cluster it belongs? Maintain info file for each entity
+  and update whenever cluster state changes. (Events APIs comes handy
+  here).&lt;/li&gt;
+&lt;li&gt;For collecting volume profile related metrics, understand the RPC
+  between brick process and glusterd, and communicate directly to
+  brick process and collect only local metrics.&lt;/li&gt;
+&lt;li&gt;Integrate with the metrics available from &lt;a href="https://github.com/amarts/glustermetrics"&gt;Amar's project&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Introduce Metrics SDK - Collection of libraries that helps to
+  collect metrics without knowing about Gluster internals.  This SDK
+  also helps us to integrate with any Monitoring tools(Prometheus,
+  Netdata, Nagios, etc.)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Last week &lt;a href="https://medium.com/@tumballi"&gt;Amar&lt;/a&gt; invited Gluster
+developers to propose features for Gluster 8, 9, and
+X(&lt;a href="https://www.gluster.org/blog-planning-ahead-for-gluster-releases/"&gt;here&lt;/a&gt;
+and
+&lt;a href="https://lists.gluster.org/pipermail/gluster-devel/2019-November/056709.html"&gt;here&lt;/a&gt;. I
+am planning to spend some time on mentoring/designing/implementing the
+Monitoring solution for Gluster.&lt;/p&gt;
+&lt;p&gt;I am hoping to get some success this time. Let me know if anyone
+interested to work on this.&lt;/p&gt;
+&lt;p&gt;Thanks. Let me know your thoughts.&lt;/p&gt;</content><category term="glusterfs"></category><category term="glusterfsblog"></category></entry><entry><title>Last day at Red Hat</title><link href="https://aravindavk.in/blog/last-day-at-redhat/" rel="alternate"></link><published>2019-11-29T00:00:00+05:30</published><updated>2019-11-29T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2019-11-29:/blog/last-day-at-redhat/</id><summary type="html">&lt;p&gt;Last day at Red Hat&lt;/p&gt;</summary><content type="html">&lt;p&gt;Today is my last day at Red Hat(Bengaluru, India). It was a fantastic
 journey of 7+ years working with Red Hat Storage team and GlusterFS
 community.&lt;/p&gt;
 &lt;p&gt;I will surely be active in the GlusterFS community. Hopefully, we can

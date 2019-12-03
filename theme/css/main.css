@@ -1,7 +1,7 @@
 /* Layout */
 body{
     background: #EEEFFF;
-    line-height: 1.3em;
+    line-height: 1.4em;
 }
 iframe{
     border:0;
@@ -146,6 +146,7 @@ iframe{
 
 .article h1{
     color:#D15707;
+    line-height: 1.3em;
 }
 
 .article img{
