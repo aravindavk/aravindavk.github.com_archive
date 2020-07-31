@@ -98,24 +98,24 @@ between them.</p>
 <p>Use fuse mount to mount the Gluster Volume and get the <code>df</code> output(Or
 use <code>os.statvfs</code> in case of Python script).</p>
 <p>For example,</p>
-<div class="highlight"><pre><span></span>$ mount -t glusterfs localhost:gvol_rep3 /mnt/gvol_rep3
+<div class="highlight"><pre><span></span><code>$ mount -t glusterfs localhost:gvol_rep3 /mnt/gvol_rep3
 $ df -B1 /mnt/gvol_rep3
 $ umount /mnt/gvol_rep3
-</pre></div>
+</code></pre></div>
 
 
 <h2>Approach 2 - libgfapi mount</h2>
 <p>Use libgfapi mount and run <code>os.statvfs</code> to get the Volume utilization.</p>
 <p>The following Python example uses
 <a href="https://github.com/gluster/libgfapi-python">libgfapi-python</a> project.</p>
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">gluster</span> <span class="kn">import</span> <span class="n">gfapi</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">gluster</span> <span class="kn">import</span> <span class="n">gfapi</span>
 
 <span class="n">volume</span> <span class="o">=</span> <span class="n">gfapi</span><span class="o">.</span><span class="n">Volume</span><span class="p">(</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="s1">&#39;gvol_rep3&#39;</span><span class="p">)</span>
 <span class="n">volume</span><span class="o">.</span><span class="n">mount</span><span class="p">()</span>
 <span class="n">st</span> <span class="o">=</span> <span class="n">volume</span><span class="o">.</span><span class="n">statvfs</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Total Size: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">st</span><span class="o">.</span><span class="n">f_blocks</span> <span class="o">*</span> <span class="n">st</span><span class="o">.</span><span class="n">f_bsize</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Total Size: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">st</span><span class="o">.</span><span class="n">f_blocks</span> <span class="o">*</span> <span class="n">st</span><span class="o">.</span><span class="n">f_bsize</span><span class="p">))</span>
 <span class="n">volume</span><span class="o">.</span><span class="n">umount</span><span class="p">()</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2>Approach 3 - Gluster CLI</h2>
@@ -128,17 +128,17 @@ volume get &lt;volname&gt; storage.reserve</code> and subtract the same from
 <a href="https://github.com/gluster/glusterfs/issues/236">here</a></p>
 <p>Once we get the sub volume grouping, get the sub volume utilization
 from the bricks utilization as follows.</p>
-<div class="highlight"><pre><span></span>volume_capacity_total = 0
-volume_capacity_used = 0
-volume_inodes_total = 0
-volume_inodes_used = 0
-for subvol in subvols {
-    volume_capacity_total += subvol.capacity_total
-    volume_capacity_used += subvol.capacity_used
-    volume_inodes_total += subvol.inodes_total
-    volume_inodes_used += subvol.inodes_used
-}
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">volume_capacity_total = 0</span>
+<span class="err">volume_capacity_used = 0</span>
+<span class="err">volume_inodes_total = 0</span>
+<span class="err">volume_inodes_used = 0</span>
+<span class="err">for subvol in subvols {</span>
+<span class="err">    volume_capacity_total += subvol.capacity_total</span>
+<span class="err">    volume_capacity_used += subvol.capacity_used</span>
+<span class="err">    volume_inodes_total += subvol.inodes_total</span>
+<span class="err">    volume_inodes_used += subvol.inodes_used</span>
+<span class="err">}</span>
+</code></pre></div>
 
 
 <p>Subvolume utilization is dependent on its type. If subvolume type is
@@ -149,11 +149,11 @@ data and total capacity of a subvolume is dependent on the brick
 having least capacity (In most cases capacity of all bricks in
 subvolume will be identical).</p>
 <p>In case of subvolume type is Disperse Volume then,</p>
-<div class="highlight"><pre><span></span>subvol_capacity_total = any_one_brick_capacity_total * number_of_data_bricks
-subvol_capacity_used = any_one_brick_capacity_used * number_of_data_bricks
-subvol_inodes_total = any_one_brick_inode_total
-subvol_inodes_used = any_one_brick_inode_used
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">subvol_capacity_total = any_one_brick_capacity_total * number_of_data_bricks</span>
+<span class="err">subvol_capacity_used = any_one_brick_capacity_used * number_of_data_bricks</span>
+<span class="err">subvol_inodes_total = any_one_brick_inode_total</span>
+<span class="err">subvol_inodes_used = any_one_brick_inode_used</span>
+</code></pre></div>
 
 
 <h2>Conclusion:</h2>

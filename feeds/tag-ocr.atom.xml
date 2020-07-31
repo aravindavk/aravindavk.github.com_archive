@@ -17,7 +17,7 @@
 &lt;img alt="Kannada OCR" src="/images/kn-ocr3.jpg" /&gt;
 &lt;p&gt;ಇದುವರೆಗೆ ಬರೆದ ವಿಚಾರಗಳು Tesseract OCR ಎಂಬ ತಂತ್ರಾಂಶವನ್ನು ಗೆಳೆಯರ ಜೊತೆ ಸೇರಿ ಕನ್ನಡಕ್ಕೆ ಅಳವಡಿಸಲು ಪ್ರಯತ್ನ ಮಾಡಿದಾಗಿನ ಅನುಭವ. ಇನ್ನೂ ಬಹಳಷ್ಟು ತೊಂದರೆಗಳಿಗೆ ಪರಿಹಾರ ಸಿಕ್ಕಿಲ್ಲ. ಎಲ್ಲಾ ತೊಂದರೆಗಳು ಒಂದೊಂದಾಗಿ ಸರಿಯಾಗಿ ಕಡೆಗೊಂದಿನ ಕನ್ನಡಕ್ಕೂ ಒಂದು OCR ಬರಲಿ ಎಂದು ಆಶಿಸುತ್ತೇನೆ.&lt;/p&gt;
 &lt;/div&gt;
-</content><category term="kannada"></category><category term="ocr"></category><category term="kannadablog"></category></entry><entry><title>Tesseract OCR initial setup</title><link href="https://aravindavk.in/blog/tesseract-ocr-initial-setup/" rel="alternate"></link><published>2011-04-28T00:00:00+05:30</published><updated>2011-04-28T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2011-04-28:/blog/tesseract-ocr-initial-setup/</id><summary type="html">&lt;p class="first last"&gt;Tesseract OCR needs to be trained for Kannada and other Indic languages.&lt;/p&gt;
+</content><category term="blogs"></category><category term="kannada"></category><category term="ocr"></category><category term="kannadablog"></category></entry><entry><title>Tesseract OCR initial setup</title><link href="https://aravindavk.in/blog/tesseract-ocr-initial-setup/" rel="alternate"></link><published>2011-04-28T00:00:00+05:30</published><updated>2011-04-28T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2011-04-28:/blog/tesseract-ocr-initial-setup/</id><summary type="html">&lt;p class="first last"&gt;Tesseract OCR needs to be trained for Kannada and other Indic languages.&lt;/p&gt;
 </summary><content type="html">&lt;div class="section" id="tesseract-ocr-is"&gt;
 &lt;h2&gt;Tesseract OCR is&lt;/h2&gt;
 &lt;blockquote&gt;
@@ -135,4 +135,4 @@ rm *.bak
 &lt;p&gt;Now I can concentrate more on the pattern matching and other issues instead of memorizing each steps involved in the training.&lt;/p&gt;
 &lt;p&gt;C &amp;amp; S Welcome.&lt;/p&gt;
 &lt;/div&gt;
-</content><category term="tesseract"></category><category term="OCR"></category><category term="Kannada OCR"></category></entry></feed>
+</content><category term="blogs"></category><category term="tesseract"></category><category term="OCR"></category><category term="Kannada OCR"></category></entry></feed>

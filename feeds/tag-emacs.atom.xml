@@ -16,4 +16,4 @@ removepkg &amp;lt;packagename&amp;gt;
 &lt;p&gt;My Slackware system didn't had the latest(CVS) version of Emacs(Not available in repository also). I used the Emacs CVS Slackbuild script from &lt;a class="reference external" href="http://www.unc.edu/~adamsonj/software/emacs-cvs/"&gt;Joel J. Adamson's&lt;/a&gt; website, this script will download the source from Emacs CVS repository and creates Slackware package after compilation.&lt;/p&gt;
 &lt;p&gt;Script took 35 minutes in my system to create Slackware package for Emacs-cvs  :)&lt;/p&gt;
 &lt;p&gt;More details about Slackbuild script is &lt;a class="reference external" href="http://www.slackwiki.org/Writing_A_SlackBuild_Script"&gt;here&lt;/a&gt;.&lt;/p&gt;
-</content><category term="emacs"></category><category term="gnu-linux"></category><category term="slackware"></category></entry></feed>
+</content><category term="blogs"></category><category term="emacs"></category><category term="gnu-linux"></category><category term="slackware"></category></entry></feed>

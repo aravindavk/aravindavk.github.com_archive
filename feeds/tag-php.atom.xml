@@ -42,7 +42,7 @@
 &lt;li&gt;&lt;a class="reference external" href="http://www.php.net/manual/en/ini.core.php#ini.short-open-tag"&gt;PHP short_open_tag&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class="reference external" href="http://php.net/manual/en/control-structures.alternative-syntax.php"&gt;Alternative syntax for control structures&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
-</content><category term="php"></category><category term="shortcut"></category></entry><entry><title>CouchDB: Auto increment IDs with PHP</title><link href="https://aravindavk.in/blog/couchdb-auto-increment-ids-with-php/" rel="alternate"></link><published>2010-09-24T00:00:00+05:30</published><updated>2010-09-24T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2010-09-24:/blog/couchdb-auto-increment-ids-with-php/</id><summary type="html">&lt;p class="first last"&gt;CouchDB: Auto increment IDs with PHP&lt;/p&gt;
+</content><category term="blogs"></category><category term="php"></category><category term="shortcut"></category></entry><entry><title>CouchDB: Auto increment IDs with PHP</title><link href="https://aravindavk.in/blog/couchdb-auto-increment-ids-with-php/" rel="alternate"></link><published>2010-09-24T00:00:00+05:30</published><updated>2010-09-24T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2010-09-24:/blog/couchdb-auto-increment-ids-with-php/</id><summary type="html">&lt;p class="first last"&gt;CouchDB: Auto increment IDs with PHP&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;Create a seed, which will be a CouchDB view.&lt;/p&gt;
 &lt;p&gt;Map function extracts numeric part of every doc of type &amp;quot;photo&amp;quot;.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;// Map function&lt;/span&gt;
@@ -94,7 +94,7 @@
 &lt;span class="x"&gt;       &amp;quot;p&amp;quot;);&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;As of now, PHP function involves two http calls for adding single document. Let me know if you find any ways to reduce it to one http call.&lt;/p&gt;
-</content><category term="couchdb"></category><category term="php"></category></entry><entry><title>Using Markdown and SHJS with PHP</title><link href="https://aravindavk.in/blog/using-markdown-and-shjs-with-php/" rel="alternate"></link><published>2009-09-28T00:00:00+05:30</published><updated>2009-09-28T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2009-09-28:/blog/using-markdown-and-shjs-with-php/</id><summary type="html">&lt;p class="first last"&gt;Markdown is a wiki like syntax standard, to have highly readable content.&lt;/p&gt;
+</content><category term="blogs"></category><category term="couchdb"></category><category term="php"></category></entry><entry><title>Using Markdown and SHJS with PHP</title><link href="https://aravindavk.in/blog/using-markdown-and-shjs-with-php/" rel="alternate"></link><published>2009-09-28T00:00:00+05:30</published><updated>2009-09-28T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2009-09-28:/blog/using-markdown-and-shjs-with-php/</id><summary type="html">&lt;p class="first last"&gt;Markdown is a wiki like syntax standard, to have highly readable content.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;In this article we will discuss&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
 &lt;li&gt;Markdown&lt;/li&gt;
@@ -218,10 +218,10 @@ Adding inline image
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Btw, I use SHJS emacs theme for syntax highlight in my website :)&lt;/p&gt;
 &lt;/div&gt;
-</content><category term="php"></category><category term="markdown"></category><category term="javascript"></category></entry><entry><title>Chelvi - PHP micro framework</title><link href="https://aravindavk.in/blog/chelvi/" rel="alternate"></link><published>2009-05-29T00:00:00+05:30</published><updated>2009-05-29T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2009-05-29:/blog/chelvi/</id><summary type="html">&lt;p class="first last"&gt;Chelvi is object oriented cute PHP5 micro framework for creating web applications. The objective is to help developers to create web applications without restricting their ideas.&lt;/p&gt;
+</content><category term="blogs"></category><category term="php"></category><category term="markdown"></category><category term="javascript"></category></entry><entry><title>Chelvi - PHP micro framework</title><link href="https://aravindavk.in/blog/chelvi/" rel="alternate"></link><published>2009-05-29T00:00:00+05:30</published><updated>2009-05-29T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2009-05-29:/blog/chelvi/</id><summary type="html">&lt;p class="first last"&gt;Chelvi is object oriented cute PHP5 micro framework for creating web applications. The objective is to help developers to create web applications without restricting their ideas.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;Chelvi is object oriented cute PHP5 micro framework for creating web applications. The objective is to help developers to create web applications without restricting their ideas.&lt;/p&gt;
 &lt;p&gt;Chelvi is a Kannada word(South Indian Language) which means Beautiful girl.&lt;/p&gt;
 &lt;p&gt;Read more about Chelvi &lt;a class="reference external" href="http://chelvi.sf.net"&gt;here&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;This project is dedicated to Chelvi at home :)&lt;/p&gt;
 &lt;img alt="Chelvi" src="/images/chelvi/m.jpg" /&gt;
-</content><category term="php"></category><category term="chelvi"></category><category term="framework"></category><category term="myproject"></category></entry></feed>
+</content><category term="blogs"></category><category term="php"></category><category term="chelvi"></category><category term="framework"></category><category term="myproject"></category></entry></feed>

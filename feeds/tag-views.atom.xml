@@ -57,4 +57,4 @@
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;To get all the records irrespective of type, call the view without startkey and endkey parameters. But the issue is all are sorted by first element of key not by when_created.&lt;/p&gt;
 &lt;p&gt;How can I get latest 10 elements irrespective of doc.type. (sorted based on second element of key)&lt;/p&gt;
-</content><category term="couchdb"></category><category term="views"></category></entry></feed>
+</content><category term="blogs"></category><category term="couchdb"></category><category term="views"></category></entry></feed>

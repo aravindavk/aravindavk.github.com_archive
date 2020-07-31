@@ -100,7 +100,7 @@ experience about how I added subcommand support to my command-line
 applications.</p>
 <p>Below example shows a basic program which accepts <code>--name</code> or <code>-n</code>
 argument.</p>
-<div class="highlight"><pre><span></span><span class="k">import</span> <span class="n">std</span><span class="p">.</span><span class="n">stdio</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">import</span> <span class="n">std</span><span class="p">.</span><span class="n">stdio</span><span class="p">;</span>
 <span class="k">import</span> <span class="n">std</span><span class="p">.</span><span class="n">getopt</span><span class="p">;</span>
 
 <span class="kt">int</span> <span class="n">main</span><span class="p">(</span><span class="nb">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
@@ -119,12 +119,12 @@ argument.</p>
     <span class="n">writefln</span><span class="p">(</span><span class="s">&quot;Hello %s&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">);</span>
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Once "getopt" parses the flags, args will contain only remaining
 arguments(positional arguments). For example,</p>
-<div class="highlight"><pre><span></span><span class="k">import</span> <span class="n">std</span><span class="p">.</span><span class="n">stdio</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">import</span> <span class="n">std</span><span class="p">.</span><span class="n">stdio</span><span class="p">;</span>
 <span class="k">import</span> <span class="n">std</span><span class="p">.</span><span class="n">getopt</span><span class="p">;</span>
 
 <span class="kt">int</span> <span class="n">main</span><span class="p">(</span><span class="nb">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
@@ -145,12 +145,12 @@ arguments(positional arguments). For example,</p>
     <span class="n">writefln</span><span class="p">(</span><span class="s">&quot;Hello %s %s&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">lastName</span><span class="p">);</span>
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Now to handle sub-commands, we need to define multiple getopt. For
 Example,</p>
-<div class="highlight"><pre><span></span><span class="k">import</span> <span class="n">std</span><span class="p">.</span><span class="n">stdio</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">import</span> <span class="n">std</span><span class="p">.</span><span class="n">stdio</span><span class="p">;</span>
 <span class="k">import</span> <span class="n">std</span><span class="p">.</span><span class="n">getopt</span><span class="p">;</span>
 
 <span class="k">const</span> <span class="n">progHelp</span> <span class="p">=</span> <span class="s">&quot;./mycli get|set [OPTIONS]&quot;</span><span class="p">;</span>
@@ -222,14 +222,14 @@ Example,</p>
     <span class="p">}</span>
     <span class="k">return</span> <span class="p">(*</span><span class="n">func</span><span class="p">)(</span><span class="n">args</span><span class="p">);</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>If the program needs global flags which are applicable for all
 sub-commands, then make sure to add global flags getopt before parsing
 sub-commands. Also, add <code>std.getopt.config.passThrough</code> to avoid
 failing to parse flags related to sub-commands.</p>
-<div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">globalFlags</span>
+<div class="highlight"><pre><span></span><code><span class="k">struct</span> <span class="n">globalFlags</span>
 <span class="p">{</span>
     <span class="nb">string</span> <span class="n">logLevel</span> <span class="p">=</span> <span class="s">&quot;INFO&quot;</span><span class="p">;</span>
     <span class="kt">bool</span> <span class="n">debugEnabled</span><span class="p">;</span>
@@ -275,7 +275,7 @@ failing to parse flags related to sub-commands.</p>
     <span class="p">}</span>
     <span class="k">return</span> <span class="p">(*</span><span class="n">func</span><span class="p">)(</span><span class="n">args</span><span class="p">);</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Notes:</p>

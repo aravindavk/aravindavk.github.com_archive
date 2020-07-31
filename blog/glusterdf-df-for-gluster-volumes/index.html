@@ -137,7 +137,7 @@ sudo python setup.py install
 <span class="c1"># and having bricks like &quot;/gfs&quot;</span>
 <span class="n">vols</span> <span class="o">=</span> <span class="n">volumes</span><span class="o">.</span><span class="n">search</span><span class="p">({</span><span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;down&quot;</span><span class="p">,</span> <span class="s2">&quot;volumewithbricks&quot;</span><span class="p">:</span> <span class="s2">&quot;/gfs&quot;</span><span class="p">})</span>
 <span class="c1"># To view filters available</span>
-<span class="k">print</span> <span class="p">(</span><span class="n">volumes</span><span class="o">.</span><span class="n">filters</span><span class="p">())</span>
+<span class="nb">print</span> <span class="p">(</span><span class="n">volumes</span><span class="o">.</span><span class="n">filters</span><span class="p">())</span>
 </pre></div>
 <p>volumes.search accepts filters as parameter, extending volume filters is very simple. For example name filter looks like this(<a class="reference external" href="https://github.com/aravindavk/glusterfs-tools/blob/master/src/glusterfstools/volumefilters.py">src/glusterfstools/volumefilters.py</a>)</p>
 <div class="highlight"><pre><span></span><span class="nd">@filter</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">)</span>
@@ -146,9 +146,9 @@ sudo python setup.py install
         <span class="k">if</span> <span class="n">value</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;all&#39;</span><span class="p">]</span> <span class="ow">or</span> \
             <span class="n">vol</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">value</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="ow">or</span> \
             <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">vol</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]):</span>
-            <span class="k">return</span> <span class="bp">True</span>
+            <span class="k">return</span> <span class="kc">True</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">False</span>
+            <span class="k">return</span> <span class="kc">False</span>
 
     <span class="k">return</span> <span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">vols</span> <span class="k">if</span> <span class="n">is_match</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">value</span><span class="p">)]</span>
 </pre></div>
@@ -157,7 +157,7 @@ sudo python setup.py install
 
 <span class="c1"># Filters the volumes with name either gv1 or gv2</span>
 <span class="n">filters</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;gv[12]&quot;</span><span class="p">}</span>
-<span class="k">print</span> <span class="n">volumes</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">filters</span><span class="p">)</span>
+<span class="nb">print</span> <span class="n">volumes</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">filters</span><span class="p">)</span>
 </pre></div>
 
     </div><!-- /.entry-content -->

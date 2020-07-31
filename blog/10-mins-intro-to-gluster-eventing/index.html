@@ -106,10 +106,10 @@ later.</p>
 
 <span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
-<span class="nd">@app.route</span><span class="p">(</span><span class="s2">&quot;/listen&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;POST&quot;</span><span class="p">])</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/listen&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;POST&quot;</span><span class="p">])</span>
 <span class="k">def</span> <span class="nf">events_listener</span><span class="p">():</span>
     <span class="n">gluster_event</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">json</span>
-    <span class="k">if</span> <span class="n">gluster_event</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">gluster_event</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="c1"># No event to process, may be test call</span>
         <span class="k">return</span> <span class="s2">&quot;OK&quot;</span>
 
