@@ -1,5 +1,165 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Aravinda VK - Aravinda VK</title><link href="https://aravindavk.in/" rel="alternate"></link><link href="https://aravindavk.in/feeds/aravinda-vk.atom.xml" rel="self"></link><id>https://aravindavk.in/</id><updated>2019-12-03T00:00:00+05:30</updated><entry><title>Monitoring GlusterFS - Yet another try</title><link href="https://aravindavk.in/blog/monitoring-glusterfs-yet-another-try/" rel="alternate"></link><published>2019-12-03T00:00:00+05:30</published><updated>2019-12-03T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2019-12-03:/blog/monitoring-glusterfs-yet-another-try/</id><summary type="html">&lt;p&gt;Introduce Metrics SDK - Collection of libraries that helps to collect metrics without knowing about Gluster internals&lt;/p&gt;</summary><content type="html">&lt;p&gt;Monitoring is one of my favorite topics, and previously I tried
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Aravinda VK - Aravinda VK</title><link href="https://aravindavk.in/" rel="alternate"></link><link href="https://aravindavk.in/feeds/aravinda-vk.atom.xml" rel="self"></link><id>https://aravindavk.in/</id><updated>2020-11-01T00:00:00+05:30</updated><entry><title>Monitoring Amber apps with Prometheus</title><link href="https://aravindavk.in/blog/amber-prometheus/" rel="alternate"></link><published>2020-11-01T00:00:00+05:30</published><updated>2020-11-01T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2020-11-01:/blog/amber-prometheus/</id><summary type="html">&lt;p&gt;Crometheus is the Prometheus client library for the Crystal programming language. It provides an easy way to integrate with any other web frameworks or as a standalone Prometheus exporter to monitor an external application or tool.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="https://github.com/Darwinnn/crometheus"&gt;Crometheus&lt;/a&gt; is a &lt;a href="https://prometheus.io"&gt;Prometheus&lt;/a&gt; client library for instrumenting programs written in the &lt;a href="https://crystal-lang.org"&gt;Crystal programming&lt;/a&gt; language. It provides an easy way to integrate with any other web frameworks or as a standalone Prometheus exporter to monitor an external application or tool.&lt;/p&gt;
+&lt;p&gt;In this blog, we will see how to integrate Crometheus with &lt;a href="https://amberframework.org"&gt;Amber&lt;/a&gt; applications. &lt;/p&gt;
+&lt;p&gt;Add Crometheus as a dependency in your shard.yml file.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;  &lt;span class="nt"&gt;crometheus&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="nt"&gt;github&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;darwinnn/crometheus&lt;/span&gt;
+    &lt;span class="nt"&gt;branch&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;master&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;And run &lt;code&gt;shards install&lt;/code&gt; to install the dependencies. In Amber, the HTTP handler is called Plug. To integrate Crometheus, include it as a Plug as shown below.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# file: config/initializers/metrics.cr&lt;/span&gt;
+&lt;span class="k"&gt;require&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;crometheus&amp;quot;&lt;/span&gt;
+
+&lt;span class="n"&gt;Crometheus&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;default_registry&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;/metrics&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="gh"&gt;diff --git a/config/routes.cr b/config/routes.cr&lt;/span&gt;
+&lt;span class="gh"&gt;index c50f03c..db1a94a 100644&lt;/span&gt;
+&lt;span class="gd"&gt;--- a/config/routes.cr&lt;/span&gt;
+&lt;span class="gi"&gt;+++ b/config/routes.cr&lt;/span&gt;
+&lt;span class="gu"&gt;@@ -1,3 +1,5 @@&lt;/span&gt;
+&lt;span class="gi"&gt;+require &amp;quot;crometheus&amp;quot;&lt;/span&gt;
+&lt;span class="gi"&gt;+&lt;/span&gt;
+ Amber::Server.configure do
+   pipeline :web do
+     # Plug is the method to use connect a pipe (middleware)
+&lt;span class="gu"&gt;@@ -10,6 +12,7 @@ Amber::Server.configure do&lt;/span&gt;
+     plug Amber::Pipe::Session.new
+     plug Amber::Pipe::Flash.new
+     plug Amber::Pipe::CSRF.new
+&lt;span class="gi"&gt;+    plug Crometheus.default_registry.get_handler&lt;/span&gt;
+   end
+
+   pipeline :api do
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Crometheus traps the &lt;code&gt;/metrics&lt;/code&gt; (or configured path), but Amber doesn't know about this dynamic route and produces the following error when the &lt;code&gt;/metrics&lt;/code&gt; page is opened.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;2020-10-23T15:17:27.301760Z   WARN - error: Error: 404
+The request was not found. GET - /metrics (Amber::Exceptions::RouteNotFound)
+from lib/amber/src/amber/controller/static.cr:7:7 in &amp;#39;index&amp;#39;
+  from config/routes.cr:45:5 in &amp;#39;-&amp;gt;&amp;#39;
+  from ../../../../../../usr/local/Cellar/crystal/0.35.1_1/src/primitives.cr:255:3 in &amp;#39;call&amp;#39;
+  from lib/amber/src/amber/router/context.cr:78:5 in &amp;#39;process_request&amp;#39;
+  from lib/amber/src/amber/pipes/controller.cr:8:9 in &amp;#39;call&amp;#39;
+  from ../../../../../../usr/local/Cellar/crystal/0.35.1_1/src/http/server/handler.cr:28:7 in &amp;#39;call_next&amp;#39;
+  from lib/amber/src/amber/pipes/static.cr:85:11 in &amp;#39;call_next_with_file_path&amp;#39;
+  from lib/amber/src/amber/pipes/static.cr:45:9 in &amp;#39;call&amp;#39;
+  from ../../../../../../usr/local/Cellar/crystal/0.35.1_1/src/http/server/handler.cr:28:7 in &amp;#39;call_next&amp;#39;
+  from lib/amber/src/amber/pipes/error.cr:11:9 in &amp;#39;call&amp;#39;
+  from lib/amber/src/amber/pipes/pipeline.cr:20:11 in &amp;#39;call&amp;#39;
+  from ../../../../../../usr/local/Cellar/crystal/0.35.1_1/src/http/server/request_processor.cr:50:11 in &amp;#39;process&amp;#39;
+  from ../../../../../../usr/local/Cellar/crystal/0.35.1_1/src/http/server.cr:513:5 in &amp;#39;handle_client&amp;#39;
+  from ../../../../../../usr/local/Cellar/crystal/0.35.1_1/src/http/server.cr:468:13 in &amp;#39;-&amp;gt;&amp;#39;
+  from ../../../../../../usr/local/Cellar/crystal/0.35.1_1/src/primitives.cr:255:3 in &amp;#39;run&amp;#39;
+  from ../../../../../../usr/local/Cellar/crystal/0.35.1_1/src/fiber.cr:92:34 in &amp;#39;-&amp;gt;&amp;#39;
+
+08:47:27 error (Warn) Error: 404
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;To avoid this, add a dummy route and a controller to make Amber happy.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="gh"&gt;diff --git a/config/routes.cr b/config/routes.cr&lt;/span&gt;
+&lt;span class="gh"&gt;index c50f03c..876009b 100644&lt;/span&gt;
+&lt;span class="gd"&gt;--- a/config/routes.cr&lt;/span&gt;
+&lt;span class="gi"&gt;+++ b/config/routes.cr&lt;/span&gt;
+&lt;span class="gu"&gt;@@ -30,7 +33,8 @@ Amber::Server.configure do&lt;/span&gt;
+   routes :web do
+
+       get &amp;quot;/&amp;quot;, HomeController, :index
+&lt;span class="gi"&gt;+      get &amp;quot;/metrics&amp;quot;, ApplicationController, :metrics&lt;/span&gt;
+&lt;span class="gi"&gt;+&lt;/span&gt;
+   end
+
+   routes :api do
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Add the below function to the &lt;code&gt;application_controller.cr&lt;/code&gt; file.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="gh"&gt;diff --git a/src/controllers/application_controller.cr b/src/controllers/application_controller.cr&lt;/span&gt;
+&lt;span class="gh"&gt;index 3f7b7e6..3cd44e2 100644&lt;/span&gt;
+&lt;span class="gd"&gt;--- a/src/controllers/application_controller.cr&lt;/span&gt;
+&lt;span class="gi"&gt;+++ b/src/controllers/application_controller.cr&lt;/span&gt;
+&lt;span class="gu"&gt;@@ -3,4 +3,7 @@ require &amp;quot;jasper_helpers&amp;quot;&lt;/span&gt;
+ class ApplicationController &amp;lt; Amber::Controller::Base
+   include JasperHelpers
+   LAYOUT = &amp;quot;application.ecr&amp;quot;
+&lt;span class="gi"&gt;+&lt;/span&gt;
+&lt;span class="gi"&gt;+  def metrics&lt;/span&gt;
+&lt;span class="gi"&gt;+  end&lt;/span&gt;
+ end
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now browse &lt;a href="http://localhost:3000/metrics"&gt;http://localhost:3000/metrics&lt;/a&gt; to see the default metrics.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;# HELP process Standard process statistics
+# TYPE process gauge
+process_gc_heap_bytes 786432.0
+process_gc_free_bytes 86016.0
+process_gc_total_bytes 681168.0
+process_gc_unmapped_bytes 0.0
+process_bytes_since_gc 681168.0
+process_cpu_seconds_total 0.055226
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Crometheus provides a few metrics by default and enables a few more metrics by adding one more Plug as below. HttpCollector shows metrics related to all HTTP routes of application. To skip tracking the &lt;code&gt;/metrics&lt;/code&gt; route, add HttpCollector Plug after the Crometheus default handler.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="gh"&gt;index c50f03c..fc57a4d 100644&lt;/span&gt;
+&lt;span class="gd"&gt;--- a/config/routes.cr&lt;/span&gt;
+&lt;span class="gi"&gt;+++ b/config/routes.cr&lt;/span&gt;
+&lt;span class="gu"&gt;@@ -1,3 +1,5 @@&lt;/span&gt;
+&lt;span class="gi"&gt;+require &amp;quot;crometheus&amp;quot;&lt;/span&gt;
+&lt;span class="gi"&gt;+&lt;/span&gt;
+ Amber::Server.configure do
+   pipeline :web do
+     # Plug is the method to use connect a pipe (middleware)
+&lt;span class="gu"&gt;@@ -10,6 +12,8 @@ Amber::Server.configure do&lt;/span&gt;
+     plug Amber::Pipe::Session.new
+     plug Amber::Pipe::Flash.new
+     plug Amber::Pipe::CSRF.new
+&lt;span class="gi"&gt;+    plug Crometheus::Middleware::HttpCollector.new&lt;/span&gt;
+&lt;span class="gi"&gt;+    plug Crometheus.default_registry.get_handler&lt;/span&gt;
+   end
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now visit &lt;a href="http://localhost:3000/metrics"&gt;http://localhost:3000/metrics&lt;/a&gt; to see the additional metrics.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;# HELP http_request_duration_seconds The HTTP response duration of the application.
+# TYPE http_request_duration_seconds histogram
+http_request_duration_seconds_count{method=&amp;quot;GET&amp;quot;, path=&amp;quot;/metrics&amp;quot;} 12.0
+http_request_duration_seconds_sum{method=&amp;quot;GET&amp;quot;, path=&amp;quot;/metrics&amp;quot;} 0.002073
+http_request_duration_seconds_bucket{le=&amp;quot;0.005&amp;quot;, method=&amp;quot;GET&amp;quot;, path=&amp;quot;/metrics&amp;quot;} 12.0
+http_request_duration_seconds_bucket{le=&amp;quot;0.01&amp;quot;, method=&amp;quot;GET&amp;quot;, path=&amp;quot;/metrics&amp;quot;} 12.0
+http_request_duration_seconds_bucket{le=&amp;quot;0.025&amp;quot;, method=&amp;quot;GET&amp;quot;, path=&amp;quot;/metrics&amp;quot;} 12.0
+http_request_duration_seconds_bucket{le=&amp;quot;0.05&amp;quot;, method=&amp;quot;GET&amp;quot;, path=&amp;quot;/metrics&amp;quot;} 12.0
+http_request_duration_seconds_bucket{le=&amp;quot;0.1&amp;quot;, method=&amp;quot;GET&amp;quot;, path=&amp;quot;/metrics&amp;quot;} 12.0
+http_request_duration_seconds_bucket{le=&amp;quot;0.25&amp;quot;, method=&amp;quot;GET&amp;quot;, path=&amp;quot;/metrics&amp;quot;} 12.0
+http_request_duration_seconds_bucket{le=&amp;quot;0.5&amp;quot;, method=&amp;quot;GET&amp;quot;, path=&amp;quot;/metrics&amp;quot;} 12.0
+http_request_duration_seconds_bucket{le=&amp;quot;1.0&amp;quot;, method=&amp;quot;GET&amp;quot;, path=&amp;quot;/metrics&amp;quot;} 12.0
+http_request_duration_seconds_bucket{le=&amp;quot;2.5&amp;quot;, method=&amp;quot;GET&amp;quot;, path=&amp;quot;/metrics&amp;quot;} 12.0
+http_request_duration_seconds_bucket{le=&amp;quot;5.0&amp;quot;, method=&amp;quot;GET&amp;quot;, path=&amp;quot;/metrics&amp;quot;} 12.0
+http_request_duration_seconds_bucket{le=&amp;quot;10.0&amp;quot;, method=&amp;quot;GET&amp;quot;, path=&amp;quot;/metrics&amp;quot;} 12.0
+http_request_duration_seconds_bucket{le=&amp;quot;+Inf&amp;quot;, method=&amp;quot;GET&amp;quot;, path=&amp;quot;/metrics&amp;quot;} 12.0
+# HELP http_request_exceptions_total The total number of exceptions raised by the application.
+# TYPE http_request_exceptions_total counter
+# HELP http_requests_total The total number of HTTP requests handled by the application.
+# TYPE http_requests_total counter
+http_requests_total{code=&amp;quot;200&amp;quot;, method=&amp;quot;GET&amp;quot;, path=&amp;quot;/metrics&amp;quot;} 12.0
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Refer examples to add custom metrics specific to your applications. &lt;a href="https://github.com/Darwinnn/crometheus/tree/master/examples"&gt;github.com/Darwinnn/crometheus/tree/master/examples&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;In the next blog post, we will see how to use Crometheus to monitor external applications/services/tools.&lt;/p&gt;
+&lt;h2&gt;References:&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://prometheus.io"&gt;Prometheus&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://amberframework.org"&gt;Amber Framework&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://crystal-lang.org"&gt;Crystal Programming language&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/Darwinnn/crometheus"&gt;Crometheus&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><category term="blogs"></category><category term="amber"></category><category term="crystal"></category><category term="prometheus"></category></entry><entry><title>Monitoring GlusterFS - Yet another try</title><link href="https://aravindavk.in/blog/monitoring-glusterfs-yet-another-try/" rel="alternate"></link><published>2019-12-03T00:00:00+05:30</published><updated>2019-12-03T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2019-12-03:/blog/monitoring-glusterfs-yet-another-try/</id><summary type="html">&lt;p&gt;Introduce Metrics SDK - Collection of libraries that helps to collect metrics without knowing about Gluster internals&lt;/p&gt;</summary><content type="html">&lt;p&gt;Monitoring is one of my favorite topics, and previously I tried
 multiple ways to monitor GlusterFS effectively. Initially, I decided
 to avoid running Gluster CLI commands with too frequent intervals by
 using Gluster hooks(Blog about using Gluster hooks is
