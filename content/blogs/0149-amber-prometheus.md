@@ -170,7 +170,7 @@ http_requests_total{code="200", method="GET", path="/metrics"} 12.0
 
 Refer examples to add custom metrics specific to your applications. [github.com/Darwinnn/crometheus/tree/master/examples](https://github.com/Darwinnn/crometheus/tree/master/examples)
 
-In the next blog post, we will see how to use Crometheus to monitor external applications/services/tools.
+In the [next blog](https://aravindavk.in/blog/crystal-prometheus) post, we will see how to use Crometheus to monitor external applications/services/tools.
 
 ## References:
 * [Prometheus](https://prometheus.io)
