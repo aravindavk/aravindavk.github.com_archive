@@ -1,5 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Aravinda VK - Aravinda VK</title><link href="https://aravindavk.in/" rel="alternate"></link><link href="https://aravindavk.in/feeds/aravinda-vk.atom.xml" rel="self"></link><id>https://aravindavk.in/</id><updated>2020-11-01T00:00:00+05:30</updated><entry><title>Monitoring Amber apps with Prometheus</title><link href="https://aravindavk.in/blog/amber-prometheus/" rel="alternate"></link><published>2020-11-01T00:00:00+05:30</published><updated>2020-11-01T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2020-11-01:/blog/amber-prometheus/</id><summary type="html">&lt;p&gt;Crometheus is the Prometheus client library for the Crystal programming language. It provides an easy way to integrate with any other web frameworks or as a standalone Prometheus exporter to monitor an external application or tool.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="https://github.com/Darwinnn/crometheus"&gt;Crometheus&lt;/a&gt; is a &lt;a href="https://prometheus.io"&gt;Prometheus&lt;/a&gt; client library for instrumenting programs written in the &lt;a href="https://crystal-lang.org"&gt;Crystal programming&lt;/a&gt; language. It provides an easy way to integrate with any other web frameworks or as a standalone Prometheus exporter to monitor an external application or tool.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Aravinda VK - Aravinda VK</title><link href="https://aravindavk.in/" rel="alternate"></link><link href="https://aravindavk.in/feeds/aravinda-vk.atom.xml" rel="self"></link><id>https://aravindavk.in/</id><updated>2020-11-03T00:00:00+05:30</updated><entry><title>Writing Prometheus exporter using Crystal language - Part 2</title><link href="https://aravindavk.in/blog/crystal-prometheus/" rel="alternate"></link><published>2020-11-03T00:00:00+05:30</published><updated>2020-11-03T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2020-11-03:/blog/crystal-prometheus/</id><summary type="html">&lt;p&gt;In this blog, we will see how to monitor an external application or a log file.&lt;/p&gt;</summary><content type="html">&lt;p&gt;In the &lt;a href="https://aravindavk.in/blog/amber-prometheus/"&gt;last blog&lt;/a&gt; post, we discussed instrumenting &lt;a href="https://amberframework.org"&gt;Amber&lt;/a&gt; apps using the &lt;a href="https://github.com/Darwinnn/crometheus"&gt;Crometheus&lt;/a&gt; library. In this blog, we will see how to monitor an external application or a log file.&lt;/p&gt;
+&lt;p&gt;One main difference here is defining various metric types like Counter, Guage, etc.. are not required. But export the sample values when requested.&lt;/p&gt;
+&lt;p&gt;I created a demo app using the HTTP server example available on the Crystal language home page. In this blog, we will instrument this web app by collecting a few metrics externally.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# file: myapp.cr&lt;/span&gt;
+&lt;span class="k"&gt;require&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;http/server&amp;quot;&lt;/span&gt;
+
+&lt;span class="n"&gt;server&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;HTTP&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;Server&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;context&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;
+  &lt;span class="n"&gt;context&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;response&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;content_type&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;text/plain&amp;quot;&lt;/span&gt;
+  &lt;span class="n"&gt;context&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;response&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Hello world, got &lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="n"&gt;context&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;!&amp;quot;&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+
+&lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Listening on http://127.0.0.1:8080&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;server&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;listen&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;8080&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Build and run the application,&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ crystal build myapp.cr
+$ ./myapp
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now let's create an app that collects the CPU, Memory, and uptime details about the app we created initially(or any other app). Create and install the project dependencies using,&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ mkdir myapp_exporter
+$ &lt;span class="nb"&gt;cd&lt;/span&gt; myapp_exporter
+$ shards init
+$ mkdir src
+$ touch src/myapp_exporter.cr
+$ shards install
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# file: shard.yml&lt;/span&gt;
+&lt;span class="nt"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;myapp_exporter&lt;/span&gt;
+&lt;span class="nt"&gt;version&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;0.1.0&lt;/span&gt;
+
+&lt;span class="nt"&gt;dependencies&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+  &lt;span class="nt"&gt;crometheus&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="nt"&gt;github&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;darwinnn/crometheus&lt;/span&gt;
+    &lt;span class="nt"&gt;branch&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;master&lt;/span&gt;
+
+&lt;span class="nt"&gt;targets&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+  &lt;span class="nt"&gt;myapp_exporter&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="nt"&gt;main&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;src/myapp_exporter.cr&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The below command provides the CPU, memory, and uptime information about the application.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ ps --no-header -ww -o pcpu,pmem,rsz,vsz,etimes,comm -C myapp
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# file: src/myapp_exporter.cr&lt;/span&gt;
+&lt;span class="k"&gt;require&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;crometheus&amp;quot;&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;MyappMetrics&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;Crometheus&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;Metric&lt;/span&gt;
+  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nc"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;type&lt;/span&gt;
+    &lt;span class="n"&gt;Type&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;Gauge&lt;/span&gt;
+  &lt;span class="k"&gt;end&lt;/span&gt;
+
+  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;samples&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;Nil&lt;/span&gt;
+    &lt;span class="n"&gt;cmdout&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="sb"&gt;`ps --no-header -ww -o pcpu,pmem,rsz,vsz,etimes,comm -C myapp`&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;cmdout&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;
+
+    &lt;span class="n"&gt;parts&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cmdout&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;split&lt;/span&gt;
+    &lt;span class="n"&gt;pcpu&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;parts&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;].&lt;/span&gt;&lt;span class="n"&gt;strip&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to_f&lt;/span&gt;
+    &lt;span class="n"&gt;pmem&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;parts&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;].&lt;/span&gt;&lt;span class="n"&gt;strip&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to_f&lt;/span&gt;
+    &lt;span class="n"&gt;rsz&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;parts&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;].&lt;/span&gt;&lt;span class="n"&gt;strip&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to_f&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="mi"&gt;1024&lt;/span&gt;
+    &lt;span class="n"&gt;vsz&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;parts&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="o"&gt;].&lt;/span&gt;&lt;span class="n"&gt;strip&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to_f&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="mi"&gt;1024&lt;/span&gt;
+    &lt;span class="n"&gt;uptime&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;parts&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="o"&gt;].&lt;/span&gt;&lt;span class="n"&gt;strip&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to_f&lt;/span&gt;
+    &lt;span class="n"&gt;labels&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="ss"&gt;:server&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;server1.example.com&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="k"&gt;yield&lt;/span&gt; &lt;span class="n"&gt;Crometheus&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;Sample&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;new&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pcpu&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;labels&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;labels&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;suffix&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;cpu_percentage&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;yield&lt;/span&gt; &lt;span class="n"&gt;Crometheus&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;Sample&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;new&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pmem&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;labels&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;labels&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;suffix&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;memory_percentage&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;yield&lt;/span&gt; &lt;span class="n"&gt;Crometheus&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;Sample&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;new&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rsz&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;labels&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;labels&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;suffix&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;resident_memory_bytes&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;yield&lt;/span&gt; &lt;span class="n"&gt;Crometheus&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;Sample&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;new&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;vsz&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;labels&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;labels&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;suffix&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;virtual_memory_bytes&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;yield&lt;/span&gt; &lt;span class="n"&gt;Crometheus&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;Sample&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;new&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;uptime&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;labels&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;labels&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;suffix&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;uptime_seconds&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="k"&gt;end&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+
+&lt;span class="n"&gt;MyappMetrics&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;new&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;:myapp&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;CPU, Memory and Uptime metrics&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;Crometheus&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;default_registry&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;/metrics&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;Crometheus&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;default_registry&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;run_server&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Build and run,&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ shards build
+$ ./bin/myapp_exporter
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now browse &lt;a href="http://localhost:5000/metrics"&gt;http://localhost:5000/metrics&lt;/a&gt; to see the metrics related to &lt;code&gt;myapp&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;# HELP myapp CPU, Memory and Uptime metrics
+# TYPE myapp gauge
+myapp_cpu_percentage{server=&amp;quot;server1.example.com&amp;quot;} 0.0
+myapp_memory_percentage{server=&amp;quot;server1.example.com&amp;quot;} 0.3
+myapp_resident_memory_bytes{server=&amp;quot;server1.example.com&amp;quot;} 6664192.0
+myapp_virtual_memory_bytes{server=&amp;quot;server1.example.com&amp;quot;} 48365568.0
+myapp_uptime_seconds{server=&amp;quot;server1.example.com&amp;quot;} 1656.0
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Add multiple classes to collect more meaningful data. For example, connect to the database and query the table to see the number of users or any other entities.&lt;/p&gt;</content><category term="blogs"></category><category term="amber"></category><category term="crystal"></category><category term="prometheus"></category><category term="crometheus"></category></entry><entry><title>Monitoring Amber apps with Prometheus</title><link href="https://aravindavk.in/blog/amber-prometheus/" rel="alternate"></link><published>2020-11-01T00:00:00+05:30</published><updated>2020-11-01T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2020-11-01:/blog/amber-prometheus/</id><summary type="html">&lt;p&gt;Crometheus is the Prometheus client library for the Crystal programming language. It provides an easy way to integrate with any other web frameworks or as a standalone Prometheus exporter to monitor an external application or tool.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="https://github.com/Darwinnn/crometheus"&gt;Crometheus&lt;/a&gt; is a &lt;a href="https://prometheus.io"&gt;Prometheus&lt;/a&gt; client library for instrumenting programs written in the &lt;a href="https://crystal-lang.org"&gt;Crystal programming&lt;/a&gt; language. It provides an easy way to integrate with any other web frameworks or as a standalone Prometheus exporter to monitor an external application or tool.&lt;/p&gt;
 &lt;p&gt;In this blog, we will see how to integrate Crometheus with &lt;a href="https://amberframework.org"&gt;Amber&lt;/a&gt; applications. &lt;/p&gt;
 &lt;p&gt;Add Crometheus as a dependency in your shard.yml file.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;  &lt;span class="nt"&gt;crometheus&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
@@ -152,7 +255,7 @@ http_requests_total{code=&amp;quot;200&amp;quot;, method=&amp;quot;GET&amp;quot;
 
 
 &lt;p&gt;Refer examples to add custom metrics specific to your applications. &lt;a href="https://github.com/Darwinnn/crometheus/tree/master/examples"&gt;github.com/Darwinnn/crometheus/tree/master/examples&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;In the next blog post, we will see how to use Crometheus to monitor external applications/services/tools.&lt;/p&gt;
+&lt;p&gt;In the &lt;a href="https://aravindavk.in/blog/crystal-prometheus"&gt;next blog&lt;/a&gt; post, we will see how to use Crometheus to monitor external applications/services/tools.&lt;/p&gt;
 &lt;h2&gt;References:&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://prometheus.io"&gt;Prometheus&lt;/a&gt;&lt;/li&gt;
