@@ -121,7 +121,6 @@ argument.</p>
 <span class="p">}</span>
 </code></pre></div>
 
-
 <p>Once "getopt" parses the flags, args will contain only remaining
 arguments(positional arguments). For example,</p>
 <div class="highlight"><pre><span></span><code><span class="k">import</span> <span class="n">std</span><span class="p">.</span><span class="n">stdio</span><span class="p">;</span>
@@ -146,7 +145,6 @@ arguments(positional arguments). For example,</p>
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
-
 
 <p>Now to handle sub-commands, we need to define multiple getopt. For
 Example,</p>
@@ -224,7 +222,6 @@ Example,</p>
 <span class="p">}</span>
 </code></pre></div>
 
-
 <p>If the program needs global flags which are applicable for all
 sub-commands, then make sure to add global flags getopt before parsing
 sub-commands. Also, add <code>std.getopt.config.passThrough</code> to avoid
@@ -276,7 +273,6 @@ failing to parse flags related to sub-commands.</p>
     <span class="k">return</span> <span class="p">(*</span><span class="n">func</span><span class="p">)(</span><span class="n">args</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div>
-
 
 <p>Notes:</p>
 <ul>

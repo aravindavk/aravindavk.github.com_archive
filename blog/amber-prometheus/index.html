@@ -94,14 +94,12 @@
     <span class="nt">branch</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">master</span>
 </code></pre></div>
 
-
 <p>And run <code>shards install</code> to install the dependencies. In Amber, the HTTP handler is called Plug. To integrate Crometheus, include it as a Plug as shown below.</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># file: config/initializers/metrics.cr</span>
 <span class="k">require</span> <span class="s2">&quot;crometheus&quot;</span>
 
 <span class="n">Crometheus</span><span class="o">.</span><span class="n">default_registry</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;/metrics&quot;</span>
 </code></pre></div>
-
 
 <div class="highlight"><pre><span></span><code><span class="gh">diff --git a/config/routes.cr b/config/routes.cr</span>
 <span class="gh">index c50f03c..db1a94a 100644</span>
@@ -122,7 +120,6 @@
 
    pipeline :api do
 </code></pre></div>
-
 
 <p>Crometheus traps the <code>/metrics</code> (or configured path), but Amber doesn't know about this dynamic route and produces the following error when the <code>/metrics</code> page is opened.</p>
 <div class="highlight"><pre><span></span><code>2020-10-23T15:17:27.301760Z   WARN - error: Error: 404
@@ -147,7 +144,6 @@ from lib/amber/src/amber/controller/static.cr:7:7 in &#39;index&#39;
 08:47:27 error (Warn) Error: 404
 </code></pre></div>
 
-
 <p>To avoid this, add a dummy route and a controller to make Amber happy.</p>
 <div class="highlight"><pre><span></span><code><span class="gh">diff --git a/config/routes.cr b/config/routes.cr</span>
 <span class="gh">index c50f03c..876009b 100644</span>
@@ -164,7 +160,6 @@ from lib/amber/src/amber/controller/static.cr:7:7 in &#39;index&#39;
    routes :api do
 </code></pre></div>
 
-
 <p>Add the below function to the <code>application_controller.cr</code> file.</p>
 <div class="highlight"><pre><span></span><code><span class="gh">diff --git a/src/controllers/application_controller.cr b/src/controllers/application_controller.cr</span>
 <span class="gh">index 3f7b7e6..3cd44e2 100644</span>
@@ -180,7 +175,6 @@ from lib/amber/src/amber/controller/static.cr:7:7 in &#39;index&#39;
  end
 </code></pre></div>
 
-
 <p>Now browse <a href="http://localhost:3000/metrics">http://localhost:3000/metrics</a> to see the default metrics.</p>
 <div class="highlight"><pre><span></span><code># HELP process Standard process statistics
 # TYPE process gauge
@@ -191,7 +185,6 @@ process_gc_unmapped_bytes 0.0
 process_bytes_since_gc 681168.0
 process_cpu_seconds_total 0.055226
 </code></pre></div>
-
 
 <p>Crometheus provides a few metrics by default and enables a few more metrics by adding one more Plug as below. HttpCollector shows metrics related to all HTTP routes of application. To skip tracking the <code>/metrics</code> route, add HttpCollector Plug after the Crometheus default handler.</p>
 <div class="highlight"><pre><span></span><code><span class="gh">index c50f03c..fc57a4d 100644</span>
@@ -211,7 +204,6 @@ process_cpu_seconds_total 0.055226
 <span class="gi">+    plug Crometheus.default_registry.get_handler</span>
    end
 </code></pre></div>
-
 
 <p>Now visit <a href="http://localhost:3000/metrics">http://localhost:3000/metrics</a> to see the additional metrics.</p>
 <div class="highlight"><pre><span></span><code># HELP http_request_duration_seconds The HTTP response duration of the application.
@@ -236,7 +228,6 @@ http_request_duration_seconds_bucket{le=&quot;+Inf&quot;, method=&quot;GET&quot;
 # TYPE http_requests_total counter
 http_requests_total{code=&quot;200&quot;, method=&quot;GET&quot;, path=&quot;/metrics&quot;} 12.0
 </code></pre></div>
-
 
 <p>Refer examples to add custom metrics specific to your applications. <a href="https://github.com/Darwinnn/crometheus/tree/master/examples">github.com/Darwinnn/crometheus/tree/master/examples</a></p>
 <p>In the <a href="https://aravindavk.in/blog/crystal-prometheus">next blog</a> post, we will see how to use Crometheus to monitor external applications/services/tools.</p>

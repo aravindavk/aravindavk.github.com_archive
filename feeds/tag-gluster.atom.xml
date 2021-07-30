@@ -16,7 +16,6 @@ $ df -B1 /mnt/gvol_rep3
 $ umount /mnt/gvol_rep3
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-
 &lt;h2&gt;Approach 2 - libgfapi mount&lt;/h2&gt;
 &lt;p&gt;Use libgfapi mount and run &lt;code&gt;os.statvfs&lt;/code&gt; to get the Volume utilization.&lt;/p&gt;
 &lt;p&gt;The following Python example uses
@@ -30,7 +29,6 @@ $ umount /mnt/gvol_rep3
 &lt;span class="n"&gt;volume&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;umount&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-
 &lt;h2&gt;Approach 3 - Gluster CLI&lt;/h2&gt;
 &lt;p&gt;Volume status detail command already provides brick-level
 utilization. Combine status detail with Volume info to group the
@@ -41,18 +39,17 @@ volume get &amp;lt;volname&amp;gt; storage.reserve&lt;/code&gt; and subtract the
 &lt;a href="https://github.com/gluster/glusterfs/issues/236"&gt;here&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Once we get the sub volume grouping, get the sub volume utilization
 from the bricks utilization as follows.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;volume_capacity_total = 0&lt;/span&gt;
-&lt;span class="err"&gt;volume_capacity_used = 0&lt;/span&gt;
-&lt;span class="err"&gt;volume_inodes_total = 0&lt;/span&gt;
-&lt;span class="err"&gt;volume_inodes_used = 0&lt;/span&gt;
-&lt;span class="err"&gt;for subvol in subvols {&lt;/span&gt;
-&lt;span class="err"&gt;    volume_capacity_total += subvol.capacity_total&lt;/span&gt;
-&lt;span class="err"&gt;    volume_capacity_used += subvol.capacity_used&lt;/span&gt;
-&lt;span class="err"&gt;    volume_inodes_total += subvol.inodes_total&lt;/span&gt;
-&lt;span class="err"&gt;    volume_inodes_used += subvol.inodes_used&lt;/span&gt;
-&lt;span class="err"&gt;}&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;volume_capacity_total&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+&lt;span class="nv"&gt;volume_capacity_used&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+&lt;span class="nv"&gt;volume_inodes_total&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+&lt;span class="nv"&gt;volume_inodes_used&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="nv"&gt;subvol&lt;/span&gt; &lt;span class="nv"&gt;in&lt;/span&gt; &lt;span class="nv"&gt;subvols&lt;/span&gt; {
+    &lt;span class="nv"&gt;volume_capacity_total&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="nv"&gt;subvol&lt;/span&gt;.&lt;span class="nv"&gt;capacity_total&lt;/span&gt;
+    &lt;span class="nv"&gt;volume_capacity_used&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="nv"&gt;subvol&lt;/span&gt;.&lt;span class="nv"&gt;capacity_used&lt;/span&gt;
+    &lt;span class="nv"&gt;volume_inodes_total&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="nv"&gt;subvol&lt;/span&gt;.&lt;span class="nv"&gt;inodes_total&lt;/span&gt;
+    &lt;span class="nv"&gt;volume_inodes_used&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="nv"&gt;subvol&lt;/span&gt;.&lt;span class="nv"&gt;inodes_used&lt;/span&gt;
+}
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
 
 &lt;p&gt;Subvolume utilization is dependent on its type. If subvolume type is
 Replicate then take the maximum of &lt;code&gt;capacity_used&lt;/code&gt; of all bricks in
@@ -62,12 +59,11 @@ data and total capacity of a subvolume is dependent on the brick
 having least capacity (In most cases capacity of all bricks in
 subvolume will be identical).&lt;/p&gt;
 &lt;p&gt;In case of subvolume type is Disperse Volume then,&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;subvol_capacity_total = any_one_brick_capacity_total * number_of_data_bricks&lt;/span&gt;
-&lt;span class="err"&gt;subvol_capacity_used = any_one_brick_capacity_used * number_of_data_bricks&lt;/span&gt;
-&lt;span class="err"&gt;subvol_inodes_total = any_one_brick_inode_total&lt;/span&gt;
-&lt;span class="err"&gt;subvol_inodes_used = any_one_brick_inode_used&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;subvol_capacity_total = any_one_brick_capacity_total * number_of_data_bricks
+subvol_capacity_used = any_one_brick_capacity_used * number_of_data_bricks
+subvol_inodes_total = any_one_brick_inode_total
+subvol_inodes_used = any_one_brick_inode_used
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
 
 &lt;h2&gt;Conclusion:&lt;/h2&gt;
 &lt;ul&gt;
@@ -194,26 +190,25 @@ the Offline status and bricks order.&lt;/p&gt;
 &lt;p&gt;This tool also supports filters like &lt;code&gt;--with-status=active&lt;/code&gt;,
 &lt;code&gt;--with-crawl-status=changelog&lt;/code&gt; etc.&lt;/p&gt;
 &lt;p&gt;Example output:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ gluster-georep-status
-SESSION: &lt;span class="nv"&gt;photos&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt;&amp;gt; bkp1.example.com::backup_photos
-+-------------------------------------+---------+-----------------+---------------------+---------------------+------------+-----------------+-----------------------+
-&lt;span class="p"&gt;|&lt;/span&gt; MASTER                              &lt;span class="p"&gt;|&lt;/span&gt; STATUS  &lt;span class="p"&gt;|&lt;/span&gt; CRAWL STATUS    &lt;span class="p"&gt;|&lt;/span&gt; SLAVE NODE          &lt;span class="p"&gt;|&lt;/span&gt; LAST SYNCED         &lt;span class="p"&gt;|&lt;/span&gt; CHKPT TIME &lt;span class="p"&gt;|&lt;/span&gt; CHKPT COMPLETED &lt;span class="p"&gt;|&lt;/span&gt; CHKPT COMPLETION TIME &lt;span class="p"&gt;|&lt;/span&gt;
-+-------------------------------------+---------+-----------------+---------------------+---------------------+------------+-----------------+-----------------------+
-&lt;span class="p"&gt;|&lt;/span&gt; prod1.example.com:/bricks/photos/b1 &lt;span class="p"&gt;|&lt;/span&gt; Active  &lt;span class="p"&gt;|&lt;/span&gt; Changelog Crawl &lt;span class="p"&gt;|&lt;/span&gt; remote1.example.com &lt;span class="p"&gt;|&lt;/span&gt; &lt;span class="m"&gt;2019&lt;/span&gt;-03-27 &lt;span class="m"&gt;08&lt;/span&gt;:34:40 &lt;span class="p"&gt;|&lt;/span&gt;    N/A     &lt;span class="p"&gt;|&lt;/span&gt;       N/A       &lt;span class="p"&gt;|&lt;/span&gt;          N/A          &lt;span class="p"&gt;|&lt;/span&gt;
-&lt;span class="p"&gt;|&lt;/span&gt; prod2.example.com:/bricks/photos/b2 &lt;span class="p"&gt;|&lt;/span&gt; Passive &lt;span class="p"&gt;|&lt;/span&gt; N/A             &lt;span class="p"&gt;|&lt;/span&gt; N/A                 &lt;span class="p"&gt;|&lt;/span&gt; N/A                 &lt;span class="p"&gt;|&lt;/span&gt;    N/A     &lt;span class="p"&gt;|&lt;/span&gt;       N/A       &lt;span class="p"&gt;|&lt;/span&gt;          N/A          &lt;span class="p"&gt;|&lt;/span&gt;
-&lt;span class="p"&gt;|&lt;/span&gt; prod3.example.com:/bricks/photos/b3 &lt;span class="p"&gt;|&lt;/span&gt; Passive &lt;span class="p"&gt;|&lt;/span&gt; N/A             &lt;span class="p"&gt;|&lt;/span&gt; N/A                 &lt;span class="p"&gt;|&lt;/span&gt; N/A                 &lt;span class="p"&gt;|&lt;/span&gt;    N/A     &lt;span class="p"&gt;|&lt;/span&gt;       N/A       &lt;span class="p"&gt;|&lt;/span&gt;          N/A          &lt;span class="p"&gt;|&lt;/span&gt;
-+-------------------------------------+---------+-----------------+---------------------+---------------------+------------+-----------------+-----------------------+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c"&gt;$ gluster&lt;/span&gt;&lt;span class="nb"&gt;-&lt;/span&gt;&lt;span class="c"&gt;georep&lt;/span&gt;&lt;span class="nb"&gt;-&lt;/span&gt;&lt;span class="c"&gt;status&lt;/span&gt;
+&lt;span class="c"&gt;SESSION: photos ==&lt;/span&gt;&lt;span class="nv"&gt;&amp;gt;&lt;/span&gt;&lt;span class="c"&gt; bkp1&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;example&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;com::backup_photos&lt;/span&gt;
+&lt;span class="nb"&gt;+-------------------------------------+---------+-----------------+---------------------+---------------------+------------+-----------------+-----------------------+&lt;/span&gt;&lt;span class="c"&gt;&lt;/span&gt;
+&lt;span class="c"&gt;| MASTER                              | STATUS  | CRAWL STATUS    | SLAVE NODE          | LAST SYNCED         | CHKPT TIME | CHKPT COMPLETED | CHKPT COMPLETION TIME |&lt;/span&gt;
+&lt;span class="nb"&gt;+-------------------------------------+---------+-----------------+---------------------+---------------------+------------+-----------------+-----------------------+&lt;/span&gt;&lt;span class="c"&gt;&lt;/span&gt;
+&lt;span class="c"&gt;| prod1&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;example&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;com:/bricks/photos/b1 | Active  | Changelog Crawl | remote1&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;example&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;com | 2019&lt;/span&gt;&lt;span class="nb"&gt;-&lt;/span&gt;&lt;span class="c"&gt;03&lt;/span&gt;&lt;span class="nb"&gt;-&lt;/span&gt;&lt;span class="c"&gt;27 08:34:40 |    N/A     |       N/A       |          N/A          |&lt;/span&gt;
+&lt;span class="c"&gt;| prod2&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;example&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;com:/bricks/photos/b2 | Passive | N/A             | N/A                 | N/A                 |    N/A     |       N/A       |          N/A          |&lt;/span&gt;
+&lt;span class="c"&gt;| prod3&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;example&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;com:/bricks/photos/b3 | Passive | N/A             | N/A                 | N/A                 |    N/A     |       N/A       |          N/A          |&lt;/span&gt;
+&lt;span class="nb"&gt;+-------------------------------------+---------+-----------------+---------------------+---------------------+------------+-----------------+-----------------------+&lt;/span&gt;&lt;span class="c"&gt;&lt;/span&gt;
 
-SESSION: &lt;span class="nv"&gt;data&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt;&amp;gt; geoaccount@bkp2.example.com::backup_data
-+-----------------------------------+---------+-----------------+---------------------+---------------------+------------+-----------------+-----------------------+
-&lt;span class="p"&gt;|&lt;/span&gt; MASTER                            &lt;span class="p"&gt;|&lt;/span&gt; STATUS  &lt;span class="p"&gt;|&lt;/span&gt; CRAWL STATUS    &lt;span class="p"&gt;|&lt;/span&gt; SLAVE NODE          &lt;span class="p"&gt;|&lt;/span&gt; LAST SYNCED         &lt;span class="p"&gt;|&lt;/span&gt; CHKPT TIME &lt;span class="p"&gt;|&lt;/span&gt; CHKPT COMPLETED &lt;span class="p"&gt;|&lt;/span&gt; CHKPT COMPLETION TIME &lt;span class="p"&gt;|&lt;/span&gt;
-+-----------------------------------+---------+-----------------+---------------------+---------------------+------------+-----------------+-----------------------+
-&lt;span class="p"&gt;|&lt;/span&gt; prod1.example.com:/bricks/data/b1 &lt;span class="p"&gt;|&lt;/span&gt; Stopped &lt;span class="p"&gt;|&lt;/span&gt; N/A             &lt;span class="p"&gt;|&lt;/span&gt; N/A                 &lt;span class="p"&gt;|&lt;/span&gt; N/A                 &lt;span class="p"&gt;|&lt;/span&gt;    N/A     &lt;span class="p"&gt;|&lt;/span&gt;       N/A       &lt;span class="p"&gt;|&lt;/span&gt;          N/A          &lt;span class="p"&gt;|&lt;/span&gt;
-&lt;span class="p"&gt;|&lt;/span&gt; prod2.example.com:/bricks/data/b2 &lt;span class="p"&gt;|&lt;/span&gt; Stopped &lt;span class="p"&gt;|&lt;/span&gt; N/A             &lt;span class="p"&gt;|&lt;/span&gt; N/A                 &lt;span class="p"&gt;|&lt;/span&gt; N/A                 &lt;span class="p"&gt;|&lt;/span&gt;    N/A     &lt;span class="p"&gt;|&lt;/span&gt;       N/A       &lt;span class="p"&gt;|&lt;/span&gt;          N/A          &lt;span class="p"&gt;|&lt;/span&gt;
-&lt;span class="p"&gt;|&lt;/span&gt; prod3.example.com:/bricks/data/b3 &lt;span class="p"&gt;|&lt;/span&gt; Stopped &lt;span class="p"&gt;|&lt;/span&gt; N/A             &lt;span class="p"&gt;|&lt;/span&gt; N/A                 &lt;span class="p"&gt;|&lt;/span&gt; N/A                 &lt;span class="p"&gt;|&lt;/span&gt;    N/A     &lt;span class="p"&gt;|&lt;/span&gt;       N/A       &lt;span class="p"&gt;|&lt;/span&gt;          N/A          &lt;span class="p"&gt;|&lt;/span&gt;
-+-----------------------------------+---------+-----------------+---------------------+---------------------+------------+-----------------+-----------------------+
+&lt;span class="c"&gt;SESSION: data ==&lt;/span&gt;&lt;span class="nv"&gt;&amp;gt;&lt;/span&gt;&lt;span class="c"&gt; geoaccount@bkp2&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;example&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;com::backup_data&lt;/span&gt;
+&lt;span class="nb"&gt;+-----------------------------------+---------+-----------------+---------------------+---------------------+------------+-----------------+-----------------------+&lt;/span&gt;&lt;span class="c"&gt;&lt;/span&gt;
+&lt;span class="c"&gt;| MASTER                            | STATUS  | CRAWL STATUS    | SLAVE NODE          | LAST SYNCED         | CHKPT TIME | CHKPT COMPLETED | CHKPT COMPLETION TIME |&lt;/span&gt;
+&lt;span class="nb"&gt;+-----------------------------------+---------+-----------------+---------------------+---------------------+------------+-----------------+-----------------------+&lt;/span&gt;&lt;span class="c"&gt;&lt;/span&gt;
+&lt;span class="c"&gt;| prod1&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;example&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;com:/bricks/data/b1 | Stopped | N/A             | N/A                 | N/A                 |    N/A     |       N/A       |          N/A          |&lt;/span&gt;
+&lt;span class="c"&gt;| prod2&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;example&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;com:/bricks/data/b2 | Stopped | N/A             | N/A                 | N/A                 |    N/A     |       N/A       |          N/A          |&lt;/span&gt;
+&lt;span class="c"&gt;| prod3&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;example&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;com:/bricks/data/b3 | Stopped | N/A             | N/A                 | N/A                 |    N/A     |       N/A       |          N/A          |&lt;/span&gt;
+&lt;span class="nb"&gt;+-----------------------------------+---------+-----------------+---------------------+---------------------+------------+-----------------+-----------------------+&lt;/span&gt;&lt;span class="c"&gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
 
 &lt;p&gt;Comments &amp;amp; Suggestions Welcome.&lt;/p&gt;</content><category term="blogs"></category><category term="gluster"></category><category term="glusterfsblog"></category></entry><entry><title>Template based Volgen - Glusterd2</title><link href="https://aravindavk.in/blog/template-based-volgen-glusterd2/" rel="alternate"></link><published>2019-01-06T00:00:00+05:30</published><updated>2019-01-06T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2019-01-06:/blog/template-based-volgen-glusterd2/</id><summary type="html">&lt;p class="first last"&gt;Glusterd2 also provides facility to set default Volume
 options when a Volume is created. Each Volume type can have

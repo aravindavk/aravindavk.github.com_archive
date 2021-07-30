@@ -12,7 +12,15 @@
     <link href="/theme/img/fav.png" rel="icon" type="image/x-icon" />
     <meta property="og:site_name" content="Aravinda VK"/>
     <link rel="apple-touch-icon" href="/theme/img/fav.png" />
-    <title>Aravinda VK - crystal</title>
+    <title>Building Crystal Programs with Source File Hash baked in</title>
+    <meta property="og:title" content="Building Crystal Programs with Source File Hash baked in"/>
+    <meta property="twitter:title" content="Building Crystal Programs with Source File Hash baked in"/>
+    <meta name="description" content=""Similarly, if shards is used as the package manager for your Crystal Programs, then you can include the VERSION automatically while compiling the program.""/>
+    <meta property="og:description" content=""Similarly, if shards is used as the package manager for your Crystal Programs, then you can include the VERSION automatically while compiling the program.""/>
+    <meta property="twitter:description" content=""Similarly, if shards is used as the package manager for your Crystal Programs, then you can include the VERSION automatically while compiling the program.""/>
+    <meta property="og:url" content="https://aravindavk.in/blog/building-crystal-programs-with-source-hash-baked-in/" />
+    <meta property="twitter:url" content="https://aravindavk.in/blog/building-crystal-programs-with-source-hash-baked-in/" />
+    <meta property="og:image" content="https://aravindavk.in" />
     <link href="https://aravindavk.in/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Aravinda VK Atom Feed" />
     <link rel="stylesheet" href="/theme/css/pure-min.css" />
     <link rel="stylesheet" href="/theme/css/side-menu.css" />
@@ -53,7 +61,7 @@
             <li class=""><a href="/">Home</a></li>
             <li class=""><a href="/me">About</a></li>
             <li class=""><a href="/projects">Projects</a></li>
-            <li class="pure-menu-selected"><a href="/blogs">Blogs</a></li>
+            <li class=""><a href="/blogs">Blogs</a></li>
             <li class=""><a href="/talks">Talks & Articles</a></li>
           </ul>
         </div>
@@ -65,26 +73,72 @@
         <div class="pure-u-4-5 content-left">
           <div class="left article">
 <section id="content" class="body">
-<h1>Blogs</h1>
+  <article>
+    <header>
+      <h1 class="entry-title">
+        Building Crystal Programs with Source File Hash baked in</h1>
+    </header>
+    <div class="pure-hidden-phone pure-hidden-tablet">
+<footer class="post-info">
+  <p class="author-and-date-info">
+    Posted on Fri 30 July 2021 by <a class="url fn" href="https://aravindavk.in">Aravinda Vishwanathapura</a>.
+  </p>
+</footer><!-- /.post-info -->
+<div class="sep"></div>    </div>
+    <div class="entry-content">
+      <p>This post is inspired by the <a href="https://www.btbytes.com/posts/2020-05-05-01-golang-hash-builds.html">blog post</a> written by <a href="https://twitter.com/btbytes">Pradeep Gowda</a> about embedding Source file Hash while building Go programs.</p>
+<blockquote>
+<p>The one issue with checking in the binary with source code is, you can’t be sure if the binary is built with the latest source that is adjacent to it.</p>
+<p><a href="https://www.btbytes.com/posts/2020-05-05-01-golang-hash-builds.html">https://www.btbytes.com/posts/2020-05-05-01-golang-hash-builds.html</a></p>
+</blockquote>
+<p>I adopted a similar technique while building <a href="https://crystal-lang.org">Crystal</a> programs. This is much simpler with Crystal because of the macros.</p>
+<p>hello.cr file:</p>
+<div class="highlight"><pre><span></span><code><span class="no">SOURCE_HASH</span> <span class="o">=</span> <span class="si">{{</span> <span class="sb">`sha256sum </span><span class="si">#{</span><span class="kp">__FILE__</span><span class="si">}</span><span class="sb"> | cut -d&#39; &#39; -f1`</span><span class="o">.</span><span class="n">chomp</span><span class="o">.</span><span class="n">stringify</span> <span class="si">}}</span>
 
-<div class="article-title-row">
-  <div class="article-date pure-hidden-phone">30 Jul, 2021</div>
-  <a href="/blog/building-crystal-programs-with-source-hash-baked-in/">Building Crystal Programs with Source File Hash baked in </a>
-  <div class="mobile-posted-on pure-hidden-desktop pure-hidden-tablet">posted on 30 Jul, 2021</div>
+<span class="nb">puts</span> <span class="no">SOURCE_HASH</span>
+</code></pre></div>
+
+<p>Build step:</p>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>crystal build hello.cr
+</code></pre></div>
+
+<p>Verify:</p>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>./hello
+<span class="go">cdb9db6f5ac4a0df1ed06de118c569fa225785685849d533c1ba550854b8b4ab</span>
+<span class="gp">$ </span>sha256sum hello.cr
+<span class="go">cdb9db6f5ac4a0df1ed06de118c569fa225785685849d533c1ba550854b8b4ab  hello.cr</span>
+</code></pre></div>
+
+<p>Similarly, if <code>shards</code> is used as the package manager for your Crystal Programs, then you can include the <code>VERSION</code> automatically while compiling the program.</p>
+<div class="highlight"><pre><span></span><code><span class="no">VERSION</span> <span class="o">=</span> <span class="si">{{</span> <span class="sb">`shards version </span><span class="si">#{</span><span class="kp">__DIR__</span><span class="si">}</span><span class="sb">`</span><span class="o">.</span><span class="n">chomp</span><span class="o">.</span><span class="n">stringify</span> <span class="si">}}</span>
+
+<span class="nb">puts</span> <span class="no">VERSION</span>
+</code></pre></div>
+    </div><!-- /.entry-content -->
+    <div class="pure-hidden-desktop">
+<footer class="post-info">
+  <p class="author-and-date-info">
+    Posted on Fri 30 July 2021 by <a class="url fn" href="https://aravindavk.in">Aravinda Vishwanathapura</a>.
+  </p>
+</footer><!-- /.post-info -->
+<div class="sep"></div>    </div>
+    <div class="permalink-div">
+      Permalink: <a href="https://aravindavk.in/blog/building-crystal-programs-with-source-hash-baked-in/" rel="bookmark" title="Permalink to Building Crystal Programs with Source File Hash baked in">https://aravindavk.in/blog/building-crystal-programs-with-source-hash-baked-in/</a>
+    </div>
+<div class="comments">
+  <h2>Comments !</h2>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_identifier = "blog/building-crystal-programs-with-source-hash-baked-in/";
+    var disqus_url = "https://aravindavk.in/blog/building-crystal-programs-with-source-hash-baked-in/";
+    (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = 'https://vkaravinda.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
 </div>
-<p class="summary pure-hidden-phone">"Similarly, if shards is used as the package manager for your Crystal Programs, then you can include the VERSION automatically while compiling the program." <a href="/blog/building-crystal-programs-with-source-hash-baked-in/">...</a></p>
-<div class="article-title-row">
-  <div class="article-date pure-hidden-phone">03 Nov, 2020</div>
-  <a href="/blog/crystal-prometheus/">Writing Prometheus exporter using Crystal language - Part 2 </a>
-  <div class="mobile-posted-on pure-hidden-desktop pure-hidden-tablet">posted on 03 Nov, 2020</div>
-</div>
-<p class="summary pure-hidden-phone">In this blog, we will see how to monitor an external application or a log file. <a href="/blog/crystal-prometheus/">...</a></p>
-<div class="article-title-row">
-  <div class="article-date pure-hidden-phone">01 Nov, 2020</div>
-  <a href="/blog/amber-prometheus/">Monitoring Amber apps with Prometheus </a>
-  <div class="mobile-posted-on pure-hidden-desktop pure-hidden-tablet">posted on 01 Nov, 2020</div>
-</div>
-<p class="summary pure-hidden-phone">Crometheus is the Prometheus client library for the Crystal programming language. It provides an easy way to integrate with any other web frameworks or as a standalone Prometheus exporter to monitor an external application or tool. <a href="/blog/amber-prometheus/">...</a></p>
+  </article>
 </section>
             <div class="copyright pure-hidden-desktop pure-hidden-tablet">&copy; 2008-2014 Aravinda VK, <br/>All rights reserved</div>
           </div>
@@ -119,7 +173,7 @@
                 <li class=""><a href="/">Home</a></li>
                 <li class=""><a href="/me">About</a></li>
                 <li class=""><a href="/projects">Projects</a></li>
-                <li class="pure-menu-selected"><a href="/blogs">Blogs</a></li>
+                <li class=""><a href="/blogs">Blogs</a></li>
                 <li class=""><a href="/talks">Talks & Articles</a></li>
               </ul>
             </div>

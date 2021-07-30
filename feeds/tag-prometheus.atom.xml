@@ -5,7 +5,7 @@
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# file: myapp.cr&lt;/span&gt;
 &lt;span class="k"&gt;require&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;http/server&amp;quot;&lt;/span&gt;
 
-&lt;span class="n"&gt;server&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;HTTP&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;Server&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;context&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;
+&lt;span class="n"&gt;server&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;HTTP&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;Server&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;context&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;
   &lt;span class="n"&gt;context&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;response&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;content_type&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;text/plain&amp;quot;&lt;/span&gt;
   &lt;span class="n"&gt;context&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;response&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Hello world, got &lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="n"&gt;context&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;!&amp;quot;&lt;/span&gt;
 &lt;span class="k"&gt;end&lt;/span&gt;
@@ -14,12 +14,10 @@
 &lt;span class="n"&gt;server&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;listen&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;8080&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-
 &lt;p&gt;Build and run the application,&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ crystal build myapp.cr
 $ ./myapp
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
 
 &lt;p&gt;Now let's create an app that collects the CPU, Memory, and uptime details about the app we created initially(or any other app). Create and install the project dependencies using,&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ mkdir myapp_exporter
@@ -29,7 +27,6 @@ $ mkdir src
 $ touch src/myapp_exporter.cr
 $ shards install
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
 
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# file: shard.yml&lt;/span&gt;
 &lt;span class="nt"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;myapp_exporter&lt;/span&gt;
@@ -45,11 +42,9 @@ $ shards install
     &lt;span class="nt"&gt;main&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;src/myapp_exporter.cr&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-
 &lt;p&gt;The below command provides the CPU, memory, and uptime information about the application.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ ps --no-header -ww -o pcpu,pmem,rsz,vsz,etimes,comm -C myapp
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
 
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# file: src/myapp_exporter.cr&lt;/span&gt;
 &lt;span class="k"&gt;require&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;crometheus&amp;quot;&lt;/span&gt;
@@ -59,7 +54,7 @@ $ shards install
     &lt;span class="n"&gt;Type&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;Gauge&lt;/span&gt;
   &lt;span class="k"&gt;end&lt;/span&gt;
 
-  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;samples&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;Nil&lt;/span&gt;
+  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;samples&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Nil&lt;/span&gt;
     &lt;span class="n"&gt;cmdout&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="sb"&gt;`ps --no-header -ww -o pcpu,pmem,rsz,vsz,etimes,comm -C myapp`&lt;/span&gt;
     &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;cmdout&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;
 
@@ -84,12 +79,10 @@ $ shards install
 &lt;span class="n"&gt;Crometheus&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;default_registry&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;run_server&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-
 &lt;p&gt;Build and run,&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ shards build
 $ ./bin/myapp_exporter
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
 
 &lt;p&gt;Now browse &lt;a href="http://localhost:5000/metrics"&gt;http://localhost:5000/metrics&lt;/a&gt; to see the metrics related to &lt;code&gt;myapp&lt;/code&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;# HELP myapp CPU, Memory and Uptime metrics
@@ -101,7 +94,6 @@ myapp_virtual_memory_bytes{server=&amp;quot;server1.example.com&amp;quot;} 48365
 myapp_uptime_seconds{server=&amp;quot;server1.example.com&amp;quot;} 1656.0
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-
 &lt;p&gt;Add multiple classes to collect more meaningful data. For example, connect to the database and query the table to see the number of users or any other entities.&lt;/p&gt;</content><category term="blogs"></category><category term="amber"></category><category term="crystal"></category><category term="prometheus"></category><category term="crometheus"></category></entry><entry><title>Monitoring Amber apps with Prometheus</title><link href="https://aravindavk.in/blog/amber-prometheus/" rel="alternate"></link><published>2020-11-01T00:00:00+05:30</published><updated>2020-11-01T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2020-11-01:/blog/amber-prometheus/</id><summary type="html">&lt;p&gt;Crometheus is the Prometheus client library for the Crystal programming language. It provides an easy way to integrate with any other web frameworks or as a standalone Prometheus exporter to monitor an external application or tool.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="https://github.com/Darwinnn/crometheus"&gt;Crometheus&lt;/a&gt; is a &lt;a href="https://prometheus.io"&gt;Prometheus&lt;/a&gt; client library for instrumenting programs written in the &lt;a href="https://crystal-lang.org"&gt;Crystal programming&lt;/a&gt; language. It provides an easy way to integrate with any other web frameworks or as a standalone Prometheus exporter to monitor an external application or tool.&lt;/p&gt;
 &lt;p&gt;In this blog, we will see how to integrate Crometheus with &lt;a href="https://amberframework.org"&gt;Amber&lt;/a&gt; applications. &lt;/p&gt;
 &lt;p&gt;Add Crometheus as a dependency in your shard.yml file.&lt;/p&gt;
@@ -110,14 +102,12 @@ myapp_uptime_seconds{server=&amp;quot;server1.example.com&amp;quot;} 1656.0
     &lt;span class="nt"&gt;branch&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;master&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-
 &lt;p&gt;And run &lt;code&gt;shards install&lt;/code&gt; to install the dependencies. In Amber, the HTTP handler is called Plug. To integrate Crometheus, include it as a Plug as shown below.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# file: config/initializers/metrics.cr&lt;/span&gt;
 &lt;span class="k"&gt;require&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;crometheus&amp;quot;&lt;/span&gt;
 
 &lt;span class="n"&gt;Crometheus&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;default_registry&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;/metrics&amp;quot;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
 
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="gh"&gt;diff --git a/config/routes.cr b/config/routes.cr&lt;/span&gt;
 &lt;span class="gh"&gt;index c50f03c..db1a94a 100644&lt;/span&gt;
@@ -138,7 +128,6 @@ myapp_uptime_seconds{server=&amp;quot;server1.example.com&amp;quot;} 1656.0
 
    pipeline :api do
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
 
 &lt;p&gt;Crometheus traps the &lt;code&gt;/metrics&lt;/code&gt; (or configured path), but Amber doesn't know about this dynamic route and produces the following error when the &lt;code&gt;/metrics&lt;/code&gt; page is opened.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;2020-10-23T15:17:27.301760Z   WARN - error: Error: 404
@@ -163,7 +152,6 @@ from lib/amber/src/amber/controller/static.cr:7:7 in &amp;#39;index&amp;#39;
 08:47:27 error (Warn) Error: 404
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-
 &lt;p&gt;To avoid this, add a dummy route and a controller to make Amber happy.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="gh"&gt;diff --git a/config/routes.cr b/config/routes.cr&lt;/span&gt;
 &lt;span class="gh"&gt;index c50f03c..876009b 100644&lt;/span&gt;
@@ -180,7 +168,6 @@ from lib/amber/src/amber/controller/static.cr:7:7 in &amp;#39;index&amp;#39;
    routes :api do
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-
 &lt;p&gt;Add the below function to the &lt;code&gt;application_controller.cr&lt;/code&gt; file.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="gh"&gt;diff --git a/src/controllers/application_controller.cr b/src/controllers/application_controller.cr&lt;/span&gt;
 &lt;span class="gh"&gt;index 3f7b7e6..3cd44e2 100644&lt;/span&gt;
@@ -196,7 +183,6 @@ from lib/amber/src/amber/controller/static.cr:7:7 in &amp;#39;index&amp;#39;
  end
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-
 &lt;p&gt;Now browse &lt;a href="http://localhost:3000/metrics"&gt;http://localhost:3000/metrics&lt;/a&gt; to see the default metrics.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;# HELP process Standard process statistics
 # TYPE process gauge
@@ -207,7 +193,6 @@ process_gc_unmapped_bytes 0.0
 process_bytes_since_gc 681168.0
 process_cpu_seconds_total 0.055226
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
 
 &lt;p&gt;Crometheus provides a few metrics by default and enables a few more metrics by adding one more Plug as below. HttpCollector shows metrics related to all HTTP routes of application. To skip tracking the &lt;code&gt;/metrics&lt;/code&gt; route, add HttpCollector Plug after the Crometheus default handler.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="gh"&gt;index c50f03c..fc57a4d 100644&lt;/span&gt;
@@ -227,7 +212,6 @@ process_cpu_seconds_total 0.055226
 &lt;span class="gi"&gt;+    plug Crometheus.default_registry.get_handler&lt;/span&gt;
    end
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
 
 &lt;p&gt;Now visit &lt;a href="http://localhost:3000/metrics"&gt;http://localhost:3000/metrics&lt;/a&gt; to see the additional metrics.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;# HELP http_request_duration_seconds The HTTP response duration of the application.
@@ -252,7 +236,6 @@ http_request_duration_seconds_bucket{le=&amp;quot;+Inf&amp;quot;, method=&amp;qu
 # TYPE http_requests_total counter
 http_requests_total{code=&amp;quot;200&amp;quot;, method=&amp;quot;GET&amp;quot;, path=&amp;quot;/metrics&amp;quot;} 12.0
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
 
 &lt;p&gt;Refer examples to add custom metrics specific to your applications. &lt;a href="https://github.com/Darwinnn/crometheus/tree/master/examples"&gt;github.com/Darwinnn/crometheus/tree/master/examples&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;In the &lt;a href="https://aravindavk.in/blog/crystal-prometheus"&gt;next blog&lt;/a&gt; post, we will see how to use Crometheus to monitor external applications/services/tools.&lt;/p&gt;

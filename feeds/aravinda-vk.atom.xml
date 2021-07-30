@@ -5,7 +5,7 @@
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# file: myapp.cr&lt;/span&gt;
 &lt;span class="k"&gt;require&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;http/server&amp;quot;&lt;/span&gt;
 
-&lt;span class="n"&gt;server&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;HTTP&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;Server&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;context&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;
+&lt;span class="n"&gt;server&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;HTTP&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;Server&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;context&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;
   &lt;span class="n"&gt;context&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;response&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;content_type&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;text/plain&amp;quot;&lt;/span&gt;
   &lt;span class="n"&gt;context&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;response&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Hello world, got &lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="n"&gt;context&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;!&amp;quot;&lt;/span&gt;
 &lt;span class="k"&gt;end&lt;/span&gt;
@@ -14,12 +14,10 @@
 &lt;span class="n"&gt;server&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;listen&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;8080&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-
 &lt;p&gt;Build and run the application,&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ crystal build myapp.cr
 $ ./myapp
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
 
 &lt;p&gt;Now let's create an app that collects the CPU, Memory, and uptime details about the app we created initially(or any other app). Create and install the project dependencies using,&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ mkdir myapp_exporter
@@ -29,7 +27,6 @@ $ mkdir src
 $ touch src/myapp_exporter.cr
 $ shards install
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
 
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# file: shard.yml&lt;/span&gt;
 &lt;span class="nt"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;myapp_exporter&lt;/span&gt;
@@ -45,11 +42,9 @@ $ shards install
     &lt;span class="nt"&gt;main&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;src/myapp_exporter.cr&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-
 &lt;p&gt;The below command provides the CPU, memory, and uptime information about the application.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ ps --no-header -ww -o pcpu,pmem,rsz,vsz,etimes,comm -C myapp
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
 
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# file: src/myapp_exporter.cr&lt;/span&gt;
 &lt;span class="k"&gt;require&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;crometheus&amp;quot;&lt;/span&gt;
@@ -59,7 +54,7 @@ $ shards install
     &lt;span class="n"&gt;Type&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;Gauge&lt;/span&gt;
   &lt;span class="k"&gt;end&lt;/span&gt;
 
-  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;samples&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;Nil&lt;/span&gt;
+  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;samples&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Nil&lt;/span&gt;
     &lt;span class="n"&gt;cmdout&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="sb"&gt;`ps --no-header -ww -o pcpu,pmem,rsz,vsz,etimes,comm -C myapp`&lt;/span&gt;
     &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;cmdout&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;
 
@@ -84,12 +79,10 @@ $ shards install
 &lt;span class="n"&gt;Crometheus&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;default_registry&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;run_server&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-
 &lt;p&gt;Build and run,&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ shards build
 $ ./bin/myapp_exporter
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
 
 &lt;p&gt;Now browse &lt;a href="http://localhost:5000/metrics"&gt;http://localhost:5000/metrics&lt;/a&gt; to see the metrics related to &lt;code&gt;myapp&lt;/code&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;# HELP myapp CPU, Memory and Uptime metrics
@@ -101,7 +94,6 @@ myapp_virtual_memory_bytes{server=&amp;quot;server1.example.com&amp;quot;} 48365
 myapp_uptime_seconds{server=&amp;quot;server1.example.com&amp;quot;} 1656.0
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-
 &lt;p&gt;Add multiple classes to collect more meaningful data. For example, connect to the database and query the table to see the number of users or any other entities.&lt;/p&gt;</content><category term="blogs"></category><category term="amber"></category><category term="crystal"></category><category term="prometheus"></category><category term="crometheus"></category></entry><entry><title>Monitoring Amber apps with Prometheus</title><link href="https://aravindavk.in/blog/amber-prometheus/" rel="alternate"></link><published>2020-11-01T00:00:00+05:30</published><updated>2020-11-01T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2020-11-01:/blog/amber-prometheus/</id><summary type="html">&lt;p&gt;Crometheus is the Prometheus client library for the Crystal programming language. It provides an easy way to integrate with any other web frameworks or as a standalone Prometheus exporter to monitor an external application or tool.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="https://github.com/Darwinnn/crometheus"&gt;Crometheus&lt;/a&gt; is a &lt;a href="https://prometheus.io"&gt;Prometheus&lt;/a&gt; client library for instrumenting programs written in the &lt;a href="https://crystal-lang.org"&gt;Crystal programming&lt;/a&gt; language. It provides an easy way to integrate with any other web frameworks or as a standalone Prometheus exporter to monitor an external application or tool.&lt;/p&gt;
 &lt;p&gt;In this blog, we will see how to integrate Crometheus with &lt;a href="https://amberframework.org"&gt;Amber&lt;/a&gt; applications. &lt;/p&gt;
 &lt;p&gt;Add Crometheus as a dependency in your shard.yml file.&lt;/p&gt;
@@ -110,14 +102,12 @@ myapp_uptime_seconds{server=&amp;quot;server1.example.com&amp;quot;} 1656.0
     &lt;span class="nt"&gt;branch&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;master&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-
 &lt;p&gt;And run &lt;code&gt;shards install&lt;/code&gt; to install the dependencies. In Amber, the HTTP handler is called Plug. To integrate Crometheus, include it as a Plug as shown below.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# file: config/initializers/metrics.cr&lt;/span&gt;
 &lt;span class="k"&gt;require&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;crometheus&amp;quot;&lt;/span&gt;
 
 &lt;span class="n"&gt;Crometheus&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;default_registry&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;/metrics&amp;quot;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
 
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="gh"&gt;diff --git a/config/routes.cr b/config/routes.cr&lt;/span&gt;
 &lt;span class="gh"&gt;index c50f03c..db1a94a 100644&lt;/span&gt;
@@ -138,7 +128,6 @@ myapp_uptime_seconds{server=&amp;quot;server1.example.com&amp;quot;} 1656.0
 
    pipeline :api do
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
 
 &lt;p&gt;Crometheus traps the &lt;code&gt;/metrics&lt;/code&gt; (or configured path), but Amber doesn't know about this dynamic route and produces the following error when the &lt;code&gt;/metrics&lt;/code&gt; page is opened.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;2020-10-23T15:17:27.301760Z   WARN - error: Error: 404
@@ -163,7 +152,6 @@ from lib/amber/src/amber/controller/static.cr:7:7 in &amp;#39;index&amp;#39;
 08:47:27 error (Warn) Error: 404
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-
 &lt;p&gt;To avoid this, add a dummy route and a controller to make Amber happy.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="gh"&gt;diff --git a/config/routes.cr b/config/routes.cr&lt;/span&gt;
 &lt;span class="gh"&gt;index c50f03c..876009b 100644&lt;/span&gt;
@@ -180,7 +168,6 @@ from lib/amber/src/amber/controller/static.cr:7:7 in &amp;#39;index&amp;#39;
    routes :api do
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-
 &lt;p&gt;Add the below function to the &lt;code&gt;application_controller.cr&lt;/code&gt; file.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="gh"&gt;diff --git a/src/controllers/application_controller.cr b/src/controllers/application_controller.cr&lt;/span&gt;
 &lt;span class="gh"&gt;index 3f7b7e6..3cd44e2 100644&lt;/span&gt;
@@ -196,7 +183,6 @@ from lib/amber/src/amber/controller/static.cr:7:7 in &amp;#39;index&amp;#39;
  end
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-
 &lt;p&gt;Now browse &lt;a href="http://localhost:3000/metrics"&gt;http://localhost:3000/metrics&lt;/a&gt; to see the default metrics.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;# HELP process Standard process statistics
 # TYPE process gauge
@@ -207,7 +193,6 @@ process_gc_unmapped_bytes 0.0
 process_bytes_since_gc 681168.0
 process_cpu_seconds_total 0.055226
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
 
 &lt;p&gt;Crometheus provides a few metrics by default and enables a few more metrics by adding one more Plug as below. HttpCollector shows metrics related to all HTTP routes of application. To skip tracking the &lt;code&gt;/metrics&lt;/code&gt; route, add HttpCollector Plug after the Crometheus default handler.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="gh"&gt;index c50f03c..fc57a4d 100644&lt;/span&gt;
@@ -227,7 +212,6 @@ process_cpu_seconds_total 0.055226
 &lt;span class="gi"&gt;+    plug Crometheus.default_registry.get_handler&lt;/span&gt;
    end
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
 
 &lt;p&gt;Now visit &lt;a href="http://localhost:3000/metrics"&gt;http://localhost:3000/metrics&lt;/a&gt; to see the additional metrics.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;# HELP http_request_duration_seconds The HTTP response duration of the application.
@@ -252,7 +236,6 @@ http_request_duration_seconds_bucket{le=&amp;quot;+Inf&amp;quot;, method=&amp;qu
 # TYPE http_requests_total counter
 http_requests_total{code=&amp;quot;200&amp;quot;, method=&amp;quot;GET&amp;quot;, path=&amp;quot;/metrics&amp;quot;} 12.0
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
 
 &lt;p&gt;Refer examples to add custom metrics specific to your applications. &lt;a href="https://github.com/Darwinnn/crometheus/tree/master/examples"&gt;github.com/Darwinnn/crometheus/tree/master/examples&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;In the &lt;a href="https://aravindavk.in/blog/crystal-prometheus"&gt;next blog&lt;/a&gt; post, we will see how to use Crometheus to monitor external applications/services/tools.&lt;/p&gt;
@@ -411,7 +394,6 @@ $ df -B1 /mnt/gvol_rep3
 $ umount /mnt/gvol_rep3
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-
 &lt;h2&gt;Approach 2 - libgfapi mount&lt;/h2&gt;
 &lt;p&gt;Use libgfapi mount and run &lt;code&gt;os.statvfs&lt;/code&gt; to get the Volume utilization.&lt;/p&gt;
 &lt;p&gt;The following Python example uses
@@ -425,7 +407,6 @@ $ umount /mnt/gvol_rep3
 &lt;span class="n"&gt;volume&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;umount&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-
 &lt;h2&gt;Approach 3 - Gluster CLI&lt;/h2&gt;
 &lt;p&gt;Volume status detail command already provides brick-level
 utilization. Combine status detail with Volume info to group the
@@ -436,18 +417,17 @@ volume get &amp;lt;volname&amp;gt; storage.reserve&lt;/code&gt; and subtract the
 &lt;a href="https://github.com/gluster/glusterfs/issues/236"&gt;here&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Once we get the sub volume grouping, get the sub volume utilization
 from the bricks utilization as follows.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;volume_capacity_total = 0&lt;/span&gt;
-&lt;span class="err"&gt;volume_capacity_used = 0&lt;/span&gt;
-&lt;span class="err"&gt;volume_inodes_total = 0&lt;/span&gt;
-&lt;span class="err"&gt;volume_inodes_used = 0&lt;/span&gt;
-&lt;span class="err"&gt;for subvol in subvols {&lt;/span&gt;
-&lt;span class="err"&gt;    volume_capacity_total += subvol.capacity_total&lt;/span&gt;
-&lt;span class="err"&gt;    volume_capacity_used += subvol.capacity_used&lt;/span&gt;
-&lt;span class="err"&gt;    volume_inodes_total += subvol.inodes_total&lt;/span&gt;
-&lt;span class="err"&gt;    volume_inodes_used += subvol.inodes_used&lt;/span&gt;
-&lt;span class="err"&gt;}&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;volume_capacity_total&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+&lt;span class="nv"&gt;volume_capacity_used&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+&lt;span class="nv"&gt;volume_inodes_total&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+&lt;span class="nv"&gt;volume_inodes_used&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="nv"&gt;subvol&lt;/span&gt; &lt;span class="nv"&gt;in&lt;/span&gt; &lt;span class="nv"&gt;subvols&lt;/span&gt; {
+    &lt;span class="nv"&gt;volume_capacity_total&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="nv"&gt;subvol&lt;/span&gt;.&lt;span class="nv"&gt;capacity_total&lt;/span&gt;
+    &lt;span class="nv"&gt;volume_capacity_used&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="nv"&gt;subvol&lt;/span&gt;.&lt;span class="nv"&gt;capacity_used&lt;/span&gt;
+    &lt;span class="nv"&gt;volume_inodes_total&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="nv"&gt;subvol&lt;/span&gt;.&lt;span class="nv"&gt;inodes_total&lt;/span&gt;
+    &lt;span class="nv"&gt;volume_inodes_used&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="nv"&gt;subvol&lt;/span&gt;.&lt;span class="nv"&gt;inodes_used&lt;/span&gt;
+}
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
 
 &lt;p&gt;Subvolume utilization is dependent on its type. If subvolume type is
 Replicate then take the maximum of &lt;code&gt;capacity_used&lt;/code&gt; of all bricks in
@@ -457,12 +437,11 @@ data and total capacity of a subvolume is dependent on the brick
 having least capacity (In most cases capacity of all bricks in
 subvolume will be identical).&lt;/p&gt;
 &lt;p&gt;In case of subvolume type is Disperse Volume then,&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;subvol_capacity_total = any_one_brick_capacity_total * number_of_data_bricks&lt;/span&gt;
-&lt;span class="err"&gt;subvol_capacity_used = any_one_brick_capacity_used * number_of_data_bricks&lt;/span&gt;
-&lt;span class="err"&gt;subvol_inodes_total = any_one_brick_inode_total&lt;/span&gt;
-&lt;span class="err"&gt;subvol_inodes_used = any_one_brick_inode_used&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;subvol_capacity_total = any_one_brick_capacity_total * number_of_data_bricks
+subvol_capacity_used = any_one_brick_capacity_used * number_of_data_bricks
+subvol_inodes_total = any_one_brick_inode_total
+subvol_inodes_used = any_one_brick_inode_used
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
 
 &lt;h2&gt;Conclusion:&lt;/h2&gt;
 &lt;ul&gt;
@@ -587,7 +566,6 @@ argument.&lt;/p&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-
 &lt;p&gt;Once "getopt" parses the flags, args will contain only remaining
 arguments(positional arguments). For example,&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;import&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;stdio&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
@@ -612,7 +590,6 @@ arguments(positional arguments). For example,&lt;/p&gt;
     &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
 
 &lt;p&gt;Now to handle sub-commands, we need to define multiple getopt. For
 Example,&lt;/p&gt;
@@ -690,7 +667,6 @@ Example,&lt;/p&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-
 &lt;p&gt;If the program needs global flags which are applicable for all
 sub-commands, then make sure to add global flags getopt before parsing
 sub-commands. Also, add &lt;code&gt;std.getopt.config.passThrough&lt;/code&gt; to avoid
@@ -743,7 +719,6 @@ failing to parse flags related to sub-commands.&lt;/p&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-
 &lt;p&gt;Notes:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;getopt&lt;/code&gt; errors can be handled by catching &lt;code&gt;GetoptException&lt;/code&gt; and,&lt;/li&gt;
@@ -792,7 +767,6 @@ India event.&lt;/p&gt;</content><category term="blogs"></category><category term
 &lt;span class="k"&gt;\end&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;document&lt;span class="nb"&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-
 &lt;p&gt;ಇಂಪನಳ ಪುಸ್ತಕದ &lt;a href="/files/allonduralli-puttahakki.pdf"&gt;ಪಿಡಿಎಫ್ ಇಲ್ಲಿದೆ&lt;/a&gt;. ನೋಡಿ ನಿಮ್ಮ ಅನಿಸಿಕೆ ತಿಳಿಸಿ.&lt;/p&gt;</content><category term="blogs"></category><category term="ಕನ್ನಡ"></category><category term="ಇಂಪನ"></category><category term="ಮಗಳು"></category></entry><entry><title>Improving Geo-replication Status</title><link href="https://aravindavk.in/blog/improving-georep-status/" rel="alternate"></link><published>2019-03-28T00:00:00+05:30</published><updated>2019-03-28T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2019-03-28:/blog/improving-georep-status/</id><summary type="html">&lt;p&gt;Until the above issues are fixed in official Gluster CLI, we can use gluster-georep-status tool&lt;/p&gt;</summary><content type="html">&lt;div class="notice-update"&gt;
 This blog was first published on &lt;a href="https://gluster.github.io/devblog/improving-geo-replication-status"&gt;Gluster Devblog&lt;/a&gt;
 &lt;/div&gt;
@@ -823,26 +797,25 @@ the Offline status and bricks order.&lt;/p&gt;
 &lt;p&gt;This tool also supports filters like &lt;code&gt;--with-status=active&lt;/code&gt;,
 &lt;code&gt;--with-crawl-status=changelog&lt;/code&gt; etc.&lt;/p&gt;
 &lt;p&gt;Example output:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ gluster-georep-status
-SESSION: &lt;span class="nv"&gt;photos&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt;&amp;gt; bkp1.example.com::backup_photos
-+-------------------------------------+---------+-----------------+---------------------+---------------------+------------+-----------------+-----------------------+
-&lt;span class="p"&gt;|&lt;/span&gt; MASTER                              &lt;span class="p"&gt;|&lt;/span&gt; STATUS  &lt;span class="p"&gt;|&lt;/span&gt; CRAWL STATUS    &lt;span class="p"&gt;|&lt;/span&gt; SLAVE NODE          &lt;span class="p"&gt;|&lt;/span&gt; LAST SYNCED         &lt;span class="p"&gt;|&lt;/span&gt; CHKPT TIME &lt;span class="p"&gt;|&lt;/span&gt; CHKPT COMPLETED &lt;span class="p"&gt;|&lt;/span&gt; CHKPT COMPLETION TIME &lt;span class="p"&gt;|&lt;/span&gt;
-+-------------------------------------+---------+-----------------+---------------------+---------------------+------------+-----------------+-----------------------+
-&lt;span class="p"&gt;|&lt;/span&gt; prod1.example.com:/bricks/photos/b1 &lt;span class="p"&gt;|&lt;/span&gt; Active  &lt;span class="p"&gt;|&lt;/span&gt; Changelog Crawl &lt;span class="p"&gt;|&lt;/span&gt; remote1.example.com &lt;span class="p"&gt;|&lt;/span&gt; &lt;span class="m"&gt;2019&lt;/span&gt;-03-27 &lt;span class="m"&gt;08&lt;/span&gt;:34:40 &lt;span class="p"&gt;|&lt;/span&gt;    N/A     &lt;span class="p"&gt;|&lt;/span&gt;       N/A       &lt;span class="p"&gt;|&lt;/span&gt;          N/A          &lt;span class="p"&gt;|&lt;/span&gt;
-&lt;span class="p"&gt;|&lt;/span&gt; prod2.example.com:/bricks/photos/b2 &lt;span class="p"&gt;|&lt;/span&gt; Passive &lt;span class="p"&gt;|&lt;/span&gt; N/A             &lt;span class="p"&gt;|&lt;/span&gt; N/A                 &lt;span class="p"&gt;|&lt;/span&gt; N/A                 &lt;span class="p"&gt;|&lt;/span&gt;    N/A     &lt;span class="p"&gt;|&lt;/span&gt;       N/A       &lt;span class="p"&gt;|&lt;/span&gt;          N/A          &lt;span class="p"&gt;|&lt;/span&gt;
-&lt;span class="p"&gt;|&lt;/span&gt; prod3.example.com:/bricks/photos/b3 &lt;span class="p"&gt;|&lt;/span&gt; Passive &lt;span class="p"&gt;|&lt;/span&gt; N/A             &lt;span class="p"&gt;|&lt;/span&gt; N/A                 &lt;span class="p"&gt;|&lt;/span&gt; N/A                 &lt;span class="p"&gt;|&lt;/span&gt;    N/A     &lt;span class="p"&gt;|&lt;/span&gt;       N/A       &lt;span class="p"&gt;|&lt;/span&gt;          N/A          &lt;span class="p"&gt;|&lt;/span&gt;
-+-------------------------------------+---------+-----------------+---------------------+---------------------+------------+-----------------+-----------------------+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c"&gt;$ gluster&lt;/span&gt;&lt;span class="nb"&gt;-&lt;/span&gt;&lt;span class="c"&gt;georep&lt;/span&gt;&lt;span class="nb"&gt;-&lt;/span&gt;&lt;span class="c"&gt;status&lt;/span&gt;
+&lt;span class="c"&gt;SESSION: photos ==&lt;/span&gt;&lt;span class="nv"&gt;&amp;gt;&lt;/span&gt;&lt;span class="c"&gt; bkp1&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;example&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;com::backup_photos&lt;/span&gt;
+&lt;span class="nb"&gt;+-------------------------------------+---------+-----------------+---------------------+---------------------+------------+-----------------+-----------------------+&lt;/span&gt;&lt;span class="c"&gt;&lt;/span&gt;
+&lt;span class="c"&gt;| MASTER                              | STATUS  | CRAWL STATUS    | SLAVE NODE          | LAST SYNCED         | CHKPT TIME | CHKPT COMPLETED | CHKPT COMPLETION TIME |&lt;/span&gt;
+&lt;span class="nb"&gt;+-------------------------------------+---------+-----------------+---------------------+---------------------+------------+-----------------+-----------------------+&lt;/span&gt;&lt;span class="c"&gt;&lt;/span&gt;
+&lt;span class="c"&gt;| prod1&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;example&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;com:/bricks/photos/b1 | Active  | Changelog Crawl | remote1&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;example&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;com | 2019&lt;/span&gt;&lt;span class="nb"&gt;-&lt;/span&gt;&lt;span class="c"&gt;03&lt;/span&gt;&lt;span class="nb"&gt;-&lt;/span&gt;&lt;span class="c"&gt;27 08:34:40 |    N/A     |       N/A       |          N/A          |&lt;/span&gt;
+&lt;span class="c"&gt;| prod2&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;example&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;com:/bricks/photos/b2 | Passive | N/A             | N/A                 | N/A                 |    N/A     |       N/A       |          N/A          |&lt;/span&gt;
+&lt;span class="c"&gt;| prod3&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;example&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;com:/bricks/photos/b3 | Passive | N/A             | N/A                 | N/A                 |    N/A     |       N/A       |          N/A          |&lt;/span&gt;
+&lt;span class="nb"&gt;+-------------------------------------+---------+-----------------+---------------------+---------------------+------------+-----------------+-----------------------+&lt;/span&gt;&lt;span class="c"&gt;&lt;/span&gt;
 
-SESSION: &lt;span class="nv"&gt;data&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt;&amp;gt; geoaccount@bkp2.example.com::backup_data
-+-----------------------------------+---------+-----------------+---------------------+---------------------+------------+-----------------+-----------------------+
-&lt;span class="p"&gt;|&lt;/span&gt; MASTER                            &lt;span class="p"&gt;|&lt;/span&gt; STATUS  &lt;span class="p"&gt;|&lt;/span&gt; CRAWL STATUS    &lt;span class="p"&gt;|&lt;/span&gt; SLAVE NODE          &lt;span class="p"&gt;|&lt;/span&gt; LAST SYNCED         &lt;span class="p"&gt;|&lt;/span&gt; CHKPT TIME &lt;span class="p"&gt;|&lt;/span&gt; CHKPT COMPLETED &lt;span class="p"&gt;|&lt;/span&gt; CHKPT COMPLETION TIME &lt;span class="p"&gt;|&lt;/span&gt;
-+-----------------------------------+---------+-----------------+---------------------+---------------------+------------+-----------------+-----------------------+
-&lt;span class="p"&gt;|&lt;/span&gt; prod1.example.com:/bricks/data/b1 &lt;span class="p"&gt;|&lt;/span&gt; Stopped &lt;span class="p"&gt;|&lt;/span&gt; N/A             &lt;span class="p"&gt;|&lt;/span&gt; N/A                 &lt;span class="p"&gt;|&lt;/span&gt; N/A                 &lt;span class="p"&gt;|&lt;/span&gt;    N/A     &lt;span class="p"&gt;|&lt;/span&gt;       N/A       &lt;span class="p"&gt;|&lt;/span&gt;          N/A          &lt;span class="p"&gt;|&lt;/span&gt;
-&lt;span class="p"&gt;|&lt;/span&gt; prod2.example.com:/bricks/data/b2 &lt;span class="p"&gt;|&lt;/span&gt; Stopped &lt;span class="p"&gt;|&lt;/span&gt; N/A             &lt;span class="p"&gt;|&lt;/span&gt; N/A                 &lt;span class="p"&gt;|&lt;/span&gt; N/A                 &lt;span class="p"&gt;|&lt;/span&gt;    N/A     &lt;span class="p"&gt;|&lt;/span&gt;       N/A       &lt;span class="p"&gt;|&lt;/span&gt;          N/A          &lt;span class="p"&gt;|&lt;/span&gt;
-&lt;span class="p"&gt;|&lt;/span&gt; prod3.example.com:/bricks/data/b3 &lt;span class="p"&gt;|&lt;/span&gt; Stopped &lt;span class="p"&gt;|&lt;/span&gt; N/A             &lt;span class="p"&gt;|&lt;/span&gt; N/A                 &lt;span class="p"&gt;|&lt;/span&gt; N/A                 &lt;span class="p"&gt;|&lt;/span&gt;    N/A     &lt;span class="p"&gt;|&lt;/span&gt;       N/A       &lt;span class="p"&gt;|&lt;/span&gt;          N/A          &lt;span class="p"&gt;|&lt;/span&gt;
-+-----------------------------------+---------+-----------------+---------------------+---------------------+------------+-----------------+-----------------------+
+&lt;span class="c"&gt;SESSION: data ==&lt;/span&gt;&lt;span class="nv"&gt;&amp;gt;&lt;/span&gt;&lt;span class="c"&gt; geoaccount@bkp2&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;example&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;com::backup_data&lt;/span&gt;
+&lt;span class="nb"&gt;+-----------------------------------+---------+-----------------+---------------------+---------------------+------------+-----------------+-----------------------+&lt;/span&gt;&lt;span class="c"&gt;&lt;/span&gt;
+&lt;span class="c"&gt;| MASTER                            | STATUS  | CRAWL STATUS    | SLAVE NODE          | LAST SYNCED         | CHKPT TIME | CHKPT COMPLETED | CHKPT COMPLETION TIME |&lt;/span&gt;
+&lt;span class="nb"&gt;+-----------------------------------+---------+-----------------+---------------------+---------------------+------------+-----------------+-----------------------+&lt;/span&gt;&lt;span class="c"&gt;&lt;/span&gt;
+&lt;span class="c"&gt;| prod1&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;example&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;com:/bricks/data/b1 | Stopped | N/A             | N/A                 | N/A                 |    N/A     |       N/A       |          N/A          |&lt;/span&gt;
+&lt;span class="c"&gt;| prod2&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;example&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;com:/bricks/data/b2 | Stopped | N/A             | N/A                 | N/A                 |    N/A     |       N/A       |          N/A          |&lt;/span&gt;
+&lt;span class="c"&gt;| prod3&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;example&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;com:/bricks/data/b3 | Stopped | N/A             | N/A                 | N/A                 |    N/A     |       N/A       |          N/A          |&lt;/span&gt;
+&lt;span class="nb"&gt;+-----------------------------------+---------+-----------------+---------------------+---------------------+------------+-----------------+-----------------------+&lt;/span&gt;&lt;span class="c"&gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
 
 &lt;p&gt;Comments &amp;amp; Suggestions Welcome.&lt;/p&gt;</content><category term="blogs"></category><category term="gluster"></category><category term="glusterfsblog"></category></entry><entry><title>Area Charts using R base Graphics</title><link href="https://aravindavk.in/blog/area-charts-using-r-base-graphics/" rel="alternate"></link><published>2019-02-17T00:00:00+05:30</published><updated>2019-02-17T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2019-02-17:/blog/area-charts-using-r-base-graphics/</id><summary type="html">&lt;p class="first last"&gt;Today I learnt to create Area graph using R Base
 graphics. polygon function (help(polygon)) can be used to
@@ -1724,7 +1697,7 @@ along with Cargo.&lt;/p&gt;
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;Iron&lt;/span&gt;::&lt;span class="n"&gt;new&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;hello_world&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;localhost:3000&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="n"&gt;unwrap&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;println&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;On 3000&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="fm"&gt;println!&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;On 3000&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Create a systemd unit file with the following content, we need Path of
@@ -2374,13 +2347,13 @@ wc /tmp/hello.txt
 
 &lt;span class="k"&gt;fn&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(){&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;io&lt;/span&gt;::&lt;span class="n"&gt;stdio&lt;/span&gt;::&lt;span class="n"&gt;stdin_raw&lt;/span&gt;&lt;span class="p"&gt;().&lt;/span&gt;&lt;span class="n"&gt;isatty&lt;/span&gt;&lt;span class="p"&gt;(){&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="n"&gt;println&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Not pipe&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="fm"&gt;println!&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Not pipe&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="kd"&gt;let&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;mut&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;reader&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;io&lt;/span&gt;::&lt;span class="n"&gt;stdin&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="k"&gt;loop&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="k"&gt;match&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;reader&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read_line&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;                &lt;/span&gt;&lt;span class="nb"&gt;Ok&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;txt&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;println&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Read: {}&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;txt&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;                &lt;/span&gt;&lt;span class="nb"&gt;Ok&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;txt&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="fm"&gt;println!&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Read: {}&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;txt&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="w"&gt;                &lt;/span&gt;&lt;span class="nb"&gt;Err&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;_e&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;break&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
@@ -2391,11 +2364,11 @@ wc /tmp/hello.txt
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kd"&gt;let&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;mut&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;reader&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;io&lt;/span&gt;::&lt;span class="n"&gt;stdin&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="k"&gt;loop&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;match&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;reader&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read_line&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nb"&gt;Ok&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;txt&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;println&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Read: {}&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;txt&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nb"&gt;Ok&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;txt&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="fm"&gt;println!&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Read: {}&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;txt&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nb"&gt;Err&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;match&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;kind&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="n"&gt;io&lt;/span&gt;::&lt;span class="n"&gt;EndOfFile&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;break&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="n"&gt;_&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;                    &lt;/span&gt;&lt;span class="n"&gt;panic&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;ERROR: {}&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;                    &lt;/span&gt;&lt;span class="fm"&gt;panic!&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;ERROR: {}&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
@@ -2715,7 +2688,7 @@ set
 &lt;span class="nv"&gt;ARGS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;getopt -l &lt;span class="s2"&gt;&amp;quot;volname:&amp;quot;&lt;/span&gt;  -name &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;$@&lt;/span&gt;&lt;span class="k"&gt;)&lt;/span&gt;
 &lt;span class="nb"&gt;eval&lt;/span&gt; &lt;span class="nb"&gt;set&lt;/span&gt; -- &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$ARGS&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
 &lt;span class="k"&gt;while&lt;/span&gt; true&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;
-    &lt;span class="k"&gt;case&lt;/span&gt; &lt;span class="nv"&gt;$1&lt;/span&gt; in
+    &lt;span class="k"&gt;case&lt;/span&gt; &lt;span class="nv"&gt;$1&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt;
         --volname&lt;span class="o"&gt;)&lt;/span&gt;
             &lt;span class="nb"&gt;shift&lt;/span&gt;
             &lt;span class="nv"&gt;VOL&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$1&lt;/span&gt;
@@ -4213,7 +4186,7 @@ make &lt;span class="p"&gt;&amp;amp;&lt;/span&gt; make install
 &lt;p&gt;reduce function finds the max value from those numeric values emitted from map function.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;// Reduce function&lt;/span&gt;
 &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;key&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;values&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
-    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;max&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;max&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
     &lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt; &lt;span class="nx"&gt;values&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
         &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;max&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="nx"&gt;values&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]){&lt;/span&gt;
             &lt;span class="nx"&gt;max&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;values&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
@@ -4712,18 +4685,18 @@ gedit &lt;span class="nv"&gt;$HOME&lt;/span&gt;/.xinput.d/all_ALL
 &lt;span class="c1"&gt;// get todays date and convert to IST&lt;/span&gt;
 &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;today&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="nb"&gt;Date&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
 &lt;span class="c1"&gt;// +5.5hrs = 330 mins&lt;/span&gt;
-&lt;span class="nx"&gt;today&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;setTime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;today&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getTime&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt;  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;today&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getTimezoneOffset&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;330&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="mi"&gt;60&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="nx"&gt;today&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;setTime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;today&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getTime&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt;  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;today&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getTimezoneOffset&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mf"&gt;330&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="mf"&gt;60&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="mf"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 
 &lt;span class="c1"&gt;// get Event date and convert to IST&lt;/span&gt;
 &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;eventDate&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="nb"&gt;Date&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;February 07, 2009&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-&lt;span class="nx"&gt;eventDate&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;setTime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;eventDate&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getTime&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt;  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;eventDate&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getTimezoneOffset&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;330&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="mi"&gt;60&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;  &lt;span class="c1"&gt;//+5.5hrs = 330 mins&lt;/span&gt;
-&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;miliSecsPerDay&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;86400000&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;  &lt;span class="c1"&gt;//24 * 60 * 60 * 1000 ;&lt;/span&gt;
+&lt;span class="nx"&gt;eventDate&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;setTime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;eventDate&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getTime&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt;  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;eventDate&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getTimezoneOffset&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mf"&gt;330&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="mf"&gt;60&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="mf"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;  &lt;span class="c1"&gt;//+5.5hrs = 330 mins&lt;/span&gt;
+&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;miliSecsPerDay&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;86400000&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;  &lt;span class="c1"&gt;//24 * 60 * 60 * 1000 ;&lt;/span&gt;
 
 &lt;span class="c1"&gt;// Calculate days left&lt;/span&gt;
-&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;numDaysRemaining&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;Math&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;floor&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nx"&gt;eventDate&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getTime&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="nx"&gt;today&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getTime&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;miliSecsPerDay&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;numDaysRemaining&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;Math&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;floor&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nx"&gt;eventDate&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getTime&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="nx"&gt;today&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getTime&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;miliSecsPerDay&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mf"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 
 &lt;span class="c1"&gt;// Display If event is not over&lt;/span&gt;
-&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;numDaysRemaining&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;numDaysRemaining&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;=&lt;/span&gt; &lt;span class="mf"&gt;0&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
     &lt;span class="nx"&gt;imgSrcString&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;&amp;lt;img src=&amp;quot;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nx"&gt;basePath&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;img/&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nx"&gt;numDaysRemaining&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;.png&amp;quot; &amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
     &lt;span class="nx"&gt;imgSrcString&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;imgSrcString&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39; alt=&amp;quot;Gnu/Linux Habba in &amp;#39;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nx"&gt;numDaysRemaining&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39; days&amp;quot; &amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
     &lt;span class="nx"&gt;imgSrcString&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;imgSrcString&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39; title=&amp;quot;Gnu/Linux Habba in &amp;#39;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nx"&gt;numDaysRemaining&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39; days&amp;quot; &amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
@@ -4798,7 +4771,7 @@ gedit &lt;span class="nv"&gt;$HOME&lt;/span&gt;/.xinput.d/all_ALL
 &lt;div class="section" id="id1"&gt;
 &lt;h3&gt;How to use&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;inputwords&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="nb"&gt;Array&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;ಅರವಿಂದ&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;ಒಲವು&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;ಅವಳು&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;ಮತ್ತು&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;ನಾಳೆ&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;abcd&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;ಹೆಹೆ&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mf"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="mf"&gt;2&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;isKannadaWord&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;inputwords&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]))&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
         &lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;lt;b&amp;gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nx"&gt;inputwords&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;lt;/b&amp;gt; is a valid Kannada Word&amp;lt;br/&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
     &lt;span class="p"&gt;}&lt;/span&gt;

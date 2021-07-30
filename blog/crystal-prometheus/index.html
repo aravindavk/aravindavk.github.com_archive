@@ -92,7 +92,7 @@
 <div class="highlight"><pre><span></span><code><span class="c1"># file: myapp.cr</span>
 <span class="k">require</span> <span class="s2">&quot;http/server&quot;</span>
 
-<span class="n">server</span> <span class="o">=</span> <span class="no">HTTP</span><span class="o">::</span><span class="n">Server</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span> <span class="o">|</span><span class="n">context</span><span class="o">|</span>
+<span class="n">server</span> <span class="o">=</span> <span class="n">HTTP</span><span class="o">::</span><span class="n">Server</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span> <span class="o">|</span><span class="n">context</span><span class="o">|</span>
   <span class="n">context</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">content_type</span> <span class="o">=</span> <span class="s2">&quot;text/plain&quot;</span>
   <span class="n">context</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">print</span> <span class="s2">&quot;Hello world, got </span><span class="si">#{</span><span class="n">context</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">path</span><span class="si">}</span><span class="s2">!&quot;</span>
 <span class="k">end</span>
@@ -101,12 +101,10 @@
 <span class="n">server</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="mi">8080</span><span class="p">)</span>
 </code></pre></div>
 
-
 <p>Build and run the application,</p>
 <div class="highlight"><pre><span></span><code>$ crystal build myapp.cr
 $ ./myapp
 </code></pre></div>
-
 
 <p>Now let's create an app that collects the CPU, Memory, and uptime details about the app we created initially(or any other app). Create and install the project dependencies using,</p>
 <div class="highlight"><pre><span></span><code>$ mkdir myapp_exporter
@@ -116,7 +114,6 @@ $ mkdir src
 $ touch src/myapp_exporter.cr
 $ shards install
 </code></pre></div>
-
 
 <div class="highlight"><pre><span></span><code><span class="c1"># file: shard.yml</span>
 <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">myapp_exporter</span>
@@ -132,11 +129,9 @@ $ shards install
     <span class="nt">main</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">src/myapp_exporter.cr</span>
 </code></pre></div>
 
-
 <p>The below command provides the CPU, memory, and uptime information about the application.</p>
 <div class="highlight"><pre><span></span><code>$ ps --no-header -ww -o pcpu,pmem,rsz,vsz,etimes,comm -C myapp
 </code></pre></div>
-
 
 <div class="highlight"><pre><span></span><code><span class="c1"># file: src/myapp_exporter.cr</span>
 <span class="k">require</span> <span class="s2">&quot;crometheus&quot;</span>
@@ -146,7 +141,7 @@ $ shards install
     <span class="n">Type</span><span class="o">::</span><span class="n">Gauge</span>
   <span class="k">end</span>
 
-  <span class="k">def</span> <span class="nf">samples</span> <span class="p">:</span> <span class="nb">Nil</span>
+  <span class="k">def</span> <span class="nf">samples</span> <span class="p">:</span> <span class="n">Nil</span>
     <span class="n">cmdout</span> <span class="o">=</span> <span class="sb">`ps --no-header -ww -o pcpu,pmem,rsz,vsz,etimes,comm -C myapp`</span>
     <span class="k">return</span> <span class="k">if</span> <span class="n">cmdout</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span>
 
@@ -171,12 +166,10 @@ $ shards install
 <span class="n">Crometheus</span><span class="o">.</span><span class="n">default_registry</span><span class="o">.</span><span class="n">run_server</span>
 </code></pre></div>
 
-
 <p>Build and run,</p>
 <div class="highlight"><pre><span></span><code>$ shards build
 $ ./bin/myapp_exporter
 </code></pre></div>
-
 
 <p>Now browse <a href="http://localhost:5000/metrics">http://localhost:5000/metrics</a> to see the metrics related to <code>myapp</code></p>
 <div class="highlight"><pre><span></span><code># HELP myapp CPU, Memory and Uptime metrics
@@ -187,7 +180,6 @@ myapp_resident_memory_bytes{server=&quot;server1.example.com&quot;} 6664192.0
 myapp_virtual_memory_bytes{server=&quot;server1.example.com&quot;} 48365568.0
 myapp_uptime_seconds{server=&quot;server1.example.com&quot;} 1656.0
 </code></pre></div>
-
 
 <p>Add multiple classes to collect more meaningful data. For example, connect to the database and query the table to see the number of users or any other entities.</p>
     </div><!-- /.entry-content -->

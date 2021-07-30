@@ -107,7 +107,7 @@ set
 <span class="nv">ARGS</span><span class="o">=</span><span class="k">$(</span>getopt -l <span class="s2">&quot;volname:&quot;</span>  -name <span class="s2">&quot;&quot;</span> <span class="nv">$@</span><span class="k">)</span>
 <span class="nb">eval</span> <span class="nb">set</span> -- <span class="s2">&quot;</span><span class="nv">$ARGS</span><span class="s2">&quot;</span>
 <span class="k">while</span> true<span class="p">;</span> <span class="k">do</span>
-    <span class="k">case</span> <span class="nv">$1</span> in
+    <span class="k">case</span> <span class="nv">$1</span> <span class="k">in</span>
         --volname<span class="o">)</span>
             <span class="nb">shift</span>
             <span class="nv">VOL</span><span class="o">=</span><span class="nv">$1</span>
