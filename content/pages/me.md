@@ -6,8 +6,7 @@ Summary: About Aravinda Vishwanathapura
 
 Hi there! I am **Aravinda Vishwanathapura**.
 
-* Co-Founder of [kadalu.io](https://kadalu.io)
-* Platform Architect at [Dhiway Networks](https://dhiway.com)
+* Co-Founder and CTO at [Kadalu Technologies](https://kadalu.tech)
 * Member of [GlusterFS](https://gluster.org) core team
 * [Ex-Red Hatter](https://www.linkedin.com/company/red-hat/) |
   [Ex-Infoscion](https://www.linkedin.com/company/infosys/) |
