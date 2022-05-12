@@ -122,10 +122,10 @@ the visualization.</p>
 <p>If Volume utilization is collected from one leader node then that
 node will be overloaded by the mount processes if we have more
 number of volumes.</p>
-<div class="highlight"><pre><span></span><span class="n">leader_node</span> <span class="p">=</span> <span class="n">online_peers</span><span class="p">().</span><span class="n">sorted</span><span class="p">().</span><span class="n">first</span><span class="p">()</span>
-<span class="k">if</span> <span class="p">(</span><span class="n">leader_node</span><span class="p">.</span><span class="n">id</span> <span class="p">==</span> <span class="n">local_node</span><span class="p">.</span><span class="n">id</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">export_volume_utilization</span><span class="p">()</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><span class="n">leader_node</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">online_peers</span><span class="p">().</span><span class="n">sorted</span><span class="p">().</span><span class="n">first</span><span class="p">()</span><span class="w"></span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">leader_node</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="p">==</span><span class="w"> </span><span class="n">local_node</span><span class="p">.</span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">export_volume_utilization</span><span class="p">()</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 <p>In this approach, no aggregation rules required at Prometheus side but
 failover of a node needs to be handled to export the metrics if

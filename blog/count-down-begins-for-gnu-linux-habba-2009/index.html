@@ -97,7 +97,7 @@
 <p>Create a DIV container in your webpage, Include the below script inside that container. You can apply positioning styles to that container.</p>
 <div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;http://aravinda-vk.appspot.com/js/countdown.js&quot;</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-<span class="c">&lt;!-- or design2 --&gt;</span>
+<span class="cm">&lt;!-- or design2 --&gt;</span>
 <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;http://aravinda-vk.appspot.com/js/countdown-design2.js&quot;</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 </pre></div>
@@ -121,12 +121,12 @@
 <span class="kd">var</span> <span class="nx">basePath</span> <span class="o">=</span> <span class="s2">&quot;http://aravinda-vk.appspot.com/&quot;</span><span class="p">;</span>
 
 <span class="c1">// get todays date and convert to IST</span>
-<span class="kd">var</span> <span class="nx">today</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+<span class="kd">var</span> <span class="nx">today</span> <span class="o">=</span> <span class="ow">new</span> <span class="nb">Date</span><span class="p">();</span>
 <span class="c1">// +5.5hrs = 330 mins</span>
 <span class="nx">today</span><span class="p">.</span><span class="nx">setTime</span><span class="p">(</span><span class="nx">today</span><span class="p">.</span><span class="nx">getTime</span><span class="p">()</span> <span class="o">+</span>  <span class="p">(</span><span class="nx">today</span><span class="p">.</span><span class="nx">getTimezoneOffset</span><span class="p">()</span><span class="o">+</span><span class="mf">330</span><span class="p">)</span><span class="o">*</span><span class="mf">60</span><span class="o">*</span><span class="mf">1000</span><span class="p">);</span>
 
 <span class="c1">// get Event date and convert to IST</span>
-<span class="kd">var</span> <span class="nx">eventDate</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="s2">&quot;February 07, 2009&quot;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">eventDate</span> <span class="o">=</span> <span class="ow">new</span> <span class="nb">Date</span><span class="p">(</span><span class="s2">&quot;February 07, 2009&quot;</span><span class="p">);</span>
 <span class="nx">eventDate</span><span class="p">.</span><span class="nx">setTime</span><span class="p">(</span><span class="nx">eventDate</span><span class="p">.</span><span class="nx">getTime</span><span class="p">()</span> <span class="o">+</span>  <span class="p">(</span><span class="nx">eventDate</span><span class="p">.</span><span class="nx">getTimezoneOffset</span><span class="p">()</span><span class="o">+</span><span class="mf">330</span><span class="p">)</span><span class="o">*</span><span class="mf">60</span><span class="o">*</span><span class="mf">1000</span><span class="p">);</span>  <span class="c1">//+5.5hrs = 330 mins</span>
 <span class="kd">var</span> <span class="nx">miliSecsPerDay</span> <span class="o">=</span> <span class="mf">86400000</span><span class="p">;</span>  <span class="c1">//24 * 60 * 60 * 1000 ;</span>
 

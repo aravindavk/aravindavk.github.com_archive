@@ -123,26 +123,26 @@
 <p>and we can get schema of the required sqlite table using <code>.schema &lt;table name&gt;</code> query.</p>
 <div class="highlight"><pre><span></span>adb shell <span class="s1">&#39;sqlite3 /data/data/com.android.providers.telephony/databases/mmssms.db &quot;.schema sms&quot;&#39;</span>
 </pre></div>
-<div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">sms</span>
-<span class="p">(</span>
-    <span class="n">_id</span>                <span class="nb">INTEGER</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
-    <span class="n">thread_id</span>          <span class="nb">INTEGER</span><span class="p">,</span>
-    <span class="n">address</span>            <span class="nb">TEXT</span><span class="p">,</span>
-    <span class="n">person</span>             <span class="nb">INTEGER</span><span class="p">,</span>
-    <span class="nb">date</span>               <span class="nb">INTEGER</span><span class="p">,</span>
-    <span class="n">date_sent</span>          <span class="nb">INTEGER</span> <span class="k">DEFAULT</span> <span class="mi">0</span><span class="p">,</span>
-    <span class="n">protocol</span>           <span class="nb">INTEGER</span><span class="p">,</span>
-    <span class="k">read</span>               <span class="nb">INTEGER</span> <span class="k">DEFAULT</span> <span class="mi">0</span><span class="p">,</span>
-    <span class="n">status</span>             <span class="nb">INTEGER</span> <span class="k">DEFAULT</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
-    <span class="k">type</span>               <span class="nb">INTEGER</span><span class="p">,</span>
-    <span class="n">reply_path_present</span> <span class="nb">INTEGER</span><span class="p">,</span>
-    <span class="n">subject</span>            <span class="nb">TEXT</span><span class="p">,</span>
-    <span class="n">body</span>               <span class="nb">TEXT</span><span class="p">,</span>
-    <span class="n">service_center</span>     <span class="nb">TEXT</span><span class="p">,</span>
-    <span class="n">locked</span>             <span class="nb">INTEGER</span> <span class="k">DEFAULT</span> <span class="mi">0</span><span class="p">,</span>
-    <span class="n">error_code</span>         <span class="nb">INTEGER</span> <span class="k">DEFAULT</span> <span class="mi">0</span><span class="p">,</span>
-    <span class="n">seen</span>               <span class="nb">INTEGER</span> <span class="k">DEFAULT</span> <span class="mi">0</span>
-<span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">sms</span><span class="w"></span>
+<span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">_id</span><span class="w">                </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">thread_id</span><span class="w">          </span><span class="nb">INTEGER</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">address</span><span class="w">            </span><span class="nb">TEXT</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">person</span><span class="w">             </span><span class="nb">INTEGER</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nb">date</span><span class="w">               </span><span class="nb">INTEGER</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">date_sent</span><span class="w">          </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">protocol</span><span class="w">           </span><span class="nb">INTEGER</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="k">read</span><span class="w">               </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">status</span><span class="w">             </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="k">type</span><span class="w">               </span><span class="nb">INTEGER</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">reply_path_present</span><span class="w"> </span><span class="nb">INTEGER</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">subject</span><span class="w">            </span><span class="nb">TEXT</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">body</span><span class="w">               </span><span class="nb">TEXT</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">service_center</span><span class="w">     </span><span class="nb">TEXT</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">locked</span><span class="w">             </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">error_code</span><span class="w">         </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">seen</span><span class="w">               </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
+<span class="p">);</span><span class="w"></span>
 </pre></div>
 <p>Now we know how to run queries inside phone using <cite>adb</cite>, let us list down some of the ideas which we can implement using available sms data.</p>
 <ol class="arabic simple">
@@ -159,12 +159,12 @@
 <p><strong>The only limitation is your imagination :D</strong></p>
 <p><strong>Example</strong>: Number of sms sent per day.</p>
 <p>Query is</p>
-<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">STRFTIME</span><span class="p">(</span><span class="ss">&quot;%Y%m%d&quot;</span><span class="p">,</span> <span class="n">DATETIME</span><span class="p">(</span><span class="nb">date</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span> <span class="ss">&quot;unixepoch&quot;</span><span class="p">,</span> <span class="ss">&quot;localtime&quot;</span><span class="p">))</span> <span class="n">dte</span><span class="p">,</span>
-       <span class="k">COUNT</span><span class="p">(</span><span class="n">_id</span><span class="p">)</span>
-<span class="k">FROM</span> <span class="n">sms</span>
-<span class="k">WHERE</span> <span class="k">type</span> <span class="o">=</span> <span class="mi">2</span>
-<span class="k">GROUP</span> <span class="k">BY</span> <span class="n">dte</span>
-<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">dte</span>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">STRFTIME</span><span class="p">(</span><span class="ss">&quot;%Y%m%d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">DATETIME</span><span class="p">(</span><span class="nb">date</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;unixepoch&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;localtime&quot;</span><span class="p">))</span><span class="w"> </span><span class="n">dte</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="k">COUNT</span><span class="p">(</span><span class="n">_id</span><span class="p">)</span><span class="w"></span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">sms</span><span class="w"></span>
+<span class="k">WHERE</span><span class="w"> </span><span class="k">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="w"></span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">dte</span><span class="w"></span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">dte</span><span class="w"></span>
 </pre></div>
 <p>where type 2 is sent and 1 is received.</p>
 <div class="highlight"><pre><span></span>adb shell <span class="s1">&#39;sqlite3 /data/data/com.android.providers.telephony/databases/mmssms.db \</span>
@@ -172,13 +172,13 @@
 <span class="s1">COUNT(_id) FROM sms WHERE type = 2 GROUP BY dte ORDER BY dte&quot;&#39;</span>
 </pre></div>
 <p>If you want to find number of sms sent per day for a particular phone number then add the condition in WHERE clause as follows</p>
-<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">STRFTIME</span><span class="p">(</span><span class="ss">&quot;%Y%m%d&quot;</span><span class="p">,</span> <span class="n">DATETIME</span><span class="p">(</span><span class="nb">date</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span> <span class="ss">&quot;unixepoch&quot;</span><span class="p">,</span> <span class="ss">&quot;localtime&quot;</span><span class="p">))</span> <span class="n">dte</span><span class="p">,</span>
-       <span class="k">COUNT</span><span class="p">(</span><span class="n">_id</span><span class="p">)</span>
-<span class="k">FROM</span> <span class="n">sms</span>
-<span class="k">WHERE</span> <span class="k">type</span> <span class="o">=</span> <span class="mi">2</span>
-<span class="k">GROUP</span> <span class="k">BY</span> <span class="n">dte</span>
-<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">dte</span>
-<span class="k">AND</span> <span class="k">REPLACE</span><span class="p">(</span><span class="k">REPLACE</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="ss">&quot;+91&quot;</span><span class="p">,</span><span class="ss">&quot;&quot;</span><span class="p">),</span> <span class="ss">&quot; &quot;</span><span class="p">,</span> <span class="ss">&quot;&quot;</span><span class="p">)</span> <span class="o">=</span> <span class="ss">&quot;XXXXX&quot;</span>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">STRFTIME</span><span class="p">(</span><span class="ss">&quot;%Y%m%d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">DATETIME</span><span class="p">(</span><span class="nb">date</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;unixepoch&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;localtime&quot;</span><span class="p">))</span><span class="w"> </span><span class="n">dte</span><span class="p">,</span><span class="w"></span>
+<span class="w">       </span><span class="k">COUNT</span><span class="p">(</span><span class="n">_id</span><span class="p">)</span><span class="w"></span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">sms</span><span class="w"></span>
+<span class="k">WHERE</span><span class="w"> </span><span class="k">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="w"></span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">dte</span><span class="w"></span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">dte</span><span class="w"></span>
+<span class="k">AND</span><span class="w"> </span><span class="k">REPLACE</span><span class="p">(</span><span class="k">REPLACE</span><span class="p">(</span><span class="n">address</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;+91&quot;</span><span class="p">,</span><span class="ss">&quot;&quot;</span><span class="p">),</span><span class="w"> </span><span class="ss">&quot; &quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">&quot;XXXXX&quot;</span><span class="w"></span>
 </pre></div>
 <p>I created <a class="reference external" href="https://gist.github.com/aravindavk/5339192">Python script</a> to extract data as described above. Additionally script generates csv output which can be used to plot as required. Use any familiar library(Matplotlib, PhantomJS and d3, flot etc..) or just use Spreadsheet to plot the graph as required. I used Libreoffice Calc to create these charts.</p>
 <p>Let me know if you find this blog useful and need any help in writing SQL queries :)</p>

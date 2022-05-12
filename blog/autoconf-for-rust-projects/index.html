@@ -101,13 +101,13 @@ along with Cargo.</p>
 <div class="highlight"><pre><span></span>cargo new myservice --bin
 </pre></div>
 <p>Update <tt class="docutils literal">Cargo.toml</tt> with required Rust dependencies and other details.</p>
-<div class="highlight"><pre><span></span><span class="k">[package]</span>
-<span class="na">name</span> <span class="o">=</span> <span class="s">&quot;myservice&quot;</span>
-<span class="na">version</span> <span class="o">=</span> <span class="s">&quot;0.1.0&quot;</span>
-<span class="na">authors</span> <span class="o">=</span> <span class="s">[&quot;NAME &lt;EMAIL&gt;&quot;]</span>
+<div class="highlight"><pre><span></span><span class="k">[package]</span><span class="w"></span>
+<span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;myservice&quot;</span><span class="w"></span>
+<span class="na">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;0.1.0&quot;</span><span class="w"></span>
+<span class="na">authors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">[&quot;NAME &lt;EMAIL&gt;&quot;]</span><span class="w"></span>
 
-<span class="k">[dependencies]</span>
-<span class="na">iron</span> <span class="o">=</span> <span class="s">&quot;*&quot;</span>
+<span class="k">[dependencies]</span><span class="w"></span>
+<span class="na">iron</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;*&quot;</span><span class="w"></span>
 </pre></div>
 <p>and add the following example code in <tt class="docutils literal">src/main.rs</tt> (Copied from <a class="reference external" href="http://ironframework.io">http://ironframework.io</a>)</p>
 <div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="k">crate</span><span class="w"> </span><span class="n">iron</span><span class="p">;</span><span class="w"></span>
@@ -128,17 +128,17 @@ along with Cargo.</p>
 bin to add it to service file. We will take help of Autoconf to
 dynamically generate systemd unit file. Create a systemd unit file as
 <tt class="docutils literal">myserviced.service.in</tt> (Note the &#64;SBINDIR&#64; autoconf variable)</p>
-<div class="highlight"><pre><span></span><span class="k">[Unit]</span>
-<span class="na">Description</span><span class="o">=</span><span class="s">MyService</span>
-<span class="na">After</span><span class="o">=</span><span class="s">syslog.target network.target</span>
+<div class="highlight"><pre><span></span><span class="k">[Unit]</span><span class="w"></span>
+<span class="na">Description</span><span class="o">=</span><span class="s">MyService</span><span class="w"></span>
+<span class="na">After</span><span class="o">=</span><span class="s">syslog.target network.target</span><span class="w"></span>
 
-<span class="k">[Service]</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">simple</span>
-<span class="na">ExecStart</span><span class="o">=</span><span class="s">@SBINDIR@/myserviced</span>
-<span class="na">ExecReload</span><span class="o">=</span><span class="s">/bin/kill -SIGUSR2 $MAINPID</span>
+<span class="k">[Service]</span><span class="w"></span>
+<span class="na">Type</span><span class="o">=</span><span class="s">simple</span><span class="w"></span>
+<span class="na">ExecStart</span><span class="o">=</span><span class="s">@SBINDIR@/myserviced</span><span class="w"></span>
+<span class="na">ExecReload</span><span class="o">=</span><span class="s">/bin/kill -SIGUSR2 $MAINPID</span><span class="w"></span>
 
-<span class="k">[Install]</span>
-<span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target</span>
+<span class="k">[Install]</span><span class="w"></span>
+<span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target</span><span class="w"></span>
 </pre></div>
 <p>If we use <tt class="docutils literal">&#64;sbindir&#64;</tt> then it will not expand completely, introduce
 a new variable <tt class="docutils literal">SBINDIR</tt> in <tt class="docutils literal">configure.ac</tt> which will expand

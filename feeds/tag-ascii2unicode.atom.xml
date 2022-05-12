@@ -3,7 +3,7 @@
 </summary><content type="html">&lt;p&gt;ASCII/ANSI ಕನ್ನಡದಲ್ಲಿ ಬರೆದದ್ದನ್ನು ಯುನಿಕೋಡ್ ಗೆ ಹೇಗೆ ಬದಲಾಯಿಸೋದು ಎಂದು ಬಹಳ ಗೆಳೆಯರ ಪ್ರಶ್ನೆಯಾಗಿತ್ತು, ಅಂದಕ್ಕೆಂದೇ ASCII2Unicode ಕನ್ವರ್ಟರ್ ತಂತ್ರಾಂಶ ಬರೆದಿದ್ದೆ, ಎರಡನೇ ಆವೃತ್ತಿ ಇವತ್ತು ಬಿಡುಗಡೆಗೊಂಡಿದೆ, ಬಹಳಷ್ಟು ತೊಂದರೆಗಳನ್ನು ಸರಿಪಡಿಸಿದ್ದೇನೆ. Source code ಅನ್ನು ಓದಲು/ಅರ್ಥಮಾಡಿಕೊಳ್ಳಲು ಸುಲಭವಾಗುವಂತೆ ಬದಲಾಯಿಸಿದ್ದೇನೆ, ಕೋಡ್ ಕಮೆಂಟ್ ಗಳನ್ನು ಸೇರಿಸಿದ್ದೇನೆ.&lt;/p&gt;
 &lt;p&gt;ಉಪಯೋಗಿಸಿ ಹಾಗೂ ಗೆಳೆಯರೊಡನೆ ಹಂಚಿಕೊಳ್ಳಿ. Online ಆವೃತ್ತಿ &lt;a class="reference external" href="http://aravindavk.github.com/ascii2unicode/"&gt;ಇಲ್ಲಿದೆ&lt;/a&gt;.&lt;/p&gt;
 &lt;a class="reference external image-reference" href="http://aravindavk.github.com/ascii2unicode/"&gt;&lt;img alt="ASCII2Unicode" src="/images/ascii2unicode.png" /&gt;&lt;/a&gt;
-&lt;div class="section" id="id1"&gt;
+&lt;div class="section" id="section-1"&gt;
 &lt;h2&gt;ಈಗಿನ ಆವೃತ್ತಿಯಲ್ಲಿ ಸರಿಪಡಿಸಿದ ತೊಂದರೆಗಳು&lt;/h2&gt;
 &lt;ol class="arabic"&gt;
 &lt;li&gt;&lt;p class="first"&gt;ಶ್ರೀನಿಧಿ. ಟಿಜಿ ಹೇಳಿದ ಜ್ಞ ಅಕ್ಷರದ ತೊಂದರೆ.&lt;/p&gt;
@@ -44,7 +44,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;ಇದನ್ನು ಬರೆದಿರುವುದು Python programming language(Python 3) ನಲ್ಲಿ. Python install ಆಗಿದ್ದರೆ Windows ನಲ್ಲೂ ಬಳಸಬಹುದು, ಆದರೆ ವಿಂಡೋಸ್ ನಲ್ಲಿ command line applications ನ ಎಷ್ಟು ಜನ ಉಪಯೋಗಿಸುತ್ತಾರೆ ಗೊತ್ತಿಲ್ಲ.&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class="section" id="id2"&gt;
+&lt;div class="section" id="section-2"&gt;
 &lt;h2&gt;ಮುಂದಿನ ಕೆಲಸಗಳು&lt;/h2&gt;
 &lt;p&gt;ಬಹಳಷ್ಟು ಜನ ಈಮೈಲ್ ಬರೆದು ಕನ್ವರ್ಟ್ ಮಾಡಲು ತಮಗಿದ್ದ ತೊಂದರೆಗಳನ್ನು ತಿಳಿಸಿದ್ದಾರೆ, ಅದರಂತೆ ಕೆಲವು ಯೋಜನೆಗಳ ಬಗ್ಗೆ ಯೋಚಿಸುತ್ತಿದ್ದೇನೆ. ಬನ್ನಿ ಎಲ್ಲ ಸೇರಿ ಮುಗಿಸೋಣ.&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
