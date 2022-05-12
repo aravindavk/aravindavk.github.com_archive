@@ -1,5 +1,216 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Aravinda VK - gluster</title><link href="https://aravindavk.in/" rel="alternate"></link><link href="https://aravindavk.in/feeds/tag-gluster.atom.xml" rel="self"></link><id>https://aravindavk.in/</id><updated>2019-01-06T00:00:00+05:30</updated><entry><title>Template based Volgen - Glusterd2</title><link href="https://aravindavk.in/blog/template-based-volgen-glusterd2/" rel="alternate"></link><published>2019-01-06T00:00:00+05:30</published><updated>2019-01-06T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2019-01-06:/blog/template-based-volgen-glusterd2/</id><summary type="html">&lt;p class="first last"&gt;Glusterd2 also provides facility to set default Volume
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Aravinda VK - gluster</title><link href="https://aravindavk.in/" rel="alternate"></link><link href="https://aravindavk.in/feeds/tag-gluster.atom.xml" rel="self"></link><id>https://aravindavk.in/</id><updated>2019-09-24T00:00:00+05:30</updated><entry><title>Gluster Volume utilization - Multiple approaches</title><link href="https://aravindavk.in/blog/gluster-volume-utilization-multiple-approaches/" rel="alternate"></link><published>2019-09-24T00:00:00+05:30</published><updated>2019-09-24T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2019-09-24:/blog/gluster-volume-utilization-multiple-approaches/</id><summary type="html">&lt;p&gt;This blog discusses the multiple approaches available to get the Volume utilization and comparisons between them.&lt;/p&gt;</summary><content type="html">&lt;div class="notice-update"&gt;
+This blog was first published on &lt;a href="https://gluster.github.io/devblog/gluster-volume-utilization-multiple-approaches"&gt;Gluster Devblog&lt;/a&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Gluster Volume utilization is one of the critical metrics which
+everybody interested to know. This blog discusses the multiple
+approaches available to get the Volume utilization and comparisons
+between them.&lt;/p&gt;
+&lt;h2&gt;Approach 1 - Fuse mount&lt;/h2&gt;
+&lt;p&gt;Use fuse mount to mount the Gluster Volume and get the &lt;code&gt;df&lt;/code&gt; output(Or
+use &lt;code&gt;os.statvfs&lt;/code&gt; in case of Python script).&lt;/p&gt;
+&lt;p&gt;For example,&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ mount -t glusterfs localhost:gvol_rep3 /mnt/gvol_rep3
+$ df -B1 /mnt/gvol_rep3
+$ umount /mnt/gvol_rep3
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2&gt;Approach 2 - libgfapi mount&lt;/h2&gt;
+&lt;p&gt;Use libgfapi mount and run &lt;code&gt;os.statvfs&lt;/code&gt; to get the Volume utilization.&lt;/p&gt;
+&lt;p&gt;The following Python example uses
+&lt;a href="https://github.com/gluster/libgfapi-python"&gt;libgfapi-python&lt;/a&gt; project.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;gluster&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;gfapi&lt;/span&gt;
+
+&lt;span class="n"&gt;volume&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;gfapi&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Volume&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;localhost&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;gvol_rep3&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;volume&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mount&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;st&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;volume&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;statvfs&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;/&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Total Size: &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;st&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;f_blocks&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;st&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;f_bsize&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="n"&gt;volume&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;umount&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2&gt;Approach 3 - Gluster CLI&lt;/h2&gt;
+&lt;p&gt;Volume status detail command already provides brick-level
+utilization. Combine status detail with Volume info to group the
+bricks into subvolumes. Get the storage reserve by running &lt;code&gt;gluster
+volume get &amp;lt;volname&amp;gt; storage.reserve&lt;/code&gt; and subtract the same from
+&lt;code&gt;size_free&lt;/code&gt; or add to &lt;code&gt;size_used&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Refer Posix storage reserve feature
+&lt;a href="https://github.com/gluster/glusterfs/issues/236"&gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Once we get the sub volume grouping, get the sub volume utilization
+from the bricks utilization as follows.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;volume_capacity_total&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+&lt;span class="nv"&gt;volume_capacity_used&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+&lt;span class="nv"&gt;volume_inodes_total&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+&lt;span class="nv"&gt;volume_inodes_used&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="nv"&gt;subvol&lt;/span&gt; &lt;span class="nv"&gt;in&lt;/span&gt; &lt;span class="nv"&gt;subvols&lt;/span&gt; {
+    &lt;span class="nv"&gt;volume_capacity_total&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="nv"&gt;subvol&lt;/span&gt;.&lt;span class="nv"&gt;capacity_total&lt;/span&gt;
+    &lt;span class="nv"&gt;volume_capacity_used&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="nv"&gt;subvol&lt;/span&gt;.&lt;span class="nv"&gt;capacity_used&lt;/span&gt;
+    &lt;span class="nv"&gt;volume_inodes_total&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="nv"&gt;subvol&lt;/span&gt;.&lt;span class="nv"&gt;inodes_total&lt;/span&gt;
+    &lt;span class="nv"&gt;volume_inodes_used&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="nv"&gt;subvol&lt;/span&gt;.&lt;span class="nv"&gt;inodes_used&lt;/span&gt;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Subvolume utilization is dependent on its type. If subvolume type is
+Replicate then take the maximum of &lt;code&gt;capacity_used&lt;/code&gt; of all bricks in
+that subvolume and take a minimum of &lt;code&gt;capacity_total&lt;/code&gt; of all
+bricks. This method is because all replica bricks will have the same
+data and total capacity of a subvolume is dependent on the brick
+having least capacity (In most cases capacity of all bricks in
+subvolume will be identical).&lt;/p&gt;
+&lt;p&gt;In case of subvolume type is Disperse Volume then,&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;subvol_capacity_total = any_one_brick_capacity_total * number_of_data_bricks
+subvol_capacity_used = any_one_brick_capacity_used * number_of_data_bricks
+subvol_inodes_total = any_one_brick_inode_total
+subvol_inodes_used = any_one_brick_inode_used
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2&gt;Conclusion:&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Results of all approaches look similar, feel free to use the method
+  comfortable to the use case.&lt;/li&gt;
+&lt;li&gt;Mount cleanup required in case of first and second approaches. If
+  the application crashes before unmounting the volume, then we may
+  end up in stale mounts.&lt;/li&gt;
+&lt;li&gt;If the application is collecting the utilization details in regular
+  interval, either mount needs to be persisted or unmount is required
+  after collecting each time. Mounting and unmounting steps will
+  become too cumbersome to manage. Since mounting all volumes will
+  consume extra memory and mount can't persist if every time
+  utilization collected from different nodes.&lt;/li&gt;
+&lt;li&gt;Approach 3 is straightforward to implement since it is just running
+  the CLI command and parsing its output to get the required
+  results. The only downside of this approach is, the aggregation
+  logic implemented in the application side. So the application can go
+  out of sync if Gluster changes the way to calculate the utilization
+  then application.&lt;/li&gt;
+&lt;li&gt;Directory utilization is not possible with approach 3. If Gluster
+  Quota feature used and utilization of a subdirectory required, then
+  it is not possible using Gluster CLI commands.&lt;/li&gt;
+&lt;li&gt;Gluster status detail command itself can subtract the storage
+  reserve instead of returning the raw value(Bug: To be opened)&lt;/li&gt;
+&lt;/ul&gt;</content><category term="blogs"></category><category term="gluster"></category><category term="glusterfsblog"></category></entry><entry><title>Elixir Phoenix Liveview and Gluster dashboard</title><link href="https://aravindavk.in/blog/elixir-phoenix-liveview-gluster-dashboard/" rel="alternate"></link><published>2019-08-30T00:00:00+05:30</published><updated>2019-08-30T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2019-08-30:/blog/elixir-phoenix-liveview-gluster-dashboard/</id><summary type="html">&lt;p&gt;I started working on the Gluster dashboard using Phoenix Liveview feature.&lt;/p&gt;</summary><content type="html">&lt;p&gt;I was introduced to &lt;a href="https://www.erlang.org/"&gt;Erlang&lt;/a&gt; language by
+&lt;a href="http://manku.thimma.org/about/"&gt;Shashi&lt;/a&gt; in one of the Mysore Linux
+user group meeting at his office(Feb 2009). That was the time when
+NoSql was trending, and &lt;a href="http://couchdb.apache.org/"&gt;CouchDb&lt;/a&gt; was one
+of the popular NoSQL databases. I was very much impressed by the
+Erlang programming language and bought the book "Programming Erlang -
+Joe Armstrong"&lt;/p&gt;
+&lt;p&gt;Unfortunately, I couldn't spend much time with the language to develop
+any real-time app other than a few Hello World programs.&lt;/p&gt;
+&lt;p&gt;Finally, I got a chance to work on a
+&lt;a href="https://elixir-lang.org/"&gt;Elixir&lt;/a&gt; project! The trigger is the Phoenix
+Live view feature.&lt;/p&gt;
+&lt;p&gt;I watched &lt;a href="https://www.youtube.com/watch?v=8xJzHq8ru0M"&gt;Phoenix Liveview announcement&lt;/a&gt;
+15 days ago and immediately impressed by that.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Phoenix LiveView enables rich, real-time user experiences with
+server-rendered HTML. For more information, &lt;a href="https://dockyard.com/blog/2018/12/12/phoenix-liveview-interactive-real-time-apps-no-need-to-write-javascript"&gt;see the initial
+announcement&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Note: Currently LiveView is under active development and we are
+focused on getting a stable and solid initial version out. For this
+reason, we will be accepting only bug reports in the issues tracker
+for now. We will open the issues tracker for features after the
+current milestone is ironed out.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I started working on the &lt;a href="https://elixir-lang.org/"&gt;Gluster&lt;/a&gt; dashboard using Phoenix
+Liveview feature. This dashboard exposes a webhook to receive the
+Gluster cluster details. Gluster webhook exporter is written using D
+programming language. It runs the required Gluster commands every 10
+seconds(configurable) and parses the XML output and pushes the JSON
+data to the webhook exposed by the Phoenix application.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Gluster dashboard - How it works" src="/images/phoenix-liveview-gluster.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: Running exporter in all nodes is optional, can be run in a
+few nodes for better availability. If one node goes down, then
+exporter from another node can send the details to the dashboard app.&lt;/p&gt;
+&lt;p&gt;Phoenix app updates the Cluster state to Db and publishes to all
+connected LiveView sockets. All users who opened the dashboard page
+will get the updated dashboard.&lt;/p&gt;
+&lt;p&gt;Gluster dashboard is not yet ready, and I am working on the necessary
+features to submit this project for &lt;a href="https://phoenixphrenzy.com/"&gt;Phoenix
+Phrenzy&lt;/a&gt; contest.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Phoenix Phrenzy is a contest for developers to build with Phoenix
+LiveView, show off their software engineering skills, and help
+demonstrate the capabilities of this great technology to the open
+source community.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I am still working on many fixes to this dashboard project, watch this
+space for an update on this project. Let me know if the below
+screenshots look good. Thanks.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Gluster dashboard preview" src="/images/gluster-dashboard.gif"&gt;&lt;/p&gt;
+&lt;p&gt;Work in progress project source code is available
+&lt;a href="https://github.com/aravindavk/gluster-dashboard"&gt;here&lt;/a&gt;.&lt;/p&gt;</content><category term="blogs"></category><category term="gluster"></category><category term="glusterfsblog"></category></entry><entry><title>Gluster and Kubernetes - Portmap</title><link href="https://aravindavk.in/blog/gluster-and-k8s-portmap/" rel="alternate"></link><published>2019-07-09T00:00:00+05:30</published><updated>2019-07-09T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2019-07-09:/blog/gluster-and-k8s-portmap/</id><summary type="html">&lt;p&gt;If we remove Glusterd in k8s setup, who will do the role of Glusterd? How will the brick process get the port number?&lt;/p&gt;</summary><content type="html">&lt;p&gt;One of the primary roles of Glusterd is to allocate a port for brick
+processes and let the clients know about it when requested.&lt;/p&gt;
+&lt;p&gt;Glusterd starts a brick process, and it allocates a free port number
+between 49152-49664. Gluster client(or mount) will connect to Glusterd
+(port:24007) and asks for the brick port, Glusterd provides brick port
+and client then connects to the brick process.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Get brick port from Glusterd" src="/images/gluster-glusterd-brick-port.png"&gt;&lt;/p&gt;
+&lt;p&gt;If we remove Glusterd in k8s setup, who will do the role of Glusterd?
+How will the brick process get the port number?&lt;/p&gt;
+&lt;p&gt;Now comes the Magic! All brick processes will run with the port number
+24007!&lt;/p&gt;
+&lt;p&gt;Each brick is one container in k8s setup, so no need to search for a new
+port. Just use 24007. Gluster client is intelligent enough to know
+that the connecting process is Glusterd or Brick process. The client
+connects to 24007 to get brick port, and it finds the brick process
+itself.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Client directly connects to brick" src="/images/gluster-brick-connect-direct.png"&gt;&lt;/p&gt;
+&lt;p&gt;Found interesting? Do join our talk about &lt;a href="http://bit.ly/gluster-k8s-devconf"&gt;Managing Gluster in
+Kubernetes without using
+Glusterd/Glusterd2&lt;/a&gt; at the devconf
+India event.&lt;/p&gt;</content><category term="blogs"></category><category term="gluster"></category><category term="glusterfsblog"></category></entry><entry><title>Improving Geo-replication Status</title><link href="https://aravindavk.in/blog/improving-georep-status/" rel="alternate"></link><published>2019-03-28T00:00:00+05:30</published><updated>2019-03-28T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2019-03-28:/blog/improving-georep-status/</id><summary type="html">&lt;p&gt;Until the above issues are fixed in official Gluster CLI, we can use gluster-georep-status tool&lt;/p&gt;</summary><content type="html">&lt;div class="notice-update"&gt;
+This blog was first published on &lt;a href="https://gluster.github.io/devblog/improving-geo-replication-status"&gt;Gluster Devblog&lt;/a&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;a href="https://docs.gluster.org/en/latest/Administrator%20Guide/Geo%20Replication/"&gt;Geo-replication&lt;/a&gt;
+is a feature in Glusterfs to sync data from one Gluster Volume to
+another.&lt;/p&gt;
+&lt;p&gt;Current Geo-replication status has the following limitations.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Order of bricks is not uniform. Glusterd collects the status details
+  from all other nodes and displays in random order. This is very
+  confusing to users. Order of bricks in status should be in the same
+  order as in Volume info.&lt;/li&gt;
+&lt;li&gt;If initiator Glusterd(where the command is run) couldn't reach other
+  node's Glusterd then current CLI is skipping that in the status
+  output. Status should be shown as "Unknown" without spoiling the
+  order.&lt;/li&gt;
+&lt;li&gt;Geo-rep status mixes the rows from multiple sessions depending on
+  the response received from other node's Glusterds.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Until the above issues are fixed in official Gluster CLI, we can use
+&lt;code&gt;gluster-georep-status&lt;/code&gt; tool from
+&lt;a href="https://github.com/aravindavk/gluster-georep-tools"&gt;gluster-tools&lt;/a&gt;
+project. This tool merges Volume info and Geo-rep status to identify
+the Offline status and bricks order.&lt;/p&gt;
+&lt;p&gt;Installation instructions are available in project
+&lt;a href="https://github.com/aravindavk/gluster-georep-tools/blob/master/README.md"&gt;README&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;This tool also supports filters like &lt;code&gt;--with-status=active&lt;/code&gt;,
+&lt;code&gt;--with-crawl-status=changelog&lt;/code&gt; etc.&lt;/p&gt;
+&lt;p&gt;Example output:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c"&gt;$ gluster&lt;/span&gt;&lt;span class="nb"&gt;-&lt;/span&gt;&lt;span class="c"&gt;georep&lt;/span&gt;&lt;span class="nb"&gt;-&lt;/span&gt;&lt;span class="c"&gt;status&lt;/span&gt;
+&lt;span class="c"&gt;SESSION: photos ==&lt;/span&gt;&lt;span class="nv"&gt;&amp;gt;&lt;/span&gt;&lt;span class="c"&gt; bkp1&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;example&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;com::backup_photos&lt;/span&gt;
+&lt;span class="nb"&gt;+-------------------------------------+---------+-----------------+---------------------+---------------------+------------+-----------------+-----------------------+&lt;/span&gt;&lt;span class="c"&gt;&lt;/span&gt;
+&lt;span class="c"&gt;| MASTER                              | STATUS  | CRAWL STATUS    | SLAVE NODE          | LAST SYNCED         | CHKPT TIME | CHKPT COMPLETED | CHKPT COMPLETION TIME |&lt;/span&gt;
+&lt;span class="nb"&gt;+-------------------------------------+---------+-----------------+---------------------+---------------------+------------+-----------------+-----------------------+&lt;/span&gt;&lt;span class="c"&gt;&lt;/span&gt;
+&lt;span class="c"&gt;| prod1&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;example&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;com:/bricks/photos/b1 | Active  | Changelog Crawl | remote1&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;example&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;com | 2019&lt;/span&gt;&lt;span class="nb"&gt;-&lt;/span&gt;&lt;span class="c"&gt;03&lt;/span&gt;&lt;span class="nb"&gt;-&lt;/span&gt;&lt;span class="c"&gt;27 08:34:40 |    N/A     |       N/A       |          N/A          |&lt;/span&gt;
+&lt;span class="c"&gt;| prod2&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;example&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;com:/bricks/photos/b2 | Passive | N/A             | N/A                 | N/A                 |    N/A     |       N/A       |          N/A          |&lt;/span&gt;
+&lt;span class="c"&gt;| prod3&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;example&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;com:/bricks/photos/b3 | Passive | N/A             | N/A                 | N/A                 |    N/A     |       N/A       |          N/A          |&lt;/span&gt;
+&lt;span class="nb"&gt;+-------------------------------------+---------+-----------------+---------------------+---------------------+------------+-----------------+-----------------------+&lt;/span&gt;&lt;span class="c"&gt;&lt;/span&gt;
+
+&lt;span class="c"&gt;SESSION: data ==&lt;/span&gt;&lt;span class="nv"&gt;&amp;gt;&lt;/span&gt;&lt;span class="c"&gt; geoaccount@bkp2&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;example&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;com::backup_data&lt;/span&gt;
+&lt;span class="nb"&gt;+-----------------------------------+---------+-----------------+---------------------+---------------------+------------+-----------------+-----------------------+&lt;/span&gt;&lt;span class="c"&gt;&lt;/span&gt;
+&lt;span class="c"&gt;| MASTER                            | STATUS  | CRAWL STATUS    | SLAVE NODE          | LAST SYNCED         | CHKPT TIME | CHKPT COMPLETED | CHKPT COMPLETION TIME |&lt;/span&gt;
+&lt;span class="nb"&gt;+-----------------------------------+---------+-----------------+---------------------+---------------------+------------+-----------------+-----------------------+&lt;/span&gt;&lt;span class="c"&gt;&lt;/span&gt;
+&lt;span class="c"&gt;| prod1&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;example&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;com:/bricks/data/b1 | Stopped | N/A             | N/A                 | N/A                 |    N/A     |       N/A       |          N/A          |&lt;/span&gt;
+&lt;span class="c"&gt;| prod2&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;example&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;com:/bricks/data/b2 | Stopped | N/A             | N/A                 | N/A                 |    N/A     |       N/A       |          N/A          |&lt;/span&gt;
+&lt;span class="c"&gt;| prod3&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;example&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;com:/bricks/data/b3 | Stopped | N/A             | N/A                 | N/A                 |    N/A     |       N/A       |          N/A          |&lt;/span&gt;
+&lt;span class="nb"&gt;+-----------------------------------+---------+-----------------+---------------------+---------------------+------------+-----------------+-----------------------+&lt;/span&gt;&lt;span class="c"&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Comments &amp;amp; Suggestions Welcome.&lt;/p&gt;</content><category term="blogs"></category><category term="gluster"></category><category term="glusterfsblog"></category></entry><entry><title>Template based Volgen - Glusterd2</title><link href="https://aravindavk.in/blog/template-based-volgen-glusterd2/" rel="alternate"></link><published>2019-01-06T00:00:00+05:30</published><updated>2019-01-06T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2019-01-06:/blog/template-based-volgen-glusterd2/</id><summary type="html">&lt;p class="first last"&gt;Glusterd2 also provides facility to set default Volume
 options when a Volume is created. Each Volume type can have
 its own default Volume options to be enabled by default.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;Volfiles are the configuration files used by &lt;a class="reference external" href="https://www.gluster.org/"&gt;Gluster&lt;/a&gt;

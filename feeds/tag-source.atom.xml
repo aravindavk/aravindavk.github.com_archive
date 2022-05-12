@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Aravinda VK - source</title><link href="https://aravindavk.in/" rel="alternate"></link><link href="https://aravindavk.in/feeds/tag-source.atom.xml" rel="self"></link><id>https://aravindavk.in/</id><updated>2021-07-30T00:00:00+05:30</updated><entry><title>Building Crystal Programs with Source File Hash baked in</title><link href="https://aravindavk.in/blog/building-crystal-programs-with-source-hash-baked-in/" rel="alternate"></link><published>2021-07-30T00:00:00+05:30</published><updated>2021-07-30T00:00:00+05:30</updated><author><name>Aravinda Vishwanathapura</name></author><id>tag:aravindavk.in,2021-07-30:/blog/building-crystal-programs-with-source-hash-baked-in/</id><summary type="html">&lt;p&gt;"Similarly, if &lt;code&gt;shards&lt;/code&gt; is used as the package manager for your Crystal Programs, then you can include the &lt;code&gt;VERSION&lt;/code&gt; automatically while compiling the program."&lt;/p&gt;</summary><content type="html">&lt;p&gt;This post is inspired by the &lt;a href="https://www.btbytes.com/posts/2020-05-05-01-golang-hash-builds.html"&gt;blog post&lt;/a&gt; written by &lt;a href="https://twitter.com/btbytes"&gt;Pradeep Gowda&lt;/a&gt; about embedding Source file Hash while building Go programs.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The one issue with checking in the binary with source code is, you can’t be sure if the binary is built with the latest source that is adjacent to it.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.btbytes.com/posts/2020-05-05-01-golang-hash-builds.html"&gt;https://www.btbytes.com/posts/2020-05-05-01-golang-hash-builds.html&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I adopted a similar technique while building &lt;a href="https://crystal-lang.org"&gt;Crystal&lt;/a&gt; programs. This is much simpler with Crystal because of the macros.&lt;/p&gt;
+&lt;p&gt;hello.cr file:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="no"&gt;SOURCE_HASH&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="si"&gt;{{&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="sb"&gt;`sha256sum &lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="kp"&gt;__FILE__&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="sb"&gt; | cut -d&amp;#39; &amp;#39; -f1`&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;chomp&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;stringify&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="si"&gt;}}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="nb"&gt;puts&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="no"&gt;SOURCE_HASH&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Build step:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;crystal build hello.cr
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Verify:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;./hello
+&lt;span class="go"&gt;cdb9db6f5ac4a0df1ed06de118c569fa225785685849d533c1ba550854b8b4ab&lt;/span&gt;
+&lt;span class="gp"&gt;$ &lt;/span&gt;sha256sum hello.cr
+&lt;span class="go"&gt;cdb9db6f5ac4a0df1ed06de118c569fa225785685849d533c1ba550854b8b4ab  hello.cr&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Similarly, if &lt;code&gt;shards&lt;/code&gt; is used as the package manager for your Crystal Programs, then you can include the &lt;code&gt;VERSION&lt;/code&gt; automatically while compiling the program.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="no"&gt;VERSION&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="si"&gt;{{&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="sb"&gt;`shards version &lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="kp"&gt;__DIR__&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;chomp&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;stringify&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="si"&gt;}}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="nb"&gt;puts&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="no"&gt;VERSION&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="blogs"></category><category term="crystal"></category><category term="go"></category><category term="hash"></category><category term="source"></category></entry></feed>

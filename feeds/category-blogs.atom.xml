@@ -1,5 +1,897 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Aravinda VK - blogs</title><link href="https://aravindavk.in/" rel="alternate"></link><link href="https://aravindavk.in/feeds/category-blogs.atom.xml" rel="self"></link><id>https://aravindavk.in/</id><updated>2019-02-17T00:00:00+05:30</updated><entry><title>Area Charts using R base Graphics</title><link href="https://aravindavk.in/blog/area-charts-using-r-base-graphics/" rel="alternate"></link><published>2019-02-17T00:00:00+05:30</published><updated>2019-02-17T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2019-02-17:/blog/area-charts-using-r-base-graphics/</id><summary type="html">&lt;p class="first last"&gt;Today I learnt to create Area graph using R Base
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Aravinda VK - blogs</title><link href="https://aravindavk.in/" rel="alternate"></link><link href="https://aravindavk.in/feeds/category-blogs.atom.xml" rel="self"></link><id>https://aravindavk.in/</id><updated>2021-07-30T00:00:00+05:30</updated><entry><title>Building Crystal Programs with Source File Hash baked in</title><link href="https://aravindavk.in/blog/building-crystal-programs-with-source-hash-baked-in/" rel="alternate"></link><published>2021-07-30T00:00:00+05:30</published><updated>2021-07-30T00:00:00+05:30</updated><author><name>Aravinda Vishwanathapura</name></author><id>tag:aravindavk.in,2021-07-30:/blog/building-crystal-programs-with-source-hash-baked-in/</id><summary type="html">&lt;p&gt;"Similarly, if &lt;code&gt;shards&lt;/code&gt; is used as the package manager for your Crystal Programs, then you can include the &lt;code&gt;VERSION&lt;/code&gt; automatically while compiling the program."&lt;/p&gt;</summary><content type="html">&lt;p&gt;This post is inspired by the &lt;a href="https://www.btbytes.com/posts/2020-05-05-01-golang-hash-builds.html"&gt;blog post&lt;/a&gt; written by &lt;a href="https://twitter.com/btbytes"&gt;Pradeep Gowda&lt;/a&gt; about embedding Source file Hash while building Go programs.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The one issue with checking in the binary with source code is, you can’t be sure if the binary is built with the latest source that is adjacent to it.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.btbytes.com/posts/2020-05-05-01-golang-hash-builds.html"&gt;https://www.btbytes.com/posts/2020-05-05-01-golang-hash-builds.html&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I adopted a similar technique while building &lt;a href="https://crystal-lang.org"&gt;Crystal&lt;/a&gt; programs. This is much simpler with Crystal because of the macros.&lt;/p&gt;
+&lt;p&gt;hello.cr file:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="no"&gt;SOURCE_HASH&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="si"&gt;{{&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="sb"&gt;`sha256sum &lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="kp"&gt;__FILE__&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="sb"&gt; | cut -d&amp;#39; &amp;#39; -f1`&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;chomp&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;stringify&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="si"&gt;}}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="nb"&gt;puts&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="no"&gt;SOURCE_HASH&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Build step:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;crystal build hello.cr
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Verify:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;./hello
+&lt;span class="go"&gt;cdb9db6f5ac4a0df1ed06de118c569fa225785685849d533c1ba550854b8b4ab&lt;/span&gt;
+&lt;span class="gp"&gt;$ &lt;/span&gt;sha256sum hello.cr
+&lt;span class="go"&gt;cdb9db6f5ac4a0df1ed06de118c569fa225785685849d533c1ba550854b8b4ab  hello.cr&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Similarly, if &lt;code&gt;shards&lt;/code&gt; is used as the package manager for your Crystal Programs, then you can include the &lt;code&gt;VERSION&lt;/code&gt; automatically while compiling the program.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="no"&gt;VERSION&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="si"&gt;{{&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="sb"&gt;`shards version &lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="kp"&gt;__DIR__&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;chomp&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;stringify&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="si"&gt;}}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="nb"&gt;puts&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="no"&gt;VERSION&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="blogs"></category><category term="crystal"></category><category term="go"></category><category term="hash"></category><category term="source"></category></entry><entry><title>ಇಂಪನಳ ರಾಣಿ ಸ್ಟೈಲು</title><link href="https://aravindavk.in/blog/impana-raani-style-u/" rel="alternate"></link><published>2021-06-28T00:00:00+05:30</published><updated>2021-06-28T00:00:00+05:30</updated><author><name>Aravinda Vishwanathapura</name></author><id>tag:aravindavk.in,2021-06-28:/blog/impana-raani-style-u/</id><summary type="html">&lt;p&gt;"ಸುಮ್ಮನೆ ಹೂ ಅಂತ ತಲೆ ಅಲ್ಲಾಡಿಸಿದ್ಳು.. ಇನ್ನೂ ಸರಿಯಾಗಿ ಅರ್ಥ ಆಗಿಲ್ಲ ಅನ್ನಿಸ್ತು. ಮತ್ತೆ ಹೇಳಿದೆ.."&lt;/p&gt;</summary><content type="html">&lt;p&gt;ಇಂಪನ ಅಮ್ಮನ ದುಪ್ಪಟ್ಟಾವನ್ನು ಉದ್ದಕ್ಕೆ ಹೊದ್ದುಕೊಂಡು ಬಂದಳು. ನೋಡಿದ ತಕ್ಷಣ ಗೊತ್ತಾಯ್ತು, ಈಗ ನೋಡುತ್ತಿರುವ ಮಹಾಭಾರತದ ಪ್ರಭಾವ ಎಂದು.&lt;/p&gt;
+&lt;p&gt;"ಇಂಪೂ... ನೋಡು ಹಿಂಗೆ ಉದ್ದಕ್ಕೆ ಹಾಕಿಕೊಂಡು ಬರಬಾರದು, ಎಲ್ಲಿಗಾದರೂ ಸಿಕ್ಕಿಹಾಕಿಕೊಂಡರೆ.. ಅಥ್ವಾ ನೀನೇ ತುಳ್ಕೊಂಡ್ರೆ ಅಬ್ಬು ಆಗುತ್ತೆ ಅಲ್ವಾ?"&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Impana Duppatta" src="/images/impana-duppatta.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;ಸುಮ್ಮನೆ ಹೂ ಅಂತ ತಲೆ ಅಲ್ಲಾಡಿಸಿದ್ಳು.. ಇನ್ನೂ ಸರಿಯಾಗಿ ಅರ್ಥ ಆಗಿಲ್ಲ ಅನ್ನಿಸ್ತು. ಮತ್ತೆ ಹೇಳಿದೆ..&lt;/p&gt;
+&lt;p&gt;"ನೋಡು ಪುಟ್ಟಾ.. TVಲಿ act ಮಾಡೋರಿಗೆ ಕ್ಯಾಮೆರಾ ಮೆನ್ ಮತ್ತೆ ಬೇರೆಯವ್ರೂ ಎಲ್ಲಾ ಇರ್ತಾರೆ, ಅವ್ರೆಲ್ಲಾ ಹೇಳ್ತಾರೆ ನಡೀವಾಗ ಏನಾದರೂ ಸಿಕ್ಕಿ ಹಾಕಿಕೊಂಡರೆ. ಅದೂ ಅಲ್ಲದೇ ರಾಣಿ ಅಂತಾದ್ರೆ ಹಿಂದೆನೇ ಒಬ್ರು ಇರ್ತಾರೆ ರಾಣಿಗೆ ಹೆಲ್ಪ್ ಮಾಡಕ್ಕೆ ಗೊತ್ತಾ?"&lt;/p&gt;
+&lt;p&gt;"ಅಪ್ಪಾ ಹಂಗಾದ್ರೆ ಬಾ ನನ್ನ ಹಿಂದೆ"&lt;/p&gt;
+&lt;p&gt;"!!!"&lt;/p&gt;
+&lt;p&gt;ಆಚೆ ಒಳಗೆ ಚಿನ್ಮಯಿ ಕಿಸಕ್ಕನೆ ನಕ್ಕಿದ್ದು ಕೇಳಿಲ್ಲದಂತೆ ಈಚೆಗೆ ಬಂದೆ.&lt;/p&gt;</content><category term="blogs"></category><category term="kannada"></category><category term="impana"></category></entry><entry><title>ಇಂಪನ ಹೋಮ್ ವರ್ಕ್</title><link href="https://aravindavk.in/blog/impana-homework/" rel="alternate"></link><published>2020-11-04T00:00:00+05:30</published><updated>2020-11-04T00:00:00+05:30</updated><author><name>Aravinda Vishwanathapura</name></author><id>tag:aravindavk.in,2020-11-04:/blog/impana-homework/</id><summary type="html">&lt;p&gt;ಅಪ್ಪಾ ಟ್ಯಾಬ್ ಒಂಚೂರು On ಮಾಡ್ತೀಯಾ?&lt;/p&gt;</summary><content type="html">&lt;p&gt;ಇಂಪನ ಯಾವ ಯಾವ ಹೋಮ್&amp;zwj;ವರ್ಕ್ ಇದೆ ಅಂತ ಟ್ಯಾಬ್ ನೋಡಿಕೊಂಡು ಬರೀತಿದ್ದಳು. ಹಾಗೇ ಸಲ್ಪ ಹೊತ್ತು ಬಿಟ್ಟಿದ್ದಕ್ಕೆ ಟ್ಯಾಬ್ ಸ್ಕ್ರೀನ್ ಆಫ್ ಆಗಿತ್ತು.&lt;/p&gt;
+&lt;p&gt;"ಅಪ್ಪಾ ಟ್ಯಾಬ್ ಒಂಚೂರು On ಮಾಡ್ತೀಯಾ?"&lt;/p&gt;
+&lt;p&gt;"ನೀನೇ On ಮಾಡ್ಕೊಳೇ.."&lt;/p&gt;
+&lt;p&gt;"ಅದೂ.. ನಾನು Cursive ಲೆಟರ್ಸ್ ಹೋಮ್ ವರ್ಕ್ ಬರೀತಿದೀನಲ್ವಾ.. ಕೈ ಎತ್ತಕ್ಕೆ ಆಗಲ್ಲ.."&lt;/p&gt;
+&lt;p&gt;"!!!"&lt;/p&gt;</content><category term="blogs"></category><category term="kannada"></category><category term="impana"></category></entry><entry><title>Writing Prometheus exporter using Crystal language - Part 2</title><link href="https://aravindavk.in/blog/crystal-prometheus/" rel="alternate"></link><published>2020-11-03T00:00:00+05:30</published><updated>2020-11-03T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2020-11-03:/blog/crystal-prometheus/</id><summary type="html">&lt;p&gt;In this blog, we will see how to monitor an external application or a log file.&lt;/p&gt;</summary><content type="html">&lt;p&gt;In the &lt;a href="https://aravindavk.in/blog/amber-prometheus/"&gt;last blog&lt;/a&gt; post, we discussed instrumenting &lt;a href="https://amberframework.org"&gt;Amber&lt;/a&gt; apps using the &lt;a href="https://github.com/Darwinnn/crometheus"&gt;Crometheus&lt;/a&gt; library. In this blog, we will see how to monitor an external application or a log file.&lt;/p&gt;
+&lt;p&gt;One main difference here is defining various metric types like Counter, Guage, etc.. are not required. But export the sample values when requested.&lt;/p&gt;
+&lt;p&gt;I created a demo app using the HTTP server example available on the Crystal language home page. In this blog, we will instrument this web app by collecting a few metrics externally.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# file: myapp.cr&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="k"&gt;require&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;http/server&amp;quot;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="n"&gt;server&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;HTTP&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;Server&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;new&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;do&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;context&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;context&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;response&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;content_type&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;text/plain&amp;quot;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="n"&gt;context&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;response&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;print&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Hello world, got &lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="n"&gt;context&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;!&amp;quot;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="nb"&gt;puts&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Listening on http://127.0.0.1:8080&amp;quot;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="n"&gt;server&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;listen&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;8080&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Build and run the application,&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ crystal build myapp.cr
+$ ./myapp
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Now let's create an app that collects the CPU, Memory, and uptime details about the app we created initially(or any other app). Create and install the project dependencies using,&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ mkdir myapp_exporter
+$ &lt;span class="nb"&gt;cd&lt;/span&gt; myapp_exporter
+$ shards init
+$ mkdir src
+$ touch src/myapp_exporter.cr
+$ shards install
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# file: shard.yml&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="nt"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;myapp_exporter&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="nt"&gt;version&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;0.1.0&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="nt"&gt;dependencies&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;crometheus&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;github&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;darwinnn/crometheus&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;branch&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;master&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="nt"&gt;targets&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;myapp_exporter&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;main&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;src/myapp_exporter.cr&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The below command provides the CPU, memory, and uptime information about the application.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ ps --no-header -ww -o pcpu,pmem,rsz,vsz,etimes,comm -C myapp
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# file: src/myapp_exporter.cr&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="k"&gt;require&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;crometheus&amp;quot;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;MyappMetrics&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Crometheus&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;Metric&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;type&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;Type&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;Gauge&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="k"&gt;end&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;samples&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Nil&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;cmdout&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="sb"&gt;`ps --no-header -ww -o pcpu,pmem,rsz,vsz,etimes,comm -C myapp`&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;cmdout&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;parts&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;cmdout&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;split&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;pcpu&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;parts&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;].&lt;/span&gt;&lt;span class="n"&gt;strip&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to_f&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;pmem&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;parts&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;].&lt;/span&gt;&lt;span class="n"&gt;strip&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to_f&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;rsz&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;parts&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;].&lt;/span&gt;&lt;span class="n"&gt;strip&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to_f&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1024&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;vsz&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;parts&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="o"&gt;].&lt;/span&gt;&lt;span class="n"&gt;strip&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to_f&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1024&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;uptime&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;parts&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="o"&gt;].&lt;/span&gt;&lt;span class="n"&gt;strip&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to_f&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;labels&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="ss"&gt;:server&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;server1.example.com&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;yield&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Crometheus&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;Sample&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;new&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pcpu&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;labels&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;labels&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;suffix&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;cpu_percentage&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;yield&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Crometheus&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;Sample&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;new&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pmem&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;labels&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;labels&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;suffix&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;memory_percentage&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;yield&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Crometheus&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;Sample&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;new&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rsz&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;labels&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;labels&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;suffix&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;resident_memory_bytes&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;yield&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Crometheus&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;Sample&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;new&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;vsz&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;labels&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;labels&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;suffix&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;virtual_memory_bytes&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;yield&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Crometheus&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;Sample&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;new&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;uptime&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;labels&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;labels&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;suffix&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;uptime_seconds&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="k"&gt;end&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="n"&gt;MyappMetrics&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;new&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;:myapp&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;CPU, Memory and Uptime metrics&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="n"&gt;Crometheus&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;default_registry&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;/metrics&amp;quot;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="n"&gt;Crometheus&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;default_registry&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;run_server&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Build and run,&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ shards build
+$ ./bin/myapp_exporter
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Now browse &lt;a href="http://localhost:5000/metrics"&gt;http://localhost:5000/metrics&lt;/a&gt; to see the metrics related to &lt;code&gt;myapp&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;# HELP myapp CPU, Memory and Uptime metrics
+# TYPE myapp gauge
+myapp_cpu_percentage{server=&amp;quot;server1.example.com&amp;quot;} 0.0
+myapp_memory_percentage{server=&amp;quot;server1.example.com&amp;quot;} 0.3
+myapp_resident_memory_bytes{server=&amp;quot;server1.example.com&amp;quot;} 6664192.0
+myapp_virtual_memory_bytes{server=&amp;quot;server1.example.com&amp;quot;} 48365568.0
+myapp_uptime_seconds{server=&amp;quot;server1.example.com&amp;quot;} 1656.0
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Add multiple classes to collect more meaningful data. For example, connect to the database and query the table to see the number of users or any other entities.&lt;/p&gt;</content><category term="blogs"></category><category term="amber"></category><category term="crystal"></category><category term="prometheus"></category><category term="crometheus"></category></entry><entry><title>Monitoring Amber apps with Prometheus</title><link href="https://aravindavk.in/blog/amber-prometheus/" rel="alternate"></link><published>2020-11-01T00:00:00+05:30</published><updated>2020-11-01T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2020-11-01:/blog/amber-prometheus/</id><summary type="html">&lt;p&gt;Crometheus is the Prometheus client library for the Crystal programming language. It provides an easy way to integrate with any other web frameworks or as a standalone Prometheus exporter to monitor an external application or tool.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="https://github.com/Darwinnn/crometheus"&gt;Crometheus&lt;/a&gt; is a &lt;a href="https://prometheus.io"&gt;Prometheus&lt;/a&gt; client library for instrumenting programs written in the &lt;a href="https://crystal-lang.org"&gt;Crystal programming&lt;/a&gt; language. It provides an easy way to integrate with any other web frameworks or as a standalone Prometheus exporter to monitor an external application or tool.&lt;/p&gt;
+&lt;p&gt;In this blog, we will see how to integrate Crometheus with &lt;a href="https://amberframework.org"&gt;Amber&lt;/a&gt; applications. &lt;/p&gt;
+&lt;p&gt;Add Crometheus as a dependency in your shard.yml file.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;crometheus&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;github&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;darwinnn/crometheus&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;branch&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;master&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;And run &lt;code&gt;shards install&lt;/code&gt; to install the dependencies. In Amber, the HTTP handler is called Plug. To integrate Crometheus, include it as a Plug as shown below.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# file: config/initializers/metrics.cr&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="k"&gt;require&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;crometheus&amp;quot;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="n"&gt;Crometheus&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;default_registry&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;/metrics&amp;quot;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="gh"&gt;diff --git a/config/routes.cr b/config/routes.cr&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="gh"&gt;index c50f03c..db1a94a 100644&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="gd"&gt;--- a/config/routes.cr&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="gi"&gt;+++ b/config/routes.cr&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="gu"&gt;@@ -1,3 +1,5 @@&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="gi"&gt;+require &amp;quot;crometheus&amp;quot;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="gi"&gt;+&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;Amber::Server.configure do&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;  pipeline :web do&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;    # Plug is the method to use connect a pipe (middleware)&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="gu"&gt;@@ -10,6 +12,7 @@ Amber::Server.configure do&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;    plug Amber::Pipe::Session.new&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;    plug Amber::Pipe::Flash.new&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;    plug Amber::Pipe::CSRF.new&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="gi"&gt;+    plug Crometheus.default_registry.get_handler&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;  end&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="w"&gt; &lt;/span&gt;  pipeline :api do&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Crometheus traps the &lt;code&gt;/metrics&lt;/code&gt; (or configured path), but Amber doesn't know about this dynamic route and produces the following error when the &lt;code&gt;/metrics&lt;/code&gt; page is opened.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;2020-10-23T15:17:27.301760Z   WARN - error: Error: 404
+The request was not found. GET - /metrics (Amber::Exceptions::RouteNotFound)
+from lib/amber/src/amber/controller/static.cr:7:7 in &amp;#39;index&amp;#39;
+  from config/routes.cr:45:5 in &amp;#39;-&amp;gt;&amp;#39;
+  from ../../../../../../usr/local/Cellar/crystal/0.35.1_1/src/primitives.cr:255:3 in &amp;#39;call&amp;#39;
+  from lib/amber/src/amber/router/context.cr:78:5 in &amp;#39;process_request&amp;#39;
+  from lib/amber/src/amber/pipes/controller.cr:8:9 in &amp;#39;call&amp;#39;
+  from ../../../../../../usr/local/Cellar/crystal/0.35.1_1/src/http/server/handler.cr:28:7 in &amp;#39;call_next&amp;#39;
+  from lib/amber/src/amber/pipes/static.cr:85:11 in &amp;#39;call_next_with_file_path&amp;#39;
+  from lib/amber/src/amber/pipes/static.cr:45:9 in &amp;#39;call&amp;#39;
+  from ../../../../../../usr/local/Cellar/crystal/0.35.1_1/src/http/server/handler.cr:28:7 in &amp;#39;call_next&amp;#39;
+  from lib/amber/src/amber/pipes/error.cr:11:9 in &amp;#39;call&amp;#39;
+  from lib/amber/src/amber/pipes/pipeline.cr:20:11 in &amp;#39;call&amp;#39;
+  from ../../../../../../usr/local/Cellar/crystal/0.35.1_1/src/http/server/request_processor.cr:50:11 in &amp;#39;process&amp;#39;
+  from ../../../../../../usr/local/Cellar/crystal/0.35.1_1/src/http/server.cr:513:5 in &amp;#39;handle_client&amp;#39;
+  from ../../../../../../usr/local/Cellar/crystal/0.35.1_1/src/http/server.cr:468:13 in &amp;#39;-&amp;gt;&amp;#39;
+  from ../../../../../../usr/local/Cellar/crystal/0.35.1_1/src/primitives.cr:255:3 in &amp;#39;run&amp;#39;
+  from ../../../../../../usr/local/Cellar/crystal/0.35.1_1/src/fiber.cr:92:34 in &amp;#39;-&amp;gt;&amp;#39;
+
+08:47:27 error (Warn) Error: 404
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;To avoid this, add a dummy route and a controller to make Amber happy.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="gh"&gt;diff --git a/config/routes.cr b/config/routes.cr&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="gh"&gt;index c50f03c..876009b 100644&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="gd"&gt;--- a/config/routes.cr&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="gi"&gt;+++ b/config/routes.cr&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="gu"&gt;@@ -30,7 +33,8 @@ Amber::Server.configure do&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;  routes :web do&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="w"&gt; &lt;/span&gt;      get &amp;quot;/&amp;quot;, HomeController, :index&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="gi"&gt;+      get &amp;quot;/metrics&amp;quot;, ApplicationController, :metrics&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="gi"&gt;+&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;  end&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="w"&gt; &lt;/span&gt;  routes :api do&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Add the below function to the &lt;code&gt;application_controller.cr&lt;/code&gt; file.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="gh"&gt;diff --git a/src/controllers/application_controller.cr b/src/controllers/application_controller.cr&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="gh"&gt;index 3f7b7e6..3cd44e2 100644&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="gd"&gt;--- a/src/controllers/application_controller.cr&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="gi"&gt;+++ b/src/controllers/application_controller.cr&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="gu"&gt;@@ -3,4 +3,7 @@ require &amp;quot;jasper_helpers&amp;quot;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;class ApplicationController &amp;lt; Amber::Controller::Base&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;  include JasperHelpers&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;  LAYOUT = &amp;quot;application.ecr&amp;quot;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="gi"&gt;+&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="gi"&gt;+  def metrics&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="gi"&gt;+  end&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;end&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Now browse &lt;a href="http://localhost:3000/metrics"&gt;http://localhost:3000/metrics&lt;/a&gt; to see the default metrics.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;# HELP process Standard process statistics
+# TYPE process gauge
+process_gc_heap_bytes 786432.0
+process_gc_free_bytes 86016.0
+process_gc_total_bytes 681168.0
+process_gc_unmapped_bytes 0.0
+process_bytes_since_gc 681168.0
+process_cpu_seconds_total 0.055226
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Crometheus provides a few metrics by default and enables a few more metrics by adding one more Plug as below. HttpCollector shows metrics related to all HTTP routes of application. To skip tracking the &lt;code&gt;/metrics&lt;/code&gt; route, add HttpCollector Plug after the Crometheus default handler.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="gh"&gt;index c50f03c..fc57a4d 100644&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="gd"&gt;--- a/config/routes.cr&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="gi"&gt;+++ b/config/routes.cr&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="gu"&gt;@@ -1,3 +1,5 @@&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="gi"&gt;+require &amp;quot;crometheus&amp;quot;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="gi"&gt;+&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;Amber::Server.configure do&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;  pipeline :web do&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;    # Plug is the method to use connect a pipe (middleware)&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="gu"&gt;@@ -10,6 +12,8 @@ Amber::Server.configure do&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;    plug Amber::Pipe::Session.new&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;    plug Amber::Pipe::Flash.new&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;    plug Amber::Pipe::CSRF.new&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="gi"&gt;+    plug Crometheus::Middleware::HttpCollector.new&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="gi"&gt;+    plug Crometheus.default_registry.get_handler&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;  end&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Now visit &lt;a href="http://localhost:3000/metrics"&gt;http://localhost:3000/metrics&lt;/a&gt; to see the additional metrics.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;# HELP http_request_duration_seconds The HTTP response duration of the application.
+# TYPE http_request_duration_seconds histogram
+http_request_duration_seconds_count{method=&amp;quot;GET&amp;quot;, path=&amp;quot;/metrics&amp;quot;} 12.0
+http_request_duration_seconds_sum{method=&amp;quot;GET&amp;quot;, path=&amp;quot;/metrics&amp;quot;} 0.002073
+http_request_duration_seconds_bucket{le=&amp;quot;0.005&amp;quot;, method=&amp;quot;GET&amp;quot;, path=&amp;quot;/metrics&amp;quot;} 12.0
+http_request_duration_seconds_bucket{le=&amp;quot;0.01&amp;quot;, method=&amp;quot;GET&amp;quot;, path=&amp;quot;/metrics&amp;quot;} 12.0
+http_request_duration_seconds_bucket{le=&amp;quot;0.025&amp;quot;, method=&amp;quot;GET&amp;quot;, path=&amp;quot;/metrics&amp;quot;} 12.0
+http_request_duration_seconds_bucket{le=&amp;quot;0.05&amp;quot;, method=&amp;quot;GET&amp;quot;, path=&amp;quot;/metrics&amp;quot;} 12.0
+http_request_duration_seconds_bucket{le=&amp;quot;0.1&amp;quot;, method=&amp;quot;GET&amp;quot;, path=&amp;quot;/metrics&amp;quot;} 12.0
+http_request_duration_seconds_bucket{le=&amp;quot;0.25&amp;quot;, method=&amp;quot;GET&amp;quot;, path=&amp;quot;/metrics&amp;quot;} 12.0
+http_request_duration_seconds_bucket{le=&amp;quot;0.5&amp;quot;, method=&amp;quot;GET&amp;quot;, path=&amp;quot;/metrics&amp;quot;} 12.0
+http_request_duration_seconds_bucket{le=&amp;quot;1.0&amp;quot;, method=&amp;quot;GET&amp;quot;, path=&amp;quot;/metrics&amp;quot;} 12.0
+http_request_duration_seconds_bucket{le=&amp;quot;2.5&amp;quot;, method=&amp;quot;GET&amp;quot;, path=&amp;quot;/metrics&amp;quot;} 12.0
+http_request_duration_seconds_bucket{le=&amp;quot;5.0&amp;quot;, method=&amp;quot;GET&amp;quot;, path=&amp;quot;/metrics&amp;quot;} 12.0
+http_request_duration_seconds_bucket{le=&amp;quot;10.0&amp;quot;, method=&amp;quot;GET&amp;quot;, path=&amp;quot;/metrics&amp;quot;} 12.0
+http_request_duration_seconds_bucket{le=&amp;quot;+Inf&amp;quot;, method=&amp;quot;GET&amp;quot;, path=&amp;quot;/metrics&amp;quot;} 12.0
+# HELP http_request_exceptions_total The total number of exceptions raised by the application.
+# TYPE http_request_exceptions_total counter
+# HELP http_requests_total The total number of HTTP requests handled by the application.
+# TYPE http_requests_total counter
+http_requests_total{code=&amp;quot;200&amp;quot;, method=&amp;quot;GET&amp;quot;, path=&amp;quot;/metrics&amp;quot;} 12.0
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Refer examples to add custom metrics specific to your applications. &lt;a href="https://github.com/Darwinnn/crometheus/tree/master/examples"&gt;github.com/Darwinnn/crometheus/tree/master/examples&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;In the &lt;a href="https://aravindavk.in/blog/crystal-prometheus"&gt;next blog&lt;/a&gt; post, we will see how to use Crometheus to monitor external applications/services/tools.&lt;/p&gt;
+&lt;h2&gt;References:&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://prometheus.io"&gt;Prometheus&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://amberframework.org"&gt;Amber Framework&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://crystal-lang.org"&gt;Crystal Programming language&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/Darwinnn/crometheus"&gt;Crometheus&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><category term="blogs"></category><category term="amber"></category><category term="crystal"></category><category term="prometheus"></category></entry><entry><title>ಅರಹೋಮ್</title><link href="https://aravindavk.in/blog/ara-home/" rel="alternate"></link><published>2020-10-10T00:00:00+05:30</published><updated>2020-10-10T00:00:00+05:30</updated><author><name>Aravinda Vishwanathapura</name></author><id>tag:aravindavk.in,2020-10-10:/blog/ara-home/</id><summary type="html">&lt;p&gt;ಏನಕ್ಕೆ ಪುಟ್ಟಾ.. ಏನು ಅರ ಅಂದ್ರೆ?&lt;/p&gt;</summary><content type="html">&lt;p&gt;"ಅಪ್ಪಾ &lt;code&gt;ಅರ&lt;/code&gt;ಕ್ಕೆ ಇಂಗ್ಲಿಷ್ ಅಲ್ಲಿ ಏನಂತಾರೆ?"&lt;/p&gt;
+&lt;p&gt;ನನ್ನ ಹೆಸರನ್ನೇ ಕಟ್ ಮಾಡಿ ಏನೋ ಐಡಿಯಾ ಮಾಡ್ತಿದಾಳೆ ಇಂಪನ ಅಂತ ಅಂದುಕೊಂಡೆ..&lt;/p&gt;
+&lt;p&gt;"ಏನಕ್ಕೆ ಪುಟ್ಟಾ.. ಏನು ಅರ ಅಂದ್ರೆ?"&lt;/p&gt;
+&lt;p&gt;"ಅದೂ.. ಅರಹೋಮ್ ಅಂತ.. ಅರಮನೆಲಿ ಮನೆ ಅಂದ್ರೆ ಹೋಮ್, ಅರ ಅಂದ್ರೆ ಏನು ಅಂತ"&lt;/p&gt;
+&lt;p&gt;"ಹೋ ಹಂಗಾ.. ಅರಮನೆಗೆ Palace ಅಂತಾರೆ ಇಂಗ್ಲಿಷ್ ಅಲ್ಲಿ"&lt;/p&gt;</content><category term="blogs"></category><category term="kannada"></category><category term="impana"></category></entry><entry><title>ಇಂಪನ ಕೋಣೆ ದೇವರ ಕೋಣೆ</title><link href="https://aravindavk.in/blog/impana-kone-devara-kone/" rel="alternate"></link><published>2020-10-10T00:00:00+05:30</published><updated>2020-10-10T00:00:00+05:30</updated><author><name>Aravinda Vishwanathapura</name></author><id>tag:aravindavk.in,2020-10-10:/blog/impana-kone-devara-kone/</id><summary type="html">&lt;p&gt;ಅವತ್ತಿಂದ ನಮ್ಮನೇಲಿ ದೇವರ ಕೋಣೆ ಇಂಪನ ಕೋಣೆ ಅಂತ ಫೇಮಸ್ ಆಯ್ತು.&lt;/p&gt;</summary><content type="html">&lt;p&gt;ಇಂಪನ ಕೆಲವೊಂದ್ಸಲ ದಡ್ಡಿ ಥರ ಮಾಡಿದಾಗ, ಇಂಪನ ಕೋಣೆ ಅಂತಿದ್ದೆ. ಹಾಗಾಗಿ ಕೋಣೆ ಅಂದ್ರೆ ರೂಮ್ ಅನ್ನೋ ಇನ್ನೊಂದು ಅರ್ಥ ಇದೆ ಅಂತ ಅವಳಿಗೆ ಗೊತ್ತಿರಲಿಲ್ಲ.&lt;/p&gt;
+&lt;p&gt;ಹಾಗೇ ಒಂದ್ಸಲ ಮಾತಾಡುವಾಗ ದೇವರ ಕೋಣೆಲಿ ಇದೆ ನೋಡು ಅಂದೆ. ಇಂಪನಂಗೆ confuse ಆಯ್ತು.&lt;/p&gt;
+&lt;p&gt;"ಅಮ್ಮಾ ನೋಡಮ್ಮಾ ಅಪ್ಪ ದೇವ್ರಿಗೆ ಕೋಣೆ ಅಂತಿದಾರೆ.."&lt;/p&gt;
+&lt;p&gt;ಅವತ್ತಿಂದ ನಮ್ಮನೇಲಿ ದೇವರ ಕೋಣೆ ಇಂಪನ ಕೋಣೆ ಅಂತ ಫೇಮಸ್ ಆಯ್ತು.&lt;/p&gt;
+&lt;p&gt;***&lt;/p&gt;
+&lt;p&gt;ಇಂಪನನ ಭಾಷೆಯಲ್ಲಿ ಹಿಂಗೇ ಕೆಲವೊಂದಷ್ಟು ಪದಗಳಿವೆ..&lt;/p&gt;
+&lt;p&gt;"ಚಿತ್ರಾನ್ನ" (ಅಪ್ಪಾ ಚಿತ್ರಾನ್ನ ಬರೆಯೋ..)&lt;/p&gt;
+&lt;p&gt;"ಅಪ್ಪಾನೆ ಅಮ್ಮಾನೆ" (ಅಪ್ಪಾನೇ ಹೇಳಿದ್ದು.. ಅಥವಾ ಅಮ್ಮಾನೇ ಬರಬೇಕು)&lt;/p&gt;
+&lt;p&gt;"ಅಪ್ಪ ಬೆಕ್ಕು ಅಮ್ಮ ಬೆಕ್ಕು" (ಅಪ್ಪ ಬೇಕು.. ಅಮ್ಮ ಬೇಕು)&lt;/p&gt;</content><category term="blogs"></category><category term="kannada"></category><category term="impana"></category></entry><entry><title>ಇಂಪನ ಮತ್ತು ಮನೆ ಕ್ಲೀನ್</title><link href="https://aravindavk.in/blog/impana-house-clean/" rel="alternate"></link><published>2020-09-25T00:00:00+05:30</published><updated>2020-09-25T00:00:00+05:30</updated><author><name>Aravinda Vishwanathapura</name></author><id>tag:aravindavk.in,2020-09-25:/blog/impana-house-clean/</id><summary type="html">&lt;p&gt;ಇಂಪನಾ.. ನೋಡು ಎಲ್ಲಾ ಕಡೆ ಪೆನ್ಸಿಲ್ ಹರಡಿಟ್ಟಿದೀಯ, ಎಲ್ಲಾ ರೂಮಲ್ಲೂ ಎರಡೆರಡು ಪೆನ್ಸಿಲ್ ಇದೆ ನೋಡು ಎಂದೆ.&lt;/p&gt;</summary><content type="html">&lt;p&gt;ಒಂದಿನ ಮನೆ ಗುಡಿಸಿ ಕ್ಲೀನ್ ಮಾಡ್ತಿದ್ದೆ. ಎಲ್ಲಾ ಕಡೆ ಇಂಪನ ಕಲರ್ ಪೆನ್ಸಿಲ್ ಹರಡಿಟ್ಟಿದ್ದಳು.&lt;/p&gt;
+&lt;p&gt;"ಇಂಪನಾ.. ನೋಡು ಎಲ್ಲಾ ಕಡೆ ಪೆನ್ಸಿಲ್ ಹರಡಿಟ್ಟಿದೀಯ, ಎಲ್ಲಾ ರೂಮಲ್ಲೂ ಎರಡೆರಡು ಪೆನ್ಸಿಲ್ ಇದೆ ನೋಡು" ಎಂದೆ.&lt;/p&gt;
+&lt;p&gt;ಸಲ್ಪ ಹೊತ್ತು ಏನೂ ಸದ್ದಿರಲಿಲ್ಲ. ಆಮೇಲೆ ನಾನು ಆಫೀಸ್ ರೂಮಲ್ಲಿ ಕೂತಿದ್ದಾಗ ಬಂದಳು..&lt;/p&gt;
+&lt;p&gt;"ಅಪ್ಪಾ.."&lt;/p&gt;
+&lt;p&gt;"ಎಲ್ಲಾ ರೂಮಲ್ಲೂ ಎರಡೆರಡು ಪೆನ್ಸಿಲ್ ಇದೆ ಅಂದ್ಯಲ್ವಾ.. ಈ ರೂಮಲ್ಲಿ ಎಲ್ಲಿದೆ?" ಅಂತ ಕೇಳಿದ್ಳು ಸೊಂಟದ ಮೇಲೆ ಕೈ ಇಟ್ಟುಕೊಂಡು.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Impana" src="/images/kai_sontada_mele.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;ಎಲ್ಲಾ ರೂಮಲ್ಲೂ ಇದೆ, ಈ ರೂಮಲ್ಲಿ ಒಂದು ಇಟ್ಟಿಲ್ಲ ನೋಡು ಅಂತ ಹೇಳಿ ಕಳುಹಿಸಿದೆ.&lt;/p&gt;
+&lt;p&gt;ಈಗಿನ ಕಾಲದ ಮಕ್ಕಳ ಹತ್ರ ಹುಷಾರಾಗಿರ್ಬೇಕಪ್ಪಾ!&lt;/p&gt;</content><category term="blogs"></category><category term="kannada"></category><category term="impana"></category></entry><entry><title>ಇಂಪನಳ ಆನ್ ಲೈನ್ ಕ್ಲಾಸ್</title><link href="https://aravindavk.in/blog/impana-online-class/" rel="alternate"></link><published>2020-09-23T00:00:00+05:30</published><updated>2020-09-23T00:00:00+05:30</updated><author><name>Aravinda Vishwanathapura</name></author><id>tag:aravindavk.in,2020-09-23:/blog/impana-online-class/</id><summary type="html">&lt;p&gt;ಹಂಗೇ ಒಂದಿನ, ಮೇಡಮ್ ಏನೋ ಪ್ರಶ್ನೆ ಕೇಳಿದರು ಇಂಗ್ಲಿಷ್ ಅಲ್ಲಿ..&lt;/p&gt;</summary><content type="html">&lt;p&gt;ಆನ್ಲೈನ್ ಕ್ಲಾಸ್ ಏನು ಎಂದು ಅರ್ಥವಾಗುವುದಕ್ಕೆ ಸಲ್ಪ ಸಮಯ ಹಿಡಿಯಿತು ಇಂಪನಂಗೆ. ಆರಂಭದಲ್ಲಿ ಮೇಡಮ್ ಕೇಳಿದ ಪ್ರಶ್ನೆಗೆ ನನ್ನ ಅಥವಾ ಚಿನ್ಮಯಿ ಮುಖ ನೋಡುತ್ತಿದ್ದಳು. ದಿನ ಕಳೆದಂತೆ ಆನ್ಲೈನ್ ಕ್ಲಾಸ್ ಹಾಗೂ ಸಲ್ಪ ಸಲ್ಪ ಇಂಗ್ಲೀಷ್ ಅರ್ಥವಾಗುತ್ತಾ ಹೋಯಿತು.&lt;/p&gt;
+&lt;p&gt;ಹಂಗೇ ಒಂದಿನ, ಮೇಡಮ್ ಏನೋ ಪ್ರಶ್ನೆ ಕೇಳಿದರು ಇಂಗ್ಲಿಷ್ ಅಲ್ಲಿ..&lt;/p&gt;
+&lt;p&gt;"ಯಾರು ಯಾರು ಲೆಟರ್ಸ್ A-E ಪ್ರಾಕ್ಟೀಸ್ ಮಾಡಿದೀರಾ? Thumbs up ಮಾಡಿ"&lt;/p&gt;
+&lt;p&gt;ಇಂಪನ ಫುಲ್ ಜೋಶ್ ಅಲ್ಲಿ Thumbs up ಮಾಡಿದ್ಲು.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Impana" src="/images/thumbs_up.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;ನಾನು ಮನಸಲ್ಲೇ ಅಂದುಕೊಂಡೆ, "ಸೂಪರ್ ಅಲಾ.. ಇಂಪನ ಇಷ್ಟು ಫಾಸ್ಟ್ ಆಗಿ ಇಂಗ್ಲಿಷ್ ಅಲ್ಲಿ ಹೇಳಿದ್ದನ್ನು ಅರ್ಥ ಮಾಡಿಕೊಂಡಳಾ" ಅಂತ ಇಂಪನನ ಮುಖ ನೋಡಿದೆ.&lt;/p&gt;
+&lt;p&gt;ಅಷ್ಟರಲ್ಲೇ ಇಂಪನ ಮ್ಯೂಟ್ ಮಾಡಿಕೊಂಡು, ನನ್ನನ್ನ ಕೇಳಿದಳು..&lt;/p&gt;
+&lt;p&gt;"ಏನಂತೆ ಅಪ್ಪಾ?.."&lt;/p&gt;</content><category term="blogs"></category><category term="kannada"></category><category term="impana"></category></entry><entry><title>ಇಂಪನ ಮತ್ತು Sloth</title><link href="https://aravindavk.in/blog/impana-and-sloth/" rel="alternate"></link><published>2020-09-21T00:00:00+05:30</published><updated>2020-09-21T00:00:00+05:30</updated><author><name>Aravinda Vishwanathapura</name></author><id>tag:aravindavk.in,2020-09-21:/blog/impana-and-sloth/</id><summary type="html">&lt;p&gt;Zootopia ಮೂವಿ ನೋಡಿ ಆದ್ಮೇಲೆ ಇಂಪನಂಗೆ ಈ ಡೌಟ್ ಬಂತು.&lt;/p&gt;</summary><content type="html">&lt;p&gt;"ಅಪ್ಪಾ.. Sloth ಏನಕ್ಕೆ ಇಷ್ಟು ಸ್ಲೋ?"&lt;/p&gt;
+&lt;p&gt;Zootopia ಮೂವಿ ನೋಡಿ ಆದ್ಮೇಲೆ ಇಂಪನಂಗೆ ಈ ಡೌಟ್ ಬಂತು.&lt;/p&gt;
+&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/HHKwnUa3txo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+
+&lt;p&gt;"ಅದೂ.. Sloth ಸಲ್ಪನೇ ತಿನ್ನುತ್ತೆ, ಬೇಗ ಬೇಗ ಕೆಲಸ ಮಾಡಿದ್ರೆ ಬೇಗ ಶಕ್ತಿ ಖಾಲಿ ಆಗುತ್ತಲ್ವಾ.. ಅದಕ್ಕೆ ನಿಧಾನಕ್ಕೆ ಕೆಲಸ ಮಾಡುತ್ತೆ."&lt;/p&gt;
+&lt;p&gt;ಅರ್ಥ ಆಗ್ಲಿಲ್ಲ ಅವ್ಳಿಗೆ!&lt;/p&gt;
+&lt;p&gt;"ಅಪ್ಪಾ.. ಶಕ್ತಿ ಖಾಲಿ ಆಗ್ಬಾರ್ದೂ ಅಂತ ನಿಧಾನಕ್ಕೆ ಏನಕ್ಕೆ ಕೆಲ್ಸ ಮಾಡ್ಬೇಕೂ?.."&lt;/p&gt;
+&lt;p&gt;ಸಲ್ಪ ಯೋಚನೆ ಮಾಡಿ..&lt;/p&gt;
+&lt;p&gt;"ಈಗ ನೀನು &lt;a href="https://www.youtube.com/user/MashaBearEN"&gt;Masha and the Bear&lt;/a&gt; ನೋಡುವಾಗ, ಹಾಲು ಕುಡಿದಾಗುವವರೆಗೂ ನೋಡು ಆಮೇಲೆ TV off ಮಾಡ್ಬೇಕು ಅಂದಾಗ, ನಿಧಾನ ಕುಡೀತೀಯಲ್ವಾ.. ಹಂಗೆ"&lt;/p&gt;
+&lt;p&gt;"..."&lt;/p&gt;
+&lt;p&gt;ಈಸಲ ಅಪ್ಪ Rocks!&lt;/p&gt;</content><category term="blogs"></category><category term="kannada"></category><category term="impana"></category></entry><entry><title>Monitoring GlusterFS - Yet another try</title><link href="https://aravindavk.in/blog/monitoring-glusterfs-yet-another-try/" rel="alternate"></link><published>2019-12-03T00:00:00+05:30</published><updated>2019-12-03T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2019-12-03:/blog/monitoring-glusterfs-yet-another-try/</id><summary type="html">&lt;p&gt;Introduce Metrics SDK - Collection of libraries that helps to collect metrics without knowing about Gluster internals&lt;/p&gt;</summary><content type="html">&lt;p&gt;Monitoring is one of my favorite topics, and previously I tried
+multiple ways to monitor GlusterFS effectively. Initially, I decided
+to avoid running Gluster CLI commands with too frequent intervals by
+using Gluster hooks(Blog about using Gluster hooks is
+&lt;a href="https://aravindavk.in/blog/effective-glusterfs-monitoring-using-hooks/"&gt;here&lt;/a&gt;). But
+this approach was not practical since hooks are not available for all
+events.&lt;/p&gt;
+&lt;p&gt;Then I started a project called
+"&lt;a href="https://aravindavk.in/blog/introducing-gdash/"&gt;gdash&lt;/a&gt;" to visualize
+the health of the cluster using gluster command-line tools. But this
+was having only limited access to the cluster status and depended
+solely on what gluster CLI provides.&lt;/p&gt;
+&lt;p&gt;Events APIs are introduced in Gluster to fill the gaps of limited
+hooks support. The events listener needs to be started in each node of
+the cluster, and it exports the local events via registered
+webhooks.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://aravindavk.in/blog/10-mins-intro-to-gluster-eventing/"&gt;10 minutes introduction to Gluster Eventing Feature&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://aravindavk.in/blog/effective-gluster-monitoring-eventsapis/"&gt;Effective Gluster Monitoring using Events APIs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://aravindavk.in/blog/gluster-georep-dashboard-experiment/"&gt;Gluster Geo-replication Dashboard Experiment&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Events APIs are great since it helps to reduce polling Gluster
+cluster. But Events APIs are not perfect because of the asynchronous
+nature it can miss events. If a Webhook listener is down, then there
+is no way to get the history of events.&lt;/p&gt;
+&lt;p&gt;Events APIs are useful for creating health/status boards but not so
+helpful while designing monitoring systems that require historical
+data to make decisions and plot graphs. For example, adding an event
+for each file create/delete is not practical, so events APIs are not
+useful for getting Volume utilization details and similar metrics.&lt;/p&gt;
+&lt;p&gt;Many approaches we tried didn't succeed because all are dependent on
+gluster command-line tools. When we depend on Gluster CLIs, then
+collecting metrics from every node doesn't make sense because Gluster
+CLIs returns the same data from all the nodes. So if we start
+collecting from a single node of the cluster, then we need a mechanism
+to choose another node when the previously active node goes down.&lt;/p&gt;
+&lt;p&gt;When we started working on the Prometheus integration, our approach
+was to collect metrics at the lowest level possible and use the
+monitoring system's capability to aggregate the metrics from multiple
+nodes. For example, instead of collecting Volume utilization via mount
+or Gluster volume status command, Prometheus exporter collected
+utilization metrics from the bricks. This approach avoided all the
+complexities related to leader election or duplicate metrics.&lt;/p&gt;
+&lt;p&gt;The gluster-prometheus project solved problems related to some of the
+metrics, but not for all. We are still dependent on Gluster CLI
+commands for some of the metrics like Profile and others.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/gluster/gluster-prometheus"&gt;Gluster Prometheus project&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://aravindavk.in/blog/monitoring-glusterfs-volume-utilization/"&gt;Monitoring GlusterFS - Volume Utilization&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://aravindavk.in/blog/gluster-volume-utilization-multiple-approaches/"&gt;Gluster Volume utilization - Multiple approaches&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://aravindavk.in/blog/elixir-phoenix-liveview-gluster-dashboard/"&gt;Elixir Phoenix Liveview and Gluster dashboard&lt;/a&gt; - Dashboard experiment for Gluster but not using Prometheus.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;What's wrong with using Gluster CLI commands for metrics collection?&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Gluster CLI command fails some times due to locks(When gluster
+  command-line tools used in parallel)&lt;/li&gt;
+&lt;li&gt;Gluster CLIs will not help to collect only local metrics&lt;/li&gt;
+&lt;li&gt;If Gluster CLIs are not available(If collecting client metrics or
+  external projects like &lt;a href="https://kadalu.io"&gt;kadalu.io&lt;/a&gt;, which doesn't use
+  Glusterd!)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;So what next?&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Similar to the previous approach, collect metrics at as lowest level
+  as possible.&lt;/li&gt;
+&lt;li&gt;Do not depend on Gluster CLIs, but design an external tool to
+  populate the peer, cluster, and volume info files. For example,
+  while collecting a brick's utilization, how to find to which node,
+  volume, or cluster it belongs? Maintain info file for each entity
+  and update whenever cluster state changes. (Events APIs comes handy
+  here).&lt;/li&gt;
+&lt;li&gt;For collecting volume profile related metrics, understand the RPC
+  between brick process and glusterd, and communicate directly to
+  brick process and collect only local metrics.&lt;/li&gt;
+&lt;li&gt;Integrate with the metrics available from &lt;a href="https://github.com/amarts/glustermetrics"&gt;Amar's project&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Introduce Metrics SDK - Collection of libraries that helps to
+  collect metrics without knowing about Gluster internals.  This SDK
+  also helps us to integrate with any Monitoring tools(Prometheus,
+  Netdata, Nagios, etc.)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Last week &lt;a href="https://medium.com/@tumballi"&gt;Amar&lt;/a&gt; invited Gluster
+developers to propose features for Gluster 8, 9, and
+X(&lt;a href="https://www.gluster.org/blog-planning-ahead-for-gluster-releases/"&gt;here&lt;/a&gt;
+and
+&lt;a href="https://lists.gluster.org/pipermail/gluster-devel/2019-November/056709.html"&gt;here&lt;/a&gt;. I
+am planning to spend some time on mentoring/designing/implementing the
+Monitoring solution for Gluster.&lt;/p&gt;
+&lt;p&gt;I am hoping to get some success this time. Let me know if anyone
+interested to work on this.&lt;/p&gt;
+&lt;p&gt;Thanks. Let me know your thoughts.&lt;/p&gt;</content><category term="blogs"></category><category term="glusterfs"></category><category term="glusterfsblog"></category></entry><entry><title>Last day at Red Hat</title><link href="https://aravindavk.in/blog/last-day-at-redhat/" rel="alternate"></link><published>2019-11-29T00:00:00+05:30</published><updated>2019-11-29T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2019-11-29:/blog/last-day-at-redhat/</id><summary type="html">&lt;p&gt;Last day at Red Hat&lt;/p&gt;</summary><content type="html">&lt;p&gt;Today is my last day at Red Hat(Bengaluru, India). It was a fantastic
+journey of 7+ years working with Red Hat Storage team and GlusterFS
+community.&lt;/p&gt;
+&lt;p&gt;I will surely be active in the GlusterFS community. Hopefully, we can
+meet in the future Gluster meetups.&lt;/p&gt;
+&lt;p&gt;I think for me exciting things are happening during Nov/Dec :)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Dec 2005 - Joined Infosys (4 years)&lt;/li&gt;
+&lt;li&gt;Dec 2009 - Joined Limberlink (3 years)&lt;/li&gt;
+&lt;li&gt;Nov 2012 - Joined Red Hat (7 years)&lt;/li&gt;
+&lt;li&gt;Dec 2019 - Again, starting the new journey. &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img alt="Last day at Red Hat" src="/images/last-day-at-redhat.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;Curious to know what I will do next?  Please stay curious and watch
+this space for more updates :)&lt;/p&gt;</content><category term="blogs"></category><category term="redhat"></category></entry><entry><title>ಸಂಕ - ಹೊಸ ಆವೃತ್ತಿ v2</title><link href="https://aravindavk.in/blog/sanka-v2/" rel="alternate"></link><published>2019-11-02T00:00:00+05:30</published><updated>2019-11-02T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2019-11-02:/blog/sanka-v2/</id><summary type="html">&lt;p&gt;"ಹಾಗೆಯೇ ಕೆಲವು ತೊಂದರೆಗಳಿದ್ದುದನ್ನೂ ಈಮೈಲ್ ಬರೆದು ತಿಳಿಸಿದ್ದರು. ಈ ಸಲ ಕನ್ನಡ ರಾಜ್ಯೋತ್ಸವದ ಖುಷಿಯಲ್ಲಿ ಇದನ್ನು ಸರಿಪಡಿಸೋಣವೆನ್ನಿಸಿತು."&lt;/p&gt;</summary><content type="html">&lt;p&gt;ಒಮ್ಮೆ ನನಗೆ ASCII ಯಲ್ಲಿ ಬರೆದ ಲೇಖನ ಯುನಿಕೋಡ್ ಗೆ ಬದಲಾಯಿಸ ಬೇಕಾಗಿದ್ದರಿಂದ Ascii
+to Unicode ತಂತ್ರಾಂಶ ಬರೆದುಕೊಂಡಿದ್ದೆ. ಆನಂತರ ಎಲ್ಲರಿಗೂ ಉಪಯೋಗವಾಗಲಿ ಎಂದು ವೆಬ್
+ಸೈಟ್ ಮಾಡಿದೆ, ಅದರ ಬಗ್ಗೆ
+&lt;a href="https://aravindavk.in/blog/ascii2unicode-converter-kannada/"&gt;ಇಲ್ಲಿ&lt;/a&gt;
+ಬರೆದಿದ್ದೇನೆ ನೋಡಿ.&lt;/p&gt;
+&lt;p&gt;ಆ ನಂತರ ಈ ತಂತ್ರಾಂಶದ ತೊಂದರೆಗಳನ್ನು ಸರಿಪಡಿಸುತ್ತ, ಯುನಿಕೋಡ್ ನಿಂದ Ascii ಗೆ
+ಬದಲಾಯಿಸುವ ತಂತ್ರಾಂಶದ ಅಗತ್ಯವೂ ಎದುರಾಯಿತು. ಆಗ ಮಾಡಿದ ತಂತ್ರಾಂಶದ ಹೆಸರೇ
+&lt;a href="https://aravindavk.in/blog/sanka-kannada-converter/"&gt;"ಸಂಕ"&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://aravindavk.in/sanka"&gt;&lt;img alt="Sanka" src="/images/sanka-v2.png"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;ಇತ್ತೀಚೆಗೆ "ಸಂಕ"ವನ್ನು ಎಷ್ಟು ಜನ ಉಪಯೋಗಿಸುತ್ತಿದ್ದಾರೆ ಎಂದು ಗೂಗಲ್ ಅನಲಿಟಿಕ್ಸ್ ನಲ್ಲಿ
+ನೋಡಿದೆ. ದಿನಕ್ಕೆ 1000 ದಿಂದ 1500 ಪೇಜ್ ವೀವ್ಸ್ ಇದೆ ಎಂದು ತಿಳಿದು ಸಂತಸವಾಯ್ತು. ತಮ್ಮ
+ಖುಷಿಯನ್ನು ಈಮೈಲ್ ಬರೆದು ಹಂಚಿಕೊಂಡವರಿಗೂ ಧನ್ಯವಾದಗಳು.&lt;/p&gt;
+&lt;p&gt;ಹಾಗೆಯೇ ಕೆಲವು ತೊಂದರೆಗಳಿದ್ದುದನ್ನೂ ಈಮೈಲ್ ಬರೆದು ತಿಳಿಸಿದ್ದರು. ಈ ಸಲ ಕನ್ನಡ
+ರಾಜ್ಯೋತ್ಸವದ ಖುಷಿಯಲ್ಲಿ ಇದನ್ನು ಸರಿಪಡಿಸೋಣವೆನ್ನಿಸಿತು.&lt;/p&gt;
+&lt;h3&gt;ಹೊಸ ಆವೃತ್ತಿಯಲ್ಲಿನ ಬದಲಾವಣೆಗಳು:&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;ಜ್ಞ ಅಕ್ಷರದ ತೊಂದರೆಗಳು(ಪ್ರತಿಜ್ಞೆ, ಯಜ್ಞ ಇತ್ಯಾದಿ)&lt;/li&gt;
+&lt;li&gt;ಪು, ಪೂ, ಪೋ, ಫು, ಫೂ, ಫೋ ಅಕ್ಷರಗಳ ಸರಿಯಾದ ಬದಲಾವಣೆ.(ASCII ಗೆ ಬದಲಾದಾಗ)&lt;/li&gt;
+&lt;li&gt;ದೀರ್ಘದ ಜೊತೆ ಬರುವ ಒತ್ತಕ್ಷರಗಳನ್ನು ಸರಿಯಾದ ಜೋಡಣೆ(ಅಯ್ಯೋ, ಕ್ಯಾಂಪ್ಕೋ,
+  ಬೇಡಿಕೊಳ್ಳುತ್ತಿದ್ದೇನೆ ಇತ್ಯಾದಿ)&lt;/li&gt;
+&lt;li&gt;ಯುನಿಕೋಡ್ ಗೆ ಬದಲಾದಾಗ ಒತ್ತಕ್ಷರದ ಜೊತೆ ದೀರ್ಘ ಬಂದಾಗಿನ ತೊಂದರೆಗಳು.&lt;/li&gt;
+&lt;li&gt;ಪದಗಳ ಮದ್ಯ ಅಥವಾ ಅಕ್ಷರಗಳ ಮದ್ಯದಲ್ಲಿ ಹೆಚ್ಚಿನ Space ಬಿಟ್ಟಿದ್ದರೆ ಅದನ್ನು ಈಗ
+  ತೆಗೆಯಬಹುದು.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;ಇನ್ನು ಮುಂದೆ ಹಳೆಯ ASCII to Unicode ವೆಬ್ ಸೈಟ್ ಕೂಡ "ಸಂಕ" ಕ್ಕೆ ಕರೆದುಕೊಂಡು
+ಹೋಗುತ್ತದೆ(redirect).&lt;/p&gt;
+&lt;p&gt;ಈ ತೊಂದರೆಗಳನ್ನು ಸರಿಪಡಿಸಲು ಬೇಕಾದ Sample text ಕಳುಹಿಸಿದವರಿಗೆಲ್ಲರಿಗೂ ಮತ್ತು
+ಸಲಹೆಗಳನ್ನು ಕಳುಹಿಸಿದವರಿಗೆಲ್ಲರಿಗೂ ಧನ್ಯವಾದಗಳು.&lt;/p&gt;
+&lt;p&gt;ಇನ್ನೂ ಕೆಲವು ತೊಂದರೆಗಳು ಉಳಿದಿವೆ. ಬಳಸಿ ನೋಡಿ ಹೇಳಿ, ಈ ನವಂಬರ್ ನಲ್ಲೇ ಸರಿಪಡಿಸಲು
+ಪ್ರಯತ್ನಿಸುತ್ತೇನೆ.&lt;/p&gt;</content><category term="blogs"></category><category term="kannada"></category><category term="sanka"></category></entry><entry><title>Gluster Volume utilization - Multiple approaches</title><link href="https://aravindavk.in/blog/gluster-volume-utilization-multiple-approaches/" rel="alternate"></link><published>2019-09-24T00:00:00+05:30</published><updated>2019-09-24T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2019-09-24:/blog/gluster-volume-utilization-multiple-approaches/</id><summary type="html">&lt;p&gt;This blog discusses the multiple approaches available to get the Volume utilization and comparisons between them.&lt;/p&gt;</summary><content type="html">&lt;div class="notice-update"&gt;
+This blog was first published on &lt;a href="https://gluster.github.io/devblog/gluster-volume-utilization-multiple-approaches"&gt;Gluster Devblog&lt;/a&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Gluster Volume utilization is one of the critical metrics which
+everybody interested to know. This blog discusses the multiple
+approaches available to get the Volume utilization and comparisons
+between them.&lt;/p&gt;
+&lt;h2&gt;Approach 1 - Fuse mount&lt;/h2&gt;
+&lt;p&gt;Use fuse mount to mount the Gluster Volume and get the &lt;code&gt;df&lt;/code&gt; output(Or
+use &lt;code&gt;os.statvfs&lt;/code&gt; in case of Python script).&lt;/p&gt;
+&lt;p&gt;For example,&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ mount -t glusterfs localhost:gvol_rep3 /mnt/gvol_rep3
+$ df -B1 /mnt/gvol_rep3
+$ umount /mnt/gvol_rep3
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2&gt;Approach 2 - libgfapi mount&lt;/h2&gt;
+&lt;p&gt;Use libgfapi mount and run &lt;code&gt;os.statvfs&lt;/code&gt; to get the Volume utilization.&lt;/p&gt;
+&lt;p&gt;The following Python example uses
+&lt;a href="https://github.com/gluster/libgfapi-python"&gt;libgfapi-python&lt;/a&gt; project.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;gluster&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;gfapi&lt;/span&gt;
+
+&lt;span class="n"&gt;volume&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;gfapi&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Volume&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;localhost&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;gvol_rep3&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;volume&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mount&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;st&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;volume&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;statvfs&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;/&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Total Size: &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;st&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;f_blocks&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;st&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;f_bsize&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="n"&gt;volume&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;umount&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2&gt;Approach 3 - Gluster CLI&lt;/h2&gt;
+&lt;p&gt;Volume status detail command already provides brick-level
+utilization. Combine status detail with Volume info to group the
+bricks into subvolumes. Get the storage reserve by running &lt;code&gt;gluster
+volume get &amp;lt;volname&amp;gt; storage.reserve&lt;/code&gt; and subtract the same from
+&lt;code&gt;size_free&lt;/code&gt; or add to &lt;code&gt;size_used&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Refer Posix storage reserve feature
+&lt;a href="https://github.com/gluster/glusterfs/issues/236"&gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Once we get the sub volume grouping, get the sub volume utilization
+from the bricks utilization as follows.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;volume_capacity_total&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+&lt;span class="nv"&gt;volume_capacity_used&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+&lt;span class="nv"&gt;volume_inodes_total&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+&lt;span class="nv"&gt;volume_inodes_used&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="nv"&gt;subvol&lt;/span&gt; &lt;span class="nv"&gt;in&lt;/span&gt; &lt;span class="nv"&gt;subvols&lt;/span&gt; {
+    &lt;span class="nv"&gt;volume_capacity_total&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="nv"&gt;subvol&lt;/span&gt;.&lt;span class="nv"&gt;capacity_total&lt;/span&gt;
+    &lt;span class="nv"&gt;volume_capacity_used&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="nv"&gt;subvol&lt;/span&gt;.&lt;span class="nv"&gt;capacity_used&lt;/span&gt;
+    &lt;span class="nv"&gt;volume_inodes_total&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="nv"&gt;subvol&lt;/span&gt;.&lt;span class="nv"&gt;inodes_total&lt;/span&gt;
+    &lt;span class="nv"&gt;volume_inodes_used&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="nv"&gt;subvol&lt;/span&gt;.&lt;span class="nv"&gt;inodes_used&lt;/span&gt;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Subvolume utilization is dependent on its type. If subvolume type is
+Replicate then take the maximum of &lt;code&gt;capacity_used&lt;/code&gt; of all bricks in
+that subvolume and take a minimum of &lt;code&gt;capacity_total&lt;/code&gt; of all
+bricks. This method is because all replica bricks will have the same
+data and total capacity of a subvolume is dependent on the brick
+having least capacity (In most cases capacity of all bricks in
+subvolume will be identical).&lt;/p&gt;
+&lt;p&gt;In case of subvolume type is Disperse Volume then,&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;subvol_capacity_total = any_one_brick_capacity_total * number_of_data_bricks
+subvol_capacity_used = any_one_brick_capacity_used * number_of_data_bricks
+subvol_inodes_total = any_one_brick_inode_total
+subvol_inodes_used = any_one_brick_inode_used
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2&gt;Conclusion:&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Results of all approaches look similar, feel free to use the method
+  comfortable to the use case.&lt;/li&gt;
+&lt;li&gt;Mount cleanup required in case of first and second approaches. If
+  the application crashes before unmounting the volume, then we may
+  end up in stale mounts.&lt;/li&gt;
+&lt;li&gt;If the application is collecting the utilization details in regular
+  interval, either mount needs to be persisted or unmount is required
+  after collecting each time. Mounting and unmounting steps will
+  become too cumbersome to manage. Since mounting all volumes will
+  consume extra memory and mount can't persist if every time
+  utilization collected from different nodes.&lt;/li&gt;
+&lt;li&gt;Approach 3 is straightforward to implement since it is just running
+  the CLI command and parsing its output to get the required
+  results. The only downside of this approach is, the aggregation
+  logic implemented in the application side. So the application can go
+  out of sync if Gluster changes the way to calculate the utilization
+  then application.&lt;/li&gt;
+&lt;li&gt;Directory utilization is not possible with approach 3. If Gluster
+  Quota feature used and utilization of a subdirectory required, then
+  it is not possible using Gluster CLI commands.&lt;/li&gt;
+&lt;li&gt;Gluster status detail command itself can subtract the storage
+  reserve instead of returning the raw value(Bug: To be opened)&lt;/li&gt;
+&lt;/ul&gt;</content><category term="blogs"></category><category term="gluster"></category><category term="glusterfsblog"></category></entry><entry><title>Elixir Phoenix Liveview and Gluster dashboard</title><link href="https://aravindavk.in/blog/elixir-phoenix-liveview-gluster-dashboard/" rel="alternate"></link><published>2019-08-30T00:00:00+05:30</published><updated>2019-08-30T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2019-08-30:/blog/elixir-phoenix-liveview-gluster-dashboard/</id><summary type="html">&lt;p&gt;I started working on the Gluster dashboard using Phoenix Liveview feature.&lt;/p&gt;</summary><content type="html">&lt;p&gt;I was introduced to &lt;a href="https://www.erlang.org/"&gt;Erlang&lt;/a&gt; language by
+&lt;a href="http://manku.thimma.org/about/"&gt;Shashi&lt;/a&gt; in one of the Mysore Linux
+user group meeting at his office(Feb 2009). That was the time when
+NoSql was trending, and &lt;a href="http://couchdb.apache.org/"&gt;CouchDb&lt;/a&gt; was one
+of the popular NoSQL databases. I was very much impressed by the
+Erlang programming language and bought the book "Programming Erlang -
+Joe Armstrong"&lt;/p&gt;
+&lt;p&gt;Unfortunately, I couldn't spend much time with the language to develop
+any real-time app other than a few Hello World programs.&lt;/p&gt;
+&lt;p&gt;Finally, I got a chance to work on a
+&lt;a href="https://elixir-lang.org/"&gt;Elixir&lt;/a&gt; project! The trigger is the Phoenix
+Live view feature.&lt;/p&gt;
+&lt;p&gt;I watched &lt;a href="https://www.youtube.com/watch?v=8xJzHq8ru0M"&gt;Phoenix Liveview announcement&lt;/a&gt;
+15 days ago and immediately impressed by that.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Phoenix LiveView enables rich, real-time user experiences with
+server-rendered HTML. For more information, &lt;a href="https://dockyard.com/blog/2018/12/12/phoenix-liveview-interactive-real-time-apps-no-need-to-write-javascript"&gt;see the initial
+announcement&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Note: Currently LiveView is under active development and we are
+focused on getting a stable and solid initial version out. For this
+reason, we will be accepting only bug reports in the issues tracker
+for now. We will open the issues tracker for features after the
+current milestone is ironed out.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I started working on the &lt;a href="https://elixir-lang.org/"&gt;Gluster&lt;/a&gt; dashboard using Phoenix
+Liveview feature. This dashboard exposes a webhook to receive the
+Gluster cluster details. Gluster webhook exporter is written using D
+programming language. It runs the required Gluster commands every 10
+seconds(configurable) and parses the XML output and pushes the JSON
+data to the webhook exposed by the Phoenix application.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Gluster dashboard - How it works" src="/images/phoenix-liveview-gluster.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: Running exporter in all nodes is optional, can be run in a
+few nodes for better availability. If one node goes down, then
+exporter from another node can send the details to the dashboard app.&lt;/p&gt;
+&lt;p&gt;Phoenix app updates the Cluster state to Db and publishes to all
+connected LiveView sockets. All users who opened the dashboard page
+will get the updated dashboard.&lt;/p&gt;
+&lt;p&gt;Gluster dashboard is not yet ready, and I am working on the necessary
+features to submit this project for &lt;a href="https://phoenixphrenzy.com/"&gt;Phoenix
+Phrenzy&lt;/a&gt; contest.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Phoenix Phrenzy is a contest for developers to build with Phoenix
+LiveView, show off their software engineering skills, and help
+demonstrate the capabilities of this great technology to the open
+source community.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I am still working on many fixes to this dashboard project, watch this
+space for an update on this project. Let me know if the below
+screenshots look good. Thanks.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Gluster dashboard preview" src="/images/gluster-dashboard.gif"&gt;&lt;/p&gt;
+&lt;p&gt;Work in progress project source code is available
+&lt;a href="https://github.com/aravindavk/gluster-dashboard"&gt;here&lt;/a&gt;.&lt;/p&gt;</content><category term="blogs"></category><category term="gluster"></category><category term="glusterfsblog"></category></entry><entry><title>ಐಡಿ ಕಾರ್ಡು ಏನಕ್ಕೆ ಬೇಕು?</title><link href="https://aravindavk.in/blog/id-cardu-enakke/" rel="alternate"></link><published>2019-08-22T00:00:00+05:30</published><updated>2019-08-22T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2019-08-22:/blog/id-cardu-enakke/</id><summary type="html">&lt;p&gt;ಹಂಗೇ ಆಟ ಆಡ್ತಿದ್ದಾಗ ಇಂಪನಂಗೆ ಒಂದು ಪ್ರಶ್ನೆ ಬಂತು!&lt;/p&gt;</summary><content type="html">&lt;p&gt;ಹಂಗೇ ಆಟ ಆಡ್ತಿದ್ದಾಗ ಇಂಪನಂಗೆ ಒಂದು ಪ್ರಶ್ನೆ ಬಂತು!&lt;/p&gt;
+&lt;p&gt;"ಅಪ್ಪಾ, ಐಡಿ ಕಾರ್ಡ್ ಏನಕ್ಕೆ ಬೇಕು?"&lt;/p&gt;
+&lt;p&gt;ಹೆಂಗಪ್ಪಾ ಇವಳಿಗೆ ಅರ್ಥ ಆಗೋ ಹಂಗೆ ಹೇಳೋದು ಅಂತ ಯೋಚಿಸ್ಕೊಂಡು, ಹೇಳಿದೆ..&lt;/p&gt;
+&lt;p&gt;"ಐಡಿ ಕಾರ್ಡ್ ಹಾಕಿಕೊಂಡ್ರೆ ನೀನೆ ಇಂಪನ ಅಂತ ಗೊತ್ತಾಗುತ್ತೆ ಮ್ಯಾಮ್ ಗೆ"&lt;/p&gt;
+&lt;p&gt;"ಅಪ್ಪಾ... ಅವರು ಹೋಮ್ ವರ್ಕ್ ಕೊಡುವಾಗ ಇಂಪನಾ ಅಂತ ಕರೆದು ಕೊಡ್ತಾರೆ, ಮ್ಯಾಮ್ ಗೆ ನನ್ನ
+ಹೆಸರು ಗೊತ್ತು ಅಪ್ಪಾ.."&lt;/p&gt;
+&lt;p&gt;ಮತ್ತೆ ಬೇರೆ ಉತ್ತರ ಯೋಚಿಸ್ತಿದ್ದೆ..&lt;/p&gt;
+&lt;p&gt;"ನೀನು ಹೊರಗಡೆ ಹೋದಾಗ, ನೀನು Kidzee ಹುಡುಗಿ ಅಂತ ಬೇರೆಯವರಿಗೆ ಗೊತ್ತಾಗಬೇಕಲ್ವಾ?"&lt;/p&gt;
+&lt;p&gt;"ಅಪ್ಪಾ... ಸ್ಕೂಲ್ ಮುಗಿದಾದ್ಮೇಲೆ ನೀನು, ಅಮ್ಮ ಮನೆಗೆ ಕರ್ಕೊಂಡು ಹೋಗ್ತೀರಲ್ವಾ, ನಾನೆಲ್ಲಿ
+ಹೊರಗಡೆ ಹೋಗ್ತೀನಿ?"&lt;/p&gt;
+&lt;p&gt;ನಂಗೆ ತಕ್ಷಣಕ್ಕೆ ಬೇರೆ ಏನೂ ಹೊಳೀಲಿಲ್ಲ..&lt;/p&gt;
+&lt;p&gt;"ಸರಿ ಹೋಗ್ಲಿ ಬಿಡು.. ನೀನೇ ಹೇಳು ಐಡಿ ಕಾರ್ಡ್ ಏನಕ್ಕೆ ಬೇಕು?"&lt;/p&gt;
+&lt;p&gt;"ಅದೂ... ಸ್ಕೂಲಲ್ಲಿ ನಾನು ಮತ್ತೆ ಆರಾಧ್ಯ ಐಡಿ ಕಾರ್ಡಲ್ಲಿ ಫೋನ್ ಆಟ ಆಡ್ಬೋದು ಗೊತ್ತಾ?"&lt;/p&gt;
+&lt;p&gt;"..."&lt;/p&gt;</content><category term="blogs"></category><category term="ಕನ್ನಡ"></category><category term="ಇಂಪನ"></category><category term="ಮಗಳು"></category></entry><entry><title>Implementing CLI Subcommands with D programming language</title><link href="https://aravindavk.in/blog/cli-subcommands-dlang/" rel="alternate"></link><published>2019-07-28T00:00:00+05:30</published><updated>2019-07-28T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2019-07-28:/blog/cli-subcommands-dlang/</id><summary type="html">&lt;p&gt;Once "getopt" parses the flags, args will contain only remaining arguments(positional arguments).&lt;/p&gt;</summary><content type="html">&lt;p&gt;Never heard of D Programming?&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;D is a general-purpose programming language with static typing,
+systems-level access, and C-like syntax. With the D Programming
+Language, write fast, read fast, and run fast.&lt;/p&gt;
+&lt;p&gt;Fast code, fast.
+&lt;a href="https://dlang.org"&gt;https://dlang.org&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Parsing command-line arguments is very easy using the "&lt;a href="https://dlang.org/phobos/std_getopt.html"&gt;getopt&lt;/a&gt;" module
+available in the standard library. In this blog, I am sharing my
+experience about how I added subcommand support to my command-line
+applications.&lt;/p&gt;
+&lt;p&gt;Below example shows a basic program which accepts &lt;code&gt;--name&lt;/code&gt; or &lt;code&gt;-n&lt;/code&gt;
+argument.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;import&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;stdio&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="k"&gt;import&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getopt&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;string&lt;/span&gt;&lt;span class="p"&gt;[]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nb"&gt;string&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;auto&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;opts&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;getopt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;n|name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Your Name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;opts&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;helpWanted&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="n"&gt;defaultGetoptPrinter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;./mycli&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;opts&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;writefln&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Hello %s&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Once "getopt" parses the flags, args will contain only remaining
+arguments(positional arguments). For example,&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;import&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;stdio&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="k"&gt;import&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getopt&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;string&lt;/span&gt;&lt;span class="p"&gt;[]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nb"&gt;string&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;lastName&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;auto&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;opts&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;getopt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;last-name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Your Last Name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;lastName&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;opts&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;helpWanted&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;||&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;length&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;!=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="n"&gt;defaultGetoptPrinter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;./mycli &amp;lt;name&amp;gt; [OPTIONS]&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;opts&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nb"&gt;string&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;writefln&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Hello %s %s&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;lastName&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Now to handle sub-commands, we need to define multiple getopt. For
+Example,&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;import&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;stdio&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="k"&gt;import&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getopt&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="k"&gt;const&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;progHelp&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;./mycli get|set [OPTIONS]&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;subcmdSet&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;string&lt;/span&gt;&lt;span class="p"&gt;[]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nb"&gt;string&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kt"&gt;bool&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;isAdmin&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;auto&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;opts&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;getopt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getopt&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;required&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;// To make --name or -n as required field&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;n|name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;admin&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Set Admin privileges&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;isAdmin&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;opts&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;helpWanted&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="n"&gt;defaultGetoptPrinter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;./mycli set -n &amp;lt;Name&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;opts&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;// Subcommand implementation&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;writef&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Set name as %s&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;isAdmin&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;(admin)&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;writeln&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;subcmdGet&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;string&lt;/span&gt;&lt;span class="p"&gt;[]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nb"&gt;string&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;auto&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;opts&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;getopt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getopt&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;required&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;n|name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;opts&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;helpWanted&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="n"&gt;defaultGetoptPrinter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;./mycli get --n &amp;lt;Name&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;opts&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;// Subcommand implementation&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;writefln&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Name is %s&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;string&lt;/span&gt;&lt;span class="p"&gt;[]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;auto&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;subcmds&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;set&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;subcmdSet&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;get&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;subcmdGet&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;length&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="n"&gt;writeln&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;subcommand not specified&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="n"&gt;defaultGetoptPrinter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;progHelp&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;globalOpts&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;auto&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;func&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;subcmds&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;func&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;is&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kc"&gt;null&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="n"&gt;writeln&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Unknown sub-command&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="n"&gt;defaultGetoptPrinter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;progHelp&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;globalOpts&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(*&lt;/span&gt;&lt;span class="n"&gt;func&lt;/span&gt;&lt;span class="p"&gt;)(&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;If the program needs global flags which are applicable for all
+sub-commands, then make sure to add global flags getopt before parsing
+sub-commands. Also, add &lt;code&gt;std.getopt.config.passThrough&lt;/code&gt; to avoid
+failing to parse flags related to sub-commands.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;struct&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;globalFlags&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nb"&gt;string&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;logLevel&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;INFO&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kt"&gt;bool&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;debugEnabled&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="n"&gt;globalFlags&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;gflags&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;string&lt;/span&gt;&lt;span class="p"&gt;[]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;auto&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;globalOpts&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;getopt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getopt&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;passThrough&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;l|log-level&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Log Level&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;gflags&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;logLevel&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;debug&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Debug mode&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;gflags&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;debugEnabled&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;length&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(!&lt;/span&gt;&lt;span class="n"&gt;globalOpts&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;helpWanted&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="n"&gt;writeln&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;subcommand not specified&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="n"&gt;defaultGetoptPrinter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;progHelp&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;globalOpts&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;// -h is already parsed during Global options parsing. Reinsert to args&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;// So that subcommands will work as usual&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;globalOpts&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;helpWanted&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;~=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;-h&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;auto&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;subcmds&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;set&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;subcmdSet&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;get&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;subcmdGet&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;auto&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;func&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;subcmds&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;func&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;is&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kc"&gt;null&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="n"&gt;writeln&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Unknown sub-command&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="n"&gt;defaultGetoptPrinter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;progHelp&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;globalOpts&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(*&lt;/span&gt;&lt;span class="n"&gt;func&lt;/span&gt;&lt;span class="p"&gt;)(&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Notes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;getopt&lt;/code&gt; errors can be handled by catching &lt;code&gt;GetoptException&lt;/code&gt; and,&lt;/li&gt;
+&lt;li&gt;Handle any datatype conversion errors by catching ConvException`.&lt;/li&gt;
+&lt;li&gt;Positional arguments start with index 2(Example: &lt;code&gt;args[2]&lt;/code&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;That's it! Let me know if this blog post is useful.&lt;/p&gt;</content><category term="blogs"></category><category term="dlang"></category><category term="d"></category></entry><entry><title>Gluster and Kubernetes - Portmap</title><link href="https://aravindavk.in/blog/gluster-and-k8s-portmap/" rel="alternate"></link><published>2019-07-09T00:00:00+05:30</published><updated>2019-07-09T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2019-07-09:/blog/gluster-and-k8s-portmap/</id><summary type="html">&lt;p&gt;If we remove Glusterd in k8s setup, who will do the role of Glusterd? How will the brick process get the port number?&lt;/p&gt;</summary><content type="html">&lt;p&gt;One of the primary roles of Glusterd is to allocate a port for brick
+processes and let the clients know about it when requested.&lt;/p&gt;
+&lt;p&gt;Glusterd starts a brick process, and it allocates a free port number
+between 49152-49664. Gluster client(or mount) will connect to Glusterd
+(port:24007) and asks for the brick port, Glusterd provides brick port
+and client then connects to the brick process.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Get brick port from Glusterd" src="/images/gluster-glusterd-brick-port.png"&gt;&lt;/p&gt;
+&lt;p&gt;If we remove Glusterd in k8s setup, who will do the role of Glusterd?
+How will the brick process get the port number?&lt;/p&gt;
+&lt;p&gt;Now comes the Magic! All brick processes will run with the port number
+24007!&lt;/p&gt;
+&lt;p&gt;Each brick is one container in k8s setup, so no need to search for a new
+port. Just use 24007. Gluster client is intelligent enough to know
+that the connecting process is Glusterd or Brick process. The client
+connects to 24007 to get brick port, and it finds the brick process
+itself.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Client directly connects to brick" src="/images/gluster-brick-connect-direct.png"&gt;&lt;/p&gt;
+&lt;p&gt;Found interesting? Do join our talk about &lt;a href="http://bit.ly/gluster-k8s-devconf"&gt;Managing Gluster in
+Kubernetes without using
+Glusterd/Glusterd2&lt;/a&gt; at the devconf
+India event.&lt;/p&gt;</content><category term="blogs"></category><category term="gluster"></category><category term="glusterfsblog"></category></entry><entry><title>ಅಲ್ಲೊಂದೂರಲ್ಲಿ ಪುಟ್ಟ ಹಕ್ಕಿ</title><link href="https://aravindavk.in/blog/allonduralli-puttahakki/" rel="alternate"></link><published>2019-06-26T00:00:00+05:30</published><updated>2019-06-26T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2019-06-26:/blog/allonduralli-puttahakki/</id><summary type="html">&lt;p&gt;ಅವಳದ್ದೇ ಕಥೆ, ಅವಳದ್ದೇ ಚಿತ್ರ ಕಲ್ಪನೆ ಎಲ್ಲವನ್ನೂ ಸೇರಿಸಿ ಪುಸ್ತಕ ಮಾಡಿದ್ದೇವೆ&lt;/p&gt;</summary><content type="html">&lt;p&gt;ನಾಲ್ಕು ವರ್ಷದ ಮಗಳು ಇಂಪನಾಳಿಗೆ ಕಥೆ ಹೇಳುವುದು, ಚಿತ್ರ ಬರೆಯುವುದೆಂದರೆ ಬಹಳ
+ಇಷ್ಟ. ಅದನ್ನೇ ಗಮನದಲ್ಲಿಟ್ಟುಕೊಂಡು ಈ ಪ್ರಯತ್ನಕ್ಕೆ ಕೈ ಹಾಕಿದ್ದೇವೆ. ಅವಳದ್ದೇ ಕಥೆ, ಅವಳದ್ದೇ
+ಚಿತ್ರ ಕಲ್ಪನೆ ಎಲ್ಲವನ್ನೂ ಸೇರಿಸಿ ಪುಸ್ತಕ ಮಾಡಿದ್ದೇವೆ.&lt;/p&gt;
+&lt;p&gt;&lt;a href="/files/allonduralli-puttahakki.pdf"&gt;&lt;img alt="ಬುಕ್ ಕವರ್" src="/images/impana-book-photo.jpg"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;ಕಥೆಯಲ್ಲಿ ಬರುವಂತೆ ಬೆಕ್ಕು ರೌಡಿಯಾಗಿದ್ದು ಬಹಳ ಜನರಿಗೆ ಬೇಸರವಾಗಿದೆ. ನಿಜ ವಿಷಯ
+ಏನೆಂದರೆ, ಇಂಪನ ಅವಳ ಕಥೆಯಲ್ಲಿ ಹೇಳಿದ್ದು ಕಳ್ಳ ಅಂತ. ಆದರೆ ಅವಳಿಗೆ ಬರೆಯೋದು ಕಷ್ಟ
+ಆಗುತ್ತೆ ಅಂತ ಬೆಕ್ಕು ಬರೆಯುವ ಐಡಿಯಾ ಕೊಟ್ಟೆ.&lt;/p&gt;
+&lt;p&gt;ಹಾರುತ್ತಿರುವ ಹಕ್ಕಿ ಬರೆಯಲು ಇಂಪನಳಿಗೆ ಸುಲಭವಾಗಲಿ ಎಂದು 333 ಬರೆದು ಹಕ್ಕಿ ಹಾರುವಂತೆ
+ಬರೆಯುವುದಕ್ಕೆ ಚಿನ್ಮಯಿ ಹೇಳಿಕೊಟ್ಟಳು.&lt;/p&gt;
+&lt;p&gt;ಇಂಪನ ಪೇಪರ್ ನಲ್ಲಿ ಬರೆದು ಬಣ್ಣ ಹಚ್ಚಿದ ಚಿತ್ರಗಳನ್ನು ಸ್ಕ್ಯಾನ್ ಮಾಡಿ, &lt;a href="https://www.scribus.net/"&gt;Scribus&lt;/a&gt; ತಂತ್ರಾಂಶ
+ಬಳಸಿ ಪುಸ್ತಕ ಮಾಡಿದೆ. ಅಕ್ಷರಗಳಿಗೆ &lt;a href="https://aravindavk.in/blog/gubbi-mattu-navilu/"&gt;ಗುಬ್ಬಿ Font&lt;/a&gt; ಬಳಸಿದ್ದೇನೆ.&lt;/p&gt;
+&lt;p&gt;&lt;a href="/files/allonduralli-puttahakki.pdf"&gt;&lt;img alt="ಇಂಪನ" src="/images/impana-book-making.jpg"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;ಪ್ರಿಂಟ್ ಮಾಡಲು ಅನುಕೂಲವಾಗುವಂತೆ ಪುಟಗಳನ್ನು ಹೊಂದಿಸಿಕೊಡಲು ಕೆಳಗಿನಂತೆ ಲೇಟೆಕ್ ಕೋಡ್
+ಬಳಸಿದೆ.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;\documentclass&lt;/span&gt;&lt;span class="na"&gt;[a4paper]&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;article&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;span class="k"&gt;\usepackage&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;pdfpages&lt;span class="nb"&gt;}&lt;/span&gt;
+
+&lt;span class="k"&gt;\begin&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;document&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;span class="k"&gt;\includepdf&lt;/span&gt;&lt;span class="na"&gt;[pages=-,nup=1x2,noautoscale,booklet,landscape]&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;allonduralli-puttahakki.pdf&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;span class="k"&gt;\end&lt;/span&gt;&lt;span class="nb"&gt;{&lt;/span&gt;document&lt;span class="nb"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;ಇಂಪನಳ ಪುಸ್ತಕದ &lt;a href="/files/allonduralli-puttahakki.pdf"&gt;ಪಿಡಿಎಫ್ ಇಲ್ಲಿದೆ&lt;/a&gt;. ನೋಡಿ ನಿಮ್ಮ ಅನಿಸಿಕೆ ತಿಳಿಸಿ.&lt;/p&gt;</content><category term="blogs"></category><category term="ಕನ್ನಡ"></category><category term="ಇಂಪನ"></category><category term="ಮಗಳು"></category></entry><entry><title>Improving Geo-replication Status</title><link href="https://aravindavk.in/blog/improving-georep-status/" rel="alternate"></link><published>2019-03-28T00:00:00+05:30</published><updated>2019-03-28T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2019-03-28:/blog/improving-georep-status/</id><summary type="html">&lt;p&gt;Until the above issues are fixed in official Gluster CLI, we can use gluster-georep-status tool&lt;/p&gt;</summary><content type="html">&lt;div class="notice-update"&gt;
+This blog was first published on &lt;a href="https://gluster.github.io/devblog/improving-geo-replication-status"&gt;Gluster Devblog&lt;/a&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;a href="https://docs.gluster.org/en/latest/Administrator%20Guide/Geo%20Replication/"&gt;Geo-replication&lt;/a&gt;
+is a feature in Glusterfs to sync data from one Gluster Volume to
+another.&lt;/p&gt;
+&lt;p&gt;Current Geo-replication status has the following limitations.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Order of bricks is not uniform. Glusterd collects the status details
+  from all other nodes and displays in random order. This is very
+  confusing to users. Order of bricks in status should be in the same
+  order as in Volume info.&lt;/li&gt;
+&lt;li&gt;If initiator Glusterd(where the command is run) couldn't reach other
+  node's Glusterd then current CLI is skipping that in the status
+  output. Status should be shown as "Unknown" without spoiling the
+  order.&lt;/li&gt;
+&lt;li&gt;Geo-rep status mixes the rows from multiple sessions depending on
+  the response received from other node's Glusterds.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Until the above issues are fixed in official Gluster CLI, we can use
+&lt;code&gt;gluster-georep-status&lt;/code&gt; tool from
+&lt;a href="https://github.com/aravindavk/gluster-georep-tools"&gt;gluster-tools&lt;/a&gt;
+project. This tool merges Volume info and Geo-rep status to identify
+the Offline status and bricks order.&lt;/p&gt;
+&lt;p&gt;Installation instructions are available in project
+&lt;a href="https://github.com/aravindavk/gluster-georep-tools/blob/master/README.md"&gt;README&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;This tool also supports filters like &lt;code&gt;--with-status=active&lt;/code&gt;,
+&lt;code&gt;--with-crawl-status=changelog&lt;/code&gt; etc.&lt;/p&gt;
+&lt;p&gt;Example output:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c"&gt;$ gluster&lt;/span&gt;&lt;span class="nb"&gt;-&lt;/span&gt;&lt;span class="c"&gt;georep&lt;/span&gt;&lt;span class="nb"&gt;-&lt;/span&gt;&lt;span class="c"&gt;status&lt;/span&gt;
+&lt;span class="c"&gt;SESSION: photos ==&lt;/span&gt;&lt;span class="nv"&gt;&amp;gt;&lt;/span&gt;&lt;span class="c"&gt; bkp1&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;example&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;com::backup_photos&lt;/span&gt;
+&lt;span class="nb"&gt;+-------------------------------------+---------+-----------------+---------------------+---------------------+------------+-----------------+-----------------------+&lt;/span&gt;&lt;span class="c"&gt;&lt;/span&gt;
+&lt;span class="c"&gt;| MASTER                              | STATUS  | CRAWL STATUS    | SLAVE NODE          | LAST SYNCED         | CHKPT TIME | CHKPT COMPLETED | CHKPT COMPLETION TIME |&lt;/span&gt;
+&lt;span class="nb"&gt;+-------------------------------------+---------+-----------------+---------------------+---------------------+------------+-----------------+-----------------------+&lt;/span&gt;&lt;span class="c"&gt;&lt;/span&gt;
+&lt;span class="c"&gt;| prod1&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;example&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;com:/bricks/photos/b1 | Active  | Changelog Crawl | remote1&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;example&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;com | 2019&lt;/span&gt;&lt;span class="nb"&gt;-&lt;/span&gt;&lt;span class="c"&gt;03&lt;/span&gt;&lt;span class="nb"&gt;-&lt;/span&gt;&lt;span class="c"&gt;27 08:34:40 |    N/A     |       N/A       |          N/A          |&lt;/span&gt;
+&lt;span class="c"&gt;| prod2&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;example&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;com:/bricks/photos/b2 | Passive | N/A             | N/A                 | N/A                 |    N/A     |       N/A       |          N/A          |&lt;/span&gt;
+&lt;span class="c"&gt;| prod3&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;example&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;com:/bricks/photos/b3 | Passive | N/A             | N/A                 | N/A                 |    N/A     |       N/A       |          N/A          |&lt;/span&gt;
+&lt;span class="nb"&gt;+-------------------------------------+---------+-----------------+---------------------+---------------------+------------+-----------------+-----------------------+&lt;/span&gt;&lt;span class="c"&gt;&lt;/span&gt;
+
+&lt;span class="c"&gt;SESSION: data ==&lt;/span&gt;&lt;span class="nv"&gt;&amp;gt;&lt;/span&gt;&lt;span class="c"&gt; geoaccount@bkp2&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;example&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;com::backup_data&lt;/span&gt;
+&lt;span class="nb"&gt;+-----------------------------------+---------+-----------------+---------------------+---------------------+------------+-----------------+-----------------------+&lt;/span&gt;&lt;span class="c"&gt;&lt;/span&gt;
+&lt;span class="c"&gt;| MASTER                            | STATUS  | CRAWL STATUS    | SLAVE NODE          | LAST SYNCED         | CHKPT TIME | CHKPT COMPLETED | CHKPT COMPLETION TIME |&lt;/span&gt;
+&lt;span class="nb"&gt;+-----------------------------------+---------+-----------------+---------------------+---------------------+------------+-----------------+-----------------------+&lt;/span&gt;&lt;span class="c"&gt;&lt;/span&gt;
+&lt;span class="c"&gt;| prod1&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;example&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;com:/bricks/data/b1 | Stopped | N/A             | N/A                 | N/A                 |    N/A     |       N/A       |          N/A          |&lt;/span&gt;
+&lt;span class="c"&gt;| prod2&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;example&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;com:/bricks/data/b2 | Stopped | N/A             | N/A                 | N/A                 |    N/A     |       N/A       |          N/A          |&lt;/span&gt;
+&lt;span class="c"&gt;| prod3&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;example&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="c"&gt;com:/bricks/data/b3 | Stopped | N/A             | N/A                 | N/A                 |    N/A     |       N/A       |          N/A          |&lt;/span&gt;
+&lt;span class="nb"&gt;+-----------------------------------+---------+-----------------+---------------------+---------------------+------------+-----------------+-----------------------+&lt;/span&gt;&lt;span class="c"&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Comments &amp;amp; Suggestions Welcome.&lt;/p&gt;</content><category term="blogs"></category><category term="gluster"></category><category term="glusterfsblog"></category></entry><entry><title>Area Charts using R base Graphics</title><link href="https://aravindavk.in/blog/area-charts-using-r-base-graphics/" rel="alternate"></link><published>2019-02-17T00:00:00+05:30</published><updated>2019-02-17T00:00:00+05:30</updated><author><name>Aravinda VK</name></author><id>tag:aravindavk.in,2019-02-17:/blog/area-charts-using-r-base-graphics/</id><summary type="html">&lt;p class="first last"&gt;Today I learnt to create Area graph using R Base
 graphics. polygon function (help(polygon)) can be used to
 fill the area under the line.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;Today I learnt to create &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Area_chart"&gt;Area chart&lt;/a&gt; using R Base

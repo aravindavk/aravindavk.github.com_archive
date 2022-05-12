@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="google-site-verification" content="PwqxyVtbmKeb1wsrF8XJ5GQIPxlDxUupYnTEWPI3KLk" />
+    <meta http-equiv="cache-control" content="max-age=0" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <link href="/theme/img/fav.png" rel="icon" type="image/x-icon" />
+    <meta property="og:site_name" content="Aravinda VK"/>
+    <link rel="apple-touch-icon" href="/theme/img/fav.png" />
+    <title>Gluster and Kubernetes - Portmap</title>
+    <meta property="og:title" content="Gluster and Kubernetes - Portmap"/>
+    <meta property="twitter:title" content="Gluster and Kubernetes - Portmap"/>
+    <meta name="description" content="If we remove Glusterd in k8s setup, who will do the role of Glusterd? How will the brick process get the port number?"/>
+    <meta property="og:description" content="If we remove Glusterd in k8s setup, who will do the role of Glusterd? How will the brick process get the port number?"/>
+    <meta property="twitter:description" content="If we remove Glusterd in k8s setup, who will do the role of Glusterd? How will the brick process get the port number?"/>
+    <meta property="og:url" content="https://aravindavk.in/blog/gluster-and-k8s-portmap/" />
+    <meta property="twitter:url" content="https://aravindavk.in/blog/gluster-and-k8s-portmap/" />
+    <meta property="og:image" content="https://aravindavk.in" />
+    <link href="https://aravindavk.in/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Aravinda VK Atom Feed" />
+    <link rel="stylesheet" href="/theme/css/pure-min.css" />
+    <link rel="stylesheet" href="/theme/css/side-menu.css" />
+    <link rel="stylesheet" href="/theme/css/main.css?v=1" />
+    <link rel="stylesheet" href="/theme/css/pygment-emacs-highlight.css" />
+<script defer data-domain="aravindavk.in" src="https://plausible.io/js/plausible.js"></script>
+  </head>
+  <body>
+    <div id="layout">
+      <!-- Menu toggle -->
+      <a href="#menu" id="menuLink" class="menu-link">
+        <!-- Hamburger icon -->
+        <span></span>
+      </a>
+      <div id="menu" class="pure-hidden-desktop pure-hidden-tablet">
+        <div class="pure-menu pure-menu-open">
+          <a class="pure-menu-heading logo" href="/"><img src="/theme/img/logo.png" alt="aravindavk"/></a>
+          <div class="social-icons">
+            <a href="https://aravindavk.in/feeds/all.atom.xml" target="_blank" title="News">
+              <img src="/theme/img/feed.png" class="link-icon" alt="News"/>
+            </a>
+            <a href="http://twitter.com/aravindavk" target="_blank" title="Twitter">
+              <img src="/theme/img/twitter.png" class="link-icon" alt="Twitter"/>
+            </a>
+            <a href="https://plus.google.com/+aravindavk" target="_blank" title="Google Plus">
+              <img src="/theme/img/gplus.png" class="link-icon" alt="Google Plus"/>
+            </a>
+            <a href="https://github.com/aravindavk" target="_blank" title="Github">
+              <img src="/theme/img/github.png" class="link-icon" alt="Github"/>
+            </a>
+            <a href="http://www.flickr.com/photos/aravindavk" target="_blank" title="Flickr">
+              <img src="/theme/img/flickr.png" class="link-icon" alt="Flickr"/>
+            </a>
+            <a href="http://in.linkedin.com/in/aravindavk" target="_blank" title="LinkedIn">
+              <img src="/theme/img/linkedin.png" class="link-icon" alt="LinkedIn"/>
+            </a>
+          </div>
+          <ul>
+            <li class=""><a href="/">Home</a></li>
+            <li class=""><a href="/me">About</a></li>
+            <li class=""><a href="/projects">Projects</a></li>
+            <li class=""><a href="/blogs">Blogs</a></li>
+            <li class=""><a href="/talks">Talks & Articles</a></li>
+          </ul>
+        </div>
+        <div class="sep"></div>
+        <div class="copyright">&copy; 2008-2014 Aravinda VK, <br/>All rights reserved</div>
+      </div>
+
+      <div class="pure-g-r">
+        <div class="pure-u-4-5 content-left">
+          <div class="left article">
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        Gluster and Kubernetes - Portmap</h1>
+    </header>
+    <div class="pure-hidden-phone pure-hidden-tablet">
+<footer class="post-info">
+  <p class="author-and-date-info">
+    Posted on Tue 09 July 2019 by <a class="url fn" href="https://aravindavk.in">Aravinda VK</a>.
+  </p>
+</footer><!-- /.post-info -->
+<div class="sep"></div>    </div>
+    <div class="entry-content">
+      <p>One of the primary roles of Glusterd is to allocate a port for brick
+processes and let the clients know about it when requested.</p>
+<p>Glusterd starts a brick process, and it allocates a free port number
+between 49152-49664. Gluster client(or mount) will connect to Glusterd
+(port:24007) and asks for the brick port, Glusterd provides brick port
+and client then connects to the brick process.</p>
+<p><img alt="Get brick port from Glusterd" src="/images/gluster-glusterd-brick-port.png"></p>
+<p>If we remove Glusterd in k8s setup, who will do the role of Glusterd?
+How will the brick process get the port number?</p>
+<p>Now comes the Magic! All brick processes will run with the port number
+24007!</p>
+<p>Each brick is one container in k8s setup, so no need to search for a new
+port. Just use 24007. Gluster client is intelligent enough to know
+that the connecting process is Glusterd or Brick process. The client
+connects to 24007 to get brick port, and it finds the brick process
+itself.</p>
+<p><img alt="Client directly connects to brick" src="/images/gluster-brick-connect-direct.png"></p>
+<p>Found interesting? Do join our talk about <a href="http://bit.ly/gluster-k8s-devconf">Managing Gluster in
+Kubernetes without using
+Glusterd/Glusterd2</a> at the devconf
+India event.</p>
+    </div><!-- /.entry-content -->
+    <div class="pure-hidden-desktop">
+<footer class="post-info">
+  <p class="author-and-date-info">
+    Posted on Tue 09 July 2019 by <a class="url fn" href="https://aravindavk.in">Aravinda VK</a>.
+  </p>
+</footer><!-- /.post-info -->
+<div class="sep"></div>    </div>
+    <div class="permalink-div">
+      Permalink: <a href="https://aravindavk.in/blog/gluster-and-k8s-portmap/" rel="bookmark" title="Permalink to Gluster and Kubernetes - Portmap">https://aravindavk.in/blog/gluster-and-k8s-portmap/</a>
+    </div>
+<div class="comments">
+  <h2>Comments !</h2>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_identifier = "blog/gluster-and-k8s-portmap/";
+    var disqus_url = "https://aravindavk.in/blog/gluster-and-k8s-portmap/";
+    (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = 'https://vkaravinda.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+</div>
+  </article>
+</section>
+            <div class="copyright pure-hidden-desktop pure-hidden-tablet">&copy; 2008-2014 Aravinda VK, <br/>All rights reserved</div>
+          </div>
+        </div>
+        <div class="pure-u-1-5 pure-hidden-phone">
+          <div class="right">
+            <img class="me" src="/theme/img/me.jpg"/>
+            <div class="sep"></div>
+            <div class="pure-menu pure-menu-open">
+              <a class="pure-menu-heading logo" href="/"><img src="/theme/img/logo.png" alt="aravindavk"/></a>
+              <div class="social-icons">
+                <a href="https://aravindavk.in/feeds/all.atom.xml" target="_blank" title="News">
+                  <img src="/theme/img/feed.png" class="link-icon" alt="News"/>
+                </a>
+                <a href="http://twitter.com/aravindavk" target="_blank" title="Twitter">
+                  <img src="/theme/img/twitter.png" class="link-icon" alt="Twitter"/>
+                </a>
+                <a href="https://plus.google.com/+aravindavk" target="_blank" title="Google Plus">
+                  <img src="/theme/img/gplus.png" class="link-icon" alt="Google Plus"/>
+                </a>
+                <a href="https://github.com/aravindavk" target="_blank" title="Github">
+                  <img src="/theme/img/github.png" class="link-icon" alt="Github"/>
+                </a>
+                <a href="http://www.flickr.com/photos/aravindavk" target="_blank" title="Flickr">
+                  <img src="/theme/img/flickr.png" class="link-icon" alt="Flickr"/>
+                </a>
+                <a href="http://in.linkedin.com/in/aravindavk" target="_blank" title="LinkedIn">
+                  <img src="/theme/img/linkedin.png" class="link-icon" alt="LinkedIn"/>
+                </a>
+              </div>
+              <ul>
+                <li class=""><a href="/">Home</a></li>
+                <li class=""><a href="/me">About</a></li>
+                <li class=""><a href="/projects">Projects</a></li>
+                <li class=""><a href="/blogs">Blogs</a></li>
+                <li class=""><a href="/talks">Talks & Articles</a></li>
+              </ul>
+            </div>
+            <div class="sep"></div>
+            <div class="copyright">&copy; 2008-2014 Aravinda VK, <br/>All rights reserved</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <script src="/theme/js/ui.js"></script>
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-11830111-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+  </body>
+</html>
